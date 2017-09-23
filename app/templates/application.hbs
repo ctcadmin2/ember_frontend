@@ -1,5 +1,11 @@
-{{!-- The following component displays Ember's default welcome message. --}}
-{{welcome-page}}
-{{!-- Feel free to remove this! --}}
-
-{{outlet}}
+<div class="ui container">
+  <div class="ui huge secondary pointing menu">
+    {{link-to 'CTCAdmin2' 'index' class='item header'}}
+    <div class="right menu">
+      {{link-to 'Companies' 'companies' class='item'}}
+    </div>
+  </div>
+</div>
+<div class="ui container">
+  {{outlet}}
+</div>

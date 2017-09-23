@@ -1,0 +1,43 @@
+<div class="ui raised segment">
+  <table class="ui table padded selectable striped celled attached">
+    <caption class="ui huge header teal">Company list</caption>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>CIF</th>
+        <th>Contact</th>
+        <th>Phone</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <th colspan="5">
+          <div class="ui items">
+            <div class="item">
+              <div class="middle aligned content">
+                <div class="left floated">
+                  <button class='ui teal button'> New company </button>
+                </div>
+                <div class="right floated">
+                  <span class='ui right floated'> PAGINATION </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </th>
+      </tr>
+    </tfoot>
+    <tbody>
+      {{#each model as |company|}}
+         <tr>
+           <td>{{company.name}}</td>
+           <td>{{company.cif}}</td>
+           <td>{{company.contact}}</td>
+           <td>{{company.phone}}</td>
+           <td>Actions</td>
+         </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
