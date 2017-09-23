@@ -17,10 +17,12 @@
             <div class="item">
               <div class="middle aligned content">
                 <div class="left floated">
-                  <button class='ui teal button'> New company </button>
+                  <button {{action 'changeSize'}} class='ui teal button'> New company </button>
                 </div>
                 <div class="right floated">
-                  <span class='ui right floated'> PAGINATION </span>
+                  <div class='ui right floated'>
+                    {{pagination-list meta=model.meta pageParam=page}}
+                  </div>
                 </div>
               </div>
             </div>

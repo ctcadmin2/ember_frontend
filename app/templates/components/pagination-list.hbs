@@ -1,0 +1,36 @@
+<div class="ui pagination menu">
+  {{log pageParam}}
+  {{#unless meta.first_page}}
+    {{#unless firstPage}}
+      {{#link-to 'companies' (query-params page=1) class='item' }}
+         <i class="fast backward icon"></i>
+      {{/link-to}}
+    {{/unless}}
+    {{#link-to 'companies' (query-params page=meta.prev_page) class='item' }}
+       <i class="left arrow icon"></i>
+    {{/link-to}}
+  {{/unless}}
+
+  {{#ui-dropdown class="fluid scrolling selection" selected=meta.current_page onChange=(action (mut pageParam)) as |execute mapper|}}
+    <div class="default text">Select page</div>
+    <i class="dropdown icon"></i>
+    <div class="menu">
+      {{#each pageList as |page|}}
+        <div class="item" data-value="{{map-value mapper page}}">
+          {{page}}
+        </div>
+      {{/each}}
+    </div>
+  {{/ui-dropdown}}
+
+  {{#unless meta.last_page}}
+    {{#link-to 'companies' (query-params page=meta.next_page) class='item' }}
+       <i class="right arrow icon"></i>
+    {{/link-to}}
+    {{#unless lastPage}}
+      {{#link-to 'companies' (query-params page=meta.total_pages) class='item' }}
+         <i class="fast forward icon"></i>
+      {{/link-to}}
+    {{/unless}}
+  {{/unless}}
+</div>
