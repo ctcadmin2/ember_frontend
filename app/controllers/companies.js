@@ -1,13 +1,18 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  queryParams: ['page', 'size'],
+  queryParams: ['page', 'size', 'filter'],
   page: 1,
   size: 5,
-
+  filter: '',
+  filterEmpty: Ember.computed.empty('filter'),
+  showPagination: Ember.computed.gte('model.meta.total_pages', 2),
+  paginationReset: Ember.observer('filter', function() {
+    this.set('page', 1);
+  }),
   actions: {
-    changeSize() {
-      this.set('size', 1);
+    clearFilter() {
+        this.set('filter', '');
     }
   }
 });

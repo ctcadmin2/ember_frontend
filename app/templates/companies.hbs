@@ -7,7 +7,14 @@
         <th>CIF</th>
         <th>Contact</th>
         <th>Phone</th>
-        <th></th>
+        <th>
+          <div class="ui search">
+            <div class="ui fluid icon input">
+              {{input value=filter class="prompt" type="text" placeholder="Search"}}
+              <i class="{{if filterEmpty 'search' 'remove link'}} icon" {{action 'clearFilter'}}></i>
+            </div>
+          </div>
+        </th>
       </tr>
     </thead>
     <tfoot>
@@ -21,7 +28,9 @@
                 </div>
                 <div class="right floated">
                   <div class='ui right floated'>
-                    {{pagination-list meta=model.meta pageParam=page}}
+                    {{#if showPagination}}
+                      {{pagination-list meta=model.meta pageParam=page}}
+                    {{/if}}
                   </div>
                 </div>
               </div>

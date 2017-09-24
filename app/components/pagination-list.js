@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   firstPage: Ember.computed.equal('meta.prev_page', 1),
-  lastPage: Ember.computed('meta.next_page', 'meta.total_pages', function() {
+  lastPage: Ember.computed('meta.{next_page,total_pages}', function() {
     if (this.get('meta.next_page') === this.get('meta.total_pages')) {
       return true;
     }
