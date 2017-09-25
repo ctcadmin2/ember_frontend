@@ -13,6 +13,15 @@ export default Ember.Controller.extend({
   actions: {
     clearFilter() {
         this.set('filter', '');
+    },
+    openModal(name) {
+      Ember.$(`.ui.${name}.modal`).modal('show');
+    },
+    approveModal(){
+
+    },
+    denyModal() {
+
     }
   }
 });

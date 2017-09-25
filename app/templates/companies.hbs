@@ -24,7 +24,9 @@
             <div class="item">
               <div class="middle aligned content">
                 <div class="left floated">
-                  <button {{action 'changeSize'}} class='ui teal button'> New company </button>
+                  <div class="ui teal button" {{action 'openModal' 'companyModal'}}>
+                    New company
+                  </div>
                 </div>
                 <div class="right floated">
                   <div class='ui right floated'>
@@ -52,3 +54,21 @@
     </tbody>
   </table>
 </div>
+
+{{#ui-modal name="companyModal" class="companyModal" onApprove=(action 'approveModal') onDeny=(action 'denyModal')}}
+  <div class="header">
+    Add new company...
+  </div>
+  <div class="content">
+    Content
+  </div>
+  <div class="actions">
+    <div class="ui black deny button">
+      Nope
+    </div>
+    <div class="ui positive right labeled icon button">
+      Yep, that's me
+      <i class="checkmark icon"></i>
+    </div>
+  </div>
+{{/ui-modal}}
