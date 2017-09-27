@@ -1,6 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
+  companies: Ember.computed.alias('model.companies'),
+  countries: Ember.computed.alias('model.countries'),
   queryParams: ['page', 'size', 'filter'],
   page: 1,
   size: 5,

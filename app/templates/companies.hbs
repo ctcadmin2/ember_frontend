@@ -42,7 +42,7 @@
       </tr>
     </tfoot>
     <tbody>
-      {{#each model as |company|}}
+      {{#each companies as |company|}}
          <tr>
            <td>{{company.name}}</td>
            <td>{{company.cif}}</td>
@@ -55,12 +55,12 @@
   </table>
 </div>
 
-{{#ui-modal name="companyModal" class="companyModal" onApprove=(action 'approveModal') onDeny=(action 'denyModal')}}
+{{#ui-modal name="companyModal" class="companyModal small" onApprove=(action 'approveModal') onDeny=(action 'denyModal')}}
   <div class="header">
     Add new company...
   </div>
   <div class="content">
-    Content
+    {{find-company countries=countries}}
   </div>
   <div class="actions">
     <div class="ui black deny button">
