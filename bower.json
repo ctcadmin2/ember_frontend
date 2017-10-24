@@ -1,6 +1,7 @@
 {
   "name": "frontend",
   "dependencies": {
-    "semantic-ui": "^2.2.13"
+    "semantic-ui": "^2.2.13",
+    "sweetalert2": "^6.1.0"
   }
 }

@@ -1,0 +1,17 @@
+{{#ui-modal name="companyModal" class="companyModal small" onApprove=(action 'approveModal')
+            onDeny=(action 'denyModal') closable=false}}
+  <div class="header">
+    Editing {{company.name}}...
+  </div>
+  <div class="content">
+    {{company-form countries=countries data=company inputDisabled=false}}
+  </div>
+  <div class="actions">
+    <div class="ui red deny button">
+      Cancel
+    </div>
+    <div class="ui positive button">
+      Update
+    </div>
+  </div>
+{{/ui-modal}}

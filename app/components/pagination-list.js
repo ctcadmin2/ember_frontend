@@ -1,15 +1,18 @@
-import Ember from 'ember';
+import {computed} from '@ember/object';
+import {equal} from '@ember/object/computed';
+import Component from '@ember/component';
+import { get } from "@ember/object";
 
-export default Ember.Component.extend({
-  firstPage: Ember.computed.equal('meta.prev_page', 1),
-  lastPage: Ember.computed('meta.{next_page,total_pages}', function() {
-    if (this.get('meta.next_page') === this.get('meta.total_pages')) {
+export default Component.extend({
+  firstPage: equal('meta.prev_page', 1),
+  lastPage: computed('meta.{next_page,total_pages}', function () {
+    if (get(this, 'meta.next_page') === get(this, 'meta.total_pages')) {
       return true;
     }
   }),
-  pageList: Ember.computed('meta.total_pages', function(){
+  pageList: computed('meta.total_pages', function () {
     let list = [];
-    for (let i = 1; i <= this.get('meta.total_pages'); i++) {
+    for (let i = 1; i <= get(this, 'meta.total_pages'); i++) {
       list.push(i);
     }
     return list;

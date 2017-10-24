@@ -1,0 +1,5 @@
+<div class="ui fluid buttons">
+  {{#link-to "companies.show" model class="ui olive button"}}Show{{/link-to}}
+  {{#link-to "companies.edit" model class="ui teal button"}}Edit{{/link-to}}
+  <button class="ui red button" {{action 'deleteButton' model.id}}>Destroy</button>
+</div>
