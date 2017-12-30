@@ -1,16 +1,16 @@
 <div class="ui pagination menu">
-  {{#unless meta.first_page}}
-    {{#unless firstPage}}
+  {{#unless prevButton}}
+    {{#unless firstButton}}
       {{#link-to 'companies.index' (query-params page=1) class='item' }}
         <i class="fast backward icon"></i>
       {{/link-to}}
     {{/unless}}
-    {{#link-to 'companies.index' (query-params page=meta.prev_page) class='item' }}
+    {{#link-to 'companies.index' (query-params page=decrementPage) class='item' }}
       <i class="left arrow icon"></i>
-    {{/link-to}}
+     {{/link-to}}
   {{/unless}}
 
-  {{#ui-dropdown class="fluid scrolling selection" selected=meta.current_page
+  {{#ui-dropdown class="fluid scrolling selection" selected=query.page.number
                  onChange=(action (mut pageParam)) as |execute mapper|}}
     <div class="default text">Select page</div>
     <i class="dropdown icon"></i>
@@ -23,12 +23,12 @@
     </div>
   {{/ui-dropdown}}
 
-  {{#unless meta.last_page}}
-    {{#link-to 'companies.index' (query-params page=meta.next_page) class='item' }}
+  {{#unless nextButton}}
+    {{#link-to 'companies.index' (query-params page=incrementPage) class='item' }}
       <i class="right arrow icon"></i>
     {{/link-to}}
-    {{#unless lastPage}}
-      {{#link-to 'companies.index' (query-params page=meta.total_pages) class='item' }}
+    {{#unless lastButton}}
+      {{#link-to 'companies.index' (query-params page=meta.page-count) class='item' }}
         <i class="fast forward icon"></i>
       {{/link-to}}
     {{/unless}}

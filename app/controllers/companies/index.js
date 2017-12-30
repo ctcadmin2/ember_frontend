@@ -7,13 +7,14 @@ import {inject as service} from '@ember/service';
 
 export default Controller.extend({
   flashMessages: service(),
-  queryParams: ['page', 'size', 'filter'],
+  queryParams: ['page', 'size','sort', 'filter'],
   page: 1,
   size: 5,
   filter: '',
+  sort: 'name',
   filterEmpty: empty('filter'),
   companies: alias('model'),
-  showPagination: gte('model.meta.total_pages', 2),
+  showPagination: gte('model.meta.page-count', 2),
   actions: {
     clearFilter() {
       set(this, 'filter', '');
@@ -22,28 +23,39 @@ export default Controller.extend({
       set(this, 'page', 1);
     },
     destroyCompany(id) {
-      //if (confirm('Are you sure?')) {
-        get(this, 'store').findRecord('company', id, {backgroundReload: false})
-          .then(
-            (record) => {
-              record.destroyRecord().then(
-                () => {
-                  this.send('refreshPage');
-                  this.flashMessages.success('Successfully deleted!');
-                },
-                () => {this.flashMessages.error('Company could not be deleted!')}
-              ).catch(() => {this.flashMessages.error('There was an error while deleting the company.')})
-            },
-            () => {this.flashMessages.error('Company could not be found!')}
-          )
-          .catch(
-            () => {this.flashMessages.error('There was an error while looking for the company.')}
-          )
-      //}
+      get(this, 'store').findRecord('company', id, {backgroundReload: false})
+        .then(
+          (record) => {
+            record.destroyRecord().then(
+              () => {
+                this.send('refreshPage');
+                this.flashMessages.success('Successfully deleted!');
+              },
+              () => {this.flashMessages.error('Company could not be deleted!')}
+            ).catch(() => {this.flashMessages.error('There was an error while deleting the company.')})
+          },
+          () => {this.flashMessages.error('Company could not be found!')}
+        )
+        .catch(
+          () => {this.flashMessages.error('There was an error while looking for the company.')}
+        )
+    },
+    sort(prop) {
+      let sortParam = get(this, 'sort');
+      if (sortParam.includes(prop)) {
+        let index = sortParam.indexOf(prop);
+        if (sortParam[index-1] === '-') {
+          sortParam = sortParam.substr(0, index-1) + sortParam.substr(index);
+        }else{
+          sortParam = sortParam.substr(0, index) + '-' + sortParam.substr(index);
+        }
+      }else{
+        sortParam = sortParam + ',' + prop;
+      }
+      set(this, 'sort', sortParam);
     }
   }
 });
-
 
 //TODO write tests
 //TODO translate

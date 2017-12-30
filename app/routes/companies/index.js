@@ -14,6 +14,10 @@ export default Route.extend({
     filter: {
       refreshModel: true,
       scope: 'controller'
+    },
+    sort: {
+      refreshModel: true,
+      scope: 'controller'
     }
   },
 
@@ -23,7 +27,10 @@ export default Route.extend({
         number: params.page,
         size: params.size
       },
-      filter: params.filter
+      sort: params.sort,
+      filter: {
+        q: params.filter
+      }
     })
   },
 

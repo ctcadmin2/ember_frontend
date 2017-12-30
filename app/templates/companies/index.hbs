@@ -2,11 +2,11 @@
   {{flash-alert flash=flash}}
 {{/each}}
 <div class="ui attached raised segment">
-  <table class="ui table padded selectable striped celled attached">
+  <table class="ui table sortable padded selectable striped celled attached">
     <caption class="ui huge header teal">Company list</caption>
     <thead>
     <tr>
-      <th>Name</th>
+      <th class="{{sort-class sort 'name'}}" {{action 'sort' 'name'}}>Name</th>
       <th>CIF</th>
       <th>Contact</th>
       <th>Phone</th>
@@ -32,7 +32,7 @@
               <div class="right floated">
                 <div class='ui right floated'>
                   {{#if showPagination}}
-                    {{pagination-list meta=model.meta pageParam=page}}
+                    {{pagination-list meta=model.meta query=model.query pageParam=page}}
                   {{/if}}
                 </div>
               </div>
