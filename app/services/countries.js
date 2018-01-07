@@ -1,30 +1,19 @@
 import Service, {inject as service} from '@ember/service';
-import {get, set} from '@ember/object';
+import { get, set } from '@ember/object';
 
 export default Service.extend({
-  ajax: service(),
+  store: service(),
+  list: null,
+  dataFetched: false,
 
   init() {
-    this.dataFetched = false;
-    this.list = null;
-    this.fetchData();
-  },
-
-  fetchData() {
-
-    get(this, 'ajax').request(
-      "https://restcountries.eu/rest/v2/regionalbloc/eu?fields=name;alpha2Code"
-    ).then(response => {
-      for (let i = 0; i < response.length; i++) {
-        if (response[i].name === 'United Kingdom of Great Britain and Northern Ireland') {
-          response[i].name = 'United Kingdom'
-        } else if (response[i].name === 'Greece') {
-          response[i].alpha2Code = 'EL'
+    this._super(...arguments);
+    get(this, 'store').findAll('country').then(
+        (response) => {
+          set(this, 'list', response);
+          set(this, 'dataFetched', true);
         }
-      }
-      set(this, 'dataFetched', true);
-      set(this, 'list', response);
-    })
+      )
   }
 
 });

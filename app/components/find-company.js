@@ -4,7 +4,7 @@ import { computed, get, set} from '@ember/object';
 import { empty } from '@ember/object/computed';
 
 export default Component.extend({
-  ajax: service(),
+  store: service(),
   country: "RO",
   cif: '',
   messageClass: '',
@@ -42,57 +42,35 @@ export default Component.extend({
 
   //private
   _openApi(cif) {
-    get(this, 'ajax').request(
-      `https://api.openapi.ro/api/companies/${cif}`,
-      {headers: {
-        'x-api-key': 'bttJLEsEygo4tLwxsLEvsocK6XeeUkiLmHt1JpiTDg-Dzd3sTQ' //TODO remove key
-      }}
-    )
-      .then(
-        (result) => {this._apiSuccess(result, this._processOpenApiRequest.bind(this))},
-        () => {this._apiError()}
-      );
+    get(this, 'store').queryRecord('openapi', {cif: cif}).then(
+      (result) => {this._apiSuccess(result)},
+      () => {this._apiError()}
+    );
   },
   _vies(country, cif) {
-    get(this, 'ajax').request(
-      `https://www.isvat.eu/live/${country}/${cif}`
-    )
-      .then(
-        (result) => this._apiSuccess(result, this._processViesRequest.bind(this)),
+    get(this, 'store').queryRecord('vies', {cif: cif, country: country}).then(
+        (result) => this._apiSuccess(result),
         () => this._apiError()
         )
   },
-  _apiSuccess(result, callback) {
+  _apiSuccess(result,) {
     set(this, 'showSpinner', false);
     set(this, 'messageClass', 'success');
-    callback(result);
+    this._processResponse(result);
   },
   _apiError() {
     set(this, 'showSpinner', false);
     set(this, 'messageClass', 'error');
     set(this, 'data.name', '');
   },
-
-  _processOpenApiRequest(result) {
-    let company = get(this, 'data');
-    set(company, 'name', get(result, 'denumire'));
-    set(company, 'registration', get(result, 'numar_reg_com'));
-    set(company, 'cif', get(result, 'cif'));
-    set(company, 'address', `${get(result, 'adresa')}, ${get(result, 'cod_postal')}, ${get(result, 'judet')}`);
-    set(company, 'phone', get(result, 'telefon'));
-    set(company, 'country', get(this, 'country'));
-    set(company, 'status', !get(result, 'radiata'));
-  },
-  _processViesRequest(result) {
-    if (get(result, 'valid') === false) {
-      this._apiError();
-    } else {
-      let company = get(this, 'data');
-      set(company, 'name', get(result, 'name.0'));
-      set(company, 'address', get(result, 'address.0'));
-      set(company, 'vies', true);
-      set(company, 'status', true);
-    }
+  _processResponse(response) {
+    let keys = Object.keys(response.data);
+    let model = get(this, 'data');
+    keys.forEach((key) => {
+      if ( get(response, key) !== null ) {
+        set(model, key, get(response, key))
+      }
+    })
   },
   _clearForm() {
     let model = get(this, 'data');
@@ -103,7 +81,5 @@ export default Component.extend({
         set(model, keys[i], undefined);
       }
     }
-  },
-  //TODO cleanup
-
+  }
 });

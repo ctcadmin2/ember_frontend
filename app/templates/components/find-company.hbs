@@ -16,11 +16,11 @@
           <div class="default text"></div>
           <div class="menu">
             {{#each countries.list as |country|}}
-              <div class="item" data-value="{{country.alpha2Code}}">
-                {{#if (eq country.alpha2Code 'EL')}}
+              <div class="item" data-value="{{country.value}}">
+                {{#if (eq country.value 'EL')}}
                   <i class="gr flag"></i>
                 {{else}}
-                  <i class="{{lower-case country.alpha2Code}} flag"></i>
+                  <i class="{{lowercase country.value}} flag"></i>
                 {{/if}}
                 {{country.name}}
               </div>
