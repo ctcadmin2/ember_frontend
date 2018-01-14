@@ -43,15 +43,15 @@ export default Component.extend({
   //private
   _openApi(cif) {
     get(this, 'store').queryRecord('openapi', {cif: cif}).then(
-      (result) => {this._apiSuccess(result)},
-      () => {this._apiError()}
+      result => this._apiSuccess(result),
+      () => this._apiError()
     );
   },
   _vies(country, cif) {
     get(this, 'store').queryRecord('vies', {cif: cif, country: country}).then(
-        (result) => this._apiSuccess(result),
-        () => this._apiError()
-        )
+      (result) => this._apiSuccess(result),
+      () => this._apiError()
+    )
   },
   _apiSuccess(result,) {
     set(this, 'showSpinner', false);

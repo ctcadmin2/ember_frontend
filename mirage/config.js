@@ -1,4 +1,9 @@
+import { get } from '@ember/object';
+import Response from 'ember-cli-mirage/response';
+
 export default function() {
+  // It's important that the passthrough for coverage is before the namespace, otherwise it will be prefixed.
+  this.passthrough('/write-coverage');
 
   // These comments are here to help you get started. Feel free to delete them.
 
@@ -23,27 +28,22 @@ export default function() {
 
     http://www.ember-cli-mirage.com/docs/v0.3.x/shorthands/
   */
-
-  //countries mock
-  this.get('https://restcountries.eu/rest/**', () => {
-    return JSON.parse('[{"name":"Denmark", "alpha2Code":"DK"},{"name":"Romania","alpha2Code":"RO"}]')
+  //authentication
+  this.post('/user_token/', (db, request) =>  {
+    const req = JSON.parse(request.requestBody);
+    const pw = get(req, 'auth.password');
+    if(pw === 'test1234') {
+      return new Response(201, {}, { jwt: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImFkbWluIjp0cnVlfQ.hgNSDI7STvbPMw4dJky55hUpUy5jriNIrLwp5dW3awg' });
+    } else {
+      return new Response(404, {}, {});
+    }
   });
-  //openapi success
-  this.get('https://api.openapi.ro/api/companies/1', () => {
-    return JSON.parse('{"cif": "13548146","numar_reg_com": "J32/503/2000","radiata": false,"denumire": "S.C. CUBUS ARTS S.R.L","adresa": "B-dul Mihai Viteazu, 7, Sibiu","stare": "INREGISTRAT din data 23 Noiembrie 2000","cod_postal": "550350","judet": "Sibiu","telefon": "0269232192"}');
+  this.get('/companies', (schema, request) => {
+    const token = get(request, 'requestHeaders.Authorization');
+    if (token === 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImFkbWluIjp0cnVlfQ.hgNSDI7STvbPMw4dJky55hUpUy5jriNIrLwp5dW3awg') {
+      return schema.companies.all();
+    } else {
+      return new Response(401, {}, {});
+    }
   });
-  //openapi error
-  this.get('https://api.openapi.ro/api/companies/2', () => {
-    return JSON.parse('{"error": {"Attributes": {"title": "missing_required_header","status": 400,"description": "Required header {header_name} is missing","code": 40001}}}');
-  }, 404);
-  //vies success
-  this.get('https://www.isvat.eu/live/DK/1', () => {
-    return JSON.parse('{"valid":true,"cache":{"0":"live"},"name":{"0":"NTG NORDIC A\\/S"},"address":{"0":"Truckvej 5 4600 Koge"},"rate_limit":1000,"rate_info":"Max. 1.000 request per month"}');
-  });
-  //vies error
-  this.get('https://www.isvat.eu/live/DK/2', () => {
-    return JSON.parse('{"valid":false}');
-  });
-  //vies 404 error
-  this.get('https://www.isvat.eu/live/DK/3', {message: '404 ERROR'}, 404);
 }

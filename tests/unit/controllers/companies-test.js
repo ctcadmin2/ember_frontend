@@ -1,12 +1,17 @@
-import { moduleFor, test } from 'ember-qunit';
+import { expect } from 'chai';
+import { describe, it } from 'mocha';
+import { setupTest } from 'ember-mocha';
 
-moduleFor('controller:companies', 'Unit | Controller | companies', {
-  // Specify the other units that are required for this test.
-  // needs: ['controller:foo']
-});
+describe('Unit | Controller | companies', function() {
+  setupTest('controller:companies', {
+    // Specify the other units that are required for this test.
+    // needs: ['controller:foo']
+    needs: ['service:session']
+  });
 
-// Replace this with your real tests.
-test('it exists', function(assert) {
-  let controller = this.subject();
-  assert.ok(controller);
+  // Replace this with your real tests.
+  it('exists', function() {
+    let controller = this.subject();
+    expect(controller).to.be.ok;
+  });
 });

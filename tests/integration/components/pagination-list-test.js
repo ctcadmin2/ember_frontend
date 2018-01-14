@@ -1,24 +1,24 @@
-import { moduleForComponent, test } from 'ember-qunit';
+import { expect } from 'chai';
+import { describe, it } from 'mocha';
+import { setupComponentTest } from 'ember-mocha';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('pagination-list', 'Integration | Component | pagination list', {
-  integration: true
-});
+describe('Integration | Component | pagination list', function() {
+  setupComponentTest('pagination-list', {
+    integration: true
+  });
 
-test('it renders', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
+  it('renders', function() {
+    // Set any properties with this.set('myProperty', 'value');
+    // Handle any actions with this.on('myAction', function(val) { ... });
+    // Template block usage:
+    // this.render(hbs`
+    //   {{#pagination-list}}
+    //     template content
+    //   {{/pagination-list}}
+    // `);
 
-  this.render(hbs`{{pagination-list}}`);
-
-  assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:
-  this.render(hbs`
-    {{#pagination-list}}
-      template block text
-    {{/pagination-list}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+    this.render(hbs`{{pagination-list}}`);
+    expect(this.$()).to.have.length(1);
+  });
 });

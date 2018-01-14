@@ -1,0 +1,78 @@
+<h1 class="ui centered teal header">Please sign up.</h1>
+<div class="ui grid centered">
+  <div class="ui sixteen wide mobile ten wide tablet eight wide computer column">
+    <div class="ui centered raised segment">
+      <form class="ui fluid large form" {{action 'createUser' on='submit'}}>
+        <div class="inline field">
+          <div class="ui fluid labeled input grid">
+            <label for="first_name" class="ui horizontal label five wide column">
+              First Name
+            </label>
+            {{input id='first_name' value=user.first_name  autofocus=true}}
+          </div>
+        </div>
+        <div class="inline field">
+          <div class="ui fluid labeled input grid">
+            <label for="last_name" class="ui horizontal label five wide column">
+              Last Name
+            </label>
+            {{input id='last_name' value=user.last_name}}
+          </div>
+        </div>
+        <div class="inline field">
+          <div class="ui fluid labeled input grid">
+            <label for="ssn" class="ui horizontal label five wide column">
+              CNP
+            </label>
+            {{input id='ssn' value=user.ssn}}
+          </div>
+        </div>
+        <div class="inline field">
+          <div class="ui fluid labeled input grid">
+            <label for="lang" class="ui horizontal label five wide column">
+              Language
+            </label>
+            {{#ui-dropdown class="selection eleven wide column" selected='en' onChange=(action (mut user.lang))}}
+              <i class="dropdown icon"></i>
+              <div class="default text"></div>
+              <div class="menu">
+                <div class="item" data-value="en">
+                  English
+                </div>
+                <div class="item" data-value="ro">
+                  Romana
+                </div>
+              </div>
+            {{/ui-dropdown}}
+          </div>
+        </div>
+        <div class="inline field">
+          <div class="ui fluid labeled input grid">
+            <label for="email" class="ui horizontal label five wide column">
+              Email
+            </label>
+            {{input type="email" id='email' value=user.email}}
+          </div>
+        </div>
+        <div class="inline field">
+          <div class="ui fluid labeled input grid">
+            <label for="password" class="ui horizontal label five wide column">
+              Password
+            </label>
+            {{input type="password" id='password' value=user.password}}
+          </div>
+        </div>
+        <div class="inline field">
+          <div class="ui fluid labeled input grid">
+            <label for="password_confirmation" class="ui horizontal label five wide column">
+              Password Confirmation
+            </label>
+            {{input type="password" id='password_confirmation' value=user.password_confirmation}}
+          </div>
+        </div>
+        {{! TODO add password_confirmation}}
+        <button type="submit" class="ui fluid large teal submit button">Register</button>
+      </form>
+    </div>
+  </div>
+</div>

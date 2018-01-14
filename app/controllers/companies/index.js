@@ -23,23 +23,16 @@ export default Controller.extend({
       set(this, 'page', 1);
     },
     destroyCompany(id) {
-      get(this, 'store').findRecord('company', id, {backgroundReload: false})
-        .then(
-          (record) => {
-            record.destroyRecord().then(
-              () => {
-                this.send('refreshPage');
-                this.flashMessages.success('Successfully deleted!');
-              },
-              () => {this.flashMessages.error('Company could not be deleted!')}
-            ).catch(() => {this.flashMessages.error('There was an error while deleting the company.')})
-          },
-          () => {this.flashMessages.error('Company could not be found!')}
-        )
-        .catch(
-          () => {this.flashMessages.error('There was an error while looking for the company.')}
-        )
+      get(this, 'store').findRecord('company', id, {backgroundReload: false}).then(
+        record => record.destroyRecord().then(
+            () => this._successCallback(),
+            () => this.flashMessages.error('Company could not be deleted!')
+          ).catch(() => this.flashMessages.error('There was an error while deleting the company.')),
+        () => this.flashMessages.error('Company could not be found!')
+      ).catch(() => this.flashMessages.error('There was an error while looking for the company.'))
     },
+
+    // TODO refactor
     sort(prop) {
       let sortParam = get(this, 'sort');
       if (sortParam.includes(prop)) {
@@ -54,6 +47,12 @@ export default Controller.extend({
       }
       set(this, 'sort', sortParam);
     }
+  },
+
+  //private
+  _successCallback() {
+    this.send('refreshPage');
+    this.flashMessages.success('Successfully deleted!');
   }
 });
 

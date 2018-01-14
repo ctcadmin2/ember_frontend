@@ -7,11 +7,14 @@ module.exports = function(environment) {
     environment,
     rootURL: '/',
     locationType: 'auto',
+    'ember-simple-auth': {
+      authorizer: 'authorizer:jwt',
+    },
     flashMessageDefaults: {
       // flash message defaults
       timeout: 5000,
       // service defaults
-      types: ['error', 'success'],
+      types: ['error', 'success', 'info'],
       destroyOnClick: false
     },
     EmberENV: {
@@ -48,10 +51,7 @@ module.exports = function(environment) {
     ENV.APP.LOG_VIEW_LOOKUPS = false;
 
     ENV.APP.rootElement = '#ember-testing';
-  }
-
-  if (environment === 'production') {
-
+    ENV.APP.autoboot = false;
   }
 
   return ENV;

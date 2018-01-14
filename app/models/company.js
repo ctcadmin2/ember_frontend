@@ -16,5 +16,5 @@ export default DS.Model.extend({
   contact: attr('string'),
   country: attr('string'),
   vies: attr('boolean'),
-  status: attr('boolean'),
+  status: attr('boolean')
 });

@@ -10,19 +10,19 @@ export default Controller.extend({
     approveModal() {
       get(this, 'company').save()
         .then(
-          () => {
-            this.flashMessages.success('Successfully updated!');
-            this.transitionToRoute('companies.index');
-          },
-          () => {
-            this.flashMessages.error('Modifications were not successfully saved!')
-          }
-        )
-        .catch(() => {this.flashMessages.error('There was an error while trying to save your modifications.')})
+          () => this._successCallback(),
+          () => this.flashMessages.error('Modifications were not successfully saved!')
+        ).catch(() => this.flashMessages.error('There was an error while trying to save your modifications.'))
     },
     denyModal() {
       this.transitionToRoute('companies.index');
     }
+  },
+
+  //private
+  _successCallback() {
+    this.flashMessages.success('Successfully updated!');
+    this.transitionToRoute('companies.index');
   }
 });
 //TODO validation

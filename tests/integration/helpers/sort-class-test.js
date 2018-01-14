@@ -1,17 +1,26 @@
-
-import { moduleForComponent, test } from 'ember-qunit';
+import { expect } from 'chai';
+import { describe, it } from 'mocha';
+import { setupComponentTest } from 'ember-mocha';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('sort-class', 'helper:sort-class', {
-  integration: true
+describe('Integration | Helper | sort class', function() {
+  setupComponentTest('sort-class', {
+    integration: true
+  });
+
+  it('adds class for sorting ascending', function() {
+    this.set('sort', 'name');
+
+    this.render(hbs`{{sort-class sort 'name'}}`);
+
+    expect(this.$().text().trim()).to.equal('sorted ascending icon');
+  });
+
+  it('adds class for sorting descending', function() {
+    this.set('sort', '-name');
+
+    this.render(hbs`{{sort-class sort 'name'}}`);
+
+    expect(this.$().text().trim()).to.equal('sorted descending icon');
+  });
 });
-
-// Replace this with your real tests.
-test('it renders', function(assert) {
-  this.set('inputValue', '1234');
-
-  this.render(hbs`{{sort-class inputValue}}`);
-
-  assert.equal(this.$().text().trim(), '1234');
-});
-

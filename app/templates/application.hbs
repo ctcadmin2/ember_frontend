@@ -2,10 +2,23 @@
   <div class="ui huge secondary pointing menu">
     {{link-to 'CTCAdmin2' 'index' class='item header'}}
     <div class="right menu">
-      {{link-to 'Companies' 'companies.index' class='item'}}
+      {{#if session.isAuthenticated}}
+        {{link-to 'Companies' 'companies.index' class='item'}}
+        <a class="item logoutBtn" {{action 'invalidateSession'}}>Logout</a>
+      {{else}}
+        {{#if (eq currentPath 'registration') }}
+          {{#link-to 'login' class='item'}}Login{{/link-to}}
+        {{else}}
+          {{#link-to 'registration' class='item'}}Registration{{/link-to}} {{! TODO registration}}
+        {{/if}}
+      {{/if}}
     </div>
   </div>
+  {{#each flashMessages.queue as |flash|}}
+    {{flash-alert flash=flash}}
+  {{/each}}
 </div>
+
 <div class="ui container" id="body_container">
   {{outlet}}
 </div>

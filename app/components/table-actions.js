@@ -17,8 +17,8 @@ export default Component.extend({
         confirmButtonText: 'Yes, delete it!',
         buttonsStyling: false
       }).then(
-        () => {this.deleteModel(id)},
-        () => {}
+        () => this.deleteModel(id),
+        () => this
       )
     }
   }

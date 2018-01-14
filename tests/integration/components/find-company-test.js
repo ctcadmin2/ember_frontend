@@ -1,24 +1,24 @@
-import { moduleForComponent, test } from 'ember-qunit';
+import { expect } from 'chai';
+import { describe, it } from 'mocha';
+import { setupComponentTest } from 'ember-mocha';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('find-company', 'Integration | Component | find company', {
-  integration: true
-});
+describe('Integration | Component | find company', function() {
+  setupComponentTest('find-company', {
+    integration: true
+  });
 
-test('it renders', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
+  it('renders', function() {
+    // Set any properties with this.set('myProperty', 'value');
+    // Handle any actions with this.on('myAction', function(val) { ... });
+    // Template block usage:
+    // this.render(hbs`
+    //   {{#find-company}}
+    //     template content
+    //   {{/find-company}}
+    // `);
 
-  this.render(hbs`{{find-company}}`);
-
-  assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:
-  this.render(hbs`
-    {{#find-company}}
-      template block text
-    {{/find-company}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+    this.render(hbs`{{find-company}}`);
+    expect(this.$()).to.have.length(1);
+  });
 });

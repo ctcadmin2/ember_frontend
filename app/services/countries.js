@@ -9,11 +9,13 @@ export default Service.extend({
   init() {
     this._super(...arguments);
     get(this, 'store').findAll('country').then(
-        (response) => {
-          set(this, 'list', response);
-          set(this, 'dataFetched', true);
-        }
+        response => this._setData(response)
       )
+  },
+
+  _setData(response) {
+    set(this, 'list', response);
+    set(this, 'dataFetched', true);
   }
 
 });
