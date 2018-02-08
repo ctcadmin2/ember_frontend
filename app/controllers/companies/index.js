@@ -7,14 +7,14 @@ import {inject as service} from '@ember/service';
 
 export default Controller.extend({
   flashMessages: service(),
-  queryParams: ['page', 'size','sort', 'filter'],
-  page: 1,
+  queryParams: ['number', 'size', 'sort', 'filter'],
+  number: 1,
   size: 5,
   filter: '',
   sort: 'name',
   filterEmpty: empty('filter'),
   companies: alias('model'),
-  showPagination: gte('model.meta.page-count', 2),
+  showPagination: gte('model.meta.page_count', 2),
   actions: {
     clearFilter() {
       set(this, 'filter', '');

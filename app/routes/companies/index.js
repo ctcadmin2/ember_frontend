@@ -4,27 +4,27 @@ import { next } from "@ember/runloop";
 export default Route.extend({
   queryParams: {
     page: {
-      refreshModel: true,
-      scope: 'controller'
-    },
-    size: {
-      refreshModel: true,
-      scope: 'controller'
+      number: {
+        refreshModel: true
+      },
+      size: {
+        refreshModel: true
+      }
     },
     filter: {
-      refreshModel: true,
-      scope: 'controller'
+      q: {
+        refreshModel: true
+      }
     },
     sort: {
-      refreshModel: true,
-      scope: 'controller'
+      refreshModel: true
     }
   },
 
   model(params) {
     return this.store.query('company', {
       page: {
-        number: params.page,
+        number: params.number,
         size: params.size
       },
       sort: params.sort,

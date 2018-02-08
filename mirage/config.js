@@ -41,6 +41,8 @@ export default function() {
   this.get('/companies', (schema, request) => {
     const token = get(request, 'requestHeaders.Authorization');
     if (token === 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImFkbWluIjp0cnVlfQ.hgNSDI7STvbPMw4dJky55hUpUy5jriNIrLwp5dW3awg') {
+      //const request = request;
+      console.log(request.queryParams);
       return schema.companies.all();
     } else {
       return new Response(401, {}, {});
