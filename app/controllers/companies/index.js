@@ -7,8 +7,8 @@ import {inject as service} from '@ember/service';
 
 export default Controller.extend({
   flashMessages: service(),
-  queryParams: ['number', 'size', 'sort', 'filter'],
-  number: 1,
+  queryParams: ['page', 'size', 'sort', 'filter'],
+  page: 1,
   size: 5,
   filter: '',
   sort: 'name',
