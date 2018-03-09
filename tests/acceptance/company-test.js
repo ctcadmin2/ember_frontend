@@ -1,3 +1,4 @@
+/*global server:true*/
 import { describe, it, beforeEach, afterEach } from 'mocha';
 import { expect } from 'chai';
 import startApp from 'frontend/tests/helpers/start-app';

@@ -1,5 +1,6 @@
 import Route from '@ember/routing/route';
 import { next } from "@ember/runloop";
+import $ from "jquery";
 
 export default Route.extend({
   queryParams: {

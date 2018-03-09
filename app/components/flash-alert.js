@@ -1,5 +1,6 @@
 import Component from '@ember/component';
 import { get, computed } from '@ember/object';
+import $ from "jquery";
 
 //TODO fix animations
 

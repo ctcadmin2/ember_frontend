@@ -1,3 +1,4 @@
+/*global server:true*/
 import { run } from '@ember/runloop';
 
 export default function destroyApp(application) {
