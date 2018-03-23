@@ -14,6 +14,10 @@ Router.map(function () {
     this.route('edit', { path: '/:company_id/edit' });
   });
   this.route('registration');
+  this.route('users', function() {
+    this.route('show', { path: '/:user_id' });
+    this.route('edit', { path: '/:user_id/edit' });
+  });
 });
 
 export default Router;

@@ -1,7 +1,16 @@
 import Component from '@ember/component';
 import sweetAlert from 'ember-sweetalert';
+import { get } from '@ember/object';
+import { computed } from "@ember/object"
+import { pluralize } from 'ember-inflector';
 
 export default Component.extend({
+  tagName: '',
+  route: computed('model', function() {
+    let route = get(this, 'model').constructor.modelName;
+     return pluralize(route);
+  }),
+
   actions: {
     deleteButton(id) {
       sweetAlert({

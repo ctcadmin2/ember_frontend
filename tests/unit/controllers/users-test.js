@@ -2,8 +2,8 @@ import { expect } from 'chai';
 import { describe, it } from 'mocha';
 import { setupTest } from 'ember-mocha';
 
-describe('Unit | Controller | companies/show', function() {
-  setupTest('controller:companies/show', {
+describe('Unit | Controller | users', function() {
+  setupTest('controller:users', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
   });

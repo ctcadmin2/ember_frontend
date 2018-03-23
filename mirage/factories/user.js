@@ -1,11 +1,20 @@
-import { Factory } from 'ember-cli-mirage';
+import { Factory, faker } from 'ember-cli-mirage';
+faker.seed(123);
 
 export default Factory.extend({
-  email: 'sega@sega.org',
-  first_name: 'sega',
-  last_name: 'brolli',
-  ssn: '123456789',
+  email() {
+    return faker.internet.email();
+  },
+  firstName() {
+    return faker.name.firstName();
+  },
+  lastName() {
+    return faker.name.lastName();
+  },
+  ssn() {
+    return faker.random.number();
+  },
   lang: 'ro',
-  admin: false,
+  admin: true,
   active: false
 });

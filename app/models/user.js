@@ -5,9 +5,9 @@ const { attr } = DS;
 export default DS.Model.extend({
   email: attr('string'),
   password: attr('string'),
-  password_confirmation: attr('string'),
-  first_name: attr('string'),
-  last_name: attr('string'),
+  passwordConfirmation: attr('string'),
+  firstName: attr('string'),
+  lastName: attr('string'),
   ssn: attr('string'),
   lang: attr('string'),
   admin: attr('boolean'),

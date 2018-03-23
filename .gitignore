@@ -23,7 +23,7 @@ bower.json.ember-try
 package.json.ember-try
 
 # ide files
-.idea/
+.vscode/
 
 # file for different ideeas :)
 /notes

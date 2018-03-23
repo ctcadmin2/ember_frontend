@@ -1,0 +1,27 @@
+<div class="ui centered raised segment">
+  <table class="ui table sortable padded selectable striped celled attached">
+    <caption class="ui huge header teal">User list</caption>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>SSN</th>
+        <th>Email</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each users as |user|}}
+      <tr>
+        <td>{{fullname user}}</td>
+        <td>{{user.ssn}}</td>
+        <td>{{user.email}}</td>
+        <td>
+          <div class="ui fluid buttons">
+            {{toggle-button obj=user}} {{table-actions model=user deleteModel=(action 'destroyUser')}}
+          </div>
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
