@@ -52,7 +52,8 @@
     "ember-truth-helpers": "^2.0.0",
     "eslint-plugin-ember": "^5.0.0",
     "loader.js": "^4.2.3",
-    "semantic-ui-ember": "^3.0.0-beta4"
+    "semantic-ui-css": "^2.2.14",
+    "semantic-ui-ember": "^3.0.0"
   },
   "engines": {
     "node": "^4.5 || 6.* || >= 7.*"

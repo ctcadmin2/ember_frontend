@@ -8,7 +8,7 @@ module.exports = function(environment) {
     rootURL: '/',
     locationType: 'auto',
     'ember-simple-auth': {
-      authorizer: 'authorizer:jwt',
+      authorizer: 'authorizer:jwt'
     },
     flashMessageDefaults: {
       // flash message defaults

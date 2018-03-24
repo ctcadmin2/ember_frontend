@@ -1,11 +1,8 @@
 import Component from '@ember/component';
 import { get, computed } from '@ember/object';
-import $ from "jquery";
-
-//TODO fix animations
 
 export default Component.extend({
-  statusClass: computed('flash', function () {
+  statusClass: computed('flash', function() {
     if (get(this, 'flash.type') === 'success') {
       return 'checkmark';
     } else {
@@ -14,7 +11,7 @@ export default Component.extend({
   }),
   actions: {
     closeButton() {
-      $('.message .close').closest('.message').transition('slide right');
+      this.$('.message').transition('slide right');
     }
   }
 });

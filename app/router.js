@@ -6,7 +6,7 @@ const Router = EmberRouter.extend({
   rootURL: config.rootURL
 });
 
-Router.map(function () {
+Router.map(function() {
   this.route('login');
   this.route('companies', function() {
     this.route('new');
@@ -15,7 +15,6 @@ Router.map(function () {
   });
   this.route('registration');
   this.route('users', function() {
-    this.route('show', { path: '/:user_id' });
     this.route('edit', { path: '/:user_id/edit' });
   });
 });

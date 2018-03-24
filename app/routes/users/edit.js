@@ -1,16 +1,16 @@
-import Route from './protected';
+import Route from '@ember/routing/route';
 import $ from 'jquery';
 import { next } from '@ember/runloop';
 
 export default Route.extend({
-  model() {
-    return this.store.findAll('user');
+  model(params) {
+    return this.store.peekRecord('user', params.user_id);
   },
 
   actions: {
     didTransition() {
       next(function() {
-        $('body .modals').dimmer('hide');
+        $('.userModal').modal('show');
       });
     }
   }
