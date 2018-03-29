@@ -1,6 +1,6 @@
 import Controller from '@ember/controller';
-import { alias, empty } from "@ember/object/computed"
-import {inject as service} from '@ember/service';
+import { alias, empty } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
 import { get } from '@ember/object';
 
 export default Controller.extend({
@@ -9,9 +9,11 @@ export default Controller.extend({
   saveDisabled: empty('company.name'),
   actions: {
     approveModal() {
-      get(this, 'company').save().then(this.transitionToRoute('companies.index'));
+      get(this, 'company')
+        .save()
+        .then(this.transitionToRoute('companies.index'));
     },
-    denyModal() {
+    cancelButton() {
       this.transitionToRoute('companies.index');
     }
   }

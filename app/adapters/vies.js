@@ -1,6 +1,6 @@
-import DS from 'ember-data';
+import DS from './application';
 
-export default DS.JSONAPIAdapter.extend({
+export default DS.extend({
   namespace: 'api_helpers',
   pathForType(modelName) {
     return modelName;

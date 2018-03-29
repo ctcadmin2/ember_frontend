@@ -1,13 +1,12 @@
-{{#ui-modal name="companyModal" class="companyModal small" onApprove=(action 'approveModal') onDeny=(action 'denyModal')
-  closable=false}}
+{{#ui-modal name="companyModal" class="companyModal small" onApprove=(action 'approveModal') closable=false}}
   <div class="header">
     Editing {{company.name}}...
   </div>
-  <div class="content">
+  <div class="scrolling content">
     {{company-form countries=countries data=company inputDisabled=false}}
   </div>
   <div class="actions">
-    <div class="ui red deny button">
+    <div class="ui red deny button" {{action "cancelButton"}}>
       Cancel
     </div>
     <div class="ui positive button">

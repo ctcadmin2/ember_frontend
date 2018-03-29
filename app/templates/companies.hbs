@@ -1,1 +1,59 @@
+<div class="ui centered raised segment">
+    <table class="ui table sortable padded selectable striped celled attached">
+        <caption class="ui huge header teal">Company list</caption>
+        <thead>
+            <tr>
+                <th class="{{sort-class sort 'name'}}" {{action 'sort' 'name'}}>Name</th>
+                <th>CIF</th>
+                <th>Contact</th>
+                <th>Phone</th>
+                <th>
+                    <div class="ui search">
+                        <div class="ui fluid icon input">
+                            {{input value=filter key-up='setPage' class="prompt" type="text" placeholder="Search"}}
+                            <i class="{{if filterEmpty 'search' 'remove link'}} icon" {{action 'clearFilter'}}></i>
+                        </div>
+                    </div>
+                </th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th colspan="5">
+                    <div class="ui items">
+                        <div class="item">
+                            <div class="middle aligned content">
+                                <div class="left floated">
+                                    {{#link-to "companies.new" class="ui teal button" }}New Company{{/link-to}}
+                                </div>
+                                <div class="right floated">
+                                    <div class='ui right floated'>
+                                        {{#if showPagination}}
+                                            {{pagination-list meta=model.meta query=model.query pageParam=page}}
+                                        {{/if}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </th>
+            </tr>
+        </tfoot>
+        <tbody>
+            {{#each companies as |company|}}
+                <tr>
+                    <td>{{company.name}}</td>
+                    <td>{{company.cif}}</td>
+                    <td>{{company.contact}}</td>
+                    <td>{{company.phone}}</td>
+                    <td>
+                        <div class="ui fluid buttons">
+                            {{table-actions model=company deleteModel=(action 'destroyCompany')}}
+                        </div>
+                    </td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
 {{outlet}}

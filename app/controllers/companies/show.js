@@ -4,7 +4,7 @@ import { alias } from '@ember/object/computed';
 export default Controller.extend({
   company: alias('model'),
   actions: {
-    approveModal() {
+    okButton() {
       this.transitionToRoute('companies.index');
     }
   }
