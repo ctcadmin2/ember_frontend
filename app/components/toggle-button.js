@@ -19,7 +19,7 @@ export default Component.extend({
         .then(
           () =>
             this.flashMessages.success(
-              `${capitalize(modelName)} was successfully update!`
+              `${capitalize(modelName)} was successfully updated!`
             ),
           () => this._failedUpdate(model, modelName)
         )

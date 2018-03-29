@@ -20,6 +20,11 @@ export default Controller.extend({
     },
     cancelButton() {
       this.transitionToRoute('users');
+    },
+    destroyUser() {
+      get(this, 'user')
+        .save()
+        .then(() => this.transitionToRoute('users'));
     }
   },
 

@@ -4,7 +4,7 @@ import { next } from '@ember/runloop';
 
 export default Route.extend({
   model(params) {
-    return this.store.peekRecord('user', params.user_id);
+    return this.store.findRecord('user', params.user_id);
   },
 
   actions: {

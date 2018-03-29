@@ -24,6 +24,7 @@ package.json.ember-try
 
 # ide files
 .vscode/
+.jsconfig.json
 
 # file for different ideeas :)
 /notes
