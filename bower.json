@@ -1,6 +1,0 @@
-{
-  "name": "frontend",
-  "dependencies": {
-    "sweetalert2": "^7.18.0"
-  }
-}

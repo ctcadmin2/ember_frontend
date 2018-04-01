@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import sweetAlert from 'ember-sweetalert';
+import Swal from "npm:sweetalert2"; //TODO find better way to add sweetalert
 import { get } from '@ember/object';
 import { computed } from '@ember/object';
 import { pluralize } from 'ember-inflector';
@@ -13,7 +13,7 @@ export default Component.extend({
 
   actions: {
     deleteButton(id) {
-      sweetAlert({
+      Swal({
         title: 'Are you sure?',
         text: "You won't be able to revert this!",
         type: 'warning',

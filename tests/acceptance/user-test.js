@@ -1,24 +1,13 @@
-import { describe, it, beforeEach, afterEach } from 'mocha';
 import { expect } from 'chai';
-import startApp from 'frontend/tests/helpers/start-app';
-import destroyApp from 'frontend/tests/helpers/destroy-app';
+import { describe, it } from 'mocha';
+import { setupApplicationTest } from 'ember-mocha';
+import { visit, currentURL } from '@ember/test-helpers';
 
-describe('Acceptance | users', function() {
-  let application;
+describe('Acceptance | user', function() {
+  setupApplicationTest();
 
-  beforeEach(function() {
-    application = startApp();
-  });
-
-  afterEach(function() {
-    destroyApp(application);
-  });
-
-  it('can visit /users', function() {
-    visit('/users');
-
-    return andThen(() => {
-      expect(currentURL()).to.equal('/users');
-    });
+  it('can visit /', async function() {
+    await visit('/');
+    expect(currentURL()).to.equal('/');
   });
 });
