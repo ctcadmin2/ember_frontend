@@ -21,8 +21,8 @@
     "ember-ajax": "^3.0.0",
     "ember-cli": "~3.0.2",
     "ember-cli-app-version": "^3.0.0",
-    "ember-cli-babel": "^6.6.0",
-    "ember-cli-chai": "^0.4.3",
+    "ember-cli-babel": "^6.12.0",
+    "ember-cli-chai": "^0.5.0",
     "ember-cli-code-coverage": "^0.4.2",
     "ember-cli-dependency-checker": "^2.0.0",
     "ember-cli-dependency-lint": "^1.0.3",
@@ -38,7 +38,7 @@
     "ember-cli-sri": "^2.1.0",
     "ember-cli-string-helpers": "^1.5.0",
     "ember-cli-uglify": "^2.0.0",
-    "ember-cli-update": "^0.14.0",
+    "ember-cli-update": "^0.15.0",
     "ember-data": "~3.0.0",
     "ember-export-application-global": "^2.0.0",
     "ember-inflector": "^2.1.0",
@@ -57,5 +57,8 @@
   },
   "engines": {
     "node": "^4.5 || 6.* || >= 7.*"
+  },
+  "dependencies": {
+    "bower": "^1.8.4"
   }
 }

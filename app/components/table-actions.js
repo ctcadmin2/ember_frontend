@@ -1,14 +1,14 @@
 import Component from '@ember/component';
 import sweetAlert from 'ember-sweetalert';
 import { get } from '@ember/object';
-import { computed } from "@ember/object"
+import { computed } from '@ember/object';
 import { pluralize } from 'ember-inflector';
 
 export default Component.extend({
   tagName: '',
   route: computed('model', function() {
     let route = get(this, 'model').constructor.modelName;
-     return pluralize(route);
+    return pluralize(route);
   }),
 
   actions: {
@@ -25,10 +25,14 @@ export default Component.extend({
         cancelButtonClass: 'ui red large button',
         confirmButtonText: 'Yes, delete it!',
         buttonsStyling: false
-      }).then(
-        () => this.deleteModel(id),
-        () => this
-      )
+      }).then(resp => this._deleteModel(resp, id));
+    }
+  },
+
+  //private
+  _deleteModel(resp, id) {
+    if (resp['value']) {
+      this.deleteModel(id)
     }
   }
 });
