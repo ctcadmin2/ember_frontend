@@ -7,6 +7,7 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
+  this.route('home', {path: '/'})
   this.route('login');
   this.route('registration');
   this.route('companies', function() {
