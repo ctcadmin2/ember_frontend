@@ -14,7 +14,7 @@ export default Controller.extend({
   sort: 'name',
   filterEmpty: empty('filter'),
   companies: alias('model'),
-  showPagination: gte('model.meta.page_count', 2),
+  showPagination: gte('model.meta.page-count', 2),
   actions: {
     clearFilter() {
       set(this, 'filter', '');

@@ -7,11 +7,11 @@ export default Component.extend({
   prevButton: equal('query.page.number', 1),
   firstButton: lte('query.page.number', 2),
 
-  nextButton: computed('meta.page_count', 'query.page.number', function () {
-    return get(this, 'meta.page_count') === get(this, 'query.page.number');
+  nextButton: computed('meta.page-count', 'query.page.number', function () {
+    return get(this, 'meta.page-count') === get(this, 'query.page.number');
   }),
-  lastButton: computed('query.page.number', 'meta.page_count',function () {
-    let pageCount = get(this, 'meta.page_count');
+  lastButton: computed('query.page.number', 'meta.page-count',function () {
+    let pageCount = get(this, 'meta.page-count');
     let currentPage = get(this, 'query.page.number');
     let showButton = pageCount - 1;
     return currentPage >= showButton;
@@ -20,9 +20,9 @@ export default Component.extend({
   currentPage: computed('query', function () {
     return get(this, 'query.page.number')
   }),
-  pageList: computed('meta.page_count', function () {
+  pageList: computed('meta.page-count', function () {
     let list = [];
-    for (let i = 1; i <= get(this, 'meta.page_count'); i++) {
+    for (let i = 1; i <= get(this, 'meta.page-count'); i++) {
       list.push(i);
     }
     return list;

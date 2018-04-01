@@ -11,9 +11,7 @@ export default Route.extend({
       refreshModel: true
     },
     filter: {
-      q: {
-        refreshModel: true
-      }
+      refreshModel: true
     },
     sort: {
       refreshModel: true
