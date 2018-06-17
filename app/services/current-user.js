@@ -1,20 +1,21 @@
-import Service, {inject as service} from '@ember/service';
+import Service, { inject as service } from '@ember/service';
 import { get, set } from '@ember/object';
-import { isEmpty } from "@ember/utils";
+import { isEmpty } from '@ember/utils';
 import jwtDecode from 'ember-cli-jwt-decode';
+import RSVP from 'rsvp';
 
 export default Service.extend({
   session: service(),
   store: service(),
-  user: null,
-
-  init() {
+  load() {
     const token = get(this, 'session.data.authenticated.token');
     if (!isEmpty(token)) {
-      const userId = this.getUserIdFromToken(token);
-      get(this, 'store').find('user', userId).then(
-        user => set(this, 'user', user)
-      );
+      let userId = this.getUserIdFromToken(token);
+      return get(this, 'store')
+        .findRecord('user', userId)
+        .then(user => set(this, 'user', user));
+    } else {
+      return RSVP.resolve;
     }
   },
 

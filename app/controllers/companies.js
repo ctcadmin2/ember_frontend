@@ -2,11 +2,12 @@ import Controller from '@ember/controller';
 import { alias, empty, gte } from '@ember/object/computed';
 import { get, set } from '@ember/object';
 import { inject as service } from '@ember/service';
-
 //TODO check all promises paths
 
 export default Controller.extend({
   flashMessages: service(),
+  companyInfo: service(),
+  test: null,
   queryParams: ['page', 'size', 'sort', 'filter'],
   page: 1,
   size: 5,
@@ -15,6 +16,7 @@ export default Controller.extend({
   filterEmpty: empty('filter'),
   companies: alias('model'),
   showPagination: gte('model.meta.page-count', 2),
+
   actions: {
     clearFilter() {
       set(this, 'filter', '');

@@ -1,26 +1,17 @@
-import { expect } from 'chai';
-import { describe, it } from 'mocha';
-import { setupComponentTest } from 'ember-mocha';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-describe('Integration | Helper | sort class', function() {
-  setupComponentTest('sort-class', {
-    integration: true
-  });
+module('Integration | Helper | sort-class', function(hooks) {
+  setupRenderingTest(hooks);
 
-  it('adds class for sorting ascending', function() {
-    this.set('sort', 'name');
+  // Replace this with your real tests.
+  test('it renders', async function(assert) {
+    this.set('inputValue', '1234');
 
-    this.render(hbs`{{sort-class sort 'name'}}`);
+    await render(hbs`{{sort-class inputValue}}`);
 
-    expect(this.$().text().trim()).to.equal('sorted ascending icon');
-  });
-
-  it('adds class for sorting descending', function() {
-    this.set('sort', '-name');
-
-    this.render(hbs`{{sort-class sort 'name'}}`);
-
-    expect(this.$().text().trim()).to.equal('sorted descending icon');
+    assert.equal(this.element.textContent.trim(), '1234');
   });
 });

@@ -1,17 +1,10 @@
-<form class="ui fluid {{messageClass}} form" oninput={{action 'cifChange'}}>
+<form class="ui fluid {{formClass}} form" oninput= {{action 'changeCif'}}>
   <div class="ui success message">Company found, please review and save.</div>
   <div class="ui error message">Company not found, please try again or input data manually.</div>
-  {{#if showSpinner}}
-    <div class="ui info icon message">
-      <i class="spinner loading icon"></i>
-      <div class="content">Please wait</div>
-    </div>
-  {{/if}}
   <div class="inline field">
     <div class="ui fluid labeled input grid">
       {{#if countries.dataFetched}}
-        {{#ui-dropdown class="scrolling selection" selected=country onChange=(action (mut country))
-                       showOnFocus=false}}
+        {{#ui-dropdown class="scrolling selection" selected=country onChange=(action (mut country)) showOnFocus=false}}
           <i class="dropdown icon"></i>
           <div class="default text"></div>
           <div class="menu">
@@ -29,7 +22,7 @@
         {{/ui-dropdown}}
       {{/if}}
       {{input type="text" value=cif placeholder="CIF"}}
-      <button class="ui primary button" disabled={{searchDisabled}} {{action 'findCompany'}}>Find Company</button>
+      <button class="ui primary button" disabled= {{searchDisabled}} {{action (perform findTask)}}>Find Company</button>
     </div>
   </div>
 </form>

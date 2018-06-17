@@ -1,27 +1,17 @@
-import { expect } from 'chai';
-import { describe, it } from 'mocha';
-import { setupComponentTest } from 'ember-mocha';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-describe('Integration | Helper | route-name-helper', function() {
-  setupComponentTest('route-name-helper', {
-    integration: true
-  });
+module('Integration | Helper | route-name-helper', function(hooks) {
+  setupRenderingTest(hooks);
 
-  it('renders', function() {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.on('myAction', function(val) { ... });
-    // Template block usage:
-    // this.render(hbs`
-    //   {{#route-name-helper}}
-    //     template content
-    //   {{/route-name-helper}}
-    // `);
+  // Replace this with your real tests.
+  test('it renders', async function(assert) {
     this.set('inputValue', '1234');
 
-    this.render(hbs`{{route-name-helper inputValue}}`);
+    await render(hbs`{{route-name-helper inputValue}}`);
 
-    expect(this.$().text().trim()).to.equal('1234');
+    assert.equal(this.element.textContent.trim(), '1234');
   });
 });
-

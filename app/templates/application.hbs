@@ -5,14 +5,14 @@
       {{#if session.isAuthenticated}}
         {{link-to 'Companies' 'companies.index' class='item'}}
         {{#if currentUser.user.admin}}
-          {{#link-to 'users' class='item'}}Users{{/link-to}}
+          {{#link-to 'users' class='item' }}Users{{/link-to}}
         {{/if}}
-        <a class="item logoutBtn" {{action 'invalidateSession'}}>Logout</a>
+        <a class="item" id='logoutBtn' {{action 'invalidateSession'}}>Logout</a>
       {{else}}
         {{#if (eq currentPath 'registration') }}
-          {{#link-to 'login' class='item'}}Login{{/link-to}}
+          {{#link-to 'login' class='item' }}Login{{/link-to}}
         {{else}}
-          {{#link-to 'registration' class='item'}}Registration{{/link-to}} {{! TODO registration}}
+          {{#link-to 'registration' class='item' }}Registration{{/link-to}} {{! TODO registration}}
         {{/if}}
       {{/if}}
     </div>
@@ -21,7 +21,6 @@
     {{flash-alert flash=flash}}
   {{/each}}
 </div>
-
 <div class="ui container" id="body_container">
   {{outlet}}
 </div>

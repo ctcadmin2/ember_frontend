@@ -1,84 +1,68 @@
-import { inject as service } from "@ember/service";
-import Component from "@ember/component";
-import { computed, get, set } from "@ember/object";
-import { empty } from "@ember/object/computed";
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
+import { task } from 'ember-concurrency';
+import { get, computed, set } from '@ember/object';
+import { empty, alias, or } from '@ember/object/computed';
 
 export default Component.extend({
-  store: service(),
-  country: "RO",
-  cif: "",
-  messageClass: "",
-  showSpinner: false,
+  countries: service(),
+  companyInfo: service(),
+
+  country: 'RO',
+  responseType: '',
   cifChanged: false,
-  cifEmpty: empty("cif"),
-  searchDisabled: computed("cifEmpty", "cifChanged", function() {
-    if (get(this, "cifEmpty")) {
-      return true;
+
+  taskRunning: alias('findTask.isRunning'),
+  hasStarted: alias('findTask.last.hasStarted'),
+  cifEmpty: empty('cif'),
+  searchDisabled: or('cifEmpty', 'cifChanged'),
+  formClass: computed('taskRunning', 'responseType', function() {
+    if (get(this, 'isRunning')) {
+      return 'loading';
     } else {
-      if (get(this, "cifChanged")) {
-        //TODO simplify
-        return false;
-      } else {
-        return true;
-      }
+      return get(this, 'responseType');
     }
   }),
-  actions: {
-    cifChange() {
-      set(this, "cifChanged", true);
-      set(this, "messageClass", "");
-      this._clearForm();
-    },
-    findCompany() {
-      set(this, "cifChanged", false);
-      set(this, "showSpinner", true);
 
-      if (get(this, "country") === "RO") {
-        this._openApi(get(this, "cif"));
+  findTask: task(function*() {
+    set(this, 'cifChanged', true);
+    let companyInfo = get(this, 'companyInfo');
+    let result;
+    // let data;
+    try {
+      if (get(this, 'country') == 'RO') {
+        result = yield companyInfo.checkOpenApi(get(this, 'cif'));
+        // data = yield result.json();
       } else {
-        this._vies(get(this, "country"), get(this, "cif"));
+        result = yield companyInfo.checkVies(
+          get(this, 'country'),
+          get(this, 'cif')
+        );
+        // data = yield result.json();
       }
+    } catch (error) {
+      set(this, 'responseType', 'error');
+      result = { error: 'error' };
+    }
+
+    this._processResponse(result);
+  }).drop(),
+
+  actions: {
+    changeCif() {
+      set(this, 'cifChanged', false);
+      set(this, 'responseType', '');
     }
   },
 
   //private
-  _openApi(cif) {
-    get(this, "store")
-      .queryRecord("openapi", { cif: cif })
-      .then(result => this._apiSuccess(result), () => this._apiError());
-  },
-  _vies(country, cif) {
-    get(this, "store")
-      .queryRecord("vies", { cif: cif, country: country })
-      .then(result => this._apiSuccess(result), () => this._apiError());
-  },
-  _apiSuccess(result) {
-    set(this, "showSpinner", false);
-    set(this, "messageClass", "success");
-    this._processResponse(result);
-  },
-  _apiError() {
-    set(this, "showSpinner", false);
-    set(this, "messageClass", "error");
-    set(this, "data.name", "");
-  },
-  _processResponse(response) {
-    let keys = Object.keys(response.data);
-    let model = get(this, "data");
-    keys.forEach(key => {
-      if (get(response, key) !== null) {
-        set(model, key, get(response, key));
-      }
-    });
-  },
-  _clearForm() {
-    let model = get(this, "data");
-    let keys = Object.keys(model.changedAttributes());
-    let keysNr = keys.length;
-    if (keysNr > 0) {
-      for (let i = 0; i < keysNr; i++) {
-        set(model, keys[i], undefined);
-      }
+  _processResponse(data) {
+    if (data.data) {
+      set(this, 'responseType', 'success');
+    } else {
+      set(this, 'responseType', 'error');
     }
+    let getData = get(this, 'getData');
+    getData(data);
   }
 });

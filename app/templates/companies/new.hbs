@@ -3,9 +3,11 @@
     Add new company...
   </div>
   <div class="content">
-    {{find-company countries=countries data=company}}
+    {{find-company getData=(action 'getData')}}
     <div class="scrolling">
-      {{company-form countries=countries data=company}}
+      {{#if showForm}}
+        {{company-form data=company}}
+      {{/if}}
     </div>
   </div>
   <div class="actions">
@@ -17,3 +19,4 @@
     </div>
   </div>
 {{/ui-modal}}
+{{log var}}

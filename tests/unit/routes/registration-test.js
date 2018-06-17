@@ -1,15 +1,11 @@
-import { expect } from 'chai';
-import { describe, it } from 'mocha';
-import { setupTest } from 'ember-mocha';
+import { module, test } from 'qunit';
+import { setupTest } from 'ember-qunit';
 
-describe('Unit | Route | registration', function() {
-  setupTest('route:registration', {
-    // Specify the other units that are required for this test.
-    // needs: ['controller:foo']
-  });
+module('Unit | Route | registration', function(hooks) {
+  setupTest(hooks);
 
-  it('exists', function() {
-    let route = this.subject();
-    expect(route).to.be.ok;
+  test('it exists', function(assert) {
+    let route = this.owner.lookup('route:registration');
+    assert.ok(route);
   });
 });

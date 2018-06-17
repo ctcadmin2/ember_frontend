@@ -1,24 +1,26 @@
-import { expect } from 'chai';
-import { describe, it } from 'mocha';
-import { setupComponentTest } from 'ember-mocha';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-describe('Integration | Component | flash alert', function() {
-  setupComponentTest('flash-alert', {
-    integration: true
-  });
+module('Integration | Component | flash-alert', function(hooks) {
+  setupRenderingTest(hooks);
 
-  it('renders', function() {
+  test('it renders', async function(assert) {
     // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.on('myAction', function(val) { ... });
-    // Template block usage:
-    // this.render(hbs`
-    //   {{#flash-alert}}
-    //     template content
-    //   {{/flash-alert}}
-    // `);
+    // Handle any actions with this.set('myAction', function(val) { ... });
 
-    this.render(hbs`{{flash-alert}}`);
-    expect(this.$()).to.have.length(1);
+    await render(hbs`{{flash-alert}}`);
+
+    assert.equal(this.element.textContent.trim(), '');
+
+    // Template block usage:
+    await render(hbs`
+      {{#flash-alert}}
+        template block text
+      {{/flash-alert}}
+    `);
+
+    assert.equal(this.element.textContent.trim(), 'template block text');
   });
 });

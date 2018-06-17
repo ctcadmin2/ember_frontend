@@ -7,17 +7,19 @@ module.exports = function(environment) {
     environment,
     rootURL: '/',
     locationType: 'auto',
-    'ember-simple-auth': {
-      authorizer: 'authorizer:jwt'
-    },
     flashMessageDefaults: {
       // flash message defaults
-      timeout: 5000,
+      timeout: 500,
       // service defaults
       types: ['error', 'success', 'info'],
       destroyOnClick: false
     },
+    'ember-cli-string-helpers': {
+      only: ['lowercase']
+    },
+
     EmberENV: {
+      DEBUG_TASKS: true, //TODO remove
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
         // e.g. 'with-controller': true
@@ -35,6 +37,10 @@ module.exports = function(environment) {
   };
 
   if (environment === 'development') {
+    ENV['ember-qunit-nice-errors'] = {
+      showFileInfo: true,
+      completeExistingMessages: true
+    };
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;

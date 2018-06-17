@@ -1,20 +1,42 @@
 import Controller from '@ember/controller';
-import { alias, empty } from '@ember/object/computed';
-import { inject as service } from '@ember/service';
-import { get } from '@ember/object';
+import { alias } from '@ember/object/computed';
+import { get, set } from '@ember/object';
 
 export default Controller.extend({
-  countries: service(),
   company: alias('model'),
-  saveDisabled: empty('company.name'),
+  showForm: false,
   actions: {
     approveModal() {
       get(this, 'company')
         .save()
-        .then(this.transitionToRoute('companies.index'));
+        .then(this._saveCallback());
     },
     cancelButton() {
+      set(this, 'showForm', false);
       this.transitionToRoute('companies.index');
+    },
+    getData(response) {
+      let data = response.data;
+      if (data) {
+        let keys = Object.keys(data);
+        let model = get(this, 'model');
+
+        keys.forEach(key => {
+          let keyName = data[key];
+
+          if (keyName !== null) {
+            set(model, key, keyName);
+          }
+        });
+      }
+      set(this, 'showForm', true);
     }
+  },
+
+  //private
+
+  _saveCallback() {
+    set(this, 'showForm', false);
+    this.transitionToRoute('companies.index');
   }
 });

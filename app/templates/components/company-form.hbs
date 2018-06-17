@@ -1,98 +1,97 @@
-{{#if showForm}}
-  <div class="ui divider"></div>
-  <form class='ui large fluid form'>
-    <div class="inline field">
-      <div class="ui fluid labeled input grid">
-        <label class="ui label four wide column" for="{{concat elementId '-name'}}">Name</label>
-        {{input type='text' value=data.name autofocus=true id=(concat elementId '-name') disabled=inputDisabled}}
-      </div>
+<div class="ui divider"></div>
+<form class='ui large fluid form'>
+  <div class="inline field">
+    <div class="ui fluid labeled input grid">
+      <label class="ui label four wide column" for="{{concat elementId '-name'}}">Name</label>
+      {{input type='text' value=data.name autofocus=true id=(concat elementId '-name') disabled=inputDisabled}}
     </div>
-    <div class="inline field">
-      <div class="ui fluid labeled input grid">
-        <label class="ui label four wide column" for="{{concat elementId '-reg'}}">Registration</label>
-        {{input type='text' value=data.registration id=(concat elementId '-reg') disabled=inputDisabled}}
-      </div>
+  </div>
+  <div class="inline field">
+    <div class="ui fluid labeled input grid">
+      <label class="ui label four wide column" for="{{concat elementId '-reg'}}">Registration</label>
+      {{input type='text' value=data.registration id=(concat elementId '-reg') disabled=inputDisabled}}
     </div>
-    <div class="inline field">
-      <div class="ui fluid labeled input grid">
-        <label class="ui label four wide column" for="{{concat elementId '-cif'}}">CIF</label>
-        {{input type='text' value=data.cif id=(concat elementId '-cif') disabled=inputDisabled}}
-      </div>
+  </div>
+  <div class="inline field">
+    <div class="ui fluid labeled input grid">
+      <label class="ui label four wide column" for="{{concat elementId '-cif'}}">CIF</label>
+      {{input type='text' value=data.cif id=(concat elementId '-cif') disabled=inputDisabled}}
     </div>
-    <div class="inline field">
-      <div class="ui fluid labeled input grid">
-        <label class="ui label four wide column" for="{{concat elementId '-address'}}">Address</label>
-        {{textarea value=data.address rows=2 class='ui twelve wide column' id=(concat elementId '-address') disabled=inputDisabled}}
-      </div>
+  </div>
+  <div class="inline field">
+    <div class="ui fluid labeled input grid">
+      <label class="ui label four wide column" for="{{concat elementId '-address'}}">Address</label>
+      {{textarea value=data.address rows=2 class='ui twelve wide column' id=(concat elementId '-address') disabled=inputDisabled}}
     </div>
-    <div class="inline field">
-      <div class="ui fluid labeled input grid">
-        <label class="ui label four wide column">Country</label>
-        {{#ui-dropdown class=(concat (if inputDisabled 'disabled ') "ui twelve wide column scrolling selection" ) selected=data.country onChange=(action (mut data.country)) showOnFocus=false}}
-          <i class="dropdown icon"></i>
-          <div class="default text"></div>
-          <div class="menu">
-            {{#each countries.list as |country|}}
-              <div class="item" data-value="{{country.value}}">
-                {{#if (eq country.value 'EL')}}
-                  <i class="gr flag"></i>
-                {{else}}
-                  <i class="{{lower-case country.value}} flag"></i>
-                {{/if}}
-                {{country.name}}
-              </div>
-            {{/each}}
-          </div>
-        {{/ui-dropdown}}
-      </div>
+  </div>
+  <div class="inline field">
+    <div class="ui fluid labeled input grid">
+      <label class="ui label four wide column">Country</label>
+      {{#ui-dropdown class=(concat (if inputDisabled 'disabled ') "ui twelve wide column scrolling selection" ) selected=data.country
+        onChange=(action (mut data.country)) showOnFocus=false}}
+        <i class="dropdown icon"></i>
+        <div class="default text"></div>
+        <div class="menu">
+          {{#each countries.list as |country|}}
+            <div class="item" data-value="{{country.value}}">
+              {{#if (eq country.value 'EL')}}
+                <i class="gr flag"></i>
+              {{else}}
+                <i class="{{lowercase country.value}} flag"></i>
+              {{/if}}
+              {{country.name}}
+            </div>
+          {{/each}}
+        </div>
+      {{/ui-dropdown}}
     </div>
-    <div class="inline field">
-      <div class="ui fluid labeled input grid">
-        <label class="ui label four wide column" for="{{concat elementId '-eur'}}">EUR Account</label>
-        {{input type='text' value=data.acc_eur id=(concat elementId '-eur') disabled=inputDisabled}}
-      </div>
+  </div>
+  <div class="inline field">
+    <div class="ui fluid labeled input grid">
+      <label class="ui label four wide column" for="{{concat elementId '-eur'}}">EUR Account</label>
+      {{input type='text' value=data.acc_eur id=(concat elementId '-eur') disabled=inputDisabled}}
     </div>
-    <div class="inline field">
-      <div class="ui fluid labeled input grid">
-        <label class="ui label four wide column" for="{{concat elementId '-ron'}}">RON Account</label>
-        {{input type='text' value=data.acc_ron id=(concat elementId '-ron') disabled=inputDisabled}}
-      </div>
+  </div>
+  <div class="inline field">
+    <div class="ui fluid labeled input grid">
+      <label class="ui label four wide column" for="{{concat elementId '-ron'}}">RON Account</label>
+      {{input type='text' value=data.acc_ron id=(concat elementId '-ron') disabled=inputDisabled}}
     </div>
-    <div class="inline field">
-      <div class="ui fluid labeled input grid">
-        <label class="ui label four wide column" for="{{concat elementId '-bank'}}">Bank</label>
-        {{input type='text' value=data.bank id=(concat elementId '-bank') disabled=inputDisabled}}
-      </div>
+  </div>
+  <div class="inline field">
+    <div class="ui fluid labeled input grid">
+      <label class="ui label four wide column" for="{{concat elementId '-bank'}}">Bank</label>
+      {{input type='text' value=data.bank id=(concat elementId '-bank') disabled=inputDisabled}}
     </div>
-    <div class="inline field">
-      <div class="ui fluid labeled input grid">
-        <label class="ui label four wide column" for="{{concat elementId '-cap'}}">Capital</label>
-        {{input type='text' value=data.capital id=(concat elementId '-cap') disabled=inputDisabled}}
-      </div>
+  </div>
+  <div class="inline field">
+    <div class="ui fluid labeled input grid">
+      <label class="ui label four wide column" for="{{concat elementId '-cap'}}">Capital</label>
+      {{input type='text' value=data.capital id=(concat elementId '-cap') disabled=inputDisabled}}
     </div>
-    <div class="inline field">
-      <div class="ui fluid labeled input grid">
-        <label class="ui label four wide column" for="{{concat elementId '-phone'}}">Phone</label>
-        {{input type='text' value=data.phone id=(concat elementId '-phone') disabled=inputDisabled}}
-      </div>
+  </div>
+  <div class="inline field">
+    <div class="ui fluid labeled input grid">
+      <label class="ui label four wide column" for="{{concat elementId '-phone'}}">Phone</label>
+      {{input type='text' value=data.phone id=(concat elementId '-phone') disabled=inputDisabled}}
     </div>
-    <div class="inline field">
-      <div class="ui fluid labeled input grid">
-        <label class="ui label four wide column" for="{{concat elementId '-email'}}">Email</label>
-        {{input type='text' value=data.email id=(concat elementId '-email') disabled=inputDisabled}}
-      </div>
+  </div>
+  <div class="inline field">
+    <div class="ui fluid labeled input grid">
+      <label class="ui label four wide column" for="{{concat elementId '-email'}}">Email</label>
+      {{input type='text' value=data.email id=(concat elementId '-email') disabled=inputDisabled}}
     </div>
-    <div class="inline field">
-      <div class="ui fluid labeled input grid">
-        <label class="ui label four wide column">Vies</label>
-        {{ui-checkbox class="slider" disabled=inputDisabled checked=data.vies onChange=(action (mut data.vies))}}
-      </div>
+  </div>
+  <div class="inline field">
+    <div class="ui fluid labeled input grid">
+      <label class="ui label four wide column">Vies</label>
+      {{ui-checkbox class="slider" disabled=inputDisabled checked=data.vies onChange=(action (mut data.vies))}}
     </div>
-    <div class="inline field">
-      <div class="ui fluid labeled input grid">
-        <label class="ui label four wide column">Status</label>
-        {{ui-checkbox class="slider" disabled=inputDisabled checked=data.status onChange=(action (mut data.status))}}  {{! TODO fix checkbox alignment}}
-      </div>
+  </div>
+  <div class="inline field">
+    <div class="ui fluid labeled input grid">
+      <label class="ui label four wide column">Status</label>
+      {{ui-checkbox class="slider" disabled=inputDisabled checked=data.status onChange=(action (mut data.status))}}
     </div>
-  </form>
-{{/if}}
+  </div>
+</form>

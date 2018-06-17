@@ -1,135 +1,115 @@
-import { describe, it, beforeEach, afterEach } from 'mocha';
-import { expect } from 'chai';
-import startApp from 'frontend/tests/helpers/start-app';
-import destroyApp from 'frontend/tests/helpers/destroy-app';
+import { module, test } from 'qunit';
+import { setupApplicationTest } from 'ember-qunit';
 import {
-  currentSession,
-  invalidateSession ,
-  authenticateSession
-} from 'frontend/tests/helpers/ember-simple-auth';
+  visit,
+  currentURL,
+  find,
+  findAll,
+  click,
+  fillIn
+} from '@ember/test-helpers';
 import { get } from '@ember/object';
+import setupMirageTest from 'ember-cli-mirage/test-support/setup-mirage';
+import {
+  authenticateSession,
+  invalidateSession,
+  currentSession
+} from 'ember-simple-auth/test-support';
 
-describe('Acceptance | login', function() {
-  let application;
+module('Acceptance | login', function(hooks) {
+  setupApplicationTest(hooks);
+  setupMirageTest(hooks);
 
-  beforeEach(function() {
-    application = startApp();
+  test('If a user is not logged in, they see a login form', async function(assert) {
+    await invalidateSession();
+    await visit('/');
+    assert.equal(
+      currentURL(),
+      '/login',
+      'not auth user is redirected to login'
+    );
+    const loginFormPresent = find('#loginForm') == null ? false : true;
+    assert.ok(loginFormPresent);
   });
 
-  afterEach(function() {
-    destroyApp(application);
+  test('if a user is logged in, they see a logout button', async function(assert) {
+    await authenticateSession();
+    await visit('/');
+
+    assert.equal(currentURL(), '/');
+
+    const logoutBtnPresent = find('#logoutBtn') == null ? false : true;
+    assert.ok(logoutBtnPresent);
   });
 
-  it('If a user is not logged in, they see a login form', function() {
-    invalidateSession(application);
-    visit('/');
+  test('a authed user not should see the login form', async function(assert) {
+    await authenticateSession();
+    await visit('/');
 
-    return andThen(() => {
-      const loginFormPresent = find('#loginForm').length > 0 ? true : false;
-      expect(loginFormPresent).to.equal(true);
-    })
-  })
+    assert.equal(currentURL(), '/');
+    const loginFormPresent = find('#loginForm') == null ? false : true;
+    assert.notOk(loginFormPresent);
+  });
 
-  it('if a user is logged in, they see a logout button', function() {
-    authenticateSession(application);
-    visit('/');
+  test('user can login', async function(assert) {
+    this.server.logging = true;
+    this.server.create('user', {
+      id: 1,
+      email: 'sega@test.com',
+      password: 'test1234',
+      active: true
+    });
+    await invalidateSession();
+    await visit('/companies');
+    assert.equal(currentURL(), '/login');
+    await fillIn('#email', 'sega@test.com');
+    await fillIn('#password', 'test1234');
+    await click('.submit.button'); // can't login if start from login page
+    assert.equal(currentURL(), '/companies');
+    assert.ok(find('.success.message'));
+    const sesh = currentSession();
+    const isAuthed = get(sesh, 'isAuthenticated');
+    assert.ok(isAuthed);
+  });
 
-    return andThen(() => {
-      expect(currentURL()).to.equal('/');
-      const logoutBtnPresent = find('a').text('Logout').length > 0 ? true : false;
-      expect(logoutBtnPresent).to.equal(true)
-    })
-  })
+  test('user can logout', async function(assert) {
+    this.server.create('user');
+    await authenticateSession({
+      token:
+        'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImFkbWluIjp0cnVlfQ.hgNSDI7STvbPMw4dJky55hUpUy5jriNIrLwp5dW3awg'
+    });
+    await visit('/companies');
+    await click('#logoutBtn');
 
-  it('a authed user not should see the login form', function() {
-    authenticateSession(application);
-    visit('/');
+    const sesh = currentSession();
+    const isAuthed = get(sesh, 'isAuthenticated');
 
-    return andThen(() => {
-      expect(currentURL()).to.equal('/');
-      const loginFormPresent = find('#loginForm').length > 0 ? true : false;
-      expect(loginFormPresent).to.equal(false)
-    })
-  })
+    assert.notOk(isAuthed);
+  });
 
-  // it('user can login', function() {
-  //   invalidateSession(application);
-  //   visit('/');
-  //   fillIn('#email', 'lester@test.com');
-  //   fillIn('#password', 'test1234');
-  //   //click('.submit.button');
-  //
-  //   return andThen(() => {
-  //     // const sesh = currentSession(application);
-  //     // const isAuthed = get(sesh, 'isAuthenticated');
-  //     // expect(isAuthed).to.equal(false);
-  //     expect(1).to.equal(1);
-  //   })
-  // })
+  test('If a user puts in the wrong login credentials, they see a login error', async function(assert) {
+    // await invalidateSession();
+    await visit('/');
 
-  it('user can logout', function() {
-    authenticateSession(application);
-    visit('/');
-    click('.logoutBtn');
+    // await fillIn('#email', 'lester@test.com');
+    // await fillIn('#password', 'wrongPassword');
+    await click('.submit.button');
 
-    return andThen(() => {
-      const sesh = currentSession(application);
-      const isAuthed = get(sesh, 'isAuthenticated');
-      expect(isAuthed).to.equal(false);
-    })
-  })
-})
+    // const sesh = currentSession();
+    // const isAuthed = get(sesh, 'isAuthenticated');
+    // assert.equal(isAuthed, false, 'User submits bad email and password, fails');
 
+    // const isShowingLoginFails =
+    //   find('.message.error').length > 0 ? true : false;
+    // assert.equal(
+    //   isShowingLoginFails,
+    //   true,
+    //   'Shows user an error when they put in bad credentials'
+    // );
 
+    // const loginFormPresent = find('#loginForm').length > 0 ? true : false;
+    // assert.equal(loginFormPresent, true, 'and we can still see the login form');
 
-//
-//   andThen(() => {
-//     const sesh = currentSession(this.application);
-//     const isAuthed = get(sesh, 'isAuthenticated');
-//     assert.equal(
-//       isAuthed,
-//       true,
-//       'after a user submits good creds to login form, they are logged in'
-//     );
-//
-//     const loginFormPresent = find('#loginForm').length > 0 ? true : false;
-//     assert.equal(
-//       loginFormPresent,
-//       false,
-//       'after we login, the login form disappears'
-//     )
-//   });
-// });
-//
-// test('If a user puts in the wrong login credentials, they see a login error', function(assert) {
-//   invalidateSession(this.application);
-//   visit('/');
-//
-//   fillIn('#email', 'lester@test.com');
-//   fillIn('#password', 'wrongPassword');
-//   click('.submit.button');
-//
-//   andThen(() => {
-//     const sesh = currentSession(this.application);
-//     const isAuthed = get(sesh, 'isAuthenticated');
-//     assert.equal(
-//       isAuthed,
-//       false,
-//       'User submits bad email and password, fails'
-//     );
-//
-//     const isShowingLoginFails = find('.message.error').length > 0 ? true : false;
-//     assert.equal(
-//       isShowingLoginFails,
-//       true,
-//       'Shows user an error when they put in bad credentials'
-//     );
-//
-//     const loginFormPresent = find('#loginForm').length > 0 ? true : false;
-//     assert.equal(
-//       loginFormPresent,
-//       true,
-//       'and we can still see the login form'
-//     )
-//   });
-// });
+    assert.ok(find('.message'));
+  });
+});

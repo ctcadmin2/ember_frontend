@@ -7,7 +7,7 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
-  this.route('home', {path: '/'})
+  this.route('home', { path: '/' });
   this.route('login');
   this.route('registration');
   this.route('companies', function() {
@@ -16,6 +16,7 @@ Router.map(function() {
     this.route('edit', { path: '/:company_id/edit' });
   });
   this.route('users', function() {
+    this.route('show', { path: '/:user_id/' });
     this.route('edit', { path: '/:user_id/edit' });
   });
 });

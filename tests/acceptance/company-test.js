@@ -1,40 +1,31 @@
-/*global server:true*/
-import { describe, it, beforeEach, afterEach } from 'mocha';
-import { expect } from 'chai';
-import startApp from 'frontend/tests/helpers/start-app';
-import destroyApp from 'frontend/tests/helpers/destroy-app';
+import { module, test } from 'qunit';
+import { setupApplicationTest } from 'ember-qunit';
+import { visit, currentURL, findAll } from '@ember/test-helpers';
+import setupMirageTest from 'ember-cli-mirage/test-support/setup-mirage';
 import {
-  invalidateSession ,
-  authenticateSession
-} from 'frontend/tests/helpers/ember-simple-auth';
+  authenticateSession,
+  invalidateSession
+} from 'ember-simple-auth/test-support';
 
-describe('Acceptance | companies', function() {
-  let application;
+module('Acceptance | companies', function(hooks) {
+  setupApplicationTest(hooks);
+  setupMirageTest(hooks);
 
-  beforeEach(function() {
-    application = startApp();
+  test('redirects to login when not auth', async function(assert) {
+    await invalidateSession();
+    await visit('/companies');
+    assert.equal(currentURL(), '/login');
   });
 
-  afterEach(function() {
-    destroyApp(application);
-  });
-
-  it('redirect to login when not auth', function() {
-    invalidateSession(application);
-    visit('/companies');
-
-    return andThen(() => {
-      expect(currentURL()).to.equal('/login');
+  test('shows companies table when auth', async function(assert) {
+    await authenticateSession({
+      token:
+        'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImFkbWluIjp0cnVlfQ.hgNSDI7STvbPMw4dJky55hUpUy5jriNIrLwp5dW3awg'
     });
+    this.server.create('user');
+    this.server.createList('company', 5);
+    await visit('/companies');
+    assert.equal(currentURL(), '/companies');
+    assert.equal(findAll('tbody tr').length, 5);
   });
-
-  it('show companies table when auth', function() {
-    authenticateSession(application);
-    server.createList('company', 5);
-    visit('/companies');
-
-    return andThen(() => {
-      expect(find('thead tr').length).to.equal(1);
-    })
-  })
 });

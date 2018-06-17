@@ -1,24 +1,26 @@
-import { expect } from 'chai';
-import { describe, it } from 'mocha';
-import { setupComponentTest } from 'ember-mocha';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-describe('Integration | Component | table actions', function() {
-  setupComponentTest('table-actions', {
-    integration: true
-  });
+module('Integration | Component | table-actions', function(hooks) {
+  setupRenderingTest(hooks);
 
-  it('renders', function() {
+  test('it renders', async function(assert) {
     // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.on('myAction', function(val) { ... });
-    // Template block usage:
-    // this.render(hbs`
-    //   {{#table-actions}}
-    //     template content
-    //   {{/table-actions}}
-    // `);
+    // Handle any actions with this.set('myAction', function(val) { ... });
 
-    this.render(hbs`{{table-actions}}`);
-    expect(this.$()).to.have.length(1);
+    await render(hbs`{{table-actions}}`);
+
+    assert.equal(this.element.textContent.trim(), '');
+
+    // Template block usage:
+    await render(hbs`
+      {{#table-actions}}
+        template block text
+      {{/table-actions}}
+    `);
+
+    assert.equal(this.element.textContent.trim(), 'template block text');
   });
 });

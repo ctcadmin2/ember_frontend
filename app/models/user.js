@@ -13,7 +13,6 @@ export default DS.Model.extend({
   lang: attr('string'),
   admin: attr('boolean'),
   active: attr('boolean'),
-
   fullName: computed('firstName', 'lastName', function() {
     return `${get(this, 'firstName')} ${get(this, 'lastName')}`;
   })

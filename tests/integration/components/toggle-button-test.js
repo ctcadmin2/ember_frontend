@@ -1,24 +1,26 @@
-import { expect } from 'chai';
-import { describe, it } from 'mocha';
-import { setupComponentTest } from 'ember-mocha';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-describe('Integration | Component | toggle-button', function() {
-  setupComponentTest('toggle-button', {
-    integration: true
-  });
+module('Integration | Component | toggle-button', function(hooks) {
+  setupRenderingTest(hooks);
 
-  it('renders', function() {
+  test('it renders', async function(assert) {
     // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.on('myAction', function(val) { ... });
-    // Template block usage:
-    // this.render(hbs`
-    //   {{#toggle-button}}
-    //     template content
-    //   {{/toggle-button}}
-    // `);
+    // Handle any actions with this.set('myAction', function(val) { ... });
 
-    this.render(hbs`{{toggle-button}}`);
-    expect(this.$()).to.have.length(1);
+    await render(hbs`{{toggle-button}}`);
+
+    assert.equal(this.element.textContent.trim(), '');
+
+    // Template block usage:
+    await render(hbs`
+      {{#toggle-button}}
+        template block text
+      {{/toggle-button}}
+    `);
+
+    assert.equal(this.element.textContent.trim(), 'template block text');
   });
 });

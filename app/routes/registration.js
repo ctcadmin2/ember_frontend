@@ -3,9 +3,11 @@ import UnauthenticatedRouteMixin from 'ember-simple-auth/mixins/unauthenticated-
 import { set } from '@ember/object';
 
 export default Route.extend(UnauthenticatedRouteMixin, {
+  routeIfAlreadyAuthenticated: 'home',
+
   model() {
     let user = this.store.createRecord('user');
     set(user, 'lang', 'en');
     return user;
-  },
+  }
 });
