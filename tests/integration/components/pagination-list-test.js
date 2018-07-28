@@ -13,14 +13,5 @@ module('Integration | Component | pagination-list', function(hooks) {
     await render(hbs`{{pagination-list}}`);
 
     assert.equal(this.element.textContent.trim(), '');
-
-    // Template block usage:
-    await render(hbs`
-      {{#pagination-list}}
-        template block text
-      {{/pagination-list}}
-    `);
-
-    assert.equal(this.element.textContent.trim(), 'template block text');
   });
 });

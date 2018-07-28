@@ -13,14 +13,5 @@ module('Integration | Component | table-actions', function(hooks) {
     await render(hbs`{{table-actions}}`);
 
     assert.equal(this.element.textContent.trim(), '');
-
-    // Template block usage:
-    await render(hbs`
-      {{#table-actions}}
-        template block text
-      {{/table-actions}}
-    `);
-
-    assert.equal(this.element.textContent.trim(), 'template block text');
   });
 });

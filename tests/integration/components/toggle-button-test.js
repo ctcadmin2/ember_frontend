@@ -13,14 +13,5 @@ module('Integration | Component | toggle-button', function(hooks) {
     await render(hbs`{{toggle-button}}`);
 
     assert.equal(this.element.textContent.trim(), '');
-
-    // Template block usage:
-    await render(hbs`
-      {{#toggle-button}}
-        template block text
-      {{/toggle-button}}
-    `);
-
-    assert.equal(this.element.textContent.trim(), 'template block text');
   });
 });

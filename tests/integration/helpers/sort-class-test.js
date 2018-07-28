@@ -6,12 +6,27 @@ import hbs from 'htmlbars-inline-precompile';
 module('Integration | Helper | sort-class', function(hooks) {
   setupRenderingTest(hooks);
 
-  // Replace this with your real tests.
-  test('it renders', async function(assert) {
-    this.set('inputValue', '1234');
+  test('ascending', async function(assert) {
+    this.set('sort', '1234');
+    this.set('name', '1234');
 
-    await render(hbs`{{sort-class inputValue}}`);
+    await render(hbs`{{sort-class sort name}}`);
+    assert.equal(
+      this.element.textContent.trim(),
+      'sorted ascending icon',
+      'sorting ascending'
+    );
+  });
 
-    assert.equal(this.element.textContent.trim(), '1234');
+  test('sort descending', async function(assert) {
+    this.set('sort', '-1234');
+    this.set('name', '1234');
+
+    await render(hbs`{{sort-class sort name}}`);
+    assert.equal(
+      this.element.textContent.trim(),
+      'sorted descending icon',
+      'sorting descending'
+    );
   });
 });
