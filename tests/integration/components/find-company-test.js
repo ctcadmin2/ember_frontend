@@ -30,7 +30,9 @@ module('Integration | Component | find-company', function(hooks) {
   });
 
   test('button disable', async function(assert) {
-    await render(hbs`{{find-company}}`);
+    this.set('testFunction', function() {});
+
+    await render(hbs`{{find-company returnData=(action testFunction)}}`);
 
     assert.ok(
       find('button').hasAttribute('disabled'),
@@ -85,7 +87,9 @@ module('Integration | Component | find-company', function(hooks) {
       }
     });
 
-    await render(hbs`{{find-company}}`);
+    this.set('testFunction', function() {});
+
+    await render(hbs`{{find-company returnData=(action testFunction)}}`);
 
     await fillIn('input', 1);
     await click('button');

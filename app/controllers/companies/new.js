@@ -15,7 +15,7 @@ export default Controller.extend({
       set(this, 'showForm', false);
       this.transitionToRoute('companies.index');
     },
-    getData(response) {
+    returnData(response) {
       let data = response.data;
       if (data) {
         let keys = Object.keys(data);

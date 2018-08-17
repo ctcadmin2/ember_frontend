@@ -28,17 +28,14 @@ export default Component.extend({
     set(this, 'cifChanged', true);
     let companyInfo = get(this, 'companyInfo');
     let result;
-    // let data;
     try {
       if (get(this, 'country') == 'RO') {
         result = yield companyInfo.checkOpenApi(get(this, 'cif'));
-        // data = yield result.json();
       } else {
         result = yield companyInfo.checkVies(
           get(this, 'country'),
           get(this, 'cif')
         );
-        // data = yield result.json();
       }
     } catch (error) {
       set(this, 'responseType', 'error');
@@ -62,7 +59,7 @@ export default Component.extend({
     } else {
       set(this, 'responseType', 'error');
     }
-    let getData = get(this, 'getData');
-    getData(data);
+
+    this.returnData(data);
   }
 });
