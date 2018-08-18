@@ -33,31 +33,23 @@ module('Integration | Component | company-form', function(hooks) {
   test('it renders', async function(assert) {
     await render(hbs`{{company-form data=company}}`);
 
-    assert.equal(
-      findAll('.inline.field').length,
-      13,
-      'All fields are displayed'
-    );
-    assert.equal(
-      find('[id*=name]').value,
-      this.get('company').name,
-      'Input field is properly updated'
-    );
-    assert.equal(
-      findAll('.dropdown .menu .item').length,
-      2,
-      'Select is created from valid array'
-    );
+    assert
+      .dom('.inline.field')
+      .exists({ count: 13 }, 'All fields are displayed');
+    assert
+      .dom('[id*=name]')
+      .hasValue(this.get('company').name, 'Input field is properly updated');
+    assert
+      .dom('.dropdown .menu .item')
+      .exists({ count: 2 }, 'Select is created from valid array');
   });
 
   test('show should have disable input', async function(assert) {
     await render(hbs`{{company-form data=company inputDisabled=true}}`);
 
-    assert.equal(
-      findAll(':disabled').length,
-      12,
-      'all input fields are disabled'
-    );
-    assert.equal(findAll('.dropdown.disabled').length, 1, 'select is disabled');
+    assert
+      .dom(':disabled')
+      .exists({ count: 12 }, 'all input fields are disabled');
+    assert.dom('.dropdown.disabled').exists({ count: 1 }, 'select is disabled');
   });
 });

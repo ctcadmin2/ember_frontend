@@ -10,7 +10,7 @@ export default Component.extend({
   actions: {
     toggleObj(obj, prop) {
       const modelName = obj.constructor.modelName;
-      const model = this.get('store').peekRecord(modelName, obj.id);
+      const model = this.store.peekRecord(modelName, obj.id);
 
       model.toggleProperty(prop);
 

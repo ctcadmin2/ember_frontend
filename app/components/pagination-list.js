@@ -1,5 +1,5 @@
-import {computed} from '@ember/object';
-import {equal, lte} from '@ember/object/computed';
+import { computed } from '@ember/object';
+import { equal, lte } from '@ember/object/computed';
 import Component from '@ember/component';
 import { get } from "@ember/object";
 
@@ -28,11 +28,11 @@ export default Component.extend({
     return list;
   }),
   incrementPage: computed('currentPage', function () { //TODO merge this 2 functions
-    let currentPage = get(this, 'currentPage');
+    let currentPage = this.currentPage;
     return currentPage + 1;
   }),
   decrementPage: computed('currentPage', function () {
-    let currentPage = get(this, 'currentPage');
+    let currentPage = this.currentPage;
     return currentPage - 1;
   })
 });

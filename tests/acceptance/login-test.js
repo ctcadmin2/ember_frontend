@@ -66,7 +66,7 @@ module('Acceptance | login', function(hooks) {
     await fillIn('#password', 'test1234');
     await click('.submit.button'); // can't login if start from login page
     assert.equal(currentURL(), '/companies');
-    assert.ok(find('.success.message'));
+    assert.dom('.success.message').exists();
     const sesh = currentSession();
     const isAuthed = get(sesh, 'isAuthenticated');
     assert.ok(isAuthed);
@@ -110,6 +110,6 @@ module('Acceptance | login', function(hooks) {
     // const loginFormPresent = find('#loginForm').length > 0 ? true : false;
     // assert.equal(loginFormPresent, true, 'and we can still see the login form');
 
-    assert.ok(find('.message'));
+    assert.dom('.message').exists();
   });
 });

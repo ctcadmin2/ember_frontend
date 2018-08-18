@@ -1,6 +1,6 @@
 import Controller from '@ember/controller';
 import { alias, empty, gte } from '@ember/object/computed';
-import { get, set } from '@ember/object';
+import { set } from '@ember/object';
 import { inject as service } from '@ember/service';
 //TODO check all promises paths
 
@@ -25,7 +25,7 @@ export default Controller.extend({
       set(this, 'page', 1);
     },
     destroyCompany(id) {
-      get(this, 'store')
+      this.store
         .findRecord('company', id, { backgroundReload: false })
         .then(
           record =>
@@ -51,7 +51,7 @@ export default Controller.extend({
 
     // TODO refactor
     sort(prop) {
-      let sortParam = get(this, 'sort');
+      let sortParam = this.sort;
       if (sortParam.includes(prop)) {
         let index = sortParam.indexOf(prop);
         if (sortParam[index - 1] === '-') {

@@ -1,13 +1,12 @@
 import Component from '@ember/component';
-import Swal from "npm:sweetalert2"; //TODO find better way to add sweetalert
-import { get } from '@ember/object';
+import Swal from 'npm:sweetalert2'; //TODO find better way to add sweetalert
 import { computed } from '@ember/object';
 import { pluralize } from 'ember-inflector';
 
 export default Component.extend({
   tagName: '',
   route: computed('model', function() {
-    let route = get(this, 'model').constructor.modelName;
+    let route = this.model.constructor.modelName;
     return pluralize(route);
   }),
 
@@ -32,7 +31,7 @@ export default Component.extend({
   //private
   _deleteModel(resp, id) {
     if (resp['value']) {
-      this.deleteModel(id)
+      this.deleteModel(id);
     }
   }
 });

@@ -1,5 +1,5 @@
 import Service from '@ember/service';
-import { get, set } from '@ember/object';
+import { set } from '@ember/object';
 import fetchData from '../utils/fetch-data';
 
 export default Service.extend({
@@ -10,13 +10,13 @@ export default Service.extend({
   init() {
     this._super(...arguments);
 
-    set(this, 'fetch', fetchData(this.get('url')));
+    set(this, 'fetch', fetchData(this.url));
     this._setlist();
   },
 
   //private
   _setlist() {
-    let f = get(this, 'fetch');
+    let f = this.fetch;
     f.then(list => this._successCallback(list)).catch(() =>
       set(this, 'list', { error: 'error' })
     );

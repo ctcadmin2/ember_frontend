@@ -10,7 +10,7 @@ module('Integration | Component | find-company', function(hooks) {
 
   test('it renders', async function(assert) {
     await render(hbs`{{find-company}}`);
-    assert.ok(find('.form'), 'The form is displayed');
+    assert.dom('.form').exists('The form is displayed');
   });
 
   test('dropdown creation', async function(assert) {
@@ -20,7 +20,7 @@ module('Integration | Component | find-company', function(hooks) {
     });
     await render(hbs`{{find-company}}`);
 
-    assert.ok(find('.dropdown'), 'The select is created');
+    assert.dom('.dropdown').exists('The select is created');
     assert.equal(find('.menu').children.length, 2, 'Create 2 elements');
     assert.equal(
       find('.active').dataset.value,
@@ -93,9 +93,6 @@ module('Integration | Component | find-company', function(hooks) {
 
     await fillIn('input', 1);
     await click('button');
-    assert.ok(
-      find('.form.success'),
-      'Display success message if company was found.'
-    );
+    assert.dom('.form.success').exists('Display success message if company was found.');
   });
 });

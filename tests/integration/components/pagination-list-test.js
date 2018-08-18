@@ -12,6 +12,6 @@ module('Integration | Component | pagination-list', function(hooks) {
 
     await render(hbs`{{pagination-list}}`);
 
-    assert.equal(this.element.textContent.trim(), '');
+    assert.dom(this.element).hasText('');
   });
 });

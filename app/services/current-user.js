@@ -11,7 +11,7 @@ export default Service.extend({
     const token = get(this, 'session.data.authenticated.token');
     if (!isEmpty(token)) {
       let userId = this.getUserIdFromToken(token);
-      return get(this, 'store')
+      return this.store
         .findRecord('user', userId)
         .then(user => set(this, 'user', user));
     } else {

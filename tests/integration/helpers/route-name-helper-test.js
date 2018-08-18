@@ -9,6 +9,6 @@ module('Integration | Helper | route-name-helper', function(hooks) {
   test('it renders', async function(assert) {
     await render(hbs`{{route-name-helper 'companies' 'index'}}`);
 
-    assert.equal(this.element.textContent.trim(), 'companies.index');
+    assert.dom(this.element).hasText('companies.index');
   });
 });

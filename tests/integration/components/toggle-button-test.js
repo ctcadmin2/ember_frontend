@@ -12,6 +12,6 @@ module('Integration | Component | toggle-button', function(hooks) {
 
     await render(hbs`{{toggle-button}}`);
 
-    assert.equal(this.element.textContent.trim(), '');
+    assert.dom(this.element).hasText('');
   });
 });

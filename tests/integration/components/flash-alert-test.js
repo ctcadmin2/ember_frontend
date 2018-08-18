@@ -12,6 +12,6 @@ module('Integration | Component | flash-alert', function(hooks) {
 
     await render(hbs`{{flash-alert}}`);
 
-    assert.equal(this.element.textContent.trim(), '');
+    assert.dom(this.element).hasText('');
   });
 });

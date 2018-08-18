@@ -1,6 +1,5 @@
 import Controller from '@ember/controller';
 import { alias } from '@ember/object/computed';
-import { get } from '@ember/object';
 import { inject as service } from '@ember/service';
 
 export default Controller.extend({
@@ -8,7 +7,7 @@ export default Controller.extend({
   company: alias('model'),
   actions: {
     approveModal() {
-      get(this, 'company')
+      this.company
         .save()
         .then(
           () => this._successCallback(),

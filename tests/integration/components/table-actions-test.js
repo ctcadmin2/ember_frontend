@@ -12,6 +12,6 @@ module('Integration | Component | table-actions', function(hooks) {
 
     await render(hbs`{{table-actions}}`);
 
-    assert.equal(this.element.textContent.trim(), '');
+    assert.dom(this.element).hasText('');
   });
 });

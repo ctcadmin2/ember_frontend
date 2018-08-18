@@ -1,6 +1,5 @@
 import Controller from '@ember/controller';
 import { alias } from '@ember/object/computed';
-import { get } from '@ember/object';
 import { inject as service } from '@ember/service';
 
 export default Controller.extend({
@@ -9,7 +8,7 @@ export default Controller.extend({
 
   actions: {
     okButton() {
-      const user = get(this, 'user');
+      const user = this.user;
       user
         .save()
         .then(
@@ -22,9 +21,7 @@ export default Controller.extend({
       this.transitionToRoute('users');
     },
     destroyUser() {
-      get(this, 'user')
-        .save()
-        .then(() => this.transitionToRoute('users'));
+      this.user.save().then(() => this.transitionToRoute('users'));
     }
   },
 

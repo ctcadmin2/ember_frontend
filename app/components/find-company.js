@@ -1,7 +1,7 @@
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
 import { task } from 'ember-concurrency';
-import { get, computed, set } from '@ember/object';
+import { computed, set } from '@ember/object';
 import { empty, alias, or } from '@ember/object/computed';
 
 export default Component.extend({
@@ -17,25 +17,22 @@ export default Component.extend({
   cifEmpty: empty('cif'),
   searchDisabled: or('cifEmpty', 'cifChanged'),
   formClass: computed('taskRunning', 'responseType', function() {
-    if (get(this, 'isRunning')) {
+    if (this.isRunning) {
       return 'loading';
     } else {
-      return get(this, 'responseType');
+      return this.responseType;
     }
   }),
 
   findTask: task(function*() {
     set(this, 'cifChanged', true);
-    let companyInfo = get(this, 'companyInfo');
+    let companyInfo = this.companyInfo;
     let result;
     try {
-      if (get(this, 'country') == 'RO') {
-        result = yield companyInfo.checkOpenApi(get(this, 'cif'));
+      if (this.country == 'RO') {
+        result = yield companyInfo.checkOpenApi(this.cif);
       } else {
-        result = yield companyInfo.checkVies(
-          get(this, 'country'),
-          get(this, 'cif')
-        );
+        result = yield companyInfo.checkVies(this.country, this.cif);
       }
     } catch (error) {
       set(this, 'responseType', 'error');

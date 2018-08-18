@@ -1,12 +1,11 @@
 import Controller from '@ember/controller';
 import { alias } from '@ember/object/computed';
-import { get } from '@ember/object';
 
 export default Controller.extend({
   users: alias('model'),
   actions: {
     destroyUser(id) {
-      get(this, 'store')
+      this.store
         .findRecord('user', id, { backgroundReload: false })
         .then(
           record =>

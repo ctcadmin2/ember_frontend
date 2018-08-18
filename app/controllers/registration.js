@@ -1,6 +1,5 @@
 import Controller from '@ember/controller';
 import { alias } from '@ember/object/computed';
-import { get } from '@ember/object';
 import { inject as service } from '@ember/service';
 
 export default Controller.extend({
@@ -9,7 +8,7 @@ export default Controller.extend({
 
   actions: {
     createUser() {
-      get(this, 'user')
+      this.user
         .save()
         .then(
           () => this._succesCallback(),

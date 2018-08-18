@@ -1,6 +1,6 @@
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
-import { visit, currentURL, findAll } from '@ember/test-helpers';
+import { visit, currentURL } from '@ember/test-helpers';
 import setupMirageTest from 'ember-cli-mirage/test-support/setup-mirage';
 import {
   authenticateSession,
@@ -26,6 +26,6 @@ module('Acceptance | companies', function(hooks) {
     this.server.createList('company', 5);
     await visit('/companies');
     assert.equal(currentURL(), '/companies');
-    assert.equal(findAll('tbody tr').length, 5);
+    assert.dom('tbody tr').exists({ count: 5 });
   });
 });
