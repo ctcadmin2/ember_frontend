@@ -27,6 +27,15 @@ export default Controller.extend({
             'There was an error while looking for the user.'
           )
         );
+    },
+    toggleUpdate(user) {
+      user
+        .save()
+        .then(
+          () => this.flashMessages.success('User was successfully updated!'),
+          () => this._failedUpdate(user)
+        )
+        .catch(() => this._failedUpdate(user));
     }
   },
 
@@ -34,5 +43,9 @@ export default Controller.extend({
   _successCallback() {
     this.send('refreshPage');
     this.flashMessages.success('Successfully deleted!');
+  },
+  _failedUpdate(model) {
+    model.rollbackAttributes();
+    this.flashMessages.error('There was an error while updating the user!');
   }
 });

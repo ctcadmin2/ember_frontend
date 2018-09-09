@@ -6,12 +6,16 @@ import hbs from 'htmlbars-inline-precompile';
 module('Integration | Component | table-actions', function(hooks) {
   setupRenderingTest(hooks);
 
+  // {{table-actions model=company deleteModel=(action 'destroyCompany')}}
+
   test('it renders', async function(assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
+    this.set('disF', function() {});
+    let company = {};
+    this.set('company', company);
 
-    await render(hbs`{{table-actions}}`);
-
-    assert.dom(this.element).hasText('');
+    await render(
+      hbs`{{table-actions model=company deleteModel=(action disF)}}`
+    );
+    assert.dom(this.element).hasText('Show Edit Destroy');
   });
 });

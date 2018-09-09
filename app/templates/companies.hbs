@@ -28,9 +28,7 @@
                                 </div>
                                 <div class="right floated">
                                     <div class='ui right floated'>
-                                        {{#if showPagination}}
-                                            {{pagination-list meta=model.meta query=model.query pageParam=page}}
-                                        {{/if}}
+                                        {{pagination-list model=companies page=page}}
                                     </div>
                                 </div>
                             </div>

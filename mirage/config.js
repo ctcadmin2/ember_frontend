@@ -6,7 +6,7 @@ export default function() {
   this.passthrough('/write-coverage');
 
   // console logging
-  this.logging = false;
+  // this.logging = false;
 
   // These comments are here to help you get started. Feel free to delete them.
 

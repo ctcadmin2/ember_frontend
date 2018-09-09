@@ -4,20 +4,18 @@ module.exports = {
     ecmaVersion: 2017,
     sourceType: 'module'
   },
-  plugins: [
-    'ember'
-  ],
-  extends: [
-    'eslint:recommended',
-    'plugin:ember/recommended'
-  ],
+  plugins: ['ember'],
+  extends: ['eslint:recommended', 'plugin:ember/recommended'],
   env: {
     browser: true
   },
   rules: {
-    'ember/named-functions-in-promises': [2, {
-      allowSimpleArrowFunction: true,
-    }]
+    'ember/named-functions-in-promises': [
+      2,
+      {
+        allowSimpleArrowFunction: true
+      }
+    ]
   },
   overrides: [
     // node files

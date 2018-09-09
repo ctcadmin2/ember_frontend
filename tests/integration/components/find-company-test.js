@@ -3,7 +3,6 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render, find, fillIn, click } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 import stubbedService from 'frontend/tests/helpers/stub-service';
-import { run } from '@ember/runloop';
 
 module('Integration | Component | find-company', function(hooks) {
   setupRenderingTest(hooks);
@@ -34,35 +33,29 @@ module('Integration | Component | find-company', function(hooks) {
 
     await render(hbs`{{find-company returnData=(action testFunction)}}`);
 
-    assert.ok(
-      find('button').hasAttribute('disabled'),
-      'Search should be disabled with empty cif.'
-    );
+    assert
+      .dom('button')
+      .isDisabled('Search should be disabled with empty cif.');
 
     await fillIn('input', 1);
-    assert.notOk(
-      find('button').hasAttribute('disabled'),
-      'Search should be enabled when cif is not blank.'
-    );
+    assert
+      .dom('button')
+      .isNotDisabled('Search should be enabled when cif is not blank.');
 
     await click('button');
-    await run.cancelTimers();
-    assert.ok(
-      find('button').hasAttribute('disabled'),
-      'Search should be disabled when searching.'
-    );
+    assert
+      .dom('button')
+      .isDisabled('Search should be disabled when searching.');
 
     await fillIn('input', 11111);
-    assert.notOk(
-      find('button').hasAttribute('disabled'),
-      'Search should be reenabled on cif changed.'
-    );
+    assert
+      .dom('button')
+      .isNotDisabled('Search should be reenabled on cif changed.');
 
     await fillIn('input', '');
-    assert.ok(
-      find('button').hasAttribute('disabled'),
-      'Search should be disabled if cif is cleared.'
-    );
+    assert
+      .dom('button')
+      .isDisabled('Search should be disabled if cif is cleared.');
   });
 
   test('message alerts', async function(assert) {
@@ -93,6 +86,8 @@ module('Integration | Component | find-company', function(hooks) {
 
     await fillIn('input', 1);
     await click('button');
-    assert.dom('.form.success').exists('Display success message if company was found.');
+    assert
+      .dom('.form.success')
+      .exists('Display success message if company was found.');
   });
 });

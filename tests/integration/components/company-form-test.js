@@ -1,6 +1,6 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, find, findAll } from '@ember/test-helpers';
+import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 import setupMirageTest from 'ember-cli-mirage/test-support/setup-mirage';
 import stubbedService from 'frontend/tests/helpers/stub-service';

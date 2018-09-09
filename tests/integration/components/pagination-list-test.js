@@ -6,10 +6,9 @@ import hbs from 'htmlbars-inline-precompile';
 module('Integration | Component | pagination-list', function(hooks) {
   setupRenderingTest(hooks);
 
-  test('it renders', async function(assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
+  // {{pagination-list model=companies page=page}}
 
+  test('it renders', async function(assert) {
     await render(hbs`{{pagination-list}}`);
 
     assert.dom(this.element).hasText('');

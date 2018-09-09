@@ -9,7 +9,7 @@ module.exports = function(environment) {
     locationType: 'auto',
     flashMessageDefaults: {
       // flash message defaults
-      timeout: 500,
+      timeout: 3000,
       // service defaults
       types: ['error', 'success', 'info'],
       destroyOnClick: false

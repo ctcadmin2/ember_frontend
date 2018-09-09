@@ -3,7 +3,7 @@
 const browsers = [
   'last 1 Chrome versions',
   'last 1 and_chr versions',
-  'last 1 ff versions'
+  'last 1 Firefox versions'
 ];
 
 const isCI = !!process.env.CI;

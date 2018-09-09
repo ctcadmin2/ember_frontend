@@ -1,36 +1,35 @@
-<div class="ui pagination menu">
-  {{#unless prevButton}}
-    {{#unless firstButton}}
-      {{#link-to 'companies.index' (query-params page=1) class='item' }}
-        <i class="fast backward icon"></i>
+{{#if showPagination}}
+  <div class="ui pagination menu">
+    {{#unless prevButton}}
+      {{#unless firstButton}}
+        {{#link-to 'companies.index' (query-params page=1) class='item' }}
+          <i class="fast backward icon"></i>
+        {{/link-to}}
+      {{/unless}}
+      {{#link-to 'companies.index' (query-params page=decrementPage) class='item' }}
+        <i class="left arrow icon"></i>
       {{/link-to}}
     {{/unless}}
-    {{#link-to 'companies.index' (query-params page=decrementPage) class='item' }}
-      <i class="left arrow icon"></i>
-     {{/link-to}}
-  {{/unless}}
-
-  {{#ui-dropdown class="fluid scrolling selection" selected=query.page.number
-                 onChange=(action (mut pageParam)) as |execute mapper|}}
-    <div class="default text">Select page</div>
-    <i class="dropdown icon"></i>
-    <div class="menu">
-      {{#each pageList as |page|}}
-        <div class="item" data-value="{{map-value mapper page}}">
-          {{page}}
-        </div>
-      {{/each}}
-    </div>
-  {{/ui-dropdown}}
-
-  {{#unless nextButton}}
-    {{#link-to 'companies.index' (query-params page=incrementPage) class='item' }}
-      <i class="right arrow icon"></i>
-    {{/link-to}}
-    {{#unless lastButton}}
-      {{#link-to 'companies.index' (query-params page=meta.page-count) class='item' }}
-        <i class="fast forward icon"></i>
+    {{#ui-dropdown class="fluid scrolling selection" selected=query.page.number onChange=(action (mut page)) as |execute mapper|}}
+      <div class="default text">Select page</div>
+      <i class="dropdown icon"></i>
+      <div class="menu">
+        {{#each pageList as |page|}}
+          <div class="item" data-value="{{map-value mapper page}}">
+            {{page}}
+          </div>
+        {{/each}}
+      </div>
+    {{/ui-dropdown}}
+    {{#unless nextButton}}
+      {{#link-to 'companies.index' (query-params page=incrementPage) class='item' }}
+        <i class="right arrow icon"></i>
       {{/link-to}}
+      {{#unless lastButton}}
+        {{#link-to 'companies.index' (query-params page=meta.page_count) class='item' }}
+          <i class="fast forward icon"></i>
+        {{/link-to}}
+      {{/unless}}
     {{/unless}}
-  {{/unless}}
-</div>
+  </div>
+{{/if}}
