@@ -18,6 +18,11 @@ Router.map(function() {
   this.route('users', function() {
     this.route('edit', { path: '/:user_id/edit' });
   });
+  this.route('vehicles', function() {
+    this.route('new');
+    this.route('show', { path: '/:vehicle_id' });
+    this.route('edit', { path: '/:vehicle_id/edit' });
+  });
 });
 
 export default Router;

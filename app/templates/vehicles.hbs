@@ -1,0 +1,47 @@
+<div class="ui centered raised segment">
+    <table class="ui table sortable padded selectable striped celled attached">
+        <caption class="ui huge header teal">Vehicles list</caption>
+        <thead>
+            <tr>
+                <th>VIN</th>
+                <th>Registration</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th colspan="5">
+                    <div class="ui items">
+                        <div class="item">
+                            <div class="middle aligned content">
+                                <div class="left floated">
+                                    {{#link-to "vehicles.new" class="ui teal button" }}New Vehicle{{/link-to}}
+                                </div>
+                                <div class="right floated">
+                                    <div class='ui right floated'>
+                                        {{pagination-list model=vehicles page=page}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </th>
+            </tr>
+        </tfoot>
+        <tbody>
+            {{#each vehicles as |vehicle|}}
+                <tr>
+                    <td>{{vehicle.vin}}</td>
+                    <td>{{vehicle.registration}}</td>
+                    <td>
+                        <div class="ui fluid buttons">
+                            {{!-- TODO custom actions --}}
+                            {{table-actions model=vehicle deleteModel=(action 'destroyVehicle')}}
+                        </div>
+                    </td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+{{outlet}}

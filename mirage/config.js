@@ -147,4 +147,17 @@ export default function() {
       return new Response(404, {}, {});
     }
   });
+
+  //vehicles
+  this.get('/vehicles', (schema, request) => {
+    const token = get(request, 'requestHeaders.Authorization');
+    if (
+      token ===
+      'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImFkbWluIjp0cnVlfQ.hgNSDI7STvbPMw4dJky55hUpUy5jriNIrLwp5dW3awg'
+    ) {
+      return schema.vehicles.all();
+    } else {
+      return new Response(401, {}, {});
+    }
+  });
 }
