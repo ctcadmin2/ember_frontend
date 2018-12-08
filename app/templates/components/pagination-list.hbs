@@ -2,11 +2,11 @@
   <div class="ui pagination menu">
     {{#unless prevButton}}
       {{#unless firstButton}}
-        {{#link-to 'companies.index' (query-params page=1) class='item' }}
+        {{#link-to route (query-params page=1) class='item' }}
           <i class="fast backward icon"></i>
         {{/link-to}}
       {{/unless}}
-      {{#link-to 'companies.index' (query-params page=decrementPage) class='item' }}
+      {{#link-to route (query-params page=decrementPage) class='item' }}
         <i class="left arrow icon"></i>
       {{/link-to}}
     {{/unless}}
@@ -22,11 +22,11 @@
       </div>
     {{/ui-dropdown}}
     {{#unless nextButton}}
-      {{#link-to 'companies.index' (query-params page=incrementPage) class='item' }}
+      {{#link-to route (query-params page=incrementPage) class='item' }}
         <i class="right arrow icon"></i>
       {{/link-to}}
       {{#unless lastButton}}
-        {{#link-to 'companies.index' (query-params page=meta.page_count) class='item' }}
+        {{#link-to route (query-params page=meta.page_count) class='item' }}
           <i class="fast forward icon"></i>
         {{/link-to}}
       {{/unless}}

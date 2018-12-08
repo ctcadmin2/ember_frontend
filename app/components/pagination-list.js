@@ -1,11 +1,15 @@
-import { computed } from '@ember/object';
 import { equal, lte, gte, alias } from '@ember/object/computed';
 import Component from '@ember/component';
-import { get } from '@ember/object';
+import { get, computed } from '@ember/object';
 
 export default Component.extend({
   meta: alias('model.meta'),
   query: alias('model.query'),
+
+  route: computed('model', function() {
+    let route = get(this, 'model').modelName.pluralize();
+    return `${route}.index`;
+  }),
 
   showPagination: gte('meta.page_count', 2),
 
