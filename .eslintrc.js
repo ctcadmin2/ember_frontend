@@ -15,7 +15,8 @@ module.exports = {
       {
         allowSimpleArrowFunction: true
       }
-    ]
+    ],
+    'ember/no-jquery': 2
   },
   overrides: [
     // node files

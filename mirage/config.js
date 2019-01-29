@@ -160,4 +160,17 @@ export default function() {
       return new Response(401, {}, {});
     }
   });
+
+  //credit notes
+  this.get('/credit-notes', (schema, request) => {
+    const token = get(request, 'requestHeaders.Authorization');
+    if (
+      token ===
+      'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImFkbWluIjp0cnVlfQ.hgNSDI7STvbPMw4dJky55hUpUy5jriNIrLwp5dW3awg'
+    ) {
+      return schema.creditNotes.all();
+    } else {
+      return new Response(401, {}, {});
+    }
+  });
 }

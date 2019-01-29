@@ -3,7 +3,9 @@
     {{link-to 'CTCAdmin2' 'home' class='item header'}}
     <div class="right menu">
       {{#if session.isAuthenticated}}
-        {{link-to 'Vehicles' 'vehicles' class='item'}} {{link-to 'Companies' 'companies.index' class='item'}}
+        {{link-to 'Vehicles' 'vehicles' class='item'}}
+        {{link-to 'Credit Notes' 'credit-notes' class='item'}}
+        {{link-to 'Companies' 'companies' class='item'}}
         {{#if currentUser.user.admin}}
           {{#link-to 'users' class='item' }}Users{{/link-to}}
         {{/if}}

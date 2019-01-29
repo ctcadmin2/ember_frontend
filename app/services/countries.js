@@ -1,16 +1,20 @@
-import Service from '@ember/service';
-import { set } from '@ember/object';
+import Service, { inject as service } from '@ember/service';
+import { get, set } from '@ember/object';
 import fetchData from '../utils/fetch-data';
 
 export default Service.extend({
   list: null,
   dataFetched: false,
   url: '/api_helpers/countries.json',
+  session: service(),
 
   init() {
     this._super(...arguments);
-
-    set(this, 'fetch', fetchData(this.url));
+    set(
+      this,
+      'fetch',
+      fetchData(this.url, get(this, 'session').data.authenticated.token)
+    );
     this._setlist();
   },
 

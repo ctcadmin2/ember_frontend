@@ -1,6 +1,6 @@
 import Route from './../protected';
-import { next } from "@ember/runloop";
-import $ from "jquery";
+import { next } from '@ember/runloop';
+import $ from 'jquery';
 
 export default Route.extend({
   model() {

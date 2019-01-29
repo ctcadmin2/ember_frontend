@@ -4,15 +4,14 @@ import { inject as service } from '@ember/service';
 
 export default Controller.extend({
   flashMessages: service(),
-  queryParams: ['page', 'size', 'sort', 'filter'],
+  queryParams: ['page', 'size', 'sort'],
   page: 1,
   size: 5,
   vehicles: alias('model'),
-  filter: '',
-  sort: 'name',
+  sort: 'registration',
   filterEmpty: empty('filter'),
   actions: {
-    destroyVehicle(id) {
+    destroyVehicle() {
       //TODO add function
     }
   }

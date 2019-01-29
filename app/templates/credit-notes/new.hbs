@@ -1,0 +1,25 @@
+{{#ui-modal name="creditNoteModal" class="creditNoteModal small" onApprove=(action 'approveModal') closable=false}}
+    <div class="header">
+        Add new credit note...
+    </div>
+    <div class="content">
+        <div class="scrolling">
+            <form class='ui large fluid form'>
+                <div class="inline field">
+                    <div class="ui fluid labeled input grid">
+                        <label class="ui label four wide column" for="{{concat elementId '-name'}}">Name</label>
+                        {{input type='text' value=data.name autofocus=true id=(concat elementId '-name') disabled=inputDisabled}}
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="actions">
+        <div class="ui red deny button" {{action "cancelButton"}}>
+            Cancel
+        </div>
+        <div class="ui positive {{if saveDisabled 'disabled'}} button">
+            Save
+        </div>
+    </div>
+{{/ui-modal}}

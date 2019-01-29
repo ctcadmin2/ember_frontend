@@ -13,5 +13,9 @@ export default Factory.extend({
   },
   active() {
     return faker.random.boolean();
+  },
+
+  afterCreate(vehicle, server) {
+    server.createList('creditNote', 10, { vehicle });
   }
 });

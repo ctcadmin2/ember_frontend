@@ -4,8 +4,9 @@ export default function(server) {
     This data will not be loaded in your tests.
   */
 
-  server.createList('company', 50);
-  server.createList('vehicle', 50);
+  server.createList('company', 5);
+  server.createList('vehicle', 10);
+  server.createList('credit-note', 5);
   server.create('user', {
     id: 1,
     admin: true,

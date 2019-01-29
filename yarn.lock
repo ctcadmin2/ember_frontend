@@ -3411,6 +3411,14 @@ ember-maybe-import-regenerator@^0.1.5, ember-maybe-import-regenerator@^0.1.6:
     ember-cli-babel "^6.0.0-beta.4"
     regenerator-runtime "^0.9.5"
 
+ember-native-dom-event-dispatcher@^0.6.4:
+  version "0.6.4"
+  resolved "https://registry.yarnpkg.com/ember-native-dom-event-dispatcher/-/ember-native-dom-event-dispatcher-0.6.4.tgz#ba03d512a72d159a376b27593b497ba08fe14a8a"
+  integrity sha512-b4BbEzxSzeIqcS9b1IA3Y8k6hWl0u0yZP3Ade1nNlQLpU213ifbece3iOi9VNdTFeX2I8sPIDHDivmJm7NoBZA==
+  dependencies:
+    ember-cli-babel "^6.11.0"
+    ember-cli-version-checker "^2.1.0"
+
 ember-promise-utils@^0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/ember-promise-utils/-/ember-promise-utils-0.1.1.tgz#2a8bd863450cfa4c5e7511e805d0943f76ba6635"

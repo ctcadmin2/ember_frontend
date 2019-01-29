@@ -1,3 +1,3 @@
-import JSONAPISerializer from './meta_data';
+import JSONAPISerializer from './meta-data';
 
 export default JSONAPISerializer.extend({});

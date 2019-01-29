@@ -35,6 +35,7 @@ export default Controller.extend({
 
   _saveCallback() {
     set(this, 'showForm', false);
-    this.transitionToRoute('companies.index');
+    this.send('refreshPage');
+    this.transitionToRoute('companies');
   }
 });

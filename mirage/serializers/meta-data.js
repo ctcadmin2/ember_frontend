@@ -18,8 +18,8 @@ export default JSONAPISerializer.extend({
     let model = {
       data: list,
       meta: {
-        item_count: data.data.length,
-        page_count: Math.floor(data.data.length / size)
+        'item-count': data.data.length,
+        'page-count': Math.floor(data.data.length / size)
       }
     };
     return model;

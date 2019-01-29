@@ -8,18 +8,24 @@ export default Route.extend({
     size: {
       refreshModel: true
     },
+    filter: {
+      refreshModel: true
+    },
     sort: {
       refreshModel: true
     }
   },
 
   model(params) {
-    return this.store.query('vehicle', {
+    return this.store.query('credit-note', {
       page: {
         number: params.page,
         size: params.size
       },
-      sort: params.sort
+      sort: params.sort,
+      filter: {
+        q: params.filter
+      }
     });
   }
 });
