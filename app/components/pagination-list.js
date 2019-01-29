@@ -8,7 +8,7 @@ export default Component.extend({
   query: alias('model.query'),
 
   route: computed('model', function() {
-    let route = pluralize(get(this, 'model').modelName);
+    let route = pluralize(this.model.modelName);
     return `${route}.index`;
   }),
 
