@@ -1,6 +1,12 @@
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
-import { visit, currentURL, find, click, fillIn } from '@ember/test-helpers';
+import {
+  visit,
+  currentURL,
+  find,
+  click,
+  fillIn
+} from '@ember/test-helpers';
 import { get } from '@ember/object';
 import setupMirageTest from 'ember-cli-mirage/test-support/setup-mirage';
 import {
