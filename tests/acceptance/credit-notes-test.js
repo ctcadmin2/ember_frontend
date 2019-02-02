@@ -29,7 +29,7 @@ module('Acceptance | credit notes', function(hooks) {
     assert.dom('tbody tr').exists({ count: 5 });
   });
 
-  test('pagination', async function(assert) {
+  test('no pagination if less than 5 elements', async function(assert) {
     await authenticateSession({
       token:
         'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImFkbWluIjp0cnVlfQ.hgNSDI7STvbPMw4dJky55hUpUy5jriNIrLwp5dW3awg'
@@ -38,14 +38,21 @@ module('Acceptance | credit notes', function(hooks) {
     this.server.createList('credit-note', 5);
 
     await visit('/credit-notes');
-    console.log('first');
 
     assert
       .dom('.pagination')
       .doesNotExist('no pagination if less than six elements');
+  });
 
-    this.server.create('credit-note');
-    console.log('second');
+  test('show pagination if more than 5 elements', async function(assert) {
+    await authenticateSession({
+      token:
+        'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImFkbWluIjp0cnVlfQ.hgNSDI7STvbPMw4dJky55hUpUy5jriNIrLwp5dW3awg'
+    });
+    this.server.create('user');
+    this.server.createList('credit-note', 6);
+
+    await visit('/credit-notes');
 
     assert.dom('.pagination').exists();
   });

@@ -1,19 +1,19 @@
 <div class="ui centered">
-    <h3 style="text-align: center">
-        <strong>Registration:</strong>
-        {{#link-to 'vehicles.edit' vehicle}}
-            {{vehicle.registration}}
-        {{/link-to}}
-        (VIN: {{vehicle.vin}})
-    </h3>
-    <h4 style="text-align: center">
-        View
-        {{#link-to 'vehicles.vehicle.credit-notes' vehicle}}
-            Credit Notes
-        {{/link-to}}
-        or
-        {{!-- {{#link-to "#"}} --}} TODO add papers
-        Events
-        {{!-- {{/link-to}} --}}
-    </h4>
+  <h3 style="text-align: center">
+    <strong>Registration:</strong>
+    {{#link-to "vehicles.edit" vehicle}}
+      {{vehicle.registration}}
+    {{/link-to}}
+    (VIN: {{vehicle.vin}})
+  </h3>
+  <h4 style="text-align: center">
+    View
+    {{#link-to "vehicles.vehicle.credit-notes" vehicle}}
+      Credit Notes
+    {{/link-to}}
+    or
+    {{!-- {{#link-to "#"}} --}} TODO add papers
+    Events
+    {{!-- {{/link-to}} --}}
+  </h4>
 </div>

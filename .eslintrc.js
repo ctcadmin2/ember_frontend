@@ -4,7 +4,7 @@ module.exports = {
     ecmaVersion: 2017,
     sourceType: 'module'
   },
-  plugins: ['ember'],
+  plugins: ['ember', 'hbs'],
   extends: ['eslint:recommended', 'plugin:ember/recommended'],
   env: {
     browser: true
@@ -16,6 +16,7 @@ module.exports = {
         allowSimpleArrowFunction: true
       }
     ],
+    'hbs/check-hbs-template-literals': 2,
     'ember/no-jquery': 2
   },
   overrides: [

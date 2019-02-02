@@ -1,9 +1,9 @@
-{{#ui-modal name="companyModal" class="companyModal small" onApprove=(action 'approveModal') closable=false}}
+{{#ui-modal name="companyModal" class="companyModal small" onApprove=(action "approveModal") closable=false}}
   <div class="header">
     Add new company...
   </div>
   <div class="content">
-    {{find-company returnData=(action 'returnData')}}
+    {{find-company returnData=(action "returnData")}}
     <div class="scrolling">
       {{#if showForm}}
         {{company-form data=company}}
@@ -11,10 +11,10 @@
     </div>
   </div>
   <div class="actions">
-    <div class="ui red deny button" {{action "cancelButton"}}>
+    <button class="ui red deny button" {{action "cancelButton"}}>
       Cancel
-    </div>
-    <div class="ui positive {{if saveDisabled 'disabled'}} button">
+    </button>
+    <div class="ui positive {{if saveDisabled "disabled"}} button">
       Save
     </div>
   </div>

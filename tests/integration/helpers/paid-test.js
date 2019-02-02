@@ -10,12 +10,12 @@ module('Integration | Helper | paid', function(hooks) {
   test('it renders', async function(assert) {
     await render(hbs`{{paid true}}`);
 
-    assert.dom(this.element).hasText('check icon');
+    assert.dom(this.element).hasText('large check icon');
   });
   // if false show X icon
   test('it renders', async function(assert) {
     await render(hbs`{{paid false}}`);
 
-    assert.dom(this.element).hasText('close icon');
+    assert.dom(this.element).hasText('large remove icon');
   });
 });

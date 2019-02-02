@@ -1,20 +1,20 @@
 <div class="ui container">
   <div class="ui huge secondary pointing menu">
-    {{link-to 'CTCAdmin2' 'home' class='item header'}}
+    {{link-to "CTCAdmin2" "home" class="item header"}}
     <div class="right menu">
       {{#if session.isAuthenticated}}
-        {{link-to 'Vehicles' 'vehicles' class='item'}}
-        {{link-to 'Credit Notes' 'credit-notes' class='item'}}
-        {{link-to 'Companies' 'companies' class='item'}}
+        {{link-to "Vehicles" "vehicles" class="item"}}
+        {{link-to "Credit Notes" "credit-notes" class="item"}}
+        {{link-to "Companies" "companies" class="item"}}
         {{#if currentUser.user.admin}}
-          {{#link-to 'users' class='item' }}Users{{/link-to}}
+          {{#link-to "users" class="item" }}Users{{/link-to}}
         {{/if}}
-        <a class="item" id='logoutBtn' {{action 'invalidateSession'}}>Logout</a>
+        <button class="item" id="logoutBtn" {{action "invalidateSession"}}>Logout</button>
       {{else}}
-        {{#if (eq currentPath 'registration') }}
-          {{#link-to 'login' class='item' }}Login{{/link-to}}
+        {{#if (eq currentPath "registration") }}
+          {{#link-to "login" class="item" }}Login{{/link-to}}
         {{else}}
-          {{#link-to 'registration' class='item' }}Registration{{/link-to}} {{! TODO registration}}
+          {{#link-to "registration" class="item" }}Registration{{/link-to}} {{! TODO registration}}
         {{/if}}
       {{/if}}
     </div>

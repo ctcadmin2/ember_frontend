@@ -1,6 +1,6 @@
 import Service, { inject as service } from '@ember/service';
-import { get, set } from '@ember/object';
 import fetchData from '../utils/fetch-data';
+import { set } from '@ember/object';
 
 export default Service.extend({
   list: null,

@@ -1,4 +1,4 @@
-{{#ui-modal name="companyModal" class="companyModal small" onApprove=(action 'approveModal') closable=false}}
+{{#ui-modal name="companyModal" class="companyModal small" onApprove=(action "approveModal") closable=false}}
   <div class="header">
     Editing {{company.name}}...
   </div>
@@ -6,9 +6,9 @@
     {{company-form countries=countries data=company inputDisabled=false}}
   </div>
   <div class="actions">
-    <div class="ui red deny button" {{action "cancelButton"}}>
+    <button class="ui red deny button" {{action "cancelButton"}}>
       Cancel
-    </div>
+    </button>
     <div class="ui positive button">
       Update
     </div>

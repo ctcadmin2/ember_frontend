@@ -1,41 +1,41 @@
 {{#ui-modal class="userModal small" closable=false}}
-    <div class="header">
-        Editing {{user.fullName}}...
-    </div>
-    <div class="content">
-        <form class='ui large fluid form'>
-            <div class="inline field">
-                <div class="ui fluid labeled input grid">
-                    <label class="ui label four wide column" for="{{concat elementId '-first'}}">First Name</label>
-                    {{input type='text' value=user.firstName autofocus=true id=(concat elementId '-first') }}
-                </div>
-            </div>
-            <div class="inline field">
-                <div class="ui fluid labeled input grid">
-                    <label class="ui label four wide column" for="{{concat elementId '-last'}}">Last Name</label>
-                    {{input type='text' value=user.lastName id=(concat elementId '-last') }}
-                </div>
-            </div>
-            <div class="inline field">
-                <div class="ui fluid labeled input grid">
-                    <label class="ui label four wide column" for="{{concat elementId '-email'}}">Email</label>
-                    {{input type='email' value=user.email id=(concat elementId '-email') }}
-                </div>
-            </div>
-            <div class="inline field">
-                <div class="ui fluid labeled input grid">
-                    <label class="ui label four wide column" for="{{concat elementId '-ssn'}}">Email</label>
-                    {{input type='text' value=user.ssn id=(concat elementId '-ssn') }}
-                </div>
-            </div>
-        </form>
-    </div>
-    <div class="actions">
-        <div class="ui red button" {{action "cancelButton"}}>
-            Cancel
+  <div class="header">
+    Editing {{user.fullName}}...
+  </div>
+  <div class="content">
+    <form class="ui large fluid form">
+      <div class="inline field">
+        <div class="ui fluid labeled input grid">
+          <label class="ui label four wide column" for={{concat elementId "-first"}}>First Name</label>
+          {{input type="text" value=user.firstName autofocus=true id=(concat elementId "-first") }}
         </div>
-        <div class="ui positive button" {{action "okButton"}}>
-            Update
+      </div>
+      <div class="inline field">
+        <div class="ui fluid labeled input grid">
+          <label class="ui label four wide column" for={{concat elementId "-last"}}>Last Name</label>
+          {{input type="text" value=user.lastName id=(concat elementId "-last") }}
         </div>
-    </div>
+      </div>
+      <div class="inline field">
+        <div class="ui fluid labeled input grid">
+          <label class="ui label four wide column" for={{concat elementId "-email"}}>Email</label>
+          {{input type="email" value=user.email id=(concat elementId "-email") }}
+        </div>
+      </div>
+      <div class="inline field">
+        <div class="ui fluid labeled input grid">
+          <label class="ui label four wide column" for={{concat elementId "-ssn"}}>Email</label>
+          {{input type="text" value=user.ssn id=(concat elementId "-ssn") }}
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="actions">
+    <button class="ui red button" {{action "cancelButton"}}>
+      Cancel
+    </button>
+    <button class="ui positive button" {{action "okButton"}}>
+      Update
+    </button>
+  </div>
 {{/ui-modal}}

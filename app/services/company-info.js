@@ -1,6 +1,5 @@
 import Service, { inject as service } from '@ember/service';
 import fetchData from 'frontend/utils/fetch-data';
-import { get } from '@ember/object';
 
 export default Service.extend({
   session: service(),

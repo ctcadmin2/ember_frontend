@@ -1,65 +1,65 @@
 <div class="ui centered raised segment">
-    <table class="ui table sortable padded selectable striped celled attached">
-        <caption class="ui huge header teal">Credit Notes</caption>
-        <thead>
-            <tr>
-                <th class="{{sort-class sort 'number'}}" {{action 'sort' 'number'}}>Number</th>
-                <th>Start</th>
-                <th>Stop</th>
-                <th class="{{sort-class sort 'value'}}" {{action 'sort' 'value'}}>Value</th>
-                <th class="{{sort-class sort 'paid'}}" {{action 'sort' 'paid'}}>Paid</th>
-                <th class="{{sort-class sort 'vehicle'}}" {{action 'sort' 'vehicle.id'}}>Truck</th>
-                <th>Notes</th>
-                <th>
-                    <div class="ui search">
-                        <div class="ui fluid icon input">
-                            {{input value=filter key-up='setPage' class="prompt" type="text" placeholder="Search"}}
-                            <i class="{{if filterEmpty 'search' 'remove link'}} icon" {{action 'clearFilter'}}></i>
-                        </div>
-                    </div>
-                </th>
-            </tr>
-        </thead>
-        <tfoot>
-            <tr>
-                <th colspan="9">
-                    <div class="ui items">
-                        <div class="item">
-                            <div class="middle aligned content">
-                                <div class="left floated">
-                                    {{#link-to "credit-notes.new" class="ui teal button" }}New Credit Note{{/link-to}}
-                                </div>
-                                <div class="right floated">
-                                    <div class='ui right floated'>
-                                        {{pagination-list model=creditNotes page=page}}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </th>
-            </tr>
-        </tfoot>
-        <tbody>
-            {{#each creditNotes as |cn|}}
-                <tr>
-                    <td>{{cn.number}}</td>
-                    <td>{{cn.start}}</td>
-                    <td>{{cn.end}}</td>
-                    <td>{{cn.value}} {{cn.currency}}</td>
-                    <td><i class={{paid cn.paid}}></i></td>
-                    <td>{{cn.vehicle.registration}}</td>
-                    <td>{{cn.notes}}</td>
-                    <td>
-                        <div class="ui fluid buttons">
-                            <button class="ui olive button">PDF</button>
-                            {{#link-to 'credit-notes.edit' model class="ui teal button"}}Edit{{/link-to}}
-                            <button class="ui red button" {{action 'deleteButton' cn.id}}>Destroy</button>
-                        </div>
-                    </td>
-                </tr>
-            {{/each}}
-        </tbody>
-    </table>
+  <table class="ui table sortable padded selectable striped celled attached">
+    <caption class="ui huge header teal">Credit Notes</caption>
+    <thead>
+      <tr>
+        <th class={{sort-class sort "number"}} role="button" {{action "sort" "number"}}>Number</th>
+        <th>Start</th>
+        <th>Stop</th>
+        <th class={{sort-class sort "value"}} role="button" {{action "sort" "value"}}>Value</th>
+        <th class={{sort-class sort "paid"}} role="button" {{action "sort" "paid"}}>Paid</th>
+        <th class={{sort-class sort "vehicle"}} role="button" {{action "sort" "vehicle.id"}}>Truck</th>
+        <th>Notes</th>
+        <th>
+          <div class="ui search">
+            <div class="ui fluid icon input">
+              {{input value=filter key-up="setPage" class="prompt" type="text" placeholder="Search"}}
+              <i class="{{if filterEmpty "search" "remove link"}} icon" role="button" {{action "clearFilter"}}></i>
+            </div>
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <th colspan="9">
+          <div class="ui items">
+            <div class="item">
+              <div class="middle aligned content">
+                <div class="left floated">
+                  {{#link-to "credit-notes.new" class="ui teal button" }}New Credit Note{{/link-to}}
+                </div>
+                <div class="right floated">
+                  <div class="ui right floated">
+                    {{pagination-list model=creditNotes page=page}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </th>
+      </tr>
+    </tfoot>
+    <tbody>
+      {{#each creditNotes as |cn|}}
+        <tr>
+          <td>{{cn.number}}</td>
+          <td>{{cn.start}}</td>
+          <td>{{cn.end}}</td>
+          <td>{{cn.value}} {{cn.currency}}</td>
+          <td><i class={{paid cn.paid}}></i></td>
+          <td>{{cn.vehicle.registration}}</td>
+          <td>{{cn.notes}}</td>
+          <td>
+            <div class="ui fluid buttons">
+              <button class="ui olive button">PDF</button>
+              {{#link-to "credit-notes.edit" model class="ui teal button"}}Edit{{/link-to}}
+              <button class="ui red button" {{action "deleteButton" cn.id}}>Destroy</button>
+            </div>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
 </div>
 {{outlet}}

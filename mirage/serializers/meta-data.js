@@ -10,16 +10,16 @@ export default JSONAPISerializer.extend({
 
   // private
   _makeMeta(data, request) {
-    const size = parseInt(request.queryParams['page[size]']);
-    const page = parseInt(request.queryParams['page[number]']);
-    const start = page * size - size;
-    const end = start + size;
+    let size = parseInt(request.queryParams['page[size]']);
+    let page = parseInt(request.queryParams['page[number]']);
+    let start = page * size - size;
+    let end = start + size;
     let list = data.data.slice(start, end);
     let model = {
       data: list,
       meta: {
         'item-count': data.data.length,
-        'page-count': Math.floor(data.data.length / size)
+        'page-count': Math.ceil(data.data.length / size)
       }
     };
     return model;

@@ -2,17 +2,17 @@
 <div class="ui grid centered">
   <div class="ui sixteen wide mobile ten wide tablet eight wide computer column">
     <div class="ui centered raised segment">
-      <form class="ui large form" id='loginForm' {{action 'authenticate' on='submit'}}>
+      <form class="ui large form" id="loginForm" {{action "authenticate" on="submit"}}>
         <div class="field">
           <div class="ui left icon input">
             <i class="ui mail icon"></i>
-            {{input type='email' id='email' placeholder='Email' value=email autofocus=true}}
+            {{input type="email" id="email" placeholder="Email" value=email autofocus=true}}
           </div>
         </div>
         <div class="field">
           <div class="ui left icon input">
             <i class="ui lock icon"></i>
-            {{input type='password' id='password' placeholder='Password' value=password}}
+            {{input type="password" id="password" placeholder="Password" value=password}}
           </div>
         </div>
         <button type="submit" class="ui fluid large teal submit button">Login</button>
