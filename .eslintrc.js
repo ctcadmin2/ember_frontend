@@ -16,8 +16,8 @@ module.exports = {
         allowSimpleArrowFunction: true
       }
     ],
-    'hbs/check-hbs-template-literals': 2,
-    'ember/no-jquery': 2
+    'hbs/check-hbs-template-literals': 2
+    // 'ember/no-jquery': 2 TODO can't remove yet
   },
   overrides: [
     // node files

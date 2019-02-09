@@ -19,11 +19,13 @@ Router.map(function() {
     this.route('edit', { path: '/:user_id/edit' });
   });
   this.route('vehicles', function() {
+    this.route('new'), this.route('edit', { path: '/:vehicle_id' });
     this.route('vehicle', { path: '/:vehicle_id' }, function() {
       this.route('credit-notes');
+      this.route('events');
+      // this.route('events'); TODO add events
     });
     this.route('new');
-    this.route('show', { path: '/:vehicle_id' });
     this.route('edit', { path: '/:vehicle_id/edit' });
   });
   this.route('credit-notes', function() {

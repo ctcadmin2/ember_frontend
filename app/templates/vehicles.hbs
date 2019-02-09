@@ -33,10 +33,15 @@
         <tr>
           <td>{{vehicle.vin}}</td>
           <td>{{vehicle.registration}}</td>
-          <td>
+          <td class="collapsing">
             <div class="ui fluid buttons">
               {{!-- TODO custom actions --}}
-              {{table-actions model=vehicle deleteModel=(action "destroyVehicle" vehicle)}}
+              {{!table-actions model=vehicle deleteModel=(action "destroyVehicle" vehicle)}}
+              <button class="ui olive button">Details</button>
+              <button class="ui olive button">Credit Notes</button>
+              <button class="ui olive button">Events</button>
+              {{#link-to "vehicles.edit" vehicle class="ui teal button"}}Edit{{/link-to}}
+              <button class="ui red button" {{action "deleteButton" vehicle.id}}>Destroy</button>
             </div>
           </td>
         </tr>

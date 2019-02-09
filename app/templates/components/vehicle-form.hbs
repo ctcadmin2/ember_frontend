@@ -1,0 +1,37 @@
+<form class="ui large fluid form">
+  <div class="inline field">
+    <div class="ui fluid labeled input grid">
+      <label class="ui label four wide column" for={{concat elementId "-vin"}}>VIN</label>
+      {{input type="text" value=vehicle.vin autofocus=true id=(concat elementId "-vin") disabled=inputDisabled}}
+    </div>
+  </div>
+  <div class="inline field">
+    <div class="ui fluid labeled input grid">
+      <label class="ui label four wide column" for={{concat elementId "-reg"}}>Registration</label>
+      {{input type="text" value=vehicle.registration id=(concat elementId "-reg") disabled=inputDisabled}}
+    </div>
+  </div>
+  <div class="inline field">
+    <div class="ui fluid labeled input grid">
+      <label class="ui label four wide column">Category</label>
+      {{#ui-dropdown class=(concat (if inputDisabled "disabled ") "ui twelve wide column scrolling selection" ) selected=vehicle.category
+        onChange=(action (mut vehicle.category)) showOnFocus=false}}
+        <i class="dropdown icon"></i>
+        <div class="default text"></div>
+        <div class="menu">
+          {{#each [] as |cat|}}
+            <div class="item" data-value={{cat.value}}>
+              {{cat.name}}
+            </div>
+          {{/each}}
+        </div>
+      {{/ui-dropdown}}
+    </div>
+  </div>
+  <div class="inline field">
+    <div class="ui fluid labeled input grid">
+      <label class="ui label four wide column">Active</label>
+      {{ui-checkbox class="slider" disabled=inputDisabled checked=vehicle.active onChange=(action (mut vehicle.active))}}
+    </div>
+  </div>
+</form>

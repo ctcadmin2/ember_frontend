@@ -1,1 +1,16 @@
-{{outlet}}
+{{#ui-modal name="vehicleModal" class="vehicleModal small" onApprove=(action "approveModal") closable=false}}
+  <div class="header">
+    Editing {{vehicle.registration}}...
+  </div>
+  <div class="scrolling content">
+    {{vehicle-form vehicle=vehicle}}
+  </div>
+  <div class="actions">
+    <button class="ui red deny button" {{action "cancelButton"}}>
+      Cancel
+    </button>
+    <div class="ui positive button">
+      Update
+    </div>
+  </div>
+{{/ui-modal}}
