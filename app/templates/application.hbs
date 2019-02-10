@@ -9,6 +9,7 @@
         {{#if currentUser.user.admin}}
           {{#link-to "users" class="item" }}Users{{/link-to}}
         {{/if}}
+        {{link-to "Settings" "settings" class="item"}}
         <button class="item" id="logoutBtn" {{action "invalidateSession"}}>Logout</button>
       {{else}}
         {{#if (eq currentPath "registration") }}

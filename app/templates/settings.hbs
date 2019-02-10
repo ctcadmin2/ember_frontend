@@ -1,0 +1,77 @@
+<div class="ui grid centered">
+  <div class="ui sixteen wide mobile ten wide tablet twelve wide computer column">
+    <div class="ui centered raised segment">
+      <div class="ui top attached tabular menu">
+        <a class="item active" data-tab="main">Application Settings</a>
+        <a class="item" data-tab="company">Company Settings</a>
+      </div>
+      <div class="ui bottom attached active tab segment" data-tab="main">
+        First
+      </div>
+      <div class="ui bottom attached tab segment" data-tab="company">
+        <form class="ui large fluid form">
+          <div class="inline field">
+            <div class="ui fluid labeled input grid">
+              <label class="ui label four wide column" for={{concat elementId "-name"}}>Name</label>
+              {{input type="text" value=company.name autofocus=true id=(concat elementId "-name") readonly=""}}
+            </div>
+          </div>
+          <div class="inline field">
+            <div class="ui fluid labeled input grid">
+              <label class="ui label four wide column" for={{concat elementId "-reg"}}>Registration</label>
+              {{input type="text" value=company.registration id=(concat elementId "-reg") disabled=inputDisabled}}
+            </div>
+          </div>
+          <div class="inline field">
+            <div class="ui fluid labeled input grid">
+              <label class="ui label four wide column" for={{concat elementId "-cif"}}>CIF</label>
+              {{input type="text" value=company.cif id=(concat elementId "-cif") disabled=inputDisabled}}
+            </div>
+          </div>
+          <div class="inline field">
+            <div class="ui fluid labeled input grid">
+              <label class="ui label four wide column" for={{concat elementId "-address"}}>Address</label>
+              {{textarea value=company.address rows=2 class="ui twelve wide column" id=(concat elementId "-address") disabled=inputDisabled}}
+            </div>
+          </div>
+          <div class="inline field">
+            <div class="ui fluid labeled input grid">
+              <label class="ui label four wide column" for={{concat elementId "-eur"}}>EUR Account</label>
+              {{input type="text" value=company.acc_eur id=(concat elementId "-eur") disabled=inputDisabled}}
+            </div>
+          </div>
+          <div class="inline field">
+            <div class="ui fluid labeled input grid">
+              <label class="ui label four wide column" for={{concat elementId "-ron"}}>RON Account</label>
+              {{input type="text" value=company.acc_ron id=(concat elementId "-ron") disabled=inputDisabled}}
+            </div>
+          </div>
+          <div class="inline field">
+            <div class="ui fluid labeled input grid">
+              <label class="ui label four wide column" for={{concat elementId "-bank"}}>Bank</label>
+              {{input type="text" value=company.bank id=(concat elementId "-bank") disabled=inputDisabled}}
+            </div>
+          </div>
+          <div class="inline field">
+            <div class="ui fluid labeled input grid">
+              <label class="ui label four wide column" for={{concat elementId "-cap"}}>Capital</label>
+              {{input type="text" value=company.capital id=(concat elementId "-cap") disabled=inputDisabled}}
+            </div>
+          </div>
+          <div class="inline field">
+            <div class="ui fluid labeled input grid">
+              <label class="ui label four wide column" for={{concat elementId "-phone"}}>Phone</label>
+              {{input type="text" value=company.phone id=(concat elementId "-phone") disabled=inputDisabled}}
+            </div>
+          </div>
+          <div class="inline field">
+            <div class="ui fluid labeled input grid">
+              <label class="ui label four wide column" for={{concat elementId "-email"}}>Email</label>
+              {{input type="text" value=company.email id=(concat elementId "-email") disabled=inputDisabled}}
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
