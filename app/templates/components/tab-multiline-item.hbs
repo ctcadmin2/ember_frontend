@@ -1,0 +1,33 @@
+<div class="ui middle aligned grid">
+  <div class="ui four wide column">{{category}}</div>
+  <div class="ui twelve wide column">
+    <div class="ui selection relaxed divided list">
+      {{#each list as |item|}}
+        {{multiline-item item=item deleteItem=(action "removeItem")}}
+      {{/each}}
+      <div class="ui item" onclick={{action "addMode"}}>
+        {{#if editMode}}
+          <div class="ui middle aligned grid">
+            <div class="ui eight wide column">
+              <div class="ui fluid input ">
+                {{input type=type value=value}}
+              </div>
+            </div>
+            <div class="ui eight wide column" onMouseEnter={{action "mouseIn"}} onMouseLeave={{action "mouseOut"}}
+              onclick={{action "addItem"}}>
+              <div class="ui right floated">
+                {{#if showSaveIcon}}
+                  <i class="large olive save icon"></i>
+                {{/if}}
+                Save
+              </div>
+            </div>
+          </div>
+        {{else}}
+          <i class="left floated plus teal icon"></i>
+          Add new..
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</div>

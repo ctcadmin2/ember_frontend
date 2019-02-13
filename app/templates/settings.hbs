@@ -6,71 +6,33 @@
         <a class="item" data-tab="company">Company Settings</a>
       </div>
       <div class="ui bottom attached active tab segment" data-tab="main">
-        First
+        <div class="ui selection very relaxed divided list">
+          {{#each-in prefs.main as |key value|}}
+            {{#if (is-array value)}}
+              {{tab-multiline-item category=key list=value updateData=(action "updateCategory")}}
+            {{/if}}
+          {{/each-in}}
+          {{#each-in prefs.main as |key value|}}
+            {{#if (not (is-array value))}}
+              {{tab-line-item name=key type="text" prop=key value=value saveData=(action "saveCompanyData")}}
+            {{/if}}
+          {{/each-in}}
+        </div>
       </div>
       <div class="ui bottom attached tab segment" data-tab="company">
-        <form class="ui large fluid form">
-          <div class="inline field">
-            <div class="ui fluid labeled input grid">
-              <label class="ui label four wide column" for={{concat elementId "-name"}}>Name</label>
-              {{input type="text" value=company.name autofocus=true id=(concat elementId "-name") readonly=""}}
-            </div>
-          </div>
-          <div class="inline field">
-            <div class="ui fluid labeled input grid">
-              <label class="ui label four wide column" for={{concat elementId "-reg"}}>Registration</label>
-              {{input type="text" value=company.registration id=(concat elementId "-reg") disabled=inputDisabled}}
-            </div>
-          </div>
-          <div class="inline field">
-            <div class="ui fluid labeled input grid">
-              <label class="ui label four wide column" for={{concat elementId "-cif"}}>CIF</label>
-              {{input type="text" value=company.cif id=(concat elementId "-cif") disabled=inputDisabled}}
-            </div>
-          </div>
-          <div class="inline field">
-            <div class="ui fluid labeled input grid">
-              <label class="ui label four wide column" for={{concat elementId "-address"}}>Address</label>
-              {{textarea value=company.address rows=2 class="ui twelve wide column" id=(concat elementId "-address") disabled=inputDisabled}}
-            </div>
-          </div>
-          <div class="inline field">
-            <div class="ui fluid labeled input grid">
-              <label class="ui label four wide column" for={{concat elementId "-eur"}}>EUR Account</label>
-              {{input type="text" value=company.acc_eur id=(concat elementId "-eur") disabled=inputDisabled}}
-            </div>
-          </div>
-          <div class="inline field">
-            <div class="ui fluid labeled input grid">
-              <label class="ui label four wide column" for={{concat elementId "-ron"}}>RON Account</label>
-              {{input type="text" value=company.acc_ron id=(concat elementId "-ron") disabled=inputDisabled}}
-            </div>
-          </div>
-          <div class="inline field">
-            <div class="ui fluid labeled input grid">
-              <label class="ui label four wide column" for={{concat elementId "-bank"}}>Bank</label>
-              {{input type="text" value=company.bank id=(concat elementId "-bank") disabled=inputDisabled}}
-            </div>
-          </div>
-          <div class="inline field">
-            <div class="ui fluid labeled input grid">
-              <label class="ui label four wide column" for={{concat elementId "-cap"}}>Capital</label>
-              {{input type="text" value=company.capital id=(concat elementId "-cap") disabled=inputDisabled}}
-            </div>
-          </div>
-          <div class="inline field">
-            <div class="ui fluid labeled input grid">
-              <label class="ui label four wide column" for={{concat elementId "-phone"}}>Phone</label>
-              {{input type="text" value=company.phone id=(concat elementId "-phone") disabled=inputDisabled}}
-            </div>
-          </div>
-          <div class="inline field">
-            <div class="ui fluid labeled input grid">
-              <label class="ui label four wide column" for={{concat elementId "-email"}}>Email</label>
-              {{input type="text" value=company.email id=(concat elementId "-email") disabled=inputDisabled}}
-            </div>
-          </div>
-        </form>
+        <div class="ui selection very relaxed divided list">
+          {{!-- TODO simplify --}}
+          {{tab-line-item name="Company name" type="text" prop="name" value=prefs.company.name saveData=(action "saveCompanyData")}}
+          {{tab-line-item name="Registration" type="text" prop="registration" value=prefs.company.registration saveData=(action "saveCompanyData")}}
+          {{tab-line-item name="VAT" type="text" prop="vat" value=prefs.company.vat saveData=(action "saveCompanyData")}}
+          {{tab-line-item name="Address" type="textarea" prop="address" value=prefs.company.address saveData=(action "saveCompanyData")}}
+          {{tab-line-item name="EUR Account" type="text" prop="acc_eur" value=prefs.company.acc_eur saveData=(action "saveCompanyData")}}
+          {{tab-line-item name="RON Account" type="text" prop="acc_ron" value=prefs.company.acc_ron saveData=(action "saveCompanyData")}}
+          {{tab-line-item name="Bank" type="text" prop="bank" value=prefs.company.bank saveData=(action "saveCompanyData")}}
+          {{tab-line-item name="Capital" type="number" prop="capital" value=prefs.company.capital saveData=(action "saveCompanyData")}}
+          {{tab-line-item name="Phone" type="tel" prop="phone" value=prefs.company.phone saveData=(action "saveCompanyData")}}
+          {{tab-line-item name="Email" type="email" prop="email" value=prefs.company.email saveData=(action "saveCompanyData")}}
+        </div>
       </div>
     </div>
   </div>

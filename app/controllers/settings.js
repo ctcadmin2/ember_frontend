@@ -1,13 +1,25 @@
 import Controller from '@ember/controller';
 import { alias } from '@ember/object/computed';
-import { computed } from '@ember/object';
+import { set } from '@ember/object';
 
 export default Controller.extend({
   prefs: alias('model'),
-  main: computed('prefs', function() {
-    return this.prefs.main;
-  }),
-  company: computed('prefs', function() {
-    return this.prefs.company;
-  })
+
+  actions: {
+    saveCompanyData(prop, value) {
+      let prefs = this.prefs;
+      let objProp = prefs.getProperties('main').main.hasOwnProperty(prop);
+
+      if (objProp) {
+        set(prefs.main, prop, value);
+      } else {
+        set(prefs.company, prop, value);
+      }
+      prefs.save();
+    },
+    updateCategory(category, item) {
+      set(this.prefs.main, category, item);
+      this.prefs.save();
+    }
+  }
 });

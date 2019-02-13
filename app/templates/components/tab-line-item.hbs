@@ -1,0 +1,29 @@
+<div class="ui middle aligned item grid">
+  <div class="ui four wide column">{{name}}</div>
+  <div class="ui ten wide column">
+    <div class="ui left floated {{if showEditMode "input"}}">
+      {{#if showEditMode}}
+        {{#if textarea}}
+          {{textarea rows=2 cols=50 focusIn=(action "inputFocused")  value=value}}
+        {{else}}
+          {{input type=type focusIn=(action "inputFocused")  value=value}}
+        {{/if}}
+      {{else}}
+        {{value}}
+      {{/if}}
+    </div>
+  </div>
+  <div class="ui two wide column">
+    <div class="ui right floated">
+      {{#if showEditMode}}
+        <i class="olive save icon"></i>
+        Save
+      {{else}}
+        {{#if showEditIcon}}
+          <i class="teal pencil alternate icon"></i>
+        {{/if}}
+        Edit
+      {{/if}}
+    </div>
+  </div>
+</div>
