@@ -4,38 +4,29 @@ import { equal } from '@ember/object/computed';
 
 export default Component.extend({
   classNames: 'ui item',
-  showEditIcon: false,
-  showEditMode: false,
-  focused: false,
+  showIcon: false,
+  editMode: false,
   textarea: equal('type', 'textarea'),
 
-  mouseEnter() {
-    if (!this.showEditMode) {
-      set(this, 'showEditIcon', true);
-    }
-  },
-
-  mouseLeave() {
-    if (!this.showEditMode) {
-      set(this, 'showEditIcon', false);
-    }
-  },
-  click() {
-    if (this.showEditMode && !this.focused) {
-      set(this, 'showEditMode', false);
-    } else if (this.focused) {
-      set(this, 'focused', false);
-    } else {
-      set(this, 'showEditMode', true);
-    }
-  },
-  focusOut() {
-    this.saveData(this.prop, this.value);
-  },
-
   actions: {
-    inputFocused() {
-      set(this, 'focused', true);
+    editMode() {
+      if (!this.editMode) {
+        set(this, 'editMode', true);
+      }
+    },
+    mouseIn(e) {
+      e.stopPropagation();
+      set(this, 'showIcon', true);
+    },
+
+    mouseOut(e) {
+      e.stopPropagation();
+      set(this, 'showIcon', false);
+    },
+    saveChanges(e) {
+      e.stopPropagation();
+      this.saveData(this.prop, this.value);
+      set(this, 'editMode', false);
     }
   }
 });
