@@ -19,9 +19,9 @@
         <i class="dropdown icon"></i>
         <div class="default text"></div>
         <div class="menu">
-          {{#each [] as |cat|}}
-            <div class="item" data-value={{cat.value}}>
-              {{cat.name}}
+          {{#each prefs.veh_cat as |cat|}}
+            <div class="item" data-value={{cat}}>
+              {{cat}}
             </div>
           {{/each}}
         </div>
