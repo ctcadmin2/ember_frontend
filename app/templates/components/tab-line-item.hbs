@@ -1,6 +1,6 @@
 <div class="ui middle aligned item grid" onMouseEnter={{action "mouseIn"}} onMouseLeave={{action "mouseOut"}}
   onclick={{action "editMode"}}>
-  <div class="ui four wide column">{{name}}</div>
+  <div class="ui four wide column">{{t (concat "settings.company." prop)}}</div>
   <div class="ui six wide column">
     <div class="ui fluid {{if editMode "input"}}">
       {{#if editMode}}

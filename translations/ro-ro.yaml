@@ -1,0 +1,33 @@
+application:
+  links:
+    registration: 'Inregistrare'
+    login: 'Autentificare'
+    logout: 'Deconectare'
+    vehicles: 'Vehicule'
+    creditNotes: 'Note de credit'
+    companies: 'Companii'
+    users: 'Utilizatori'
+    settings: 'Setari'
+settings:
+  company:
+    name: 'Nume'
+    registration: 'Nr. inregistrare'
+    vat: 'CIF'
+    address: 'Adresa'
+    acc_eur: 'Cont EUR'
+    acc_ron: 'Cont RON'
+    bank: 'Banca'
+    capital: 'Capital'
+    phone: 'Telefon'
+    email: 'Email'
+  main:
+    diurna_zilnica: 'Daily payment'
+login:
+  title: 'Va rugam sa va autentificati.'
+  placeholder:
+    email: 'Email'
+    password: 'Parola'
+  button:
+    login: 'Autentificare'
+  flash:
+    error: 'User/password was not found!'

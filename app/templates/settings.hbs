@@ -14,7 +14,7 @@
           {{/each-in}}
           {{#each-in prefs.main as |key value|}}
             {{#if (not (is-array value))}}
-              {{tab-line-item name=key type="text" prop=key value=value saveData=(action "saveCompanyData")}}
+              {{tab-line-item type="text" prop=key value=value saveData=(action "saveCompanyData")}}
             {{/if}}
           {{/each-in}}
         </div>
@@ -22,16 +22,16 @@
       <div class="ui bottom attached tab segment" data-tab="company">
         <div class="ui selection very relaxed divided list">
           {{!-- TODO simplify --}}
-          {{tab-line-item name="Company name" type="text" prop="name" value=prefs.company.name saveData=(action "saveCompanyData")}}
-          {{tab-line-item name="Registration" type="text" prop="registration" value=prefs.company.registration saveData=(action "saveCompanyData")}}
-          {{tab-line-item name="VAT" type="text" prop="vat" value=prefs.company.vat saveData=(action "saveCompanyData")}}
-          {{tab-line-item name="Address" type="textarea" prop="address" value=prefs.company.address saveData=(action "saveCompanyData")}}
-          {{tab-line-item name="EUR Account" type="text" prop="acc_eur" value=prefs.company.acc_eur saveData=(action "saveCompanyData")}}
-          {{tab-line-item name="RON Account" type="text" prop="acc_ron" value=prefs.company.acc_ron saveData=(action "saveCompanyData")}}
-          {{tab-line-item name="Bank" type="text" prop="bank" value=prefs.company.bank saveData=(action "saveCompanyData")}}
-          {{tab-line-item name="Capital" type="number" prop="capital" value=prefs.company.capital saveData=(action "saveCompanyData")}}
-          {{tab-line-item name="Phone" type="tel" prop="phone" value=prefs.company.phone saveData=(action "saveCompanyData")}}
-          {{tab-line-item name="Email" type="email" prop="email" value=prefs.company.email saveData=(action "saveCompanyData")}}
+          {{tab-line-item type="text" prop="name" value=prefs.company.name saveData=(action "saveCompanyData")}}
+          {{tab-line-item type="text" prop="registration" value=prefs.company.registration saveData=(action "saveCompanyData")}}
+          {{tab-line-item type="text" prop="vat" value=prefs.company.vat saveData=(action "saveCompanyData")}}
+          {{tab-line-item type="textarea" prop="address" value=prefs.company.address saveData=(action "saveCompanyData")}}
+          {{tab-line-item type="text" prop="acc_eur" value=prefs.company.acc_eur saveData=(action "saveCompanyData")}}
+          {{tab-line-item type="text" prop="acc_ron" value=prefs.company.acc_ron saveData=(action "saveCompanyData")}}
+          {{tab-line-item type="text" prop="bank" value=prefs.company.bank saveData=(action "saveCompanyData")}}
+          {{tab-line-item type="number" prop="capital" value=prefs.company.capital saveData=(action "saveCompanyData")}}
+          {{tab-line-item type="tel" prop="phone" value=prefs.company.phone saveData=(action "saveCompanyData")}}
+          {{tab-line-item type="email" prop="email" value=prefs.company.email saveData=(action "saveCompanyData")}}
         </div>
       </div>
     </div>

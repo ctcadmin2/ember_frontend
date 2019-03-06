@@ -1,0 +1,33 @@
+application:
+  links:
+    registration: 'registration'
+    login: 'Login'
+    logout: 'Logout'
+    vehicles: 'Vehicles'
+    creditNotes: 'Credit Notes'
+    companies: 'Companies'
+    users: 'Users'
+    settings: 'Settings'
+settings:
+  company:
+    name: 'Name'
+    registration: 'Registration'
+    vat: 'VAT'
+    address: 'Address'
+    acc_eur: 'Account EUR'
+    acc_ron: 'Account RON'
+    bank: 'Bank'
+    capital: 'Capital'
+    phone: 'Phone'
+    email: 'Email'
+  main:
+    diurna_zilnica: 'Daily payment'
+login:
+  title: 'Please log in.'
+  placeholder:
+    email: 'Email'
+    password: 'Password'
+  button:
+    login: 'Login'
+  flash:
+    error: 'User/password was not found!'

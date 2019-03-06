@@ -4,10 +4,11 @@ import { inject as service } from '@ember/service';
 
 export default Route.extend(ApplicationRouteMixin, {
   currentUser: service(),
+  intl: service(),
   routeAfterAuthentication: 'main',
 
   beforeModel() {
-    return this._loadCurrentUser();
+    this.get('intl').setLocale(['en-us']);
   },
   sessionAuthenticated() {
     this._super(...arguments);
@@ -16,7 +17,9 @@ export default Route.extend(ApplicationRouteMixin, {
 
   // private
   _loadCurrentUser() {
-    return this.currentUser.load();
+    return this.currentUser
+      .load()
+      .then(resp => this.get('intl').setLocale([resp.lang]));
     // .catch(() => this.get('session').invalidate());
   }
 });

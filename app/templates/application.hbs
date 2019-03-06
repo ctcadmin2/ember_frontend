@@ -3,15 +3,27 @@
     {{link-to "CTCAdmin2" "home" class="item header"}}
     <div class="right menu">
       {{#if session.isAuthenticated}}
-        {{link-to "Vehicles" "vehicles" class="item"}}
-        {{link-to "Credit Notes" "credit-notes" class="item"}}
-        {{link-to "Companies" "companies" class="item"}}
+        {{link-to (t "application.links.vehicles") "vehicles" class="item"}}
+        {{link-to (t "application.links.creditNotes") "credit-notes" class="item"}}
+        {{link-to (t "application.links.companies") "companies" class="item"}}
         {{#if currentUser.user.admin}}
-          {{#link-to "users" class="item" }}Users{{/link-to}}
+          {{link-to (t "application.links.users") "users" class="item" }}
         {{/if}}
-        {{link-to "Settings" "settings" class="item"}}
-        <button class="item" id="logoutBtn" {{action "invalidateSession"}}>Logout</button>
+        {{link-to (t "application.links.settings") "settings" class="item"}}
+        <button class="item" id="logoutBtn" {{action "invalidateSession"}}>{{t "application.links.logout"}}</button>
       {{else}}
+        {{#ui-dropdown class="pointing item" selected="en-us" onChange=(action "changeLocale")}}
+          <div class="default text">Gender</div>
+          <i class="dropdown icon"></i>
+          <div class="menu">
+            <div data-value="en-us" class="item">
+              <i class="us flag"></i>
+            </div>
+            <div data-value="ro-ro" class="item">
+              <i class="ro flag"></i>
+            </div>
+          </div>
+        {{/ui-dropdown}}
         {{#if (eq currentPath "registration") }}
           {{#link-to "login" class="item" }}Login{{/link-to}}
         {{else}}
