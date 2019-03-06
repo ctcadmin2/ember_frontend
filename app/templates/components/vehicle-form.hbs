@@ -1,3 +1,4 @@
+<div class="ui divider"></div>
 <form class="ui large fluid form">
   <div class="inline field">
     <div class="ui fluid labeled input grid">
@@ -14,7 +15,7 @@
   <div class="inline field">
     <div class="ui fluid labeled input grid">
       <label class="ui label four wide column">Category</label>
-      {{#ui-dropdown class=(concat (if inputDisabled "disabled ") "ui twelve wide column scrolling selection" ) selected=vehicle.category
+      {{#ui-dropdown class="twelve wide column scrolling selection" selected=vehicle.category
         onChange=(action (mut vehicle.category)) showOnFocus=false}}
         <i class="dropdown icon"></i>
         <div class="default text"></div>

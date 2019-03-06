@@ -27,7 +27,7 @@
   <div class="inline field">
     <div class="ui fluid labeled input grid">
       <label class="ui label four wide column">Country</label>
-      {{#ui-dropdown class=(concat (if inputDisabled "disabled ") "ui twelve wide column scrolling selection" ) selected=data.country
+      {{#ui-dropdown class=(concat (if inputDisabled "disabled ") "twelve wide column scrolling selection" ) selected=data.country
         onChange=(action (mut data.country)) showOnFocus=false}}
         <i class="dropdown icon"></i>
         <div class="default text"></div>
