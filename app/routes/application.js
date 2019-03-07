@@ -8,7 +8,7 @@ export default Route.extend(ApplicationRouteMixin, {
   routeAfterAuthentication: 'main',
 
   beforeModel() {
-    this.get('intl').setLocale(['en-us']);
+    this._loadCurrentUser();
   },
   sessionAuthenticated() {
     this._super(...arguments);
@@ -19,7 +19,7 @@ export default Route.extend(ApplicationRouteMixin, {
   _loadCurrentUser() {
     return this.currentUser
       .load()
-      .then(resp => this.get('intl').setLocale([resp.lang]));
-    // .catch(() => this.get('session').invalidate());
+      .then(resp => this.get('intl').setLocale([resp.lang]))
+      .catch(() => this.get('session').invalidate());
   }
 });
