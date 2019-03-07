@@ -14,7 +14,7 @@
   </div>
   <div class="inline field">
     <div class="ui fluid labeled input grid">
-      <label class="ui label four wide column">Category</label>
+      <label class="ui label four wide column">{{t 'general.category'}}</label>
       {{#ui-dropdown class="twelve wide column scrolling selection" selected=vehicle.category
         onChange=(action (mut vehicle.category)) showOnFocus=false}}
         <i class="dropdown icon"></i>

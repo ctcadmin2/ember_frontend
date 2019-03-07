@@ -6,7 +6,7 @@ export default Component.extend({
   classNames: 'ui item',
   showIcon: false,
   editMode: false,
-  textarea: equal('type', 'textarea'),
+  textarea: equal('inputType', 'textarea'),
 
   actions: {
     editMode() {

@@ -1,5 +1,5 @@
 <div class="ui middle aligned grid">
-  <div class="ui four wide column">{{category}}</div>
+  <div class="ui four wide column">{{t (concat "settings.main." category)}}</div>
   <div class="ui twelve wide column">
     <div class="ui selection relaxed divided list">
       {{#each list as |item|}}
@@ -19,13 +19,13 @@
                 {{#if showSaveIcon}}
                   <i class="large olive save icon"></i>
                 {{/if}}
-                Save
+                {{t "general.save"}}
               </div>
             </div>
           </div>
         {{else}}
           <i class="left floated plus teal icon"></i>
-          Add new..
+          {{t "general.add_new"}}
         {{/if}}
       </div>
     </div>

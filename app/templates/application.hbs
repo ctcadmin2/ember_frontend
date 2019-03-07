@@ -13,7 +13,7 @@
         <button class="item" id="logoutBtn" {{action "invalidateSession"}}>{{t "application.links.logout"}}</button>
       {{else}}
         {{#ui-dropdown class="pointing item" selected="en-us" onChange=(action "changeLocale")}}
-          <div class="default text">Gender</div>
+          <div class="default text"></div>
           <i class="dropdown icon"></i>
           <div class="menu">
             <div data-value="en-us" class="item">
@@ -25,9 +25,10 @@
           </div>
         {{/ui-dropdown}}
         {{#if (eq currentPath "registration") }}
-          {{#link-to "login" class="item" }}Login{{/link-to}}
+          {{#link-to "login" class="item" }}{{t "login.button.login"}}{{/link-to}}
         {{else}}
-          {{#link-to "registration" class="item" }}Registration{{/link-to}} {{! TODO registration}}
+          {{#link-to "registration" class="item" }}{{t "registration.button.registration"}}{{/link-to}}
+          {{! TODO registration}}
         {{/if}}
       {{/if}}
     </div>

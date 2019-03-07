@@ -1,6 +1,6 @@
 {{#ui-modal name="companyModal" class="companyModal small" onApprove=(action "approveModal") closable=false}}
   <div class="header">
-    Add new company...
+    {{t "companies.add_new"}}
   </div>
   <div class="content">
     {{find-company returnData=(action "returnData")}}
@@ -12,10 +12,10 @@
   </div>
   <div class="actions">
     <button class="ui red deny button" {{action "cancelButton"}}>
-      Cancel
+      {{t "general.cancel"}}
     </button>
     <div class="ui positive {{if saveDisabled "disabled"}} button">
-      Save
+      {{t "general.save"}}
     </div>
   </div>
 {{/ui-modal}}

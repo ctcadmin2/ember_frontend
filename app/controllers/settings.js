@@ -1,9 +1,24 @@
 import Controller from '@ember/controller';
 import { alias } from '@ember/object/computed';
-import { set } from '@ember/object';
+import { set, computed } from '@ember/object';
 
 export default Controller.extend({
   prefs: alias('model'),
+  companyOrder: computed(function() {
+    const list = [
+      ['name', 'text'],
+      ['registration', 'text'],
+      ['vat', 'text'],
+      ['address', 'textarea'],
+      ['acc_eur', 'text'],
+      ['acc_ron', 'text'],
+      ['bank', 'text'],
+      ['capital', 'number'],
+      ['phone', 'tel'],
+      ['email', 'email']
+    ];
+    return list;
+  }),
 
   actions: {
     saveCompanyData(prop, value) {

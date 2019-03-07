@@ -2,8 +2,8 @@
   <div class="ui sixteen wide mobile ten wide tablet twelve wide computer column">
     <div class="ui centered raised segment">
       <div class="ui top attached tabular menu">
-        <a class="item active" data-tab="main">Application Settings</a>
-        <a class="item" data-tab="company">Company Settings</a>
+        <a class="item active" data-tab="main">{{t "settings.main_tab"}}</a>
+        <a class="item" data-tab="company">{{t "settings.company_tab"}}</a>
       </div>
       <div class="ui bottom attached active tab segment" data-tab="main">
         <div class="ui selection very relaxed divided list">
@@ -14,24 +14,16 @@
           {{/each-in}}
           {{#each-in prefs.main as |key value|}}
             {{#if (not (is-array value))}}
-              {{tab-line-item type="text" prop=key value=value saveData=(action "saveCompanyData")}}
+              {{tab-line-item objType="main" inputType="text" prop=key value=value saveData=(action "saveCompanyData")}}
             {{/if}}
           {{/each-in}}
         </div>
       </div>
       <div class="ui bottom attached tab segment" data-tab="company">
         <div class="ui selection very relaxed divided list">
-          {{!-- TODO simplify --}}
-          {{tab-line-item type="text" prop="name" value=prefs.company.name saveData=(action "saveCompanyData")}}
-          {{tab-line-item type="text" prop="registration" value=prefs.company.registration saveData=(action "saveCompanyData")}}
-          {{tab-line-item type="text" prop="vat" value=prefs.company.vat saveData=(action "saveCompanyData")}}
-          {{tab-line-item type="textarea" prop="address" value=prefs.company.address saveData=(action "saveCompanyData")}}
-          {{tab-line-item type="text" prop="acc_eur" value=prefs.company.acc_eur saveData=(action "saveCompanyData")}}
-          {{tab-line-item type="text" prop="acc_ron" value=prefs.company.acc_ron saveData=(action "saveCompanyData")}}
-          {{tab-line-item type="text" prop="bank" value=prefs.company.bank saveData=(action "saveCompanyData")}}
-          {{tab-line-item type="number" prop="capital" value=prefs.company.capital saveData=(action "saveCompanyData")}}
-          {{tab-line-item type="tel" prop="phone" value=prefs.company.phone saveData=(action "saveCompanyData")}}
-          {{tab-line-item type="email" prop="email" value=prefs.company.email saveData=(action "saveCompanyData")}}
+          {{#each companyOrder as |list|}}
+            {{tab-line-item objType="company" prop=list.[0] inputType=list.[1] value=(get prefs.company list.[0]) saveData=(action "saveCompanyData")}}
+          {{/each}}
         </div>
       </div>
     </div>

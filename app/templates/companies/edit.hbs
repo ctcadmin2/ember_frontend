@@ -1,16 +1,16 @@
 {{#ui-modal name="companyModal" class="companyModal small" onApprove=(action "approveModal") closable=false}}
   <div class="header">
-    Editing {{company.name}}...
+    {{t "general.editing"}} {{company.name}}...
   </div>
   <div class="scrolling content">
     {{company-form countries=countries data=company inputDisabled=false}}
   </div>
   <div class="actions">
     <button class="ui red deny button" {{action "cancelButton"}}>
-      Cancel
+      {{t "general.cancel"}}
     </button>
     <div class="ui positive button">
-      Update
+      {{t "general.update"}}
     </div>
   </div>
 {{/ui-modal}}

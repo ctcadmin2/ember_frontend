@@ -1,13 +1,13 @@
 <div class="ui middle aligned item grid" onMouseEnter={{action "mouseIn"}} onMouseLeave={{action "mouseOut"}}
   onclick={{action "editMode"}}>
-  <div class="ui four wide column">{{t (concat "settings.company." prop)}}</div>
+  <div class="ui four wide column">{{t (concat "settings." objType "." prop)}}</div>
   <div class="ui six wide column">
     <div class="ui fluid {{if editMode "input"}}">
       {{#if editMode}}
         {{#if textarea}}
           {{textarea rows=2 cols=50 value=value}}
         {{else}}
-          {{input type=type value=value}}
+          {{input type=inputType value=value}}
         {{/if}}
       {{else}}
         {{value}}
@@ -21,12 +21,12 @@
         {{#if showIcon}}
           <i class="olive save icon"></i>
         {{/if}}
-        Save
+        {{t "general.save"}}
       {{else}}
         {{#if showIcon}}
           <i class="teal pencil alternate icon"></i>
         {{/if}}
-        Edit
+        {{t "general.edit"}}
       {{/if}}
     </div>
   </div>
