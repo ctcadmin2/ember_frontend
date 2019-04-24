@@ -11145,10 +11145,10 @@ supports-color@^5.3.0:
   dependencies:
     has-flag "^3.0.0"
 
-sweetalert2@^8.0.3:
-  version "8.0.3"
-  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-8.0.3.tgz#1e5a927bafe3704a87bb67fe7d40d6c4069f88f9"
-  integrity sha512-PuGILHZUb3Ff5FXBYYXf87hhRSvNZiJvIB782wyjPOr4cBAymIuLF01hUkkUUUr33EnOmKyKnKib7+8K+lK6eQ==
+sweetalert2@^8.8.7:
+  version "8.8.7"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-8.8.7.tgz#1c67e338a8610d4f9cc60563063ea9d2bebd031c"
+  integrity sha512-RYJ32Haqv7eqeMRl79IVfvWfsL0xgF6qcDvlYZVLoDhR3cAVQgsiMy40f13DkoRaz+V2smGbUNdzhO3otnJrIA==
 
 symlink-or-copy@^1.0.0, symlink-or-copy@^1.0.1, symlink-or-copy@^1.1.8, symlink-or-copy@^1.2.0:
   version "1.2.0"
