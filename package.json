@@ -71,7 +71,7 @@
     "@types/qunit": "^2.5.4",
     "@types/qunit-dom": "^0.6.0",
     "eslint-plugin-hbs": "^0.1.1",
-    "sweetalert2": "^8.0.3",
+    "sweetalert2": "^8.8.7",
     "testem": "^2.14.0"
   },
   "resolutions": {
