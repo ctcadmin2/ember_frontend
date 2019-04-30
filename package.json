@@ -67,7 +67,7 @@
     "@types/ember": "^3.0.26",
     "@types/ember-data": "^3.1.7",
     "@types/ember-qunit": "^3.4.6",
-    "@types/ember-test-helpers": "^1.0.4",
+    "@types/ember-test-helpers": "^1.0.5",
     "@types/qunit": "^2.5.4",
     "@types/qunit-dom": "^0.6.0",
     "eslint-plugin-hbs": "^0.1.1",
