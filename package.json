@@ -64,7 +64,7 @@
     "node": ">= 10.*"
   },
   "dependencies": {
-    "@types/ember": "^3.0.26",
+    "@types/ember": "^3.1.0",
     "@types/ember-data": "^3.1.7",
     "@types/ember-qunit": "^3.4.6",
     "@types/ember-test-helpers": "^1.0.4",
