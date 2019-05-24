@@ -2,7 +2,7 @@ import { module, test } from "qunit";
 import { setupApplicationTest } from "ember-qunit";
 import { visit, currentURL, click, fillIn } from "@ember/test-helpers";
 import { get } from "@ember/object";
-import setupMirageTest from "ember-cli-mirage/test-support/setup-mirage";
+import { setupMirage } from "ember-cli-mirage/test-support";
 import {
   authenticateSession,
   invalidateSession,
@@ -11,7 +11,7 @@ import {
 
 module("Acceptance | login", function(hooks) {
   setupApplicationTest(hooks);
-  setupMirageTest(hooks);
+  setupMirage(hooks);
 
   test("If a user is not logged in, they see a login form", async function(assert) {
     await invalidateSession();

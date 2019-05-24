@@ -1,28 +1,28 @@
-import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
-import { render } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
-import setupMirageTest from 'ember-cli-mirage/test-support/setup-mirage';
-import stubbedService from 'frontend/tests/helpers/stub-service';
+import { module, test } from "qunit";
+import { setupRenderingTest } from "ember-qunit";
+import { render } from "@ember/test-helpers";
+import hbs from "htmlbars-inline-precompile";
+import { setupMirage } from "ember-cli-mirage/test-support";
+import stubbedService from "frontend/tests/helpers/stub-service";
 
-module('Integration | Component | company-form', function(hooks) {
+module("Integration | Component | company-form", function(hooks) {
   setupRenderingTest(hooks);
-  setupMirageTest(hooks);
+  setupMirage(hooks);
 
   hooks.beforeEach(function() {
-    let company = this.server.create('company');
-    this.set('company', company);
+    let company = this.server.create("company");
+    this.set("company", company);
 
-    stubbedService('countries', {
+    stubbedService("countries", {
       dataFetched: true,
       list: [
         {
-          name: 'Romania',
-          value: 'RO'
+          name: "Romania",
+          value: "RO"
         },
         {
-          name: 'Denmark',
-          value: 'DK'
+          name: "Denmark",
+          value: "DK"
         }
       ],
       init() {},
@@ -30,26 +30,26 @@ module('Integration | Component | company-form', function(hooks) {
     });
   });
 
-  test('it renders', async function(assert) {
+  test("it renders", async function(assert) {
     await render(hbs`{{company-form data=company}}`);
 
     assert
-      .dom('.inline.field')
-      .exists({ count: 13 }, 'All fields are displayed');
+      .dom(".inline.field")
+      .exists({ count: 13 }, "All fields are displayed");
     assert
-      .dom('[id*=name]')
-      .hasValue(this.get('company').name, 'Input field is properly updated');
+      .dom("[id*=name]")
+      .hasValue(this.get("company").name, "Input field is properly updated");
     assert
-      .dom('.dropdown .menu .item')
-      .exists({ count: 2 }, 'Select is created from valid array');
+      .dom(".dropdown .menu .item")
+      .exists({ count: 2 }, "Select is created from valid array");
   });
 
-  test('show should have disable input', async function(assert) {
+  test("show should have disable input", async function(assert) {
     await render(hbs`{{company-form data=company inputDisabled=true}}`);
 
     assert
-      .dom(':disabled')
-      .exists({ count: 12 }, 'all input fields are disabled');
-    assert.dom('.dropdown.disabled').exists({ count: 1 }, 'select is disabled');
+      .dom(":disabled")
+      .exists({ count: 12 }, "all input fields are disabled");
+    assert.dom(".dropdown.disabled").exists({ count: 1 }, "select is disabled");
   });
 });

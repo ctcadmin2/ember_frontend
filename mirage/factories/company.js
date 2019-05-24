@@ -1,4 +1,5 @@
-import { Factory, faker } from 'ember-cli-mirage';
+import { Factory } from "ember-cli-mirage";
+import faker from "faker";
 faker.seed(123);
 
 export default Factory.extend({
@@ -12,7 +13,9 @@ export default Factory.extend({
     return faker.random.number();
   },
   address() {
-    return  faker.fake("{{address.streetAddress}}, {{address.county}} {{address.country}}");
+    return faker.fake(
+      "{{address.streetAddress}}, {{address.county}} {{address.country}}"
+    );
   },
   phone() {
     return faker.phone.phoneNumber();
@@ -27,5 +30,5 @@ export default Factory.extend({
     return faker.address.countryCode();
   },
   vies: true,
-  status: true,
+  status: true
 });

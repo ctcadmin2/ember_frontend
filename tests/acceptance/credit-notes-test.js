@@ -1,59 +1,59 @@
-import { module, test } from 'qunit';
-import { visit, currentURL } from '@ember/test-helpers';
-import { setupApplicationTest } from 'ember-qunit';
-import setupMirageTest from 'ember-cli-mirage/test-support/setup-mirage';
+import { module, test } from "qunit";
+import { visit, currentURL } from "@ember/test-helpers";
+import { setupApplicationTest } from "ember-qunit";
+import { setupMirage } from "ember-cli-mirage/test-support";
 import {
   authenticateSession,
   invalidateSession
-} from 'ember-simple-auth/test-support';
+} from "ember-simple-auth/test-support";
 
-module('Acceptance | credit notes', function(hooks) {
+module("Acceptance | credit notes", function(hooks) {
   setupApplicationTest(hooks);
-  setupMirageTest(hooks);
+  setupMirage(hooks);
 
-  test('redirects to login when not auth', async function(assert) {
+  test("redirects to login when not auth", async function(assert) {
     await invalidateSession();
-    await visit('/credit-notes');
-    assert.equal(currentURL(), '/login');
+    await visit("/credit-notes");
+    assert.equal(currentURL(), "/login");
   });
 
-  test('shows table when auth', async function(assert) {
+  test("shows table when auth", async function(assert) {
     await authenticateSession({
       jwt:
-        'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImFkbWluIjp0cnVlfQ.hgNSDI7STvbPMw4dJky55hUpUy5jriNIrLwp5dW3awg'
+        "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImFkbWluIjp0cnVlfQ.hgNSDI7STvbPMw4dJky55hUpUy5jriNIrLwp5dW3awg"
     });
-    this.server.create('user');
-    this.server.createList('credit-note', 5);
-    await visit('/credit-notes');
-    assert.equal(currentURL(), '/credit-notes');
-    assert.dom('tbody tr').exists({ count: 5 });
+    this.server.create("user");
+    this.server.createList("credit-note", 5);
+    await visit("/credit-notes");
+    assert.equal(currentURL(), "/credit-notes");
+    assert.dom("tbody tr").exists({ count: 5 });
   });
 
-  test('no pagination if less than 5 elements', async function(assert) {
+  test("no pagination if less than 5 elements", async function(assert) {
     await authenticateSession({
       jwt:
-        'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImFkbWluIjp0cnVlfQ.hgNSDI7STvbPMw4dJky55hUpUy5jriNIrLwp5dW3awg'
+        "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImFkbWluIjp0cnVlfQ.hgNSDI7STvbPMw4dJky55hUpUy5jriNIrLwp5dW3awg"
     });
-    this.server.create('user');
-    this.server.createList('credit-note', 5);
+    this.server.create("user");
+    this.server.createList("credit-note", 5);
 
-    await visit('/credit-notes');
+    await visit("/credit-notes");
 
     assert
-      .dom('.pagination')
-      .doesNotExist('no pagination if less than six elements');
+      .dom(".pagination")
+      .doesNotExist("no pagination if less than six elements");
   });
 
-  test('show pagination if more than 5 elements', async function(assert) {
+  test("show pagination if more than 5 elements", async function(assert) {
     await authenticateSession({
       jwt:
-        'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImFkbWluIjp0cnVlfQ.hgNSDI7STvbPMw4dJky55hUpUy5jriNIrLwp5dW3awg'
+        "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImFkbWluIjp0cnVlfQ.hgNSDI7STvbPMw4dJky55hUpUy5jriNIrLwp5dW3awg"
     });
-    this.server.create('user');
-    this.server.createList('credit-note', 6);
+    this.server.create("user");
+    this.server.createList("credit-note", 6);
 
-    await visit('/credit-notes');
+    await visit("/credit-notes");
 
-    assert.dom('.pagination').exists();
+    assert.dom(".pagination").exists();
   });
 });

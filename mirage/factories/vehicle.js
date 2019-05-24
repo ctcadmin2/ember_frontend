@@ -1,4 +1,5 @@
-import { Factory, faker } from 'ember-cli-mirage';
+import { Factory } from "ember-cli-mirage";
+import faker from "faker";
 faker.seed(123);
 
 export default Factory.extend({
@@ -16,6 +17,6 @@ export default Factory.extend({
   },
 
   afterCreate(vehicle, server) {
-    server.createList('creditNote', 10, { vehicle });
+    server.createList("creditNote", 10, { vehicle });
   }
 });

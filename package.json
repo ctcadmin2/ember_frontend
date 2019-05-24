@@ -57,6 +57,7 @@
     "ember-source": "~3.9.1",
     "ember-truth-helpers": "^2.1.0",
     "eslint-plugin-ember": "^6.4.1",
+    "faker": "^4.1.0",
     "loader.js": "^4.7.0",
     "qunit-dom": "^0.8.5",
     "semantic-ui-ember": "https://github.com/lssjbrolli/Semantic-UI-Ember.git"
