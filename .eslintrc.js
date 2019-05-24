@@ -2,21 +2,25 @@ module.exports = {
   root: true,
   parserOptions: {
     ecmaVersion: 2017,
-    sourceType: 'module'
+    sourceType: 'module',
   },
-  plugins: ['ember', 'hbs'],
-  extends: ['eslint:recommended', 'plugin:ember/recommended'],
+  plugins: ['ember', 'hbs', 'compat', 'html'],
+  extends: [
+    'eslint:recommended',
+    'plugin:ember/recommended',
+    'plugin:compat/recommended',
+  ],
   env: {
-    browser: true
+    browser: true,
   },
   rules: {
     'ember/named-functions-in-promises': [
       2,
       {
-        allowSimpleArrowFunction: true
-      }
+        allowSimpleArrowFunction: true,
+      },
     ],
-    'hbs/check-hbs-template-literals': 2
+    'hbs/check-hbs-template-literals': 2,
     // 'ember/no-jquery': 2 TODO can't remove yet
   },
   overrides: [
@@ -30,16 +34,16 @@ module.exports = {
         'ember-cli-build.js',
         'config/**/*.js',
         'lib/*/index.js',
-        'server/**/*.js'
+        'server/**/*.js',
       ],
       parserOptions: {
         sourceType: 'script',
-        ecmaVersion: 2015
+        ecmaVersion: 2015,
       },
       env: {
         browser: false,
-        node: true
-      }
-    }
-  ]
+        node: true,
+      },
+    },
+  ],
 };

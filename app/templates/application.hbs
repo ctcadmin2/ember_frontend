@@ -10,7 +10,7 @@
           {{link-to (t "application.links.users") "users" class="item" }}
         {{/if}}
         {{link-to (t "application.links.settings") "settings" class="item"}}
-        <button class="item" id="logoutBtn" {{action "invalidateSession"}}>{{t "application.links.logout"}}</button>
+        <a href="#" class="item" id="logoutBtn" {{action "invalidateSession"}}>{{t "application.links.logout"}}</a>
       {{else}}
         {{#ui-dropdown class="pointing item" selected="en-us" onChange=(action "changeLocale")}}
           <div class="default text"></div>
@@ -24,11 +24,10 @@
             </div>
           </div>
         {{/ui-dropdown}}
-        {{#if (eq currentPath "registration") }}
+        {{#if (eq router.currentRouteName "registration") }}
           {{#link-to "login" class="item" }}{{t "login.button.login"}}{{/link-to}}
         {{else}}
           {{#link-to "registration" class="item" }}{{t "registration.button.registration"}}{{/link-to}}
-          {{! TODO registration}}
         {{/if}}
       {{/if}}
     </div>

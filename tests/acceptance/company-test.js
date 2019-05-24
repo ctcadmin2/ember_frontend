@@ -18,25 +18,25 @@ module('Acceptance | companies', function(hooks) {
   });
 
   test('shows companies table when auth', async function(assert) {
-    await authenticateSession({
-      token:
-        'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImFkbWluIjp0cnVlfQ.hgNSDI7STvbPMw4dJky55hUpUy5jriNIrLwp5dW3awg'
-    });
     this.server.create('user');
     this.server.createList('company', 5);
+    await authenticateSession({
+      jwt:
+        'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImFkbWluIjp0cnVlfQ.hgNSDI7STvbPMw4dJky55hUpUy5jriNIrLwp5dW3awg'
+    });
     await visit('/companies');
+
     assert.equal(currentURL(), '/companies');
     assert.dom('tbody tr').exists({ count: 5 });
   });
 
   test('no pagination if less than 5 elements', async function(assert) {
-    await authenticateSession({
-      token:
-        'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImFkbWluIjp0cnVlfQ.hgNSDI7STvbPMw4dJky55hUpUy5jriNIrLwp5dW3awg'
-    });
     this.server.create('user');
     this.server.createList('company', 5);
-
+    await authenticateSession({
+      jwt:
+        'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImFkbWluIjp0cnVlfQ.hgNSDI7STvbPMw4dJky55hUpUy5jriNIrLwp5dW3awg'
+    });
     await visit('/companies');
 
     assert
@@ -45,15 +45,14 @@ module('Acceptance | companies', function(hooks) {
   });
 
   test('show pagination if more than 5 elements', async function(assert) {
-    await authenticateSession({
-      token:
-        'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImFkbWluIjp0cnVlfQ.hgNSDI7STvbPMw4dJky55hUpUy5jriNIrLwp5dW3awg'
-    });
     this.server.create('user');
     this.server.createList('company', 6);
+    await authenticateSession({
+      jwt:
+        'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImFkbWluIjp0cnVlfQ.hgNSDI7STvbPMw4dJky55hUpUy5jriNIrLwp5dW3awg'
+    });
 
     await visit('/companies');
-
     assert.dom('.pagination').exists();
   });
 });

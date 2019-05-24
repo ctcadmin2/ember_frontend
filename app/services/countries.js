@@ -13,7 +13,7 @@ export default Service.extend({
     set(
       this,
       'fetch',
-      fetchData(this.url, this.session.data.authenticated.token)
+      fetchData(this.url, this.session.data.authenticated.jwt)
     );
     this._setlist();
   },

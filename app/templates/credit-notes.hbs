@@ -1,19 +1,33 @@
 <div class="ui centered raised segment">
   <table class="ui table sortable padded selectable striped celled attached">
-    <caption class="ui huge header teal">Credit Notes</caption>
+    <caption class="ui huge header teal">
+      {{t "credit_notes.title"}}
+    </caption>
     <thead>
       <tr>
-        <th class={{sort-class sort "number"}} role="button" {{action "sort" "number"}}>Number</th>
-        <th>Start</th>
-        <th>Stop</th>
-        <th class={{sort-class sort "value"}} role="button" {{action "sort" "value"}}>Value</th>
-        <th class={{sort-class sort "paid"}} role="button" {{action "sort" "paid"}}>Paid</th>
-        <th class={{sort-class sort "vehicle"}} role="button" {{action "sort" "vehicle.id"}}>Truck</th>
-        <th>Notes</th>
+        <th class={{sort-class sort "number"}} role="button" {{action "sort" "number"}}>{{t "credit_notes.number"}}</th>
+        <th>{{t "credit_notes.start"}}</th>
+        <th>{{t "credit_notes.stop"}} </th>
+        <th class={{sort-class sort "value"}} role="button" {{action "sort" "value"}}>{{t "credit_notes.value"}}</th>
+        <th class={{sort-class sort "paid"}} role="button" {{action "sort" "paid"}}>
+          {{t "credit_notes.paid"}}
+        </th>
+        <th class={{sort-class sort "vehicle"}} role="button" {{action "sort" "vehicle.id"}}>
+          {{t "credit_notes.truck"}}
+        </th>
+        <th>
+          {{t "credit_notes.notes"}}
+        </th>
         <th>
           <div class="ui search">
             <div class="ui fluid icon input">
-              {{input value=filter key-up="setPage" class="prompt" type="text" placeholder="Search"}}
+              {{input
+                value=filter
+                key-up=(action "setPage")
+                class="prompt"
+                type="text"
+                placeholder="Search"
+              }}
               <i class="{{if filterEmpty "search" "remove link"}} icon" role="button" {{action "clearFilter"}}></i>
             </div>
           </div>
@@ -27,7 +41,9 @@
             <div class="item">
               <div class="middle aligned content">
                 <div class="left floated">
-                  {{#link-to "credit-notes.new" class="ui teal button" }}New Credit Note{{/link-to}}
+                  {{#link-to "credit-notes.new" class="ui teal button"}}
+                    {{t "credit_notes.new_credit"}}
+                  {{/link-to}}
                 </div>
                 <div class="right floated">
                   <div class="ui right floated">
@@ -43,18 +59,39 @@
     <tbody>
       {{#each creditNotes as |cn|}}
         <tr>
-          <td>{{cn.number}}</td>
-          <td>{{cn.start}}</td>
-          <td>{{cn.end}}</td>
-          <td>{{cn.value}} {{cn.currency}}</td>
-          <td><i class={{paid cn.paid}}></i></td>
-          <td>{{cn.vehicle.registration}}</td>
-          <td>{{cn.notes}}</td>
+          <td>
+            {{cn.number}}
+          </td>
+          <td>
+            {{cn.start}}
+          </td>
+          <td>
+            {{cn.end}}
+          </td>
+          <td>
+            {{cn.value}}
+            {{cn.currency}}
+          </td>
+          <td>
+            <i class={{paid cn.paid}}></i>
+          </td>
+          <td>
+            {{cn.vehicle.registration}}
+          </td>
+          <td>
+            {{cn.notes}}
+          </td>
           <td>
             <div class="ui fluid buttons">
-              <button class="ui olive button">PDF</button>
-              {{#link-to "credit-notes.edit" model class="ui teal button"}}Edit{{/link-to}}
-              <button class="ui red button" {{action "deleteButton" cn.id}}>Destroy</button>
+              <button class="ui olive button">
+                {{t "general.show"}}
+              </button>
+              {{#link-to "credit-notes.edit" model class="ui teal button"}}
+                {{t "general.edit"}}
+              {{/link-to}}
+              <button class="ui red button" {{action "deleteButton" cn.id}}>
+                {{t "general.destroy"}}
+              </button>
             </div>
           </td>
         </tr>

@@ -1,114 +1,137 @@
-import { module, test } from 'qunit';
-import { setupApplicationTest } from 'ember-qunit';
-import {
-  visit,
-  currentURL,
-  find,
-  click,
-  fillIn
-} from '@ember/test-helpers';
-import { get } from '@ember/object';
-import setupMirageTest from 'ember-cli-mirage/test-support/setup-mirage';
+import { module, test } from "qunit";
+import { setupApplicationTest } from "ember-qunit";
+import { visit, currentURL, click, fillIn } from "@ember/test-helpers";
+import { get } from "@ember/object";
+import setupMirageTest from "ember-cli-mirage/test-support/setup-mirage";
 import {
   authenticateSession,
   invalidateSession,
   currentSession
-} from 'ember-simple-auth/test-support';
+} from "ember-simple-auth/test-support";
 
-module('Acceptance | login', function(hooks) {
+module("Acceptance | login", function(hooks) {
   setupApplicationTest(hooks);
   setupMirageTest(hooks);
 
-  test('If a user is not logged in, they see a login form', async function(assert) {
+  test("If a user is not logged in, they see a login form", async function(assert) {
     await invalidateSession();
-    await visit('/');
+    await visit("/");
     assert.equal(
       currentURL(),
-      '/login',
-      'not auth user is redirected to login'
+      "/login",
+      "not auth user is redirected to login"
     );
-    const loginFormPresent = find('#loginForm') == null ? false : true;
-    assert.ok(loginFormPresent);
+    assert.dom("#loginForm").exists();
   });
 
-  test('if a user is logged in, they see a logout button', async function(assert) {
-    await authenticateSession();
-    await visit('/');
+  test("if a user is logged in, they see a logout button", async function(assert) {
+    this.server.create("user", { id: 1 });
+    await authenticateSession({
+      jwt:
+        "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImFkbWluIjp0cnVlfQ.hgNSDI7STvbPMw4dJky55hUpUy5jriNIrLwp5dW3awg"
+    });
 
-    assert.equal(currentURL(), '/');
-
-    const logoutBtnPresent = find('#logoutBtn') == null ? false : true;
-    assert.ok(logoutBtnPresent);
+    await visit("/companies");
+    assert.equal(currentURL(), "/companies");
+    assert.dom("#logoutBtn").exists();
   });
 
-  test('a authed user not should see the login form', async function(assert) {
-    await authenticateSession();
-    await visit('/');
+  test("a authed user not should see the login form", async function(assert) {
+    this.server.create("user", { id: 1 });
+    await authenticateSession({
+      jwt:
+        "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImFkbWluIjp0cnVlfQ.hgNSDI7STvbPMw4dJky55hUpUy5jriNIrLwp5dW3awg"
+    });
+    await visit("/");
 
-    assert.equal(currentURL(), '/');
-    const loginFormPresent = find('#loginForm') == null ? false : true;
-    assert.notOk(loginFormPresent);
+    assert.equal(currentURL(), "/");
+    assert.dom("#loginForm").doesNotExist();
+    await visit("/login");
+    assert.equal(currentURL(), "/");
   });
 
-  test('user can login', async function(assert) {
-    this.server.logging = true;
-    this.server.create('user', {
+  test("user can login", async function(assert) {
+    this.server.create("user", {
       id: 1,
-      email: 'sega@test.com',
-      password: 'test1234',
+      email: "sega@test.com",
+      password: "test1234",
       active: true
     });
     await invalidateSession();
-    await visit('/companies');
-    assert.equal(currentURL(), '/login');
-    await fillIn('#email', 'sega@test.com');
-    await fillIn('#password', 'test1234');
-    await click('.submit.button'); // can't login if start from login page
-    assert.equal(currentURL(), '/companies');
-    assert.dom('.success.message').exists();
+
+    await visit("/companies");
+    assert.equal(currentURL(), "/login");
+
+    await fillIn("#email", "sega@test.com");
+    await fillIn("#password", "test1234");
+    await click(".submit.button"); // can't login if start from login page
+    await visit("/companies");
+    assert.equal(currentURL(), "/companies");
+
+    assert.dom(".success.message").exists();
+
     const sesh = currentSession();
-    const isAuthed = get(sesh, 'isAuthenticated');
+    const isAuthed = get(sesh, "isAuthenticated");
     assert.ok(isAuthed);
   });
 
-  test('user can logout', async function(assert) {
-    this.server.create('user');
+  test("user can logout", async function(assert) {
+    this.server.create("user");
     await authenticateSession({
-      token:
-        'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImFkbWluIjp0cnVlfQ.hgNSDI7STvbPMw4dJky55hUpUy5jriNIrLwp5dW3awg'
+      jwt:
+        "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImFkbWluIjp0cnVlfQ.hgNSDI7STvbPMw4dJky55hUpUy5jriNIrLwp5dW3awg"
     });
-    await visit('/companies');
-    await click('#logoutBtn');
+    await visit("/companies");
+    await click("#logoutBtn");
 
     const sesh = currentSession();
-    const isAuthed = get(sesh, 'isAuthenticated');
+    const isAuthed = get(sesh, "isAuthenticated");
 
     assert.notOk(isAuthed);
   });
 
-  test('If a user puts in the wrong login credentials, they see a login error', async function(assert) {
-    // await invalidateSession();
-    await visit('/');
+  test("If a user puts in the wrong login credentials, they see a login error", async function(assert) {
+    this.server.logging = true;
+    await visit("/login");
+    await fillIn("#email", "lester@test.com");
+    await fillIn("#password", "wrongPassword");
+    await click(".submit.button");
 
-    // await fillIn('#email', 'lester@test.com');
-    // await fillIn('#password', 'wrongPassword');
-    await click('.submit.button');
+    const sesh = currentSession();
+    assert.equal(
+      sesh.isAuthenticated,
+      false,
+      "User submits bad email and password, fails"
+    );
+    await visit("/");
+    assert.equal(currentURL(), "/login", "We are kept at login page");
+    assert.dom(".error.message").exists();
+    assert.dom("#loginForm").exists();
+  });
 
-    // const sesh = currentSession();
-    // const isAuthed = get(sesh, 'isAuthenticated');
-    // assert.equal(isAuthed, false, 'User submits bad email and password, fails');
+  test("User not activated", async function(assert) {
+    this.server.logging = true;
+    this.server.create("user", {
+      id: 1,
+      email: "sega@test.com",
+      password: "notActive",
+      active: false
+    });
 
-    // const isShowingLoginFails =
-    //   find('.message.error').length > 0 ? true : false;
-    // assert.equal(
-    //   isShowingLoginFails,
-    //   true,
-    //   'Shows user an error when they put in bad credentials'
-    // );
+    await visit("/login");
+    await fillIn("#email", "sega@test.com");
+    await fillIn("#password", "notActive");
+    await click(".submit.button");
 
-    // const loginFormPresent = find('#loginForm').length > 0 ? true : false;
-    // assert.equal(loginFormPresent, true, 'and we can still see the login form');
-
-    assert.dom('.message').exists();
+    const sesh = currentSession();
+    assert.equal(
+      sesh.isAuthenticated,
+      false,
+      "User is not activated, authentication fails"
+    );
+    await visit("/");
+    assert.equal(currentURL(), "/login", "We are kept at login page");
+    assert.dom(".info.message").exists();
+    assert.dom("#loginForm").exists();
   });
 });

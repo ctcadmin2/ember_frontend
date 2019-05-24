@@ -1,27 +1,47 @@
 <div class="ui centered raised segment">
   <table class="ui table sortable padded selectable striped celled attached">
-    <caption class="ui huge header teal">User list</caption>
+    <caption class="ui huge header teal">
+      {{t "users.title"}}
+    </caption>
     <thead>
       <tr>
-        <th>Name</th>
-        <th>SSN</th>
-        <th>Email</th>
+        <th>
+          {{t "users.name"}}
+        </th>
+        <th>
+          {{t "users.ssn"}}
+        </th>
+        <th>
+          {{t "users.email"}}
+        </th>
         <th></th>
       </tr>
     </thead>
     <tbody>
       {{#each users as |user|}}
         <tr>
-          <td>{{user.fullName}}</td>
-          <td>{{user.ssn}}</td>
-          <td>{{user.email}}</td>
+          <td>
+            {{user.fullName}}
+          </td>
+          <td>
+            {{user.ssn}}
+          </td>
+          <td>
+            {{user.email}}
+          </td>
           <td>
             <div class="ui fluid buttons">
-              {{toggle-button obj=user prop="active" updateObj=(action "toggleUpdate")}}
-              {{#link-to "users.edit" user class="ui button teal" }}
-                Edit
+              {{toggle-button
+                obj=user
+                prop="active"
+                updateObj=(action "toggleUpdate")
+              }}
+              {{#link-to "users.edit" user class="ui button teal"}}
+                {{t "general.edit"}}
               {{/link-to}}
-              <button class="ui button red" {{action "destroyUser" user.id}}>Destroy</button>
+              <button class="ui button red" {{action "destroyUser" user.id}}>
+                {{t "general.destroy"}}
+              </button>
             </div>
           </td>
         </tr>

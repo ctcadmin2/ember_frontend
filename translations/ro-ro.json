@@ -1,0 +1,139 @@
+{
+  "application": {
+    "links": {
+      "registration": "Inregistrare",
+      "login": "Autentificare",
+      "logout": "Deconectare",
+      "vehicles": "Vehicule",
+      "creditNotes": "Note de credit",
+      "companies": "Companii",
+      "users": "Utilizatori",
+      "settings": "Setari"
+    }
+  },
+  "general": {
+    "save": "Salveaza",
+    "delete": "Sterge",
+    "show": "Arata",
+    "edit": "Editeaza",
+    "destroy": "Sterge",
+    "add_new": "Adauga...",
+    "category": "Categoria",
+    "editing": "Modificam",
+    "cancel": "Anuleaza",
+    "update": "Actualizeaza",
+    "ok": "OK"
+  },
+  "components": {
+    "pagination_list": { "page_nr": "Nr. pagina" },
+    "find_company": {
+      "success": "Firma a fost gasita. Verifica datele si salveaza.",
+      "error": "Firma nu a putut fi gasita. Incearca din nou sau introdu datele manual.",
+      "find_button": "Cauta firma"
+    }
+  },
+  "settings": {
+    "company_tab": "Setari companie",
+    "main_tab": "Setari aplicatie",
+    "company": {
+      "name": "Nume",
+      "registration": "Nr. inregistrare",
+      "vat": "CIF",
+      "address": "Adresa",
+      "country": "Tara",
+      "acc_eur": "Cont EUR",
+      "acc_ron": "Cont RON",
+      "bank": "Banca",
+      "capital": "Capital",
+      "phone": "Telefon",
+      "email": "Email",
+      "vies": "Vies",
+      "status": "Status"
+    },
+    "main": {
+      "paid_by": "Mod plata",
+      "veh_cat": "Categoria vehiculului",
+      "vat_rate": "Rata TVA",
+      "activities": "Activitati",
+      "currencies": "Valute",
+      "diurna_baza": "Diurna zilnica",
+      "salar_baza": "Salariu"
+    }
+  },
+  "companies": {
+    "title": "Lista companii",
+    "table": {
+      "header": {
+        "name": "Nume",
+        "vat": "CIF",
+        "contact": "Contact",
+        "phone": "Telefon"
+      }
+    },
+    "add_new": "Adauga companie noua...",
+    "showing": "Aratam"
+  },
+  "vehicles": {
+    "title": "Lista vehicule",
+    "add_new": "Vehicul nou",
+    "vin": "Serie sasiu",
+    "registration": "Nr. inmatriculare",
+    "active": "Active",
+    "details": "Detalii",
+    "c_notes": "Note de credit",
+    "events": "Evenimente",
+    "new": {
+      "title": "Adauga vehicol nou..."
+    }
+  },
+  "credit_notes": {
+    "title": "Note de credit",
+    "number": "Numar",
+    "start": "Start",
+    "stop": "Stop",
+    "value": "Valoare",
+    "paid": "Platit",
+    "truck": "Camion",
+    "notes": "Note",
+    "new_credit": "Adauga",
+    "new": { "title": "Add new credit note..." }
+  },
+  "users": {
+    "title": "Lista utilizatorilor",
+    "name": "Nume",
+    "ssn": "CNP",
+    "email": "Email",
+    "edit": {
+      "first_name": "Prenume",
+      "last_name": "Nume",
+      "email": "Email",
+      "ssn": "CNP",
+      "lang": {
+        "title": "Limba",
+        "en": "Engleza",
+        "ro": "Romana"
+      }
+    }
+  },
+  "login": {
+    "title": "Va rugam sa va autentificati.",
+    "placeholder": { "email": "Email", "password": "Parola" },
+    "button": { "login": "Autentificare" },
+    "flash": { "error": "User/password was not found!" }
+  },
+  "registration": {
+    "title": "Va rugam sa va inregistrati.",
+    "first_name": "Prenume",
+    "last_name": "Nume",
+    "ssn": "CNP",
+    "lang": {
+      "title": "Limba",
+      "en": "Engleza",
+      "ro": "Romana"
+    },
+    "email": "Email",
+    "pass": "Parola",
+    "pass_conf": "Confirmare parola",
+    "button": { "registration": "Inregistrare" }
+  }
+}

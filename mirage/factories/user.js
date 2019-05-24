@@ -14,7 +14,7 @@ export default Factory.extend({
   ssn() {
     return faker.random.number();
   },
-  lang: 'ro',
+  lang: 'ro-ro',
   admin: true,
   active: false
 });

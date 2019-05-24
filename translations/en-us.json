@@ -1,0 +1,139 @@
+{
+  "application": {
+    "links": {
+      "registration": "Registration",
+      "login": "Login",
+      "logout": "Logout",
+      "vehicles": "Vehicles",
+      "creditNotes": "Credit Notes",
+      "companies": "Companies",
+      "users": "Users",
+      "settings": "Settings"
+    }
+  },
+  "general": {
+    "save": "Save",
+    "delete": "Delete",
+    "show": "Show",
+    "edit": "Edit",
+    "destroy": "Destroy",
+    "add_new": "Add new...",
+    "category": "Category",
+    "editing": "Editing",
+    "cancel": "Cancel",
+    "update": "Update",
+    "ok": "OK"
+  },
+  "components": {
+    "pagination_list": { "page_nr": "Select page" },
+    "find_company": {
+      "success": "Company found, please review and save.",
+      "error": "Company not found, please try again or input data manually.",
+      "find_button": "Find company"
+    }
+  },
+  "settings": {
+    "company_tab": "Company Settings",
+    "main_tab": "Application Settings",
+    "company": {
+      "name": "Name",
+      "registration": "Registration",
+      "vat": "VAT",
+      "address": "Address",
+      "country": "Country",
+      "acc_eur": "Account EUR",
+      "acc_ron": "Account RON",
+      "bank": "Bank",
+      "capital": "Capital",
+      "phone": "Phone",
+      "email": "Email",
+      "vies": "Vies",
+      "status": "Status"
+    },
+    "main": {
+      "paid_by": "Paid by",
+      "veh_cat": "Vehicle category",
+      "vat_rate": "Vat rate",
+      "activities": "Activities",
+      "currencies": "Currencies",
+      "diurna_baza": "Daily payment",
+      "salar_baza": "Salary"
+    }
+  },
+  "companies": {
+    "title": "Companies list",
+    "table": {
+      "header": {
+        "name": "Name",
+        "vat": "VAT",
+        "contact": "Contact",
+        "phone": "Phone"
+      }
+    },
+    "add_new": "Add new company...",
+    "showing": "Showing"
+  },
+  "vehicles": {
+    "title": "Vehicles list",
+    "add_new": "New Vehicle",
+    "vin": "VIN",
+    "registration": "Registration",
+    "active": "Active",
+    "details": "Details",
+    "c_notes": "Credit Notes",
+    "events": "Events",
+    "new": {
+      "title": "Adding new vehicle..."
+    }
+  },
+  "credit_notes": {
+    "title": "Credit Notes",
+    "number": "Number",
+    "start": "Start",
+    "stop": "Stop",
+    "value": "Value",
+    "paid": "Paid",
+    "truck": "Truck",
+    "notes": "Notes",
+    "new_credit": "Add new",
+    "new": { "title": "Add new credit note..." }
+  },
+  "users": {
+    "title": "User list",
+    "name": "Name",
+    "ssn": "SSN",
+    "email": "Email",
+    "edit": {
+      "first_name": "First Name",
+      "last_name": "Last Name",
+      "email": "Email",
+      "ssn": "SSN",
+      "lang": {
+        "title": "Language",
+        "en": "English",
+        "ro": "Romanian"
+      }
+    }
+  },
+  "login": {
+    "title": "Please log in.",
+    "placeholder": { "email": "Email", "password": "Password" },
+    "button": { "login": "Login" },
+    "flash": { "error": "User/password was not found!" }
+  },
+  "registration": {
+    "title": "Please sign up.",
+    "first_name": "First Name",
+    "last_name": "Last Name",
+    "ssn": "SSN",
+    "lang": {
+      "title": "Language",
+      "en": "English",
+      "ro": "Romanian"
+    },
+    "email": "Email",
+    "pass": "Password",
+    "pass_conf": "Password Confirmation",
+    "button": { "registration": "Registration" }
+  }
+}

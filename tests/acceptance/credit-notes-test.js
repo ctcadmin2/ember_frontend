@@ -19,7 +19,7 @@ module('Acceptance | credit notes', function(hooks) {
 
   test('shows table when auth', async function(assert) {
     await authenticateSession({
-      token:
+      jwt:
         'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImFkbWluIjp0cnVlfQ.hgNSDI7STvbPMw4dJky55hUpUy5jriNIrLwp5dW3awg'
     });
     this.server.create('user');
@@ -31,7 +31,7 @@ module('Acceptance | credit notes', function(hooks) {
 
   test('no pagination if less than 5 elements', async function(assert) {
     await authenticateSession({
-      token:
+      jwt:
         'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImFkbWluIjp0cnVlfQ.hgNSDI7STvbPMw4dJky55hUpUy5jriNIrLwp5dW3awg'
     });
     this.server.create('user');
@@ -46,7 +46,7 @@ module('Acceptance | credit notes', function(hooks) {
 
   test('show pagination if more than 5 elements', async function(assert) {
     await authenticateSession({
-      token:
+      jwt:
         'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImFkbWluIjp0cnVlfQ.hgNSDI7STvbPMw4dJky55hUpUy5jriNIrLwp5dW3awg'
     });
     this.server.create('user');

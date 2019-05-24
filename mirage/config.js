@@ -44,12 +44,14 @@ export default function() {
             'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImFkbWluIjp0cnVlfQ.hgNSDI7STvbPMw4dJky55hUpUy5jriNIrLwp5dW3awg'
         }
       );
+    } else if (pw === 'notActive') {
+      return new Response(403, {}, {});
     } else {
       return new Response(404, {}, {});
     }
   });
   this.get('/companies', (schema, request) => {
-    const token = get(request, 'requestHeaders.Authorization');
+    const token = get(request, 'requestHeaders.authorization');
     if (
       token ===
       'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImFkbWluIjp0cnVlfQ.hgNSDI7STvbPMw4dJky55hUpUy5jriNIrLwp5dW3awg'
@@ -60,7 +62,7 @@ export default function() {
     }
   });
   this.get('/users', (schema, request) => {
-    const token = get(request, 'requestHeaders.Authorization');
+    const token = get(request, 'requestHeaders.authorization');
     if (
       token ===
       'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImFkbWluIjp0cnVlfQ.hgNSDI7STvbPMw4dJky55hUpUy5jriNIrLwp5dW3awg'
@@ -73,8 +75,7 @@ export default function() {
 
   this.get('/users/:id', (schema, request) => {
     const id = request.params.id;
-    const token = get(request, 'requestHeaders.Authorization');
-
+    const token = get(request, 'requestHeaders.authorization');
     if (
       token ===
       'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImFkbWluIjp0cnVlfQ.hgNSDI7STvbPMw4dJky55hUpUy5jriNIrLwp5dW3awg'
@@ -87,7 +88,7 @@ export default function() {
 
   this.del('/users/:id');
   this.patch('/users/:id', (schema, request) => {
-    const token = get(request, 'requestHeaders.Authorization');
+    const token = get(request, 'requestHeaders.authorization');
 
     if (
       token ===
@@ -150,7 +151,7 @@ export default function() {
 
   //vehicles
   this.get('/vehicles', (schema, request) => {
-    const token = get(request, 'requestHeaders.Authorization');
+    const token = get(request, 'requestHeaders.authorization');
     if (
       token ===
       'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImFkbWluIjp0cnVlfQ.hgNSDI7STvbPMw4dJky55hUpUy5jriNIrLwp5dW3awg'
@@ -163,7 +164,7 @@ export default function() {
 
   //credit notes
   this.get('/credit-notes', (schema, request) => {
-    const token = get(request, 'requestHeaders.Authorization');
+    const token = get(request, 'requestHeaders.authorization');
     if (
       token ===
       'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImFkbWluIjp0cnVlfQ.hgNSDI7STvbPMw4dJky55hUpUy5jriNIrLwp5dW3awg'

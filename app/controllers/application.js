@@ -7,6 +7,7 @@ import { set } from '@ember/object';
 
 export default Controller.extend({
   session: service(),
+  router: service(),
   currentUser: service(),
   intl: service(),
   actions: {

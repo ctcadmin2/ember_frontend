@@ -1,3 +1,3 @@
-{{#link-to (route-name-helper route "show") model class="ui olive button"}}Show{{/link-to}}
-{{#link-to (route-name-helper route "edit") model class="ui teal button"}}Edit{{/link-to}}
-<button class="ui red button" {{action "deleteButton" model.id}}>Destroy</button>
+{{#link-to (route-name-helper route "show") model class="ui olive button"}}{{t "general.show"}}{{/link-to}}
+{{#link-to (route-name-helper route "edit") model class="ui teal button"}}{{t "general.edit"}}{{/link-to}}
+<button class="ui red button" {{action "deleteButton" model.id}}>{{t "general.destroy"}}</button>

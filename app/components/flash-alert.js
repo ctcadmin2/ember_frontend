@@ -1,5 +1,6 @@
 import Component from '@ember/component';
 import { get, computed } from '@ember/object';
+import $ from 'jquery';
 
 export default Component.extend({
   statusClass: computed('flash', function() {
@@ -11,7 +12,7 @@ export default Component.extend({
   }),
   actions: {
     closeButton() {
-      this.$('.message').transition('slide right');
+      $('.message').transition('slide right');
     }
   }
 });

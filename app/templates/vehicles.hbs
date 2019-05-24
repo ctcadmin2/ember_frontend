@@ -1,10 +1,16 @@
 <div class="ui centered raised segment">
   <table class="ui table sortable padded selectable striped celled attached">
-    <caption class="ui huge header teal">Vehicles list</caption>
+    <caption class="ui huge header teal">
+      {{t "vehicles.title"}}
+    </caption>
     <thead>
       <tr>
-        <th>VIN</th>
-        <th>Registration</th>
+        <th>
+          {{t "vehicles.vin"}}
+        </th>
+        <th>
+          {{t "vehicles.registration"}}
+        </th>
         <th></th>
       </tr>
     </thead>
@@ -15,7 +21,9 @@
             <div class="item">
               <div class="middle aligned content">
                 <div class="left floated">
-                  {{#link-to "vehicles.new" class="ui teal button" }}New Vehicle{{/link-to}}
+                  {{#link-to "vehicles.new" class="ui teal button"}}
+                    {{t "vehicles.add_new"}}
+                  {{/link-to}}
                 </div>
                 <div class="right floated">
                   <div class="ui right floated">
@@ -31,17 +39,34 @@
     <tbody>
       {{#each vehicles as |vehicle|}}
         <tr>
-          <td>{{vehicle.vin}}</td>
-          <td>{{vehicle.registration}}</td>
+          <td>
+            {{vehicle.vin}}
+          </td>
+          <td>
+            {{vehicle.registration}}
+          </td>
           <td class="collapsing">
             <div class="ui fluid buttons">
-              {{!-- TODO custom actions --}}
+              {{! TODO custom actions }}
               {{!table-actions model=vehicle deleteModel=(action "destroyVehicle" vehicle)}}
-              <button class="ui olive button">Details</button>
-              <button class="ui olive button">Credit Notes</button>
-              <button class="ui olive button">Events</button>
-              {{#link-to "vehicles.edit" vehicle class="ui teal button"}}Edit{{/link-to}}
-              <button class="ui red button" {{action "deleteButton" vehicle.id}}>Destroy</button>
+              <button class="ui olive button">
+                {{t "vehicles.details"}}
+              </button>
+              <button class="ui olive button">
+                {{t "vehicles.c_notes"}}
+              </button>
+              <button class="ui olive button">
+                {{t "vehicles.events"}}
+              </button>
+              {{#link-to "vehicles.edit" vehicle class="ui teal button"}}
+                {{t "general.edit"}}
+              {{/link-to}}
+              <button
+                class="ui red button"
+                {{action "deleteButton" vehicle.id}}
+              >
+                {{t "general.destroy"}}
+              </button>
             </div>
           </td>
         </tr>

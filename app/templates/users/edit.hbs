@@ -1,48 +1,82 @@
 {{#ui-modal class="userModal small" closable=false}}
   <div class="header">
-    Editing {{user.fullName}}...
+    {{t "general.editing"}}
+    {{user.fullName}}
+    ...
   </div>
   <div class="content">
     <form class="ui large fluid form">
       <div class="inline field">
         <div class="ui fluid labeled input grid">
-          <label class="ui label four wide column" for={{concat elementId "-first"}}>First Name</label>
-          {{input type="text" value=user.firstName autofocus=true id=(concat elementId "-first") }}
+          <label
+            class="ui label four wide column"
+            for={{concat elementId "-first"}}
+          >
+            {{t "users.edit.first_name"}}
+          </label>
+          {{input
+            type="text"
+            value=user.firstName
+            autofocus=true
+            id=(concat elementId "-first")
+          }}
         </div>
       </div>
       <div class="inline field">
         <div class="ui fluid labeled input grid">
-          <label class="ui label four wide column" for={{concat elementId "-last"}}>Last Name</label>
-          {{input type="text" value=user.lastName id=(concat elementId "-last") }}
+          <label
+            class="ui label four wide column"
+            for={{concat elementId "-last"}}
+          >
+            {{t "users.edit.last_name"}}
+          </label>
+          {{input type="text" value=user.lastName id=(concat elementId "-last")
+          }}
         </div>
       </div>
       <div class="inline field">
         <div class="ui fluid labeled input grid">
-          <label class="ui label four wide column" for={{concat elementId "-email"}}>Email</label>
-          {{input type="email" value=user.email id=(concat elementId "-email") }}
+          <label
+            class="ui label four wide column"
+            for={{concat elementId "-email"}}
+          >
+            {{t "users.edit.email"}}
+          </label>
+          {{input type="email" value=user.email id=(concat elementId "-email")}}
         </div>
       </div>
       <div class="inline field">
         <div class="ui fluid labeled input grid">
-          <label class="ui label four wide column" for={{concat elementId "-ssn"}}>SSN</label>
-          {{input type="text" value=user.ssn id=(concat elementId "-ssn") }}
+          <label
+            class="ui label four wide column"
+            for={{concat elementId "-ssn"}}
+          >
+            {{t "users.edit.ssn"}}
+          </label>
+          {{input type="text" value=user.ssn id=(concat elementId "-ssn")}}
         </div>
       </div>
       <div class="inline field">
         <div class="ui fluid labeled input grid">
-          <label class="ui label four wide column">Language</label>
-          {{#ui-dropdown class="ui twelve wide column scrolling selection" selected=user.lang
-              onChange=(action (mut user.lang)) showOnFocus=false}}
+          <label class="ui label four wide column">
+            {{t "users.edit.lang.title"}}
+          </label>
+          {{#ui-dropdown
+            class="ui twelve wide column scrolling selection"
+            selected=user.lang
+            onChange=(action (mut user.lang))
+            showOnFocus=false
+          }}
             <i class="dropdown icon"></i>
             <div class="default text"></div>
             <div class="menu">
               <div class="item" data-value="en-us">
                 <i class="us flag"></i>
-                English
+                {{t "users.edit.lang.en"}}
               </div>
               <div class="item" data-value="ro-ro">
                 <i class="ro flag"></i>
-                Romana
+                {{t "users.edit.lang.ro"}}
               </div>
             </div>
           {{/ui-dropdown}}
@@ -52,10 +86,10 @@
   </div>
   <div class="actions">
     <button class="ui red button" {{action "cancelButton"}}>
-      Cancel
+      {{t "general.cancel"}}
     </button>
     <button class="ui positive button" {{action "okButton"}}>
-      Update
+      {{t "general.update"}}
     </button>
   </div>
 {{/ui-modal}}

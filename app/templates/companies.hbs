@@ -12,7 +12,7 @@
         <th>
           <div class="ui search">
             <div class="ui fluid icon input">
-              {{input value=filter key-up="setPage" class="prompt" type="text" placeholder="Search"}}
+              {{input value=filter key-up=(action "setPage") class="prompt" type="text" placeholder="Search"}}
               <i class="{{if filterEmpty "search" "remove link"}} icon" role="button" {{action "clearFilter"}}></i>
             </div>
           </div>
