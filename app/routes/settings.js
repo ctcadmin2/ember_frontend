@@ -1,15 +1,15 @@
-import Route from './protected';
-import { next } from '@ember/runloop';
-import $ from 'jquery';
+import Route from "./protected";
+import { next } from "@ember/runloop";
+import $ from "jquery";
 
 export default Route.extend({
   model() {
-    return this.store.findRecord('settings', 1);
+    return this.store.findRecord("settings", 1);
   },
   actions: {
     didTransition() {
       next(function() {
-        $('.tabular .item').tab();
+        $(".tabular .item").tab();
       });
     }
   }

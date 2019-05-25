@@ -2,23 +2,44 @@
 <form class="ui large fluid form">
   <div class="inline field">
     <div class="ui fluid labeled input grid">
-      <label class="ui label four wide column" for={{concat elementId "-vin"}}>{{t "vehicles.vin"}}</label>
-      {{input type="text" value=vehicle.vin autofocus=true id=(concat elementId "-vin") disabled=inputDisabled}}
+      <label class="ui label four wide column" for={{concat elementId "-vin"}}>
+        {{t "vehicles.vin"}}
+      </label>
+      {{input
+        type="text"
+        value=vehicle.vin
+        autofocus=true
+        id=(concat elementId "-vin")
+        disabled=inputDisabled
+      }}
     </div>
   </div>
   <div class="inline field">
     <div class="ui fluid labeled input grid">
-      <label class="ui label four wide column" for={{concat elementId "-reg"}}>{{t "vehicles.registration"}}</label>
-      {{input type="text" value=vehicle.registration id=(concat elementId "-reg") disabled=inputDisabled}}
+      <label class="ui label four wide column" for={{concat elementId "-reg"}}>
+        {{t "vehicles.registration"}}
+      </label>
+      {{input
+        type="text"
+        value=vehicle.registration
+        id=(concat elementId "-reg")
+        disabled=inputDisabled
+      }}
     </div>
   </div>
   <div class="inline field">
     <div class="ui fluid labeled input grid">
-      <label class="ui label four wide column">{{t "general.category"}}</label>
-      {{#ui-dropdown class="twelve wide column scrolling selection" selected=vehicle.category
-        onChange=(action (mut vehicle.category)) showOnFocus=false}}
+      <label class="ui label four wide column">
+        {{t "general.category"}}
+      </label>
+      {{#ui-dropdown
+        class="twelve wide column scrolling selection"
+        selected=vehicle.category
+        onChange=(action (mut vehicle.category))
+        showOnFocus=false
+      }}
+        {{vehicle.category}}
         <i class="dropdown icon"></i>
-        <div class="default text"></div>
         <div class="menu">
           {{#each prefs.veh_cat as |cat|}}
             <div class="item" data-value={{cat}}>
@@ -29,10 +50,19 @@
       {{/ui-dropdown}}
     </div>
   </div>
-  <div class="inline field">
-    <div class="ui fluid labeled input grid">
-      <label class="ui label four wide column">{{t "vehicles.active"}}</label>
-      {{ui-checkbox class="slider" disabled=inputDisabled checked=vehicle.active onChange=(action (mut vehicle.active))}}
+  {{#if (not-eq router.currentRouteName "vehicles.new")}}
+    <div class="inline field">
+      <div class="ui fluid labeled input grid">
+        <label class="ui label four wide column">
+          {{t "vehicles.active"}}
+        </label>
+        {{ui-checkbox
+          class="slider"
+          disabled=inputDisabled
+          checked=vehicle.active
+          onChange=(action (mut vehicle.active))
+        }}
+      </div>
     </div>
-  </div>
+  {{/if}}
 </form>

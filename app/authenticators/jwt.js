@@ -17,6 +17,7 @@ export default BaseAuthenticator.extend({
    * @return {Promise} A promise that when it resolves results in the session being authenticated
    * @public
    * FIX: if 2 tabs opened it gets unauth
+   * FIX: loses auth on page refresh
    */
   restore(data) {
     return new Promise((resolve, reject) => {
