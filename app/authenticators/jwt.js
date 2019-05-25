@@ -1,7 +1,7 @@
-import BaseAuthenticator from 'ember-simple-auth/authenticators/base';
-import jwtDecode from 'ember-cli-jwt-decode';
-import { Promise, resolve, reject } from 'rsvp';
-import { isEmpty } from '@ember/utils';
+import BaseAuthenticator from "ember-simple-auth/authenticators/base";
+import jwtDecode from "ember-cli-jwt-decode";
+import { Promise, resolve, reject } from "rsvp";
+import { isEmpty } from "@ember/utils";
 
 /**
  * JWT (JSON Web Token) Authenticator that supports automatic token refresh.
@@ -16,12 +16,13 @@ export default BaseAuthenticator.extend({
    * @param {Object} data The data to restore the session from
    * @return {Promise} A promise that when it resolves results in the session being authenticated
    * @public
+   * FIX: if 2 tabs opened it gets unauth
    */
   restore(data) {
     return new Promise((resolve, reject) => {
       // there is no token available
       if (isEmpty(data.token)) {
-        return reject(new Error('no token'));
+        return reject(new Error("no token"));
       }
 
       /**
@@ -37,7 +38,7 @@ export default BaseAuthenticator.extend({
       // if token is expired invalidate session
       if (expiresAt < now) {
         return this.invalidate().then(() =>
-          reject(new Error('token is expired'))
+          reject(new Error("token is expired"))
         );
       }
 
@@ -63,12 +64,12 @@ export default BaseAuthenticator.extend({
       }
     });
 
-    return fetch('/user_token', {
-      method: 'POST',
-      credentials: 'include',
+    return fetch("/user_token", {
+      method: "POST",
+      credentials: "include",
       headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
+        Accept: "application/json",
+        "Content-Type": "application/json"
       },
       body: data
     })
