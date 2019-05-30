@@ -6,7 +6,7 @@ import { inject as service } from "@ember/service";
 
 export default Component.extend({
   store: service(),
-  currencies: this.store.findRecord("prefs", 1),
+  settings: service(),
   selectedVehicle: computed("creditNote.vehicle", function() {
     return this.creditNote.vehicle;
   }),
