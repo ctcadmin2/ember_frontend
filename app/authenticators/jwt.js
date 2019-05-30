@@ -11,18 +11,16 @@ import { isEmpty } from "@ember/utils";
 export default BaseAuthenticator.extend({
   /**
    * Restores the session from a set of session properties.
-   * It will return a resolving promise if `data.token` is non-empty and `expiresAt` is greater than the calculated `now`.
+   * It will return a resolving promise if `data.jwt` is non-empty and `expiresAt` is greater than the calculated `now`.
    * @method restore
    * @param {Object} data The data to restore the session from
    * @return {Promise} A promise that when it resolves results in the session being authenticated
    * @public
-   * FIX: if 2 tabs opened it gets unauth
-   * FIX: loses auth on page refresh
    */
   restore(data) {
     return new Promise((resolve, reject) => {
       // there is no token available
-      if (isEmpty(data.token)) {
+      if (isEmpty(data.jwt)) {
         return reject(new Error("no token"));
       }
 
@@ -32,7 +30,7 @@ export default BaseAuthenticator.extend({
        *  if expired clear token
        *  else restore
        */
-      let decoded_token = jwtDecode(data.token);
+      let decoded_token = jwtDecode(data.jwt);
       let now = this._getCurrentTime();
       let expiresAt = decoded_token.exp;
 
