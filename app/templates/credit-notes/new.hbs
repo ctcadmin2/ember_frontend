@@ -9,32 +9,14 @@
   </div>
   <div class="content">
     <div class="scrolling">
-      <form class="ui large fluid form">
-        <div class="inline field">
-          <div class="ui fluid labeled input grid">
-            <label
-              class="ui label four wide column"
-              for={{concat elementId "-name"}}
-            >
-              {{t "settings.company.name"}}
-            </label>
-            {{input
-              type="text"
-              value=data.name
-              autofocus=true
-              id=(concat elementId "-name")
-              disabled=inputDisabled
-            }}
-          </div>
-        </div>
-      </form>
+      {{credit-note-form creditNote=creditNote vehicles=vehicles}}
     </div>
   </div>
   <div class="actions">
     <button class="ui red deny button" {{action "cancelButton"}}>
       {{t "general.cancel"}}
     </button>
-    <div class="ui positive {{if saveDisabled "disabled"}} button">
+    <div class="ui positive button">
       {{t "general.save"}}
     </div>
   </div>

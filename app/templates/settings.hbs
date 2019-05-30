@@ -1,20 +1,36 @@
 <div class="ui grid centered">
-  <div class="ui sixteen wide mobile ten wide tablet twelve wide computer column">
+  <div
+    class="ui sixteen wide mobile ten wide tablet twelve wide computer column"
+  >
     <div class="ui centered raised segment">
       <div class="ui top attached tabular menu">
-        <a class="item active" data-tab="main">{{t "settings.main_tab"}}</a>
-        <a class="item" data-tab="company">{{t "settings.company_tab"}}</a>
+        <a class="item active" data-tab="main">
+          {{t "settings.main_tab"}}
+        </a>
+        <a class="item" data-tab="company">
+          {{t "settings.company_tab"}}
+        </a>
       </div>
       <div class="ui bottom attached active tab segment" data-tab="main">
         <div class="ui selection very relaxed divided list">
-          {{#each-in prefs.main as |key value|}}
+          {{#each-in settings.main as |key value|}}
             {{#if (is-array value)}}
-              {{tab-multiline-item category=key list=value updateData=(action "updateCategory")}}
+              {{tab-multiline-item
+                category=key
+                list=value
+                updateData=(action "updateCategory")
+              }}
             {{/if}}
           {{/each-in}}
-          {{#each-in prefs.main as |key value|}}
+          {{#each-in settings.main as |key value|}}
             {{#if (not (is-array value))}}
-              {{tab-line-item objType="main" inputType="text" prop=key value=value saveData=(action "saveCompanyData")}}
+              {{tab-line-item
+                objType="main"
+                inputType="text"
+                prop=key
+                value=value
+                saveData=(action "saveCompanyData")
+              }}
             {{/if}}
           {{/each-in}}
         </div>
@@ -22,7 +38,13 @@
       <div class="ui bottom attached tab segment" data-tab="company">
         <div class="ui selection very relaxed divided list">
           {{#each companyOrder as |list|}}
-            {{tab-line-item objType="company" prop=list.[0] inputType=list.[1] value=(get prefs.company list.[0]) saveData=(action "saveCompanyData")}}
+            {{tab-line-item
+              objType="company"
+              prop=(get list 0)
+              inputType=(get list 1)
+              value=(get settings.company (get list 0))
+              saveData=(action "saveCompanyData")
+            }}
           {{/each}}
         </div>
       </div>

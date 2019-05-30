@@ -95,6 +95,7 @@
     "paid": "Paid",
     "truck": "Truck",
     "notes": "Notes",
+    "currency": "Currency",
     "new_credit": "Add new",
     "new": { "title": "Add new credit note..." }
   },

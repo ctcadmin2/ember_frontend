@@ -1,0 +1,142 @@
+<div class="ui divider"></div>
+<form class="ui large fluid form">
+  <div class="inline field">
+    <div class="ui fluid labeled input grid">
+      <label
+        class="ui label four wide column"
+        for={{concat elementId "-number"}}
+      >
+        {{t "credit_notes.number"}}
+      </label>
+      {{input
+        type="text"
+        value=creditNote.number
+        autofocus=true
+        id=(concat elementId "-number")
+      }}
+    </div>
+  </div>
+  <div class="inline field">
+    <div class="ui fluid labeled input grid">
+      <label class="ui label four wide column">
+        {{t "credit_notes.truck"}}
+      </label>
+      {{#ui-dropdown
+        class="twelve wide column scrolling selection"
+        selected=selectedVehicle
+        onChange=(action "setVehicle")
+      }}
+        <div class="default text">
+          {{selectedVehicle.registration}}
+        </div>
+        <i class="dropdown icon"></i>
+        <div class="menu">
+          {{#each vehicles as |vehicle|}}
+            <div class="item" data-value={{vehicle.id}}>
+              {{vehicle.registration}}
+            </div>
+          {{/each}}
+        </div>
+      {{/ui-dropdown}}
+    </div>
+  </div>
+  <div class="inline field">
+    <div class="ui fluid labeled input grid">
+      <label
+        class="ui label four wide column"
+        for={{concat elementId "-value"}}
+      >
+        {{t "credit_notes.value"}}
+      </label>
+      {{input
+        type="text"
+        value=creditNote.value
+        autofocus=true
+        id=(concat elementId "-value")
+      }}
+    </div>
+  </div>
+  <div class="inline field">
+    <div class="ui fluid labeled input grid">
+      <label
+        class="ui label four wide column"
+        for={{concat elementId "-start"}}
+      >
+        {{t "credit_notes.start"}}
+      </label>
+      {{input
+        type="text"
+        value=creditNote.start
+        autofocus=true
+        id=(concat elementId "-start")
+      }}
+    </div>
+  </div>
+  <div class="inline field">
+    <div class="ui fluid labeled input grid">
+      <label class="ui label four wide column" for={{concat elementId "-stop"}}>
+        {{t "credit_notes.stop"}}
+      </label>
+      {{input
+        type="text"
+        value=creditNote.end
+        autofocus=true
+        id=(concat elementId "-stop")
+      }}
+    </div>
+  </div>
+  <div class="inline field">
+    <div class="ui fluid labeled input grid">
+      <label
+        class="ui label four wide column"
+        for={{concat elementId "-notes"}}
+      >
+        {{t "credit_notes.notes"}}
+      </label>
+      {{input
+        type="text"
+        value=creditNote.notes
+        autofocus=true
+        id=(concat elementId "-notes")
+      }}
+    </div>
+  </div>
+  <div class="inline field">
+    <div class="ui fluid labeled input grid">
+      <label class="ui label four wide column">
+        {{t "credit_notes.currency"}}
+      </label>
+      {{#ui-dropdown
+        class="twelve wide column scrolling selection"
+        selected=currency
+        onChange=(action (mut creditNote.currency))
+      }}
+        <div class="default text">
+          {{currency}}
+        </div>
+        <i class="dropdown icon"></i>
+        <div class="menu">
+          {{log currencies}}
+          {{#each currencies as |currency|}}
+            <div class="item" data-value={{vehicle.id}}>
+              {{vehicle.registration}}
+            </div>
+          {{/each}}
+        </div>
+      {{/ui-dropdown}}
+    </div>
+  </div>
+  <div class="inline field">
+    <div class="ui fluid labeled input grid">
+      <label class="ui label four wide column">
+        {{t "credit_notes.paid"}}
+      </label>
+      {{ui-checkbox
+        class="slider"
+        disabled=inputDisabled
+        checked=creditNote.paid
+        onChange=(action (mut creditNote.paid))
+      }}
+    </div>
+  </div>
+</form>

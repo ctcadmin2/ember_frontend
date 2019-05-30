@@ -95,6 +95,7 @@
     "paid": "Platit",
     "truck": "Camion",
     "notes": "Note",
+    "currency": "Valuta",
     "new_credit": "Adauga",
     "new": { "title": "Add new credit note..." }
   },
