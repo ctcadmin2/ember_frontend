@@ -37,6 +37,10 @@ Router.map(function() {
     this.route('new');
     this.route('edit', { path: '/:credit_note_id/edit' });
   });
+  this.route('credit-invoices', function() {
+    this.route('new');
+    this.route('edit', { path: '/:credit_invoice_id/edit' });
+  });
 });
 
 export default Router;

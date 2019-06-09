@@ -1,15 +1,15 @@
 {{#ui-modal
-  name="creditNoteModal"
-  class="creditNoteModal small"
+  name="creditInvoiceModal"
+  class="creditInvoiceModal large"
   onApprove=(action "approveModal")
   closable=false
 }}
   <div class="header">
-    {{t "creditNotes.new.title"}}
+    {{t "creditInvoices.new.title"}}
   </div>
   <div class="content">
     <div class="scrolling">
-      {{credit-note-form creditNote=creditNote vehicles=vehicles}}
+      {{!-- {{credit-invoice-form creditInvoice=creditInvoice}} --}}
     </div>
   </div>
   <div class="actions">

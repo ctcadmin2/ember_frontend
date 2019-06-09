@@ -5,6 +5,7 @@
       "login": "Autentificare",
       "logout": "Deconectare",
       "vehicles": "Vehicule",
+      "creditInvoices": "Facturi",
       "creditNotes": "Note de credit",
       "companies": "Companii",
       "users": "Utilizatori",
@@ -25,24 +26,24 @@
     "ok": "OK"
   },
   "components": {
-    "pagination_list": { "page_nr": "Nr. pagina" },
-    "find_company": {
+    "paginationList": { "pageNr": "Nr. pagina" },
+    "findCompany": {
       "success": "Firma a fost gasita. Verifica datele si salveaza.",
       "error": "Firma nu a putut fi gasita. Incearca din nou sau introdu datele manual.",
-      "find_button": "Cauta firma"
+      "findButton": "Cauta firma"
     }
   },
   "settings": {
-    "company_tab": "Setari companie",
-    "main_tab": "Setari aplicatie",
+    "companyTab": "Setari companie",
+    "mainTab": "Setari aplicatie",
     "company": {
       "name": "Nume",
       "registration": "Nr. inregistrare",
       "vat": "CIF",
       "address": "Adresa",
       "country": "Tara",
-      "acc_eur": "Cont EUR",
-      "acc_ron": "Cont RON",
+      "accEur": "Cont EUR",
+      "accRon": "Cont RON",
       "bank": "Banca",
       "capital": "Capital",
       "phone": "Telefon",
@@ -51,13 +52,13 @@
       "status": "Status"
     },
     "main": {
-      "paid_by": "Mod plata",
-      "veh_cat": "Categoria vehiculului",
-      "vat_rate": "Rata TVA",
+      "paidBy": "Mod plata",
+      "vehCat": "Categoria vehiculului",
+      "vatRate": "Rata TVA",
       "activities": "Activitati",
       "currencies": "Valute",
-      "diurna_baza": "Diurna zilnica",
-      "salar_baza": "Salariu"
+      "diurnaBaza": "Diurna zilnica",
+      "salarBaza": "Salariu"
     }
   },
   "companies": {
@@ -70,23 +71,37 @@
         "phone": "Telefon"
       }
     },
-    "add_new": "Adauga companie noua...",
+    "addNew": "Adauga companie noua...",
     "showing": "Aratam"
   },
   "vehicles": {
     "title": "Lista vehicule",
-    "add_new": "Vehicul nou",
+    "addNew": "Vehicul nou",
     "vin": "Serie sasiu",
     "registration": "Nr. inmatriculare",
     "active": "Active",
     "details": "Detalii",
-    "c_notes": "Note de credit",
+    "cNotes": "Note de credit",
     "events": "Evenimente",
     "new": {
       "title": "Adauga vehicol nou..."
     }
   },
-  "credit_notes": {
+  "creditInvoices": {
+    "title": "Facturi",
+    "number": "Numar",
+    "date": "Data",
+    "value": "Valoare",
+    "newCI": "Adauga factura",
+    "new": {
+      "taxRate": "Rata TVA",
+      "currency": "Valuta",
+      "cNotes": "Note de credit",
+      "title": "Adauga factura noua...",
+      "client": "Client"
+    }
+  },
+  "creditNotes": {
     "title": "Note de credit",
     "number": "Numar",
     "start": "Start",
@@ -96,7 +111,7 @@
     "truck": "Camion",
     "notes": "Note",
     "currency": "Valuta",
-    "new_credit": "Adauga",
+    "newCredit": "Adauga",
     "new": { "title": "Add new credit note..." }
   },
   "users": {
@@ -105,8 +120,8 @@
     "ssn": "CNP",
     "email": "Email",
     "edit": {
-      "first_name": "Prenume",
-      "last_name": "Nume",
+      "firstName": "Prenume",
+      "lastName": "Nume",
       "email": "Email",
       "ssn": "CNP",
       "lang": {
@@ -124,8 +139,8 @@
   },
   "registration": {
     "title": "Va rugam sa va inregistrati.",
-    "first_name": "Prenume",
-    "last_name": "Nume",
+    "firstName": "Prenume",
+    "lastName": "Nume",
     "ssn": "CNP",
     "lang": {
       "title": "Limba",
@@ -134,7 +149,7 @@
     },
     "email": "Email",
     "pass": "Parola",
-    "pass_conf": "Confirmare parola",
+    "passConf": "Confirmare parola",
     "button": { "registration": "Inregistrare" }
   }
 }

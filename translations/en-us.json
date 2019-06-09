@@ -5,6 +5,7 @@
       "login": "Login",
       "logout": "Logout",
       "vehicles": "Vehicles",
+      "creditInvoices": "Credit Invoices",
       "creditNotes": "Credit Notes",
       "companies": "Companies",
       "users": "Users",
@@ -25,24 +26,24 @@
     "ok": "OK"
   },
   "components": {
-    "pagination_list": { "page_nr": "Select page" },
-    "find_company": {
+    "paginationList": { "pageNr": "Select page" },
+    "findCompany": {
       "success": "Company found, please review and save.",
       "error": "Company not found, please try again or input data manually.",
-      "find_button": "Find company"
+      "findButton": "Find company"
     }
   },
   "settings": {
-    "company_tab": "Company Settings",
-    "main_tab": "Application Settings",
+    "companyTab": "Company Settings",
+    "mainTab": "Application Settings",
     "company": {
       "name": "Name",
       "registration": "Registration",
       "vat": "VAT",
       "address": "Address",
       "country": "Country",
-      "acc_eur": "Account EUR",
-      "acc_ron": "Account RON",
+      "accEur": "Account EUR",
+      "accRon": "Account RON",
       "bank": "Bank",
       "capital": "Capital",
       "phone": "Phone",
@@ -51,13 +52,13 @@
       "status": "Status"
     },
     "main": {
-      "paid_by": "Paid by",
-      "veh_cat": "Vehicle category",
-      "vat_rate": "Vat rate",
+      "paidBy": "Paid by",
+      "vehCat": "Vehicle category",
+      "vatRate": "Vat rate",
       "activities": "Activities",
       "currencies": "Currencies",
-      "diurna_baza": "Daily payment",
-      "salar_baza": "Salary"
+      "diurnaBaza": "Daily payment",
+      "salarBaza": "Salary"
     }
   },
   "companies": {
@@ -70,23 +71,37 @@
         "phone": "Phone"
       }
     },
-    "add_new": "Add new company...",
+    "addNew": "Add new company...",
     "showing": "Showing"
   },
   "vehicles": {
     "title": "Vehicles list",
-    "add_new": "New Vehicle",
+    "addNew": "New Vehicle",
     "vin": "VIN",
     "registration": "Registration",
     "active": "Active",
     "details": "Details",
-    "c_notes": "Credit Notes",
+    "cNotes": "Credit Notes",
     "events": "Events",
     "new": {
       "title": "Adding new vehicle..."
     }
   },
-  "credit_notes": {
+  "creditInvoices": {
+    "title": "Credit Invoices",
+    "number": "Number",
+    "date": "Date",
+    "value": "Value",
+    "newCI": "Add Invoice",
+    "new": {
+      "taxRate": "Tax rate",
+      "currency": "Currency",
+      "cNotes": "Credit Notes",
+      "title": "Adding new credit invoice...",
+      "client": "Client"
+    }
+  },
+  "creditNotes": {
     "title": "Credit Notes",
     "number": "Number",
     "start": "Start",
@@ -96,7 +111,7 @@
     "truck": "Truck",
     "notes": "Notes",
     "currency": "Currency",
-    "new_credit": "Add new",
+    "newCredit": "Add new",
     "new": { "title": "Add new credit note..." }
   },
   "users": {
@@ -105,8 +120,8 @@
     "ssn": "SSN",
     "email": "Email",
     "edit": {
-      "first_name": "First Name",
-      "last_name": "Last Name",
+      "firstName": "First Name",
+      "lastName": "Last Name",
       "email": "Email",
       "ssn": "SSN",
       "lang": {
@@ -124,8 +139,8 @@
   },
   "registration": {
     "title": "Please sign up.",
-    "first_name": "First Name",
-    "last_name": "Last Name",
+    "firstName": "First Name",
+    "lastName": "Last Name",
     "ssn": "SSN",
     "lang": {
       "title": "Language",
@@ -134,7 +149,7 @@
     },
     "email": "Email",
     "pass": "Password",
-    "pass_conf": "Password Confirmation",
+    "passConf": "Password Confirmation",
     "button": { "registration": "Registration" }
   }
 }

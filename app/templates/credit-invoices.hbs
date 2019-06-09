@@ -1,7 +1,7 @@
 <div class="ui centered raised segment">
   <table class="ui table sortable padded selectable striped celled attached">
     <caption class="ui huge header teal">
-      {{t "creditNotes.title"}}
+      {{t "creditInvoices.title"}}
     </caption>
     <thead>
       <tr>
@@ -10,37 +10,17 @@
           role="button"
           {{action "sort" "number"}}
         >
-          {{t "creditNotes.number"}}
+          {{t "creditInvoices.number"}}
         </th>
         <th>
-          {{t "creditNotes.start"}}
-        </th>
-        <th>
-          {{t "creditNotes.stop"}}
+          {{t "creditInvoices.date"}}
         </th>
         <th
-          class={{sort-class sort "value"}}
+          class={{sort-class sort "total_value"}}
           role="button"
-          {{action "sort" "value"}}
+          {{action "sort" "total_value"}}
         >
-          {{t "creditNotes.value"}}
-        </th>
-        <th
-          class={{sort-class sort "paid"}}
-          role="button"
-          {{action "sort" "paid"}}
-        >
-          {{t "creditNotes.paid"}}
-        </th>
-        <th
-          class={{sort-class sort "vehicle"}}
-          role="button"
-          {{action "sort" "vehicle.id"}}
-        >
-          {{t "creditNotes.truck"}}
-        </th>
-        <th>
-          {{t "creditNotes.notes"}}
+          {{t "creditInvoices.value"}}
         </th>
         <th>
           <div class="ui search">
@@ -69,13 +49,13 @@
             <div class="item">
               <div class="middle aligned content">
                 <div class="left floated">
-                  {{#link-to "credit-notes.new" class="ui teal button"}}
-                    {{t "creditNotes.newCredit"}}
+                  {{#link-to "credit-invoices.new" class="ui teal button"}}
+                    {{t "creditInvoices.newCI"}}
                   {{/link-to}}
                 </div>
                 <div class="right floated">
                   <div class="ui right floated">
-                    {{pagination-list model=creditNotes page=page}}
+                    {{pagination-list model=creditInvoices page=page}}
                   </div>
                 </div>
               </div>
@@ -85,36 +65,23 @@
       </tr>
     </tfoot>
     <tbody>
-      {{#each creditNotes as |cn|}}
+      {{#each creditInvoices as |ci|}}
         <tr>
           <td>
-            {{cn.number}}
+            {{ci.number}}
           </td>
           <td>
-            {{cn.start}}
+            {{ci.date}}
           </td>
           <td>
-            {{cn.end}}
-          </td>
-          <td>
-            {{cn.value}}
-            {{cn.currency}}
-          </td>
-          <td>
-            <i class={{paid cn.paid}}></i>
-          </td>
-          <td>
-            {{cn.vehicle.registration}}
-          </td>
-          <td>
-            {{cn.notes}}
+            {{ci.total_value}}
           </td>
           <td>
             <div class="ui fluid buttons">
               <button class="ui olive button">
                 {{t "general.show"}}
               </button>
-              {{#link-to "credit-notes.edit" model class="ui teal button"}}
+              {{#link-to "credit-invoices.edit" ci class="ui teal button"}}
                 {{t "general.edit"}}
               {{/link-to}}
               <button class="ui red button" {{action "deleteButton" cn.id}}>

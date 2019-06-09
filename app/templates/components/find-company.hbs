@@ -1,10 +1,19 @@
 <form class="ui fluid {{formClass}} form" oninput={{action "changeCif"}}>
-  <div class="ui success message">{{t "components.find_company.success"}}</div>
-  <div class="ui error message">{{t "components.find_company.error"}}</div>
+  <div class="ui success message">
+    {{t "components.findCompany.success"}}
+  </div>
+  <div class="ui error message">
+    {{t "components.findCompany.error"}}
+  </div>
   <div class="inline field">
     <div class="ui fluid labeled input grid">
       {{#if countries.dataFetched}}
-        {{#ui-dropdown class="scrolling selection" selected=country onChange=(action (mut country)) showOnFocus=false}}
+        {{#ui-dropdown
+          class="scrolling selection"
+          selected=country
+          onChange=(action (mut country))
+          showOnFocus=false
+        }}
           <i class="dropdown icon"></i>
           <div class="default text"></div>
           <div class="menu">
@@ -22,8 +31,12 @@
         {{/ui-dropdown}}
       {{/if}}
       {{input type="text" value=cif placeholder="CIF"}}
-      <button class="ui primary button" disabled={{searchDisabled}} {{action (perform findTask)}}>
-        {{t "components.find_company.find_button"}}
+      <button
+        class="ui primary button"
+        disabled={{searchDisabled}}
+        {{action (perform findTask)}}
+      >
+        {{t "components.findCompany.findButton"}}
       </button>
     </div>
   </div>
