@@ -23,7 +23,8 @@
     "editing": "Modificam",
     "cancel": "Anuleaza",
     "update": "Actualizeaza",
-    "ok": "OK"
+    "ok": "OK",
+    "loggedIn": "Autentificat ca: "
   },
   "components": {
     "paginationList": { "pageNr": "Nr. pagina" },

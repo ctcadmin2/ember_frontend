@@ -23,7 +23,8 @@
     "editing": "Editing",
     "cancel": "Cancel",
     "update": "Update",
-    "ok": "OK"
+    "ok": "OK",
+    "loggedIn": "Logged in as: "
   },
   "components": {
     "paginationList": { "pageNr": "Select page" },
