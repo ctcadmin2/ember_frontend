@@ -69,7 +69,7 @@
 		"loader.js": "^4.7.0",
 		"qunit-dom": "^0.8.5",
 		"semantic-ui-ember": "https://github.com/lssjbrolli/Semantic-UI-Ember.git",
-		"sweetalert2": "^8.12.1",
+		"sweetalert2": "^8.12.2",
 		"testem": "^2.16.0"
 	},
 	"engines": {
