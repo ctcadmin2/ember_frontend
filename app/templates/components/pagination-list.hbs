@@ -2,16 +2,22 @@
   <div class="ui pagination menu">
     {{#unless prevButton}}
       {{#unless firstButton}}
-        {{#link-to route (query-params page=1) class="item" }}
+        {{#link-to route (query-params page=1) class="item"}}
           <i class="fast backward icon"></i>
         {{/link-to}}
       {{/unless}}
-      {{#link-to route (query-params page=decrementPage) class="item" }}
+      {{#link-to route (query-params page=decrementPage) class="item"}}
         <i class="left arrow icon"></i>
       {{/link-to}}
     {{/unless}}
-    {{#ui-dropdown class="fluid scrolling selection" selected=query.page.number onChange=(action (mut page)) as |execute mapper|}}
-      <div class="default text">{{t "components.pagination_list.page_nr"}}</div>
+    {{#ui-dropdown
+      class="fluid scrolling selection"
+      selected=query.page.number
+      onChange=(action (mut page)) as |execute mapper|
+    }}
+      <div class="default text">
+        {{t "components.paginationList.pageNr"}}
+      </div>
       <i class="dropdown icon"></i>
       <div class="menu">
         {{#each pageList as |page|}}
@@ -22,11 +28,11 @@
       </div>
     {{/ui-dropdown}}
     {{#unless nextButton}}
-      {{#link-to route (query-params page=incrementPage) class="item" }}
+      {{#link-to route (query-params page=incrementPage) class="item"}}
         <i class="right arrow icon"></i>
       {{/link-to}}
       {{#unless lastButton}}
-        {{#link-to route (query-params page=meta.page-count) class="item" }}
+        {{#link-to route (query-params page=meta.page-count) class="item"}}
           <i class="fast forward icon"></i>
         {{/link-to}}
       {{/unless}}

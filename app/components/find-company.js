@@ -1,62 +1,69 @@
-import { inject as service } from '@ember/service';
-import Component from '@ember/component';
-import { task } from 'ember-concurrency';
-import { computed, set } from '@ember/object';
-import { empty, alias, or } from '@ember/object/computed';
+import { inject as service } from "@ember/service";
+import Component from "@ember/component";
+import { computed, set, action } from "@ember/object";
+import { empty, alias, or } from "@ember/object/computed";
+import { task } from "ember-concurrency";
 
-export default Component.extend({
-  countries: service(),
-  companyInfo: service(),
+export default class FindCompany extends Component {
+  @service countries;
+  @service companyInfo;
 
-  country: 'RO',
-  responseType: '',
-  cifChanged: false,
+  country = "RO";
+  responseType = "";
+  cifChanged = false;
 
-  taskRunning: alias('findTask.isRunning'),
-  hasStarted: alias('findTask.last.hasStarted'),
-  cifEmpty: empty('cif'),
-  searchDisabled: or('cifEmpty', 'cifChanged'),
-  formClass: computed('taskRunning', 'responseType', function() {
+  @alias("findTask.isRunning")
+  taskRunning;
+  @alias("findTask.last.hasStarted")
+  hasStarted;
+  @empty("cif")
+  cifEmpty;
+  @or("cifEmpty", "cifChanged")
+  searchDisabled;
+  @computed("taskRunning", "responseType")
+  get formClass() {
     if (this.isRunning) {
-      return 'loading';
+      return "loading";
     } else {
       return this.responseType;
     }
-  }),
+  }
 
-  findTask: task(function*() {
-    set(this, 'cifChanged', true);
-    let companyInfo = this.companyInfo;
+  @(task(function*() {
+    set(this, "cifChanged", true);
     let result;
     try {
-      if (this.country == 'RO') {
-        result = yield companyInfo.checkOpenApi(this.cif);
+      if (this.country == "RO") {
+        result = yield this.companyInfo.checkOpenApi(this.cif);
       } else {
-        result = yield companyInfo.checkVies(this.country, this.cif);
+        result = yield this.companyInfo.checkVies(this.country, this.cif);
       }
     } catch (error) {
-      set(this, 'responseType', 'error');
-      result = { error: 'error' };
+      set(this, "responseType", "error");
+      result = { error: "error" };
     }
-
     this._processResponse(result);
-  }).drop(),
+  }).drop())
+  findTask;
 
-  actions: {
-    changeCif() {
-      set(this, 'cifChanged', false);
-      set(this, 'responseType', '');
-    }
-  },
+  executeTheTask() {
+    this.findTask.perform();
+  }
+
+  @action
+  changeCif() {
+    set(this, "cifChanged", false);
+    set(this, "responseType", "");
+  }
 
   //private
   _processResponse(data) {
     if (data.data) {
-      set(this, 'responseType', 'success');
+      set(this, "responseType", "success");
     } else {
-      set(this, 'responseType', 'error');
+      set(this, "responseType", "error");
     }
 
     this.returnData(data);
   }
-});
+}

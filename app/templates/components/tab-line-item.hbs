@@ -1,6 +1,12 @@
-<div class="ui middle aligned item grid" onMouseEnter={{action "mouseIn"}} onMouseLeave={{action "mouseOut"}}
-  onclick={{action "editMode"}}>
-  <div class="ui four wide column">{{t (concat "settings." objType "." prop)}}</div>
+<div
+  class="ui middle aligned item grid"
+  onMouseEnter={{action "mouseIn"}}
+  onMouseLeave={{action "mouseOut"}}
+  onclick={{action "toggleEdit"}}
+>
+  <div class="ui four wide column">
+    {{t (concat "settings." objType "." (camelize prop))}}
+  </div>
   <div class="ui six wide column">
     <div class="ui fluid {{if editMode "input"}}">
       {{#if editMode}}
@@ -14,19 +20,20 @@
       {{/if}}
     </div>
   </div>
-  <div class="ui six wide column" onMouseEnter={{action "mouseIn"}} onMouseLeave={{action "mouseOut"}}
-    onclick={{action "saveChanges"}}>
+  <div
+    class="ui six wide column"
+    onMouseEnter={{action "mouseIn"}}
+    onMouseLeave={{action "mouseOut"}}
+    onclick={{action "saveChanges"}}
+  >
     <div class="ui right floated">
       {{#if editMode}}
         {{#if showIcon}}
           <i class="olive save icon"></i>
         {{/if}}
         {{t "general.save"}}
-      {{else}}
-        {{#if showIcon}}
-          <i class="teal pencil alternate icon"></i>
-        {{/if}}
-        {{t "general.edit"}}
+      {{else if showIcon}}
+        <i class="teal pencil alternate icon"></i>{{t "general.edit"}}
       {{/if}}
     </div>
   </div>

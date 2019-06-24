@@ -1,10 +1,11 @@
 module.exports = {
   root: true,
+  parser: "babel-eslint",
   parserOptions: {
     ecmaVersion: 2018,
     sourceType: "module"
   },
-  plugins: ["ember", "hbs", "compat", "html"],
+  plugins: ["ember", "hbs", "compat", "html", "ember-es6-class"],
   extends: [
     "eslint:recommended",
     "plugin:ember/recommended",

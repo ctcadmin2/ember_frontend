@@ -1,11 +1,13 @@
-import Controller from '@ember/controller';
-import { alias } from '@ember/object/computed';
+import Controller from "@ember/controller";
+import { alias } from "@ember/object/computed";
+import { action } from "@ember/object";
 
-export default Controller.extend({
-  company: alias('model'),
-  actions: {
-    okButton() {
-      this.transitionToRoute('companies.index');
-    }
+export default class ShowCompany extends Controller {
+  @alias("model")
+  company;
+
+  @action
+  okButton() {
+    this.transitionToRoute("companies.index");
   }
-});
+}

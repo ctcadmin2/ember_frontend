@@ -1,6 +1,11 @@
-{{#ui-modal name="companyModal" class="companyModal small" onApprove=(action "approveModal") closable=false}}
+{{#ui-modal
+  name="companyModal"
+  class="companyModal small"
+  onApprove=(action "approveModal")
+  closable=false
+}}
   <div class="header">
-    {{t "companies.add_new"}}
+    {{t "companies.addNew"}}
   </div>
   <div class="content">
     {{find-company returnData=(action "returnData")}}

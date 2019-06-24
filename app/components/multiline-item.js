@@ -1,25 +1,24 @@
-import Component from '@ember/component';
-import { set } from '@ember/object';
+import Component from "@ember/component";
+import { action } from "@ember/object";
 
-export default Component.extend({
-  classNames: 'ui item',
-  showDeleteIcon: false,
+export default class MultilineItem extends Component {
+  classNames = ["ui", "item"];
+  showDeleteIcon = false;
 
   mouseEnter() {
     if (!this.showEditMode) {
-      set(this, 'showDeleteIcon', true);
+      this.set("showDeleteIcon", true);
     }
-  },
+  }
 
   mouseLeave() {
     if (!this.showEditMode) {
-      set(this, 'showDeleteIcon', false);
-    }
-  },
-
-  actions: {
-    remove() {
-      this.deleteItem(this.item);
+      this.set("showDeleteIcon", false);
     }
   }
-});
+
+  @action
+  remove() {
+    this.deleteItem(this.item);
+  }
+}

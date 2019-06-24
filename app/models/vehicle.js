@@ -1,11 +1,16 @@
 import DS from "ember-data";
 
-const { attr, hasMany } = DS;
+const { attr, hasMany, Model } = DS;
 
-export default DS.Model.extend({
-  vin: attr("string"),
-  registration: attr("string"),
-  category: attr("string"),
-  sold: attr("boolean"),
-  creditNotes: hasMany("credit-note")
-});
+export default class Vehicle extends Model {
+  @attr("string")
+  vin;
+  @attr("string")
+  registration;
+  @attr("string")
+  category;
+  @attr("boolean")
+  sold;
+  @hasMany("credit-note")
+  creditNotes;
+}

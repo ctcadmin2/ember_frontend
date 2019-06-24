@@ -1,32 +1,35 @@
-import Component from '@ember/component';
-import { set } from '@ember/object';
-import { equal } from '@ember/object/computed';
+import Component from "@ember/component";
+import { action } from "@ember/object";
+import { equal } from "@ember/object/computed";
 
-export default Component.extend({
-  classNames: 'ui item',
-  showIcon: false,
-  editMode: false,
-  textarea: equal('inputType', 'textarea'),
+export default class TabLineItem extends Component {
+  classNames = ["ui", "item"];
+  showIcon = false;
+  editMode = false;
 
-  actions: {
-    editMode() {
-      if (!this.editMode) {
-        set(this, 'editMode', true);
-      }
-    },
-    mouseIn(e) {
-      e.stopPropagation();
-      set(this, 'showIcon', true);
-    },
+  @equal("inputType", "textarea")
+  textarea;
 
-    mouseOut(e) {
-      e.stopPropagation();
-      set(this, 'showIcon', false);
-    },
-    saveChanges(e) {
-      e.stopPropagation();
-      this.saveData(this.prop, this.value);
-      set(this, 'editMode', false);
+  @action
+  toggleEdit() {
+    if (!this.editMode) {
+      this.set("editMode", true);
     }
   }
-});
+  @action
+  mouseIn(e) {
+    e.stopPropagation();
+    this.set("showIcon", true);
+  }
+  @action
+  mouseOut(e) {
+    e.stopPropagation();
+    this.set("showIcon", false);
+  }
+  @action
+  saveChanges(e) {
+    e.stopPropagation();
+    this.saveData(this.prop, this.value);
+    this.set("editMode", false);
+  }
+}

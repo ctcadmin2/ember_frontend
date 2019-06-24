@@ -1,9 +1,10 @@
-import Route from './protected';
-import { next } from '@ember/runloop';
-import $ from 'jquery';
+import Route from "./protected";
+import { next } from "@ember/runloop";
+import $ from "jquery";
+import { action } from "@ember/object";
 
-export default Route.extend({
-  queryParams: {
+export default class CompaniesRoute extends Route {
+  queryParams = {
     page: {
       refreshModel: true
     },
@@ -16,10 +17,10 @@ export default Route.extend({
     sort: {
       refreshModel: true
     }
-  },
+  };
 
   model(params) {
-    return this.store.query('company', {
+    return this.store.query("company", {
       page: {
         number: params.page,
         size: params.size
@@ -29,16 +30,16 @@ export default Route.extend({
         q: params.filter
       }
     });
-  },
-
-  actions: {
-    didTransition() {
-      next(function() {
-        $('body .modals').dimmer('hide'); //dimmer doesn't close on back button TODO find nicer fix
-      });
-    },
-    refreshPage() {
-      this.refresh();
-    }
   }
-});
+
+  @action
+  didTransition() {
+    next(function() {
+      $("body .modals").dimmer("hide"); //dimmer doesn't close on back button TODO find nicer fix
+    });
+  }
+  @action
+  refreshPage() {
+    this.refresh();
+  }
+}

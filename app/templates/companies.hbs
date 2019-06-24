@@ -1,19 +1,41 @@
 <div class="ui centered raised segment">
   <table class="ui table sortable padded selectable striped celled attached">
-    <caption class="ui huge header teal">{{t "companies.title"}}</caption>
+    <caption class="ui huge header teal">
+      {{t "companies.title"}}
+    </caption>
     <thead>
       <tr>
-        <th class={{sort-class sort "name"}} role="button" {{action "sort" "name"}}>
+        <th
+          class={{sort-class sort "name"}}
+          role="button"
+          {{action "sort" "name"}}
+        >
           {{t "companies.table.header.name"}}
         </th>
-        <th>{{t "companies.table.header.vat"}}</th>
-        <th>{{t "companies.table.header.contact"}}</th>
-        <th>{{t "companies.table.header.phone"}}</th>
+        <th>
+          {{t "companies.table.header.vat"}}
+        </th>
+        <th>
+          {{t "companies.table.header.contact"}}
+        </th>
+        <th>
+          {{t "companies.table.header.phone"}}
+        </th>
         <th>
           <div class="ui search">
             <div class="ui fluid icon input">
-              {{input value=filter key-up=(action "setPage") class="prompt" type="text" placeholder="Search"}}
-              <i class="{{if filterEmpty "search" "remove link"}} icon" role="button" {{action "clearFilter"}}></i>
+              {{input
+                value=filter
+                key-up=(action "setPage")
+                class="prompt"
+                type="text"
+                placeholder="Search"
+              }}
+              <i
+                class="{{if filterEmpty "search" "remove link"}} icon"
+                role="button"
+                {{action "clearFilter"}}
+              ></i>
             </div>
           </div>
         </th>
@@ -26,7 +48,9 @@
             <div class="item">
               <div class="middle aligned content">
                 <div class="left floated">
-                  {{#link-to "companies.new" class="ui teal button" }}{{t "general.add_new"}}{{/link-to}}
+                  {{#link-to "companies.new" class="ui teal button"}}
+                    {{t "general.addNew"}}
+                  {{/link-to}}
                 </div>
                 <div class="right floated">
                   <div class="ui right floated">
@@ -42,13 +66,24 @@
     <tbody>
       {{#each companies as |company|}}
         <tr>
-          <td>{{company.name}}</td>
-          <td>{{company.cif}}</td>
-          <td>{{company.contact}}</td>
-          <td>{{company.phone}}</td>
+          <td>
+            {{company.name}}
+          </td>
+          <td>
+            {{company.cif}}
+          </td>
+          <td>
+            {{company.contact}}
+          </td>
+          <td>
+            {{company.phone}}
+          </td>
           <td>
             <div class="ui fluid buttons">
-              {{table-actions model=company deleteModel=(action "destroyCompany")}}
+              {{table-actions
+                model=company
+                deleteModel=(action "destroyCompany")
+              }}
             </div>
           </td>
         </tr>

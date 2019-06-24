@@ -1,20 +1,22 @@
 /* eslint-disable no-console */
 /* eslint-disable ember/named-functions-in-promises */
 import Component from "@ember/component";
-import { computed } from "@ember/object";
+import { computed, action } from "@ember/object";
 import { inject as service } from "@ember/service";
 
-export default Component.extend({
-  store: service(),
-  settings: service(),
-  selectedVehicle: computed("creditNote.vehicle", function() {
+export default class CreditNoteForm extends Component {
+  @service store;
+  @service settings;
+
+  @computed("creditNote.vehicle")
+  get selectedVehicle() {
     return this.creditNote.vehicle;
-  }),
-  actions: {
-    setVehicle(vehicle) {
-      this.store
-        .findRecord("vehicle", vehicle)
-        .then(v => this.creditNote.set("vehicle", v));
-    }
   }
-});
+
+  @action
+  setVehicle(vehicle) {
+    this.store
+      .findRecord("vehicle", vehicle)
+      .then(v => this.creditNote.set("vehicle", v));
+  }
+}

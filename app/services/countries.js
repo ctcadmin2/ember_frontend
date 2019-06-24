@@ -1,32 +1,28 @@
-import Service, { inject as service } from '@ember/service';
-import fetchData from '../utils/fetch-data';
-import { set } from '@ember/object';
+import Service, { inject as service } from "@ember/service";
+import fetchData from "../utils/fetch-data";
 
-export default Service.extend({
-  list: null,
-  dataFetched: false,
-  url: '/api_helpers/countries.json',
-  session: service(),
+export default class CountriesService extends Service {
+  @service session;
+
+  list = null;
+  dataFetched = false;
+  url = "/api_helpers/countries.json";
 
   init() {
     this._super(...arguments);
-    set(
-      this,
-      'fetch',
-      fetchData(this.url, this.session.data.authenticated.jwt)
-    );
+    this.set("fetch", fetchData(this.url, this.session.data.authenticated.jwt));
     this._setlist();
-  },
+  }
 
   //private
   _setlist() {
     let f = this.fetch;
     f.then(list => this._successCallback(list)).catch(() =>
-      set(this, 'list', { error: 'error' })
+      this.set("list", { error: "error" })
     );
-  },
-  _successCallback(list) {
-    set(this, 'list', list);
-    set(this, 'dataFetched', true);
   }
-});
+  _successCallback(list) {
+    this.set("list", list);
+    this.set("dataFetched", true);
+  }
+}

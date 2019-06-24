@@ -1,5 +1,3 @@
-import Route from './protected';
+import Route from "./protected";
 
-export default Route.extend({
-
-});
+export default class HomeRoute extends Route {}

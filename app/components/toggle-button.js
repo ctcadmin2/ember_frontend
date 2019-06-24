@@ -1,12 +1,12 @@
-import Component from '@ember/component';
+import Component from "@ember/component";
+import { action } from "@ember/object";
 
-export default Component.extend({
-  tagName: '',
+export default class ToggleButton extends Component {
+  tagName = "";
 
-  actions: {
-    toggleObj(obj, prop) {
-      obj.toggleProperty(prop);
-      this.updateObj(obj);
-    }
+  @action
+  toggleObj(obj, prop) {
+    obj.toggleProperty(prop);
+    this.updateObj(obj);
   }
-});
+}

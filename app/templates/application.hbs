@@ -4,7 +4,7 @@
     {{#if session.isAuthenticated}}
       <div class="item">
         {{t "general.loggedIn"}}
-        {{fullName}}
+        {{currentUser.user.fullName}}
       </div>
       <div class="link item" id="logoutBtn" {{action "invalidateSession"}}>
         {{t "application.links.logout"}}

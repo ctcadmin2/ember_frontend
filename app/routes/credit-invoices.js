@@ -1,7 +1,7 @@
 import Route from "@ember/routing/route";
 
-export default Route.extend({
-  queryParams: {
+export default class CreditInvoicesRoute extends Route {
+  queryParams = {
     page: {
       refreshModel: true
     },
@@ -14,7 +14,8 @@ export default Route.extend({
     sort: {
       refreshModel: true
     }
-  },
+  };
+
   model(params) {
     return this.store.query("credit-invoice", {
       page: {
@@ -27,4 +28,4 @@ export default Route.extend({
       }
     });
   }
-});
+}

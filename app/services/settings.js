@@ -4,17 +4,18 @@ import fetch from "fetch";
 import { inject as service } from "@ember/service";
 import { resolve, reject } from "rsvp";
 
-export default Service.extend({
-  session: service(),
-  flashMessages: service(),
-  main: "",
-  company: "",
+export default class SettingsService extends Service {
+  @service session;
+  @service flashMessages;
+
+  main = "";
+  company = "";
 
   init() {
     this._super(...arguments);
     this.load("main");
     this.load("company");
-  },
+  }
 
   load(obj) {
     return fetch(`/prefs/${obj}`, {
@@ -25,7 +26,7 @@ export default Service.extend({
       .then(response => this._handleResponse(response))
       .then(json => this._handleJson(json))
       .then(data => this.set(obj, data));
-  },
+  }
 
   /**
    * Updates the settings on the server
@@ -45,7 +46,7 @@ export default Service.extend({
       },
       body: JSON.stringify({ prefs: payload })
     }).then(() => this.flashMessages.success("Settings updated successfully."));
-  },
+  }
 
   //private
   _handleResponse(response) {
@@ -54,8 +55,8 @@ export default Service.extend({
     } else {
       return reject(response.status);
     }
-  },
+  }
   _handleJson(response) {
     return response.json();
   }
-});
+}

@@ -1,13 +1,14 @@
-import Service, { inject as service } from '@ember/service';
-import { set } from '@ember/object';
-import { isEmpty } from '@ember/utils';
-import jwtDecode from 'ember-cli-jwt-decode';
-import { reject } from 'rsvp';
+import Service, { inject as service } from "@ember/service";
+import { set } from "@ember/object";
+import { isEmpty } from "@ember/utils";
+import jwtDecode from "ember-cli-jwt-decode";
+import { reject } from "rsvp";
 
-export default Service.extend({
-  session: service(),
-  store: service(),
-  user: null,
+export default class CurrentUserService extends Service {
+  @service session;
+  @service store;
+
+  user = null;
 
   /** Load current users info
    * @method load
@@ -19,18 +20,18 @@ export default Service.extend({
     if (this.session.isAuthenticated) {
       token = this.session.data.authenticated.jwt;
     } else {
-      return reject(new Error('User not auth.'));
+      return reject(new Error("User not auth."));
     }
 
     if (!isEmpty(token)) {
       let userId = this._getUserIdFromToken(token);
       return this.store
-        .findRecord('user', userId)
-        .then(user => set(this, 'user', user));
+        .findRecord("user", userId)
+        .then(user => set(this, "user", user));
     } else {
-      return reject(new Error('Token is empty.'));
+      return reject(new Error("Token is empty."));
     }
-  },
+  }
 
   //private
   /** Retrieve current users id from the token
@@ -40,6 +41,6 @@ export default Service.extend({
    */
   _getUserIdFromToken(token) {
     const tokenData = jwtDecode(token);
-    return tokenData['sub'];
+    return tokenData["sub"];
   }
-});
+}

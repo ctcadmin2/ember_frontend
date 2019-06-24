@@ -1,22 +1,27 @@
 /* eslint-env node */
-'use strict';
+"use strict";
 
 module.exports = function(environment) {
   let ENV = {
-    modulePrefix: 'frontend',
+    modulePrefix: "frontend",
     environment,
-    rootURL: '/',
-    locationType: 'auto',
+    rootURL: "/",
+    locationType: "auto",
     flashMessageDefaults: {
       // flash message defaults
       timeout: 3000,
       // service defaults
-      types: ['error', 'success', 'info'],
+      types: ["error", "success", "info"],
       destroyOnClick: false
     },
-    'ember-cli-string-helpers': {
-      only: ['lowercase']
+    "ember-cli-string-helpers": {
+      only: ["lowercase", "camelize"]
     },
+    intl: [
+      {
+        locales: ["en-us", "ro-ro"]
+      }
+    ],
 
     EmberENV: {
       DEBUG_TASKS: true, //TODO remove
@@ -36,8 +41,8 @@ module.exports = function(environment) {
     }
   };
 
-  if (environment === 'development') {
-    ENV['ember-qunit-nice-errors'] = {
+  if (environment === "development") {
+    ENV["ember-qunit-nice-errors"] = {
       showFileInfo: true,
       completeExistingMessages: true
     };
@@ -48,19 +53,19 @@ module.exports = function(environment) {
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
   }
 
-  if (environment === 'test') {
+  if (environment === "test") {
     // Testem prefers this...
-    ENV.locationType = 'none';
+    ENV.locationType = "none";
 
     // keep test console output quieter
     ENV.APP.LOG_ACTIVE_GENERATION = false;
     ENV.APP.LOG_VIEW_LOOKUPS = false;
 
-    ENV.APP.rootElement = '#ember-testing';
+    ENV.APP.rootElement = "#ember-testing";
     ENV.APP.autoboot = false;
   }
 
-  if (environment === 'production') {
+  if (environment === "production") {
     // here you can enable a production-specific feature
   }
 

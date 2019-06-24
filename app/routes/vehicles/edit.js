@@ -1,17 +1,17 @@
-import Route from '@ember/routing/route';
-import { next } from '@ember/runloop';
-import $ from 'jquery';
+import Route from "@ember/routing/route";
+import { next } from "@ember/runloop";
+import $ from "jquery";
+import { action } from "@ember/object";
 
-export default Route.extend({
+export default class VehicleEditRoute extends Route {
   model(params) {
-    return this.store.findRecord('vehicle', params.vehicle_id);
-  },
-
-  actions: {
-    didTransition() {
-      next(function() {
-        $('.vehicleModal').modal('toggle');
-      });
-    }
+    return this.store.findRecord("vehicle", params.vehicle_id);
   }
-});
+
+  @action
+  didTransition() {
+    next(function() {
+      $(".vehicleModal").modal("toggle");
+    });
+  }
+}

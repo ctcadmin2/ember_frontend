@@ -1,18 +1,22 @@
-import Component from '@ember/component';
-import { get, computed } from '@ember/object';
-import $ from 'jquery';
+import Component from "@ember/component";
+import {  action } from "@ember/object";
+import $ from "jquery";
+import {inject as service} from "@ember/service";
 
-export default Component.extend({
-  statusClass: computed('flash', function() {
-    if (get(this, 'flash.type') === 'success') {
-      return 'checkmark';
+export default class FlashAlert extends Component {
+
+  @service("flash")
+
+  get statusClass() {
+    if (this.get("flash.type") === "success") {
+      return "checkmark";
     } else {
-      return 'remove';
-    }
-  }),
-  actions: {
-    closeButton() {
-      $('.message').transition('slide right');
+      return "remove";
     }
   }
-});
+
+  @action
+  closeButton() {
+    $(".message").transition("slide right");
+  }
+}

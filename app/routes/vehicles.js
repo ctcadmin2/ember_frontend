@@ -1,7 +1,7 @@
-import Route from './protected';
+import Route from "./protected";
 
-export default Route.extend({
-  queryParams: {
+export default class VehiclesRoute extends Route {
+  queryParams = {
     page: {
       refreshModel: true
     },
@@ -11,10 +11,10 @@ export default Route.extend({
     sort: {
       refreshModel: true
     }
-  },
+  };
 
   model(params) {
-    return this.store.query('vehicle', {
+    return this.store.query("vehicle", {
       page: {
         number: params.page,
         size: params.size
@@ -22,4 +22,4 @@ export default Route.extend({
       sort: params.sort
     });
   }
-});
+}

@@ -8,7 +8,7 @@ import { isEmpty } from "@ember/utils";
  * Inspired(copied) by [ember-simple-auth-token](https://github.com/jpadilla/ember-simple-auth-token)
  */
 
-export default BaseAuthenticator.extend({
+export default class JwtAuthenticator extends BaseAuthenticator {
   /**
    * Restores the session from a set of session properties.
    * It will return a resolving promise if `data.jwt` is non-empty and `expiresAt` is greater than the calculated `now`.
@@ -44,7 +44,7 @@ export default BaseAuthenticator.extend({
       // return data
       return resolve(data);
     });
-  },
+  }
 
   /**
    * Authenticates the session with the specified `creds`.
@@ -74,7 +74,7 @@ export default BaseAuthenticator.extend({
     })
       .then(response => this._handleResponse(response))
       .then(response => this._handleJson(response));
-  },
+  }
   /**
    * Invalidates the session.
    * @method invalidate
@@ -84,7 +84,7 @@ export default BaseAuthenticator.extend({
    */
   invalidate() {
     return resolve();
-  },
+  }
 
   /**
    * Returns the current time as a timestamp in seconds
@@ -94,7 +94,7 @@ export default BaseAuthenticator.extend({
    */
   _getCurrentTime() {
     return Math.floor(new Date().getTime() / 1000);
-  },
+  }
   /**
    * Handle the response from server.
    * Returns a Promise
@@ -109,7 +109,7 @@ export default BaseAuthenticator.extend({
     } else {
       return reject(response.status);
     }
-  },
+  }
   /**
    * Returns the json if the response from server resolves
    * @method _handleJson
@@ -120,4 +120,4 @@ export default BaseAuthenticator.extend({
   _handleJson(response) {
     return response.json();
   }
-});
+}

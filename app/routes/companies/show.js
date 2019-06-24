@@ -1,17 +1,19 @@
-import Route from './../protected';
+import Route from "./../protected";
 import { next } from "@ember/runloop";
 import $ from "jquery";
+import { action } from "@ember/object";
 
-export default Route.extend({
+export default class CompanyShowRoute extends Route {
   model(params) {
-    return this.store.findRecord('company', params.company_id, { backgroundReload: false });
-  },
-  actions: {
-    didTransition() {
-      next(function() {
-        $('.companyModal').modal('show');
-      });
-    }
-    //TODO close modal when transition away
+    return this.store.findRecord("company", params.company_id, {
+      backgroundReload: false
+    });
   }
-});
+  @action
+  didTransition() {
+    next(function() {
+      $(".companyModal").modal("show");
+    });
+  }
+  //TODO close modal when transition away
+}

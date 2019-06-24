@@ -1,14 +1,22 @@
-import DS from 'ember-data';
+import DS from "ember-data";
 
-const { attr, belongsTo } = DS;
+const { attr, belongsTo, Model } = DS;
 
-export default DS.Model.extend({
-  number: attr('number'),
-  start: attr('string'),
-  end: attr('string'),
-  value: attr('number'),
-  notes: attr('string'),
-  paid: attr('boolean', { defaultValue: false }),
-  currency: attr('string'),
-  vehicle: belongsTo('vehicle')
-});
+export default class CreditNote extends Model {
+  @attr("number")
+  number;
+  @attr("string")
+  start;
+  @attr("string")
+  end;
+  @attr("number")
+  value;
+  @attr("string")
+  notes;
+  @attr("boolean", { defaultValue: false })
+  paid;
+  @attr("string")
+  currency;
+  @belongsTo("vehicle")
+  vehicle;
+}

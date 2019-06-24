@@ -5,7 +5,13 @@
       <label class="ui label four wide column" for={{concat elementId "-name"}}>
         {{t "settings.company.name"}}
       </label>
-      {{input type="text" value=data.name autofocus=true id=(concat elementId "-name") disabled=inputDisabled}}
+      {{input
+        type="text"
+        value=data.name
+        autofocus=true
+        id=(concat elementId "-name")
+        disabled=inputDisabled
+      }}
     </div>
   </div>
   <div class="inline field">
@@ -13,7 +19,12 @@
       <label class="ui label four wide column" for={{concat elementId "-reg"}}>
         {{t "settings.company.registration"}}
       </label>
-      {{input type="text" value=data.registration id=(concat elementId "-reg") disabled=inputDisabled}}
+      {{input
+        type="text"
+        value=data.registration
+        id=(concat elementId "-reg")
+        disabled=inputDisabled
+      }}
     </div>
   </div>
   <div class="inline field">
@@ -21,53 +32,88 @@
       <label class="ui label four wide column" for={{concat elementId "-cif"}}>
         {{t "settings.company.vat"}}
       </label>
-      {{input type="text" value=data.cif id=(concat elementId "-cif") disabled=inputDisabled}}
+      {{input
+        type="text"
+        value=data.cif
+        id=(concat elementId "-cif")
+        disabled=inputDisabled
+      }}
     </div>
   </div>
   <div class="inline field">
     <div class="ui fluid labeled input grid">
-      <label class="ui label four wide column" for={{concat elementId "-address"}}>
+      <label
+        class="ui label four wide column"
+        for={{concat elementId "-address"}}
+      >
         {{t "settings.company.address"}}
       </label>
-      {{textarea value=data.address rows=2 class="ui twelve wide column" id=(concat elementId "-address") disabled=inputDisabled}}
+      {{textarea
+        value=data.address
+        rows=2
+        class="ui twelve wide column"
+        id=(concat elementId "-address")
+        disabled=inputDisabled
+      }}
     </div>
   </div>
   <div class="inline field">
     <div class="ui fluid labeled input grid">
-      <label class="ui label four wide column">{{t "settings.company.country"}}</label>
-      {{#ui-dropdown class=(concat (if inputDisabled "disabled ") "twelve wide column scrolling selection" ) selected=data.country
-        onChange=(action (mut data.country)) showOnFocus=false}}
-        <i class="dropdown icon"></i>
-        <div class="default text"></div>
-        <div class="menu">
-          {{#each countries.list as |country|}}
-            <div class="item" data-value={{country.value}}>
-              {{#if (eq country.value "EL")}}
-                <i class="gr flag"></i>
-              {{else}}
-                <i class="{{lowercase country.value}} flag"></i>
-              {{/if}}
-              {{country.name}}
-            </div>
-          {{/each}}
-        </div>
-      {{/ui-dropdown}}
+      <label class="ui label four wide column">
+        {{t "settings.company.country"}}
+      </label>
+      {{#if countries.dataFetched}}
+        {{#ui-dropdown
+          class=(concat
+            (if inputDisabled "disabled ")
+            "twelve wide column scrolling selection"
+          )
+          selected=data.country
+          onChange=(action (mut data.country))
+          showOnFocus=false
+        }}
+          <i class="dropdown icon"></i>
+          <div class="default text"></div>
+          <div class="menu">
+            {{#each countries.list as |country|}}
+              <div class="item" data-value={{country.value}}>
+                {{#if (eq country.value "EL")}}
+                  <i class="gr flag"></i>
+                {{else}}
+                  <i class="{{lowercase country.value}} flag"></i>
+                {{/if}}
+                {{country.name}}
+              </div>
+            {{/each}}
+          </div>
+        {{/ui-dropdown}}
+      {{/if}}
     </div>
   </div>
   <div class="inline field">
     <div class="ui fluid labeled input grid">
       <label class="ui label four wide column" for={{concat elementId "-eur"}}>
-        {{t "settings.company.acc_eur"}}
+        {{t "settings.company.accEur"}}
       </label>
-      {{input type="text" value=data.acc_eur id=(concat elementId "-eur") disabled=inputDisabled}}
+      {{input
+        type="text"
+        value=data.acc_eur
+        id=(concat elementId "-eur")
+        disabled=inputDisabled
+      }}
     </div>
   </div>
   <div class="inline field">
     <div class="ui fluid labeled input grid">
       <label class="ui label four wide column" for={{concat elementId "-ron"}}>
-        {{t "settings.company.acc_ron"}}
+        {{t "settings.company.accRon"}}
       </label>
-      {{input type="text" value=data.acc_ron id=(concat elementId "-ron") disabled=inputDisabled}}
+      {{input
+        type="text"
+        value=data.acc_ron
+        id=(concat elementId "-ron")
+        disabled=inputDisabled
+      }}
     </div>
   </div>
   <div class="inline field">
@@ -75,7 +121,12 @@
       <label class="ui label four wide column" for={{concat elementId "-bank"}}>
         {{t "settings.company.bank"}}
       </label>
-      {{input type="text" value=data.bank id=(concat elementId "-bank") disabled=inputDisabled}}
+      {{input
+        type="text"
+        value=data.bank
+        id=(concat elementId "-bank")
+        disabled=inputDisabled
+      }}
     </div>
   </div>
   <div class="inline field">
@@ -83,23 +134,44 @@
       <label class="ui label four wide column" for={{concat elementId "-cap"}}>
         {{t "settings.company.capital"}}
       </label>
-      {{input type="text" value=data.capital id=(concat elementId "-cap") disabled=inputDisabled}}
+      {{input
+        type="text"
+        value=data.capital
+        id=(concat elementId "-cap")
+        disabled=inputDisabled
+      }}
     </div>
   </div>
   <div class="inline field">
     <div class="ui fluid labeled input grid">
-      <label class="ui label four wide column" for={{concat elementId "-phone"}}>
+      <label
+        class="ui label four wide column"
+        for={{concat elementId "-phone"}}
+      >
         {{t "settings.company.phone"}}
       </label>
-      {{input type="text" value=data.phone id=(concat elementId "-phone") disabled=inputDisabled}}
+      {{input
+        type="text"
+        value=data.phone
+        id=(concat elementId "-phone")
+        disabled=inputDisabled
+      }}
     </div>
   </div>
   <div class="inline field">
     <div class="ui fluid labeled input grid">
-      <label class="ui label four wide column" for={{concat elementId "-email"}}>
+      <label
+        class="ui label four wide column"
+        for={{concat elementId "-email"}}
+      >
         {{t "settings.company.email"}}
       </label>
-      {{input type="text" value=data.email id=(concat elementId "-email") disabled=inputDisabled}}
+      {{input
+        type="text"
+        value=data.email
+        id=(concat elementId "-email")
+        disabled=inputDisabled
+      }}
     </div>
   </div>
   <div class="inline field">
@@ -107,7 +179,12 @@
       <label class="ui label four wide column">
         {{t "settings.company.vies"}}
       </label>
-      {{ui-checkbox class="slider" disabled=inputDisabled checked=data.vies onChange=(action (mut data.vies))}}
+      {{ui-checkbox
+        class="slider"
+        disabled=inputDisabled
+        checked=data.vies
+        onChange=(action (mut data.vies))
+      }}
     </div>
   </div>
   <div class="inline field">
@@ -115,7 +192,13 @@
       <label class="ui label four wide column">
         {{t "settings.company.status"}}
       </label>
-      {{ui-checkbox class="slider" disabled=inputDisabled checked=data.status onChange=(action (mut data.status))}}
+      {{ui-checkbox
+        class="slider"
+        disabled=inputDisabled
+        checked=data.status
+        onChange=(action (mut data.status))
+      }}
     </div>
   </div>
 </form>
+{{log this.countries}}

@@ -1,17 +1,17 @@
-import Route from './protected';
-import $ from 'jquery';
-import { next } from '@ember/runloop';
+import Route from "./protected";
+import $ from "jquery";
+import { next } from "@ember/runloop";
+import { action } from "@ember/object";
 
-export default Route.extend({
+export default class UsersRoute extends Route {
   model() {
-    return this.store.findAll('user');
-  },
-
-  actions: {
-    didTransition() {
-      next(function() {
-        $('body .modals').dimmer('hide');
-      });
-    }
+    return this.store.findAll("user");
   }
-});
+
+  @action
+  didTransition() {
+    next(function() {
+      $("body .modals").dimmer("hide");
+    });
+  }
+}

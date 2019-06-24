@@ -1,5 +1,5 @@
-import DS from './application';
+import DS from "./application";
 
-export default DS.extend({
-  namespace: 'api_helpers'
-});
+export default class CountryAdapter extends DS {
+  namespace = "api_helpers";
+}

@@ -1,7 +1,7 @@
-import Route from './protected';
+import Route from "./protected";
 
-export default Route.extend({
-  queryParams: {
+export default class CreditNotesRoute extends Route {
+  queryParams = {
     page: {
       refreshModel: true
     },
@@ -14,10 +14,10 @@ export default Route.extend({
     sort: {
       refreshModel: true
     }
-  },
+  };
 
   model(params) {
-    return this.store.query('credit-note', {
+    return this.store.query("credit-note", {
       page: {
         number: params.page,
         size: params.size
@@ -28,4 +28,4 @@ export default Route.extend({
       }
     });
   }
-});
+}

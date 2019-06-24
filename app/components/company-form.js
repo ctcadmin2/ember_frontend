@@ -1,6 +1,6 @@
-import Component from '@ember/component';
-import { inject as service } from '@ember/service';
+import Component from "@ember/component";
+import { inject as service } from "@ember/service";
 
-export default Component.extend({
-  countries: service()
-});
+export default class CompanyForm extends Component {
+  @service countries;
+}

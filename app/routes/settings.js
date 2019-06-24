@@ -1,13 +1,13 @@
 import Route from "./protected";
 import { next } from "@ember/runloop";
 import $ from "jquery";
+import { action } from "@ember/object";
 
-export default Route.extend({
-  actions: {
-    didTransition() {
-      next(function() {
-        $(".tabular .item").tab();
-      });
-    }
+export default class SettingsRoute extends Route {
+  @action
+  didTransition() {
+    next(function() {
+      $(".tabular .item").tab();
+    });
   }
-});
+}

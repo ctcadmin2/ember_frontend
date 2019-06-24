@@ -1,42 +1,43 @@
-import Component from '@ember/component';
-import { set, get } from '@ember/object';
+import Component from "@ember/component";
+import { set, action } from "@ember/object";
 
-export default Component.extend({
-  classNames: 'ui item',
-  value: '',
-  editMode: false,
-  showSaveIcon: false,
+export default class TabMultilineItem extends Component {
+  classNames = ["ui", "item"];
+  value = "";
+  editMode = false;
+  showSaveIcon = false;
 
-  actions: {
-    removeItem(item) {
-      get(this, 'list').removeObject(item);
-      this.updateData(this.category, this.list);
-    },
-    addItem(e) {
-      e.stopPropagation();
+  @action
+  removeItem(item) {
+    this.list.removeObject(item);
+    this.updateData(this.category, this.list);
+  }
+  @action
+  addItem(e) {
+    e.stopPropagation();
 
-      get(this, 'list').pushObject(this.value);
-      this.updateData(this.category, this.list);
+    this.list.pushObject(this.value);
+    this.updateData(this.category, this.list);
 
-      set(this, 'editMode', false);
-      set(this, 'value', '');
-    },
-
-    addMode() {
-      if (this.editMode == false) {
-        set(this, 'editMode', true);
-      }
-    },
-
-    mouseOut() {
-      if (this.showSaveIcon) {
-        set(this, 'showSaveIcon', false);
-      }
-    },
-    mouseIn() {
-      if (!this.showSaveIcon) {
-        set(this, 'showSaveIcon', true);
-      }
+    set(this, "editMode", false);
+    set(this, "value", "");
+  }
+  @action
+  addMode() {
+    if (this.editMode == false) {
+      set(this, "editMode", true);
     }
   }
-});
+  @action
+  mouseOut() {
+    if (this.showSaveIcon) {
+      set(this, "showSaveIcon", false);
+    }
+  }
+  @action
+  mouseIn() {
+    if (!this.showSaveIcon) {
+      set(this, "showSaveIcon", true);
+    }
+  }
+}
