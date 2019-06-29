@@ -53,7 +53,7 @@
 		"ember-concurrency": "^1.0.0",
 		"ember-data": "^3.11.0",
 		"ember-export-application-global": "^2.0.0",
-		"ember-fetch": "^6.6.0",
+		"ember-fetch": "^6.5.1",
 		"ember-inflector": "^3.0.0",
 		"ember-intl": "^4.0.0",
 		"ember-load-initializers": "^2.0.0",
