@@ -1,9 +1,13 @@
 import Controller from "@ember/controller";
-import { set, computed, action } from "@ember/object";
+import { set, action } from "@ember/object";
 import { inject as service } from "@ember/service";
+import { tracked } from "@glimmer/tracking";
 
 export default class SettingsController extends Controller {
   @service settings;
+
+  @tracked main = this.settings.main;
+  @tracked company = this.settings.company;
 
   companyOrder = [
     ["name", "text"],
@@ -18,19 +22,10 @@ export default class SettingsController extends Controller {
     ["email", "email"]
   ];
 
-  @computed("settings.main")
-  get main() {
-    return this.settings.main;
-  }
-  @computed
-  get company() {
-    return this.settings.company;
-  }
-
   @action
   saveCompanyData(prop, value) {
     let prefs = this.settings;
-    let objProp = prefs.getProperties("main").main.hasOwnProperty(prop);
+    let objProp = prefs.main[prop];
 
     if (objProp) {
       set(prefs.main, prop, value);
