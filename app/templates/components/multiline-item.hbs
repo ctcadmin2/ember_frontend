@@ -1,9 +1,11 @@
 <div class="ui grid">
   <div class="ui twelve wide column content">
-    <div class="ui left floated">{{item}}</div>
+    <div class="ui left floated">
+      {{item}}
+    </div>
   </div>
   <div class="ui four wide column">
-    <div class="ui right floated" {{action "remove"}}>
+    <div class="ui right floated" role="button" {{action "remove"}}>
       {{#if showDeleteIcon}}
         <i class="remove large red icon"></i>
       {{/if}}

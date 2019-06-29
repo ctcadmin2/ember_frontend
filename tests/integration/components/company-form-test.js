@@ -24,9 +24,7 @@ module("Integration | Component | company-form", function(hooks) {
           name: "Denmark",
           value: "DK"
         }
-      ],
-      init() {},
-      _setList() {}
+      ]
     });
   });
 

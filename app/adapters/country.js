@@ -1,5 +1,5 @@
-import DS from "./application";
+import ApplicationAdapter from "./application";
 
-export default class CountryAdapter extends DS {
+export default class CountryAdapter extends ApplicationAdapter {
   namespace = "api_helpers";
 }

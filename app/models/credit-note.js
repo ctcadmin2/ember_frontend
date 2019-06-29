@@ -1,6 +1,4 @@
-import DS from "ember-data";
-
-const { attr, belongsTo, Model } = DS;
+import Model, { attr, belongsTo } from "@ember-data/model";
 
 export default class CreditNote extends Model {
   @attr("number")

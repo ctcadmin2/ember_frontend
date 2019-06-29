@@ -1,4 +1,12 @@
 {
+  "temp": {
+    "expenses": {
+      "main": "Cheltuieli",
+      "national": "Nationale",
+      "international": "Internationale",
+      "trip": "Cursa"
+    }
+  },
   "application": {
     "links": {
       "registration": "Inregistrare",
@@ -9,6 +17,8 @@
       "creditNotes": "Note de credit",
       "companies": "Companii",
       "users": "Utilizatori",
+      "employees": "Angajati",
+      "utils": "Utile",
       "settings": "Setari"
     }
   },

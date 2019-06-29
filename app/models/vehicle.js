@@ -1,6 +1,4 @@
-import DS from "ember-data";
-
-const { attr, hasMany, Model } = DS;
+import Model, { attr, hasMany } from "@ember-data/model";
 
 export default class Vehicle extends Model {
   @attr("string")

@@ -6,7 +6,12 @@
         {{t "general.loggedIn"}}
         {{currentUser.user.fullName}}
       </div>
-      <div class="link item" id="logoutBtn" {{action "invalidateSession"}}>
+      <div
+        class="link item"
+        id="logoutBtn"
+        role="button"
+        {{action "invalidateSession"}}
+      >
         {{t "application.links.logout"}}
       </div>
     {{else}}
@@ -55,25 +60,25 @@
           class="teal item"
         }}
         <div class="ui dropdown item">
-          expenses
+          {{t "temp.expenses.main"}}
           <i class="dropdown icon"></i>
           <div class="menu">
             <a class="item">
-              national expenses
+              {{t "temp.expenses.national"}}
             </a>
             <a class="item">
-              international expenses
+              {{t "temp.expenses.international"}}
             </a>
             <a class="item">
-              trip expenses
+              {{t "temp.expenses.trip"}}
             </a>
           </div>
         </div>
         <div class="item">
-          Employees
+          {{t "application.links.employees"}}
         </div>
         <div class="item">
-          Utils
+          {{t "application.links.utils"}}
         </div>
         {{link-to
           (t "application.links.companies")
@@ -89,13 +94,13 @@
     </div>
   {{/if}}
   <div class="{{if session.isAuthenticated "fourteen wide "}} column">
+    <div>
+      {{#each flashMessages.queue as |flash|}}
+        {{flash-alert flash=flash}}
+      {{/each}}
+    </div>
     <div class="ui container" id="body_container">
       {{outlet}}
     </div>
   </div>
 </dir>
-{{!-- <div>
-  {{#each flashMessages.queue as |flash|}}
-    {{flash-alert flash=flash}}
-  {{/each}}
-</div> --}}

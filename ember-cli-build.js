@@ -1,23 +1,27 @@
 /* eslint-env node */
-'use strict';
+"use strict";
 
-const EmberApp = require('ember-cli/lib/broccoli/ember-app');
+const EmberApp = require("ember-cli/lib/broccoli/ember-app");
 
 module.exports = function(defaults) {
+  let envIsDevelopment = process.env.EMBER_ENV === "development";
   let app = new EmberApp(defaults, {
     // Add options here
     babel: {
-      sourceMaps: 'inline'
+      sourceMaps: "inline"
     },
     eslint: {
-      testGenerator: 'qunit',
+      testGenerator: "qunit",
       group: true,
-      rulesDir: 'eslint-rules',
-      extensions: ['js']
+      rulesDir: "eslint-rules",
+      extensions: ["js"]
     },
-    'ember-fetch': {
+    "ember-fetch": {
       preferNative: true
-    }
+    },
+    //prevents hinting and tests in development
+    hinting: !envIsDevelopment,
+    tests: !envIsDevelopment
   });
 
   // Use `app.import` to add additional libraries to the generated

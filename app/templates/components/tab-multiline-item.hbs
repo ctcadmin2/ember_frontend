@@ -1,3 +1,4 @@
+{{! TODO fix no-nested-interactive/no-invalid-interactive }}
 <div class="ui middle aligned grid">
   <div class="ui four wide column">
     {{t (concat "settings.main." (camelize category))}}
@@ -7,7 +8,7 @@
       {{#each list as |item|}}
         {{multiline-item item=item deleteItem=(action "removeItem")}}
       {{/each}}
-      <div class="ui item" onclick={{action "addMode"}}>
+      <div class="ui item" role="button" onclick={{action "addMode"}}>
         {{#if editMode}}
           <div class="ui middle aligned grid">
             <div class="ui eight wide column">
@@ -17,6 +18,7 @@
             </div>
             <div
               class="ui eight wide column"
+              role="button"
               onMouseEnter={{action "mouseIn"}}
               onMouseLeave={{action "mouseOut"}}
               onclick={{action "addItem"}}

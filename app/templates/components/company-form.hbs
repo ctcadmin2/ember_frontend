@@ -62,7 +62,7 @@
       <label class="ui label four wide column">
         {{t "settings.company.country"}}
       </label>
-      {{#if countries.dataFetched}}
+      {{#if this.countries.dataFetched}}
         {{#ui-dropdown
           class=(concat
             (if inputDisabled "disabled ")
@@ -201,4 +201,3 @@
     </div>
   </div>
 </form>
-{{log this.countries}}

@@ -1,4 +1,12 @@
 {
+  "temp": {
+    "expenses": {
+      "main": "Cheltuieli",
+      "national": "Nationale",
+      "international": "Internationale",
+      "trip": "Cursa"
+    }
+  },
   "application": {
     "links": {
       "registration": "Registration",
@@ -9,6 +17,8 @@
       "creditNotes": "Credit Notes",
       "companies": "Companies",
       "users": "Users",
+      "employees": "Employees",
+      "utils": "Utils",
       "settings": "Settings"
     }
   },

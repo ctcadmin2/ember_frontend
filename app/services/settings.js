@@ -12,7 +12,7 @@ export default class SettingsService extends Service {
   company = "";
 
   init() {
-    this._super(...arguments);
+    super.init(...arguments);
     this.load("main");
     this.load("company");
   }

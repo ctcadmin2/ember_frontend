@@ -1,14 +1,14 @@
 import Component from "@ember/component";
-import {  action } from "@ember/object";
+import { action } from "@ember/object";
 import $ from "jquery";
-import {inject as service} from "@ember/service";
+import { tracked } from "@glimmer/tracking";
 
 export default class FlashAlert extends Component {
-
-  @service("flash")
+  @tracked
+  type = this.flash.type;
 
   get statusClass() {
-    if (this.get("flash.type") === "success") {
+    if (this.type === "success") {
       return "checkmark";
     } else {
       return "remove";

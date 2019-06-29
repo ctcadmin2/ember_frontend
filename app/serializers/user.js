@@ -1,6 +1,4 @@
-import DS from "ember-data";
-
-const { JSONAPISerializer } = DS;
+import JSONAPISerializer from "@ember-data/serializer/json-api";
 
 export default class UserSerializer extends JSONAPISerializer {
   attrs = {
@@ -8,12 +6,12 @@ export default class UserSerializer extends JSONAPISerializer {
   };
 
   serializeAttribute(snapshot, json, key, attributes) {
-    if (snapshot.record.get("isNew")) {
+    if (snapshot.record.isNew) {
       if (key !== "active") {
-        this._super(snapshot, json, key, attributes);
+        super.serializeAttribute(snapshot, json, key, attributes);
       }
     } else if (snapshot.changedAttributes()[key]) {
-      this._super(snapshot, json, key, attributes);
+      super.serializeAttribute(snapshot, json, key, attributes);
     }
   }
 }

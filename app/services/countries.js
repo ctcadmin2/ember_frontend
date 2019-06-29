@@ -9,7 +9,7 @@ export default class CountriesService extends Service {
   url = "/api_helpers/countries.json";
 
   init() {
-    this._super(...arguments);
+    super.init(...arguments);
     this.set("fetch", fetchData(this.url, this.session.data.authenticated.jwt));
     this._setlist();
   }

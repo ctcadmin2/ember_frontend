@@ -1,11 +1,11 @@
-import Route from '@ember/routing/route';
-import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
-import { inject as service } from '@ember/service';
+import Route from "@ember/routing/route";
+import ApplicationRouteMixin from "ember-simple-auth/mixins/application-route-mixin";
+import { inject as service } from "@ember/service";
 
 export default Route.extend(ApplicationRouteMixin, {
   currentUser: service(),
   intl: service(),
-  routeAfterAuthentication: '/',
+  routeAfterAuthentication: "/",
 
   beforeModel() {
     return this._loadCurrentUser();
@@ -26,7 +26,7 @@ export default Route.extend(ApplicationRouteMixin, {
   _loadCurrentUser() {
     return this.currentUser
       .load()
-      .then(resp => this.get('intl').setLocale([resp.lang]))
-      .catch(() => this.get('session').invalidate());
+      .then(resp => this.get("intl").setLocale([resp.lang]))
+      .catch(() => this.get("session").invalidate());
   }
 });

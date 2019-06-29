@@ -21,6 +21,7 @@ module.exports = {
         allowSimpleArrowFunction: true
       }
     ],
+    "ember/no-ember-super-in-es-classes": 2,
     "hbs/check-hbs-template-literals": 2
     // 'ember/no-jquery': 2 TODO can't remove yet
   },

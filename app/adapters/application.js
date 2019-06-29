@@ -1,9 +1,9 @@
-import DS from "ember-data";
+import JSONAPIAdapter from "@ember-data/adapter/json-api";
 import DataAdapterMixin from "ember-simple-auth/mixins/data-adapter-mixin";
 import AdapterFetch from "ember-fetch/mixins/adapter-fetch";
 import { computed } from "@ember/object";
 
-export default class ApplicationAdapter extends DS.JSONAPIAdapter.extend(
+export default class ApplicationAdapter extends JSONAPIAdapter.extend(
   AdapterFetch,
   DataAdapterMixin
 ) {

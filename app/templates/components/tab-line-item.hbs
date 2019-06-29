@@ -1,5 +1,7 @@
+{{! TODO fix no-nested-interactive/no-invalid-interactive }}
 <div
   class="ui middle aligned item grid"
+  role="button"
   onMouseEnter={{action "mouseIn"}}
   onMouseLeave={{action "mouseOut"}}
   onclick={{action "toggleEdit"}}
@@ -22,6 +24,7 @@
   </div>
   <div
     class="ui six wide column"
+    role="button"
     onMouseEnter={{action "mouseIn"}}
     onMouseLeave={{action "mouseOut"}}
     onclick={{action "saveChanges"}}
