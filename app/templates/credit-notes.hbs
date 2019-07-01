@@ -1,44 +1,20 @@
 <div class="ui centered raised segment">
-  <table class="ui table sortable padded selectable striped celled attached">
+  <table class="ui table padded sortable selectable striped celled attached">
     <caption class="ui huge header teal">
       {{t "creditNotes.title"}}
     </caption>
     <thead>
       <tr>
-        <th
-          class={{sort-class this.sort "number"}}
-          role="button"
-          {{action "sort" "number"}}
-        >
-          {{t "creditNotes.number"}}
-        </th>
+        <SortableHeader @sort={{this.sort}} @prop="number" @tBase='creditNotes' @setSort={{action "setSort"}}/>
         <th>
           {{t "creditNotes.start"}}
         </th>
         <th>
           {{t "creditNotes.stop"}}
         </th>
-        <th
-          class={{sort-class this.sort "value"}}
-          role="button"
-          {{action "sort" "value"}}
-        >
-          {{t "creditNotes.value"}}
-        </th>
-        <th
-          class={{sort-class this.sort "paid"}}
-          role="button"
-          {{action "sort" "paid"}}
-        >
-          {{t "creditNotes.paid"}}
-        </th>
-        <th
-          class={{sort-class this.sort "vehicle"}}
-          role="button"
-          {{action "sort" "vehicle.id"}}
-        >
-          {{t "creditNotes.truck"}}
-        </th>
+        <SortableHeader @sort={{this.sort}} @prop="value" @tBase='creditNotes'  @setSort={{action "setSort"}}/>
+        <SortableHeader @sort={{this.sort}} @prop="paid" @tBase='creditNotes' @setSort={{action "setSort"}}/>
+        <SortableHeader @sort={{this.sort}} @prop="vehicle_id" @tBase='creditNotes' @setSort={{action "setSort"}}/>
         <th>
           {{t "creditNotes.notes"}}
         </th>

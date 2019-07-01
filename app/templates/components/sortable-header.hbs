@@ -1,0 +1,4 @@
+<th role="button" {{action "sortTable" @prop}}>
+  {{t (concat @tBase "." this.tName)}}
+  <i class={{sort-class @sort @prop}}></i>
+</th>
