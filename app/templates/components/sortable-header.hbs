@@ -1,4 +1,4 @@
 <th role="button" {{action "sortTable" @prop}}>
-  {{t (concat @tBase "." this.tName)}}
+  {{yield}}
   <i class={{sort-class @sort @prop}}></i>
 </th>

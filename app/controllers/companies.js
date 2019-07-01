@@ -52,22 +52,10 @@ export default class CompaniesController extends Controller {
         )
       );
   }
-  // // TODO refactor
-  // @action
-  // sort(prop) {
-  //   let sortParam = this.sort;
-  //   if (sortParam.includes(prop)) {
-  //     let index = sortParam.indexOf(prop);
-  //     if (sortParam[index - 1] === "-") {
-  //       sortParam = sortParam.substr(0, index - 1) + sortParam.substr(index);
-  //     } else {
-  //       sortParam = sortParam.substr(0, index) + "-" + sortParam.substr(index);
-  //     }
-  //   } else {
-  //     sortParam = sortParam + "," + prop;
-  //   }
-  //   set(this, "sort", sortParam);
-  // }
+  @action
+  setSort(sortParam) {
+    this.set("sort", sortParam);
+  }
 
   successCallback() {
     this.send("refreshPage");

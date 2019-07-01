@@ -5,16 +5,40 @@
     </caption>
     <thead>
       <tr>
-        <SortableHeader @sort={{this.sort}} @prop="number" @tBase='creditNotes' @setSort={{action "setSort"}}/>
+        <SortableHeader
+          @sort={{this.sort}}
+          @prop="number"
+          @setSort={{action "setSort"}}
+        >
+          {{t "creditInvoices.number"}}
+        </SortableHeader>
         <th>
           {{t "creditNotes.start"}}
         </th>
         <th>
           {{t "creditNotes.stop"}}
         </th>
-        <SortableHeader @sort={{this.sort}} @prop="value" @tBase='creditNotes'  @setSort={{action "setSort"}}/>
-        <SortableHeader @sort={{this.sort}} @prop="paid" @tBase='creditNotes' @setSort={{action "setSort"}}/>
-        <SortableHeader @sort={{this.sort}} @prop="vehicle_id" @tBase='creditNotes' @setSort={{action "setSort"}}/>
+        <SortableHeader
+          @sort={{this.sort}}
+          @prop="value"
+          @setSort={{action "setSort"}}
+        >
+          {{t "creditNotes.value"}}
+        </SortableHeader>
+        <SortableHeader
+          @sort={{this.sort}}
+          @prop="paid"
+          @setSort={{action "setSort"}}
+        >
+          {{t "creditNotes.paid"}}
+        </SortableHeader>
+        <SortableHeader
+          @sort={{this.sort}}
+          @prop="vehicle_id"
+          @setSort={{action "setSort"}}
+        >
+          {{t "creditNotes.vehicle"}}
+        </SortableHeader>
         <th>
           {{t "creditNotes.notes"}}
         </th>

@@ -5,13 +5,13 @@
     </caption>
     <thead>
       <tr>
-        <th
-          class={{sort-class sort "name"}}
-          role="button"
-          {{action "sort" "name"}}
+        <SortableHeader
+          @sort={{this.sort}}
+          @prop="name"
+          @setSort={{action "setSort"}}
         >
           {{t "companies.table.header.name"}}
-        </th>
+        </SortableHeader>
         <th>
           {{t "companies.table.header.vat"}}
         </th>
@@ -25,14 +25,14 @@
           <div class="ui search">
             <div class="ui fluid icon input">
               {{input
-                value=filter
+                value=this.filter
                 key-up=(action "setPage")
                 class="prompt"
                 type="text"
                 placeholder="Search"
               }}
               <i
-                class="{{if filterEmpty "search" "remove link"}} icon"
+                class="{{if this.filterEmpty "search" "remove link"}} icon"
                 role="button"
                 {{action "clearFilter"}}
               ></i>
@@ -54,7 +54,7 @@
                 </div>
                 <div class="right floated">
                   <div class="ui right floated">
-                    {{pagination-list model=companies page=page}}
+                    {{pagination-list model=this.companies page=this.page}}
                   </div>
                 </div>
               </div>
@@ -64,7 +64,7 @@
       </tr>
     </tfoot>
     <tbody>
-      {{#each companies as |company|}}
+      {{#each this.companies as |company|}}
         <tr>
           <td>
             {{company.name}}
