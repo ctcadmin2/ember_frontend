@@ -123,7 +123,8 @@
     "notes": "Notes",
     "currency": "Currency",
     "newCredit": "Add new",
-    "new": { "title": "Add new credit note..." }
+    "new": { "title": "Add new credit note..." },
+    "edit": { "title": "Editing credit note..." }
   },
   "users": {
     "title": "User list",

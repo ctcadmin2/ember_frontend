@@ -1,1 +1,23 @@
-{{outlet}}
+<UiModal
+  class="creditNoteModal small"
+  @name="creditNoteModal"
+  @onApprove={{this.approveModal}}
+  @closable={{false}}
+>
+  <div class="header">
+    {{t "creditNotes.edit.title"}}
+  </div>
+  <div class="content">
+    <div class="scrolling">
+      <CreditNoteForm @creditNote={{this.creditNote}} @vehicles={{this.vehicles}}/>
+    </div>
+  </div>
+  <div class="actions">
+    <button class="ui red deny button" {{action "cancelButton"}}>
+      {{t "general.cancel"}}
+    </button>
+    <div class="ui positive button">
+      {{t "general.save"}}
+    </div>
+  </div>
+</UiModal>

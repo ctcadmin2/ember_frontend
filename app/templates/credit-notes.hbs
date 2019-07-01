@@ -6,7 +6,7 @@
     <thead>
       <tr>
         <th
-          class={{sort-class sort "number"}}
+          class={{sort-class this.sort "number"}}
           role="button"
           {{action "sort" "number"}}
         >
@@ -19,21 +19,21 @@
           {{t "creditNotes.stop"}}
         </th>
         <th
-          class={{sort-class sort "value"}}
+          class={{sort-class this.sort "value"}}
           role="button"
           {{action "sort" "value"}}
         >
           {{t "creditNotes.value"}}
         </th>
         <th
-          class={{sort-class sort "paid"}}
+          class={{sort-class this.sort "paid"}}
           role="button"
           {{action "sort" "paid"}}
         >
           {{t "creditNotes.paid"}}
         </th>
         <th
-          class={{sort-class sort "vehicle"}}
+          class={{sort-class this.sort "vehicle"}}
           role="button"
           {{action "sort" "vehicle.id"}}
         >
@@ -46,14 +46,14 @@
           <div class="ui search">
             <div class="ui fluid icon input">
               {{input
-                value=filter
+                value=this.filter
                 key-up=(action "setPage")
                 class="prompt"
                 type="text"
                 placeholder="Search"
               }}
               <i
-                class="{{if filterEmpty "search" "remove link"}} icon"
+                class="{{if this.filterEmpty "search" "remove link"}} icon"
                 role="button"
                 {{action "clearFilter"}}
               ></i>
@@ -75,7 +75,7 @@
                 </div>
                 <div class="right floated">
                   <div class="ui right floated">
-                    {{pagination-list model=creditNotes page=page}}
+                    {{pagination-list model=this.creditNotes page=this.page}}
                   </div>
                 </div>
               </div>
@@ -85,7 +85,7 @@
       </tr>
     </tfoot>
     <tbody>
-      {{#each creditNotes as |cn|}}
+      {{#each this.creditNotes as |cn|}}
         <tr>
           <td>
             {{cn.number}}
@@ -114,7 +114,7 @@
               <button class="ui olive button">
                 {{t "general.show"}}
               </button>
-              {{#link-to "credit-notes.edit" model class="ui teal button"}}
+              {{#link-to "credit-notes.edit" cn.id class="ui teal button"}}
                 {{t "general.edit"}}
               {{/link-to}}
               <button class="ui red button" {{action "deleteButton" cn.id}}>

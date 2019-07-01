@@ -123,7 +123,8 @@
     "notes": "Note",
     "currency": "Valuta",
     "newCredit": "Adauga",
-    "new": { "title": "Add new credit note..." }
+    "new": { "title": "Add new credit note..." },
+    "edit": { "title": "Editam nota de credit..." }
   },
   "users": {
     "title": "Lista utilizatorilor",

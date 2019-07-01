@@ -1,17 +1,13 @@
-/* eslint-disable no-console */
-/* eslint-disable ember/named-functions-in-promises */
 import Component from "@ember/component";
-import { computed, action } from "@ember/object";
+import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
+import { tracked } from "@glimmer/tracking";
 
 export default class CreditNoteForm extends Component {
   @service store;
   @service settings;
 
-  @computed("creditNote.vehicle")
-  get selectedVehicle() {
-    return this.creditNote.vehicle;
-  }
+  @tracked selectedVehicle = this.creditNote.vehicle;
 
   @action
   setVehicle(vehicle) {
