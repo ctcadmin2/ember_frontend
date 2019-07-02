@@ -26,11 +26,43 @@ export default class CreditNotesController extends Controller {
     set(this, "page", 1);
   }
   @action
-  destroyCreditNote() {
-    //TODO add function
+  destroyCreditNote(id) {
+    this.store
+      .findRecord("credit-note", id, { backgroundReload: false })
+
+      .then(
+        cn =>
+          cn
+            .destroyRecord()
+            .then(
+              () => this.successCallback(),
+              () =>
+                this.flashMessages.error("Credit note could not be deleted!")
+            )
+            .catch(
+              r => console.log(r)
+
+              // this.flashMessages.error(
+              //   "There was an error while deleting the credit note."
+              // )
+            ),
+        () => this.flashMessages.error("Company could not be found!")
+      )
+      .catch(() =>
+        this.flashMessages.error(
+          "There was an error while looking for the credit note."
+        )
+      );
   }
+
   @action
   setSort(sortParam) {
     this.set("sort", sortParam);
+  }
+
+  //private
+  successCallback() {
+    this.send("refreshPage");
+    this.flashMessages.success("Successfully deleted!");
   }
 }

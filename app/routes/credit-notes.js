@@ -1,4 +1,7 @@
 import Route from "./protected";
+import { action } from "@ember/object";
+import { next } from "@ember/runloop";
+import $ from "jquery";
 
 export default class CreditNotesRoute extends Route {
   queryParams = {
@@ -27,5 +30,16 @@ export default class CreditNotesRoute extends Route {
         q: params.filter
       }
     });
+  }
+
+  @action
+  didTransition() {
+    next(function() {
+      $("body .modals").dimmer("hide"); //dimmer doesn't close on back button TODO find nicer fix
+    });
+  }
+  @action
+  refreshPage() {
+    this.refresh();
   }
 }

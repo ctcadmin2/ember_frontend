@@ -117,7 +117,10 @@
               {{#link-to "credit-notes.edit" cn.id class="ui teal button"}}
                 {{t "general.edit"}}
               {{/link-to}}
-              <button class="ui red button" {{action "deleteButton" cn.id}}>
+              <button
+                class="ui red button"
+                {{action "destroyCreditNote" cn.id}}
+              >
                 {{t "general.destroy"}}
               </button>
             </div>
