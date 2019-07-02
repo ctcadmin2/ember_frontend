@@ -1,15 +1,19 @@
-{{#ui-modal
-  name="creditNoteModal"
+<UiModal
   class="creditNoteModal small"
-  onApprove=(action "approveModal")
-  closable=false
-}}
+  @name="creditNoteModal"
+  @onApprove={{this.approveModal}}
+  @closable={{false}}
+>
   <div class="header">
     {{t "creditNotes.new.title"}}
   </div>
   <div class="content">
     <div class="scrolling">
-      {{credit-note-form creditNote=creditNote vehicles=vehicles}}
+      <CreditNoteForm
+        @creditNote={{this.creditNote}}
+        @vehicles={{this.vehicles}}
+       />
+
     </div>
   </div>
   <div class="actions">
@@ -20,4 +24,4 @@
       {{t "general.save"}}
     </div>
   </div>
-{{/ui-modal}}
+</UiModal>

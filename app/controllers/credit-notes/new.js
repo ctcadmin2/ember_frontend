@@ -34,6 +34,6 @@ export default class NewCreditNote extends Controller {
   //private
   _successCallback() {
     this.flashMessages.success("Successfully updated!");
-    this.transitionToRoute("companies.index");
+    this.transitionToRoute("credit-notes");
   }
 }

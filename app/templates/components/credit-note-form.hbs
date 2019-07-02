@@ -20,12 +20,12 @@
   <div class="inline field">
     <div class="ui fluid labeled input grid">
       <label class="ui label four wide column">
-        {{t "creditNotes.truck"}}
+        {{t "creditNotes.vehicle"}}
       </label>
       <UiDropdown
         class="twelve wide column scrolling selection"
         @selected={{this.selectedVehicle}}
-        onChange={{this.setVehicle}}
+        @onChange={{action this.setVehicle}}
       >
         <div class="default text">
           {{this.selectedVehicle.registration}}
@@ -117,7 +117,7 @@
       <UiDropdown
         class="twelve wide column scrolling selection"
         @selected={{@creditNote.currency}}
-        onChange={{action (mut @creditNote.currency)}}
+        @onChange={{action (mut @creditNote.currency)}}
       >
         <div class="default text">
           {{@creditNote.currency}}
@@ -140,8 +140,8 @@
       </label>
       <UiCheckbox
         class="slider"
-        checked={{@creditNote.paid}}
-        onChange={{action (mut @creditNote.paid)}}
+        @checked={{@creditNote.paid}}
+        @onChange={{action (mut @creditNote.paid)}}
        />
 
     </div>
