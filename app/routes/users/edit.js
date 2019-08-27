@@ -1,4 +1,4 @@
-import Route from "@ember/routing/route";
+import Route from "./../protected";
 import $ from "jquery";
 import { next } from "@ember/runloop";
 import { action } from "@ember/object";

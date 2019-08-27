@@ -1,112 +1,290 @@
-<div class="ui divider"></div>
-<form class="ui large fluid form">
-  <div class="inline field">
-    <div class="ui fluid labeled input grid">
-      <label
-        class="ui label four wide column"
-        for={{concat elementId "-number"}}
-      >
-        {{t "creditInvoices.number"}}
-      </label>
-      {{input
-        type="text"
-        value=creditInvoice.number
-        autofocus=true
-        id=(concat elementId "-number")
-      }}
-    </div>
-  </div>
-  <div class="inline field">
-    <div class="ui fluid labeled input grid">
-      <label class="ui label four wide column">
-        {{t "creditInvoices.date"}}
-      </label>
-    </div>
-  </div>
-  <div class="inline field">
-    <div class="ui fluid labeled input grid">
-      <label
-        class="ui label four wide column"
-        for={{concat elementId "-client"}}
-      >
-        {{t "creditInvoices.new.client"}}
-      </label>
-      {{#ui-dropdown
-        class="twelve wide column scrolling selection"
-        selected=client
-        onChange=(action (mut creditInvoice.client))
-      }}
-        <div class="default text">
-          {{client}}
-        </div>
-        <i class="dropdown icon"></i>
-        <div class="menu">
-          {{#each this.settings.main.client as |client|}}
-            <div class="item" data-value={{client}}>
-              {{client}}
+<div class="ui grid">
+  <div class="eight wide column">
+    <form class="ui large fluid form">
+      <div class="inline field">
+        <div class="ui fluid labeled input grid">
+          <label
+            class="ui label four wide column"
+            for={{concat this.elementId "-client"}}
+          >
+            {{t "creditInvoices.new.client"}}
+          </label>
+          <UiDropdown
+            class="twelve wide column scrolling selection"
+            @selected={{this.client}}
+            @onChange={{action (mut @creditInvoice.client)}}
+          >
+            <div class="default text">
+              {{this.client}}
             </div>
-          {{/each}}
-        </div>
-      {{/ui-dropdown}}
-    </div>
-  </div>
-  <div class="inline field">
-    <div class="ui fluid labeled input grid">
-      <label
-        class="ui label four wide column"
-        for={{concat elementId "-cNnotes"}}
-      >
-        {{t "creditInvoices.new.cNotes"}}
-      </label>
-      {{! credit notes checkbox list }}
-    </div>
-  </div>
-  <div class="inline field">
-    <div class="ui fluid labeled input grid">
-      <label class="ui label four wide column">
-        {{t "creditInvoices.new.currency"}}
-      </label>
-      {{#ui-dropdown
-        class="twelve wide column scrolling selection"
-        selected=currency
-        onChange=(action (mut creditInvoice.currency))
-      }}
-        <div class="default text">
-          {{currency}}
-        </div>
-        <i class="dropdown icon"></i>
-        <div class="menu">
-          {{#each this.settings.main.currencies as |currency|}}
-            <div class="item" data-value={{currency}}>
-              {{currency}}
+            <i class="dropdown icon"></i>
+            <div class="menu">
+              {{#each this.clientList as |client|}}
+                <div class="item" data-value={{client.id}}>
+                  {{client.name}}
+                </div>
+              {{/each}}
             </div>
-          {{/each}}
+          </UiDropdown>
         </div>
-      {{/ui-dropdown}}
-    </div>
+      </div>
+      <div class="inline field">
+        <div class="ui fluid labeled input grid">
+          <label
+            class="ui label four wide column"
+            for={{concat this.elementId "-number"}}
+          >
+            {{t "creditInvoices.number"}}
+          </label>
+          <Input
+            @type="text"
+            @value={{this.creditInvoice.number}}
+            autofocus="true"
+            id={{concat this.elementId "-number"}}
+           />
+
+        </div>
+      </div>
+      <div class="inline field">
+        <div class="ui fluid labeled input grid">
+          <label
+            class="ui label four wide column"
+            for={{concat this.elementId "-date"}}
+          >
+            {{t "creditInvoices.date"}}
+          </label>
+          <UiCalendar
+            @type="date"
+            @date={{@creditInvoice.date}}
+            @onChange={{action (mut @creditInvoice.date)}}
+            @placeholder="Select date"
+            id={{concat this.elementId "-date"}}
+           />
+
+        </div>
+      </div>
+      <div class="inline field">
+        <div class="ui fluid labeled input grid">
+          <label
+            class="ui label four wide column"
+            for={{concat this.elementId "-cNnotes"}}
+          >
+            {{t "creditInvoices.new.cNotes"}}
+          </label>
+          {{! credit notes checkbox list }}
+        </div>
+      </div>
+      <div class="inline field">
+        <div class="ui fluid labeled input grid">
+          <label class="ui label four wide column">
+            {{t "creditInvoices.new.currency"}}
+          </label>
+          {{#if this.main}}
+            {{#ui-dropdown
+              class="twelve wide column scrolling selection"
+              selected=@creditInvoice.currency
+              onChange=(action (mut @creditInvoice.currency))
+            }}
+              <div class="default text">
+                {{@creditInvoice.currency}}
+              </div>
+              <i class="dropdown icon"></i>
+              <div class="menu">
+                {{#each this.main.currencies as |currency|}}
+                  <div class="item" data-value={{currency}}>
+                    {{currency}}
+                  </div>
+                {{/each}}
+              </div>
+            {{/ui-dropdown}}
+          {{/if}}
+        </div>
+      </div>
+      <div class="inline field">
+        <div class="ui fluid labeled input grid">
+          <label class="ui label four wide column">
+            {{t "creditInvoices.new.taxRate"}}
+          </label>
+          {{#if this.main}}
+            {{#ui-dropdown
+              class="twelve wide column scrolling selection"
+              selected=@creditInvoice.vat_rate
+              onChange=(action (mut @creditInvoice.vat_rate))
+            }}
+              <div class="default text">
+                {{@creditInvoice.vat_rate}}
+              </div>
+              <i class="dropdown icon"></i>
+              <div class="menu">
+                {{#each this.main.vat_rate as |vat_rate|}}
+                  <div class="item" data-value={{vat_rate}}>
+                    {{vat_rate}}
+                  </div>
+                {{/each}}
+              </div>
+            {{/ui-dropdown}}
+          {{/if}}
+        </div>
+      </div>
+    </form>
   </div>
-  <div class="inline field">
-    <div class="ui fluid labeled input grid">
-      <label class="ui label four wide column">
-        {{t "creditInvoices.new.taxRate"}}
-      </label>
-      {{#ui-dropdown
-        class="twelve wide column scrolling selection"
-        selected=taxRate
-        onChange=(action (mut creditInvoice.taxRate))
-      }}
-        <div class="default text">
-          {{taxRate}}
+  {{!-- <div class="eight wide column">
+    <div class="row">
+      <div class="column">
+        <div class="ui center aligned basic segment">
+          Aditional lines
         </div>
-        <i class="dropdown icon"></i>
-        <div class="menu">
-          {{#each this.settings.main.taxRate as |taxRate|}}
-            <div class="item" data-value={{taxRate}}>
-              {{taxRate}}
+        <div class="ui basic segment">
+          <form class="ui fluid form">
+            <div class="inline field">
+              <div class="ui fluid labeled input grid">
+                <label
+                  class="ui label four wide column"
+                  for={{concat this.elementId "-serviceName"}}
+                >
+                  {{t "components.creditInvoiceForm.serviceName"}}
+                </label>
+                <Input
+                  @type="text"
+                  @value="creditInvoice.number"
+                  autofocus="true"
+                  id={{concat this.elementId "-serviceName"}}
+                 />
+
+              </div>
             </div>
-          {{/each}}
+            <div class="inline field">
+              <div class="ui fluid labeled input grid">
+                <label
+                  class="ui label four wide column"
+                  for={{concat this.elementId "-serviceName"}}
+                >
+                  {{t "components.creditInvoiceForm.serviceName"}}
+                </label>
+                <Input
+                  @type="text"
+                  @value="creditInvoice.number"
+                  autofocus="true"
+                  id={{concat this.elementId "-serviceName"}}
+                 />
+
+              </div>
+            </div>
+            <div class="inline field">
+              <div class="ui fluid labeled input grid">
+                <label
+                  class="ui label four wide column"
+                  for={{concat this.elementId "-serviceName"}}
+                >
+                  {{t "components.creditInvoiceForm.serviceName"}}
+                </label>
+                <Input
+                  @type="text"
+                  @value="creditInvoice.number"
+                  autofocus="true"
+                  id={{concat this.elementId "-serviceName"}}
+                 />
+
+              </div>
+            </div>
+            <div class="inline field">
+              <div class="ui fluid labeled input grid">
+                <label
+                  class="ui label four wide column"
+                  for={{concat this.elementId "-serviceName"}}
+                >
+                  {{t "components.creditInvoiceForm.serviceName"}}
+                </label>
+                <Input
+                  @type="text"
+                  @value="creditInvoice.number"
+                  autofocus="true"
+                  id={{concat this.elementId "-serviceName"}}
+                 />
+
+              </div>
+            </div>
+          </form>
         </div>
-      {{/ui-dropdown}}
+      </div>
+      <div class="ui divider"></div>
+      <div class="column">
+        <div class="ui center aligned basic segment">
+          contact info
+        </div>
+        <div class="ui basic segment">
+          <form class="ui fluid form">
+            <div class="inline field">
+              <div class="ui fluid labeled input grid">
+                <label
+                  class="ui label four wide column"
+                  for={{concat this.elementId "-serviceName"}}
+                >
+                  {{t "components.creditInvoiceForm.serviceName"}}
+                </label>
+                <Input
+                  @type="text"
+                  @value="creditInvoice.number"
+                  autofocus="true"
+                  id={{concat this.elementId "-serviceName"}}
+                 />
+
+              </div>
+            </div>
+            <div class="inline field">
+              <div class="ui fluid labeled input grid">
+                <label
+                  class="ui label four wide column"
+                  for={{concat this.elementId "-serviceName"}}
+                >
+                  {{t "components.creditInvoiceForm.serviceName"}}
+                </label>
+                <Input
+                  @type="text"
+                  @value="creditInvoice.number"
+                  autofocus="true"
+                  id={{concat this.elementId "-serviceName"}}
+                 />
+
+              </div>
+            </div>
+            <div class="inline field">
+              <div class="ui fluid labeled input grid">
+                <label
+                  class="ui label four wide column"
+                  for={{concat this.elementId "-serviceName"}}
+                >
+                  {{t "components.creditInvoiceForm.serviceName"}}
+                </label>
+                <Input
+                  @type="text"
+                  @value="creditInvoice.number"
+                  autofocus="true"
+                  id={{concat this.elementId "-serviceName"}}
+                 />
+
+              </div>
+            </div>
+            <div class="inline field">
+              <div class="ui fluid labeled input grid">
+                <label
+                  class="ui label four wide column"
+                  for={{concat this.elementId "-serviceName"}}
+                >
+                  {{t "components.creditInvoiceForm.serviceName"}}
+                </label>
+                <Input
+                  @type="text"
+                  @value="creditInvoice.number"
+                  autofocus="true"
+                  id={{concat this.elementId "-serviceName"}}
+                 />
+
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
-  </div>
-</form>
+  </div> --}}
+</div>

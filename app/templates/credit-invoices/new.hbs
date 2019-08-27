@@ -1,15 +1,15 @@
-{{#ui-modal
-  name="creditInvoiceModal"
+<UiModal
   class="creditInvoiceModal large"
-  onApprove=(action "approveModal")
-  closable=false
-}}
+  @name="creditInvoiceModal"
+  @onApprove={{action this.approveModal}}
+  @closable={{false}}
+>
   <div class="header">
     {{t "creditInvoices.new.title"}}
   </div>
   <div class="content">
     <div class="scrolling">
-      {{!-- {{credit-invoice-form creditInvoice=creditInvoice}} --}}
+      <CreditInvoiceForm @creditInvoice={{this.creditInvoice}} />
     </div>
   </div>
   <div class="actions">
@@ -20,4 +20,4 @@
       {{t "general.save"}}
     </div>
   </div>
-{{/ui-modal}}
+</UiModal>

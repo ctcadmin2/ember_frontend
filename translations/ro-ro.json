@@ -8,6 +8,7 @@
     }
   },
   "application": {
+    "appName": "CTCAdmin2",
     "links": {
       "registration": "Inregistrare",
       "login": "Autentificare",

@@ -1,43 +1,38 @@
 /* eslint-disable ember/named-functions-in-promises */
 import Service from "@ember/service";
-import fetch from "fetch";
 import { inject as service } from "@ember/service";
-import { resolve, reject } from "rsvp";
+import { fetch } from "fetch";
+import { task } from "ember-concurrency";
 
 export default class SettingsService extends Service {
-  @service session;
   @service flashMessages;
+  @service session;
 
-  main = "";
-  company = "";
+  main = null;
+  company = null;
 
-  init() {
-    super.init(...arguments);
-    this.load("main");
-    this.load("company");
-  }
+  // TODO check possible removal
+  getData(obj) {
+    if (this.get(obj)) {
+      return this.get(obj);
+    } else {
+      this.loadData.perform(obj);
 
-  load(obj) {
-    return fetch(`/prefs/${obj}`, {
-      headers: {
-        Authorization: `Bearer ${this.session.data.authenticated.jwt}`
-      }
-    })
-      .then(response => this._handleResponse(response))
-      .then(json => this._handleJson(json))
-      .then(data => this.set(obj, data));
+      return this.main;
+    }
   }
 
   /**
-   * Updates the settings on the server
-   * @method update
+   * Task to update the settings on the server
+   * @method updateData
    * @param {String} type The type of settings to update
    * @param {Object} data The payload data
    */
-  update(type, data) {
+  @task(function*(type, data) {
     let payload = {};
     payload[type] = data;
-    return fetch(`/prefs/${type}`, {
+
+    let response = yield fetch(`/prefs/${type}`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${this.session.data.authenticated.jwt}`,
@@ -45,18 +40,34 @@ export default class SettingsService extends Service {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({ prefs: payload })
-    }).then(() => this.flashMessages.success("Settings updated successfully."));
-  }
+    });
 
-  //private
-  _handleResponse(response) {
     if (response.status >= 200 && response.status < 300) {
-      return resolve(response);
+      this.flashMessages.success("Settings updated successfully.");
     } else {
-      return reject(response.status);
+      this.flashMessages.error("Settings could not be saved.");
     }
-  }
-  _handleJson(response) {
-    return response.json();
-  }
+  })
+  updateData;
+
+  /**
+   * Task to get the settings from the server
+   * @method loadData
+   * @param {String} type The type of settings to retrieve
+   */
+  @task(function*(type) {
+    let response = yield fetch(`/prefs/${type}`, {
+      headers: {
+        Authorization: `Bearer ${this.session.data.authenticated.jwt}`
+      }
+    });
+
+    if (response.status >= 200 && response.status < 300) {
+      let json = yield response.json();
+      this.set(type, json);
+    } else {
+      this.flashMessages.error("Settings could not be loaded.");
+    }
+  })
+  loadData;
 }

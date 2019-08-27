@@ -1,25 +1,27 @@
 <div class="ui huge secondary pointing menu">
-  {{link-to "CTCAdmin2" "home" class="item header"}}
+  <LinkTo @route="home" class="item header">
+    {{t "application.appName"}}
+  </LinkTo>
   <div class="right menu">
-    {{#if session.isAuthenticated}}
+    {{#if this.session.isAuthenticated}}
       <div class="item">
         {{t "general.loggedIn"}}
-        {{currentUser.user.fullName}}
+        {{this.currentUser.user.fullName}}
       </div>
       <div
         class="link item"
         id="logoutBtn"
         role="button"
-        {{action "invalidateSession"}}
+        {{action this.invalidateSession}}
       >
         {{t "application.links.logout"}}
       </div>
     {{else}}
-      {{#ui-dropdown
+      <UiDropdown
         class="pointing item"
-        selected="en-us"
-        onChange=(action "changeLocale")
-      }}
+        @selected="en-us"
+        @onChange={{action this.changeLocale}}
+      >
         <div class="default text"></div>
         <i class="dropdown icon"></i>
         <div class="menu">
@@ -30,35 +32,32 @@
             <i class="ro flag"></i>
           </div>
         </div>
-      {{/ui-dropdown}}
-      {{#if (eq router.currentRouteName "registration")}}
-        {{#link-to "login" class="item"}}
+      </UiDropdown>
+      {{#if (eq this.router.currentRouteName "registration")}}
+        <LinkTo @route="login" class="item">
           {{t "login.button.login"}}
-        {{/link-to}}
+        </LinkTo>
       {{else}}
-        {{#link-to "registration" class="item"}}
+        <LinkTo @route="registration" class="item">
           {{t "registration.button.registration"}}
-        {{/link-to}}
+        </LinkTo>
       {{/if}}
     {{/if}}
   </div>
 </div>
 <dir class="ui grid">
-  {{#if session.isAuthenticated}}
+  {{#if this.session.isAuthenticated}}
     <div class="two wide column">
       <div class="ui fluid secondary left vertical pointing menu">
-        {{link-to (t "application.links.vehicles") "vehicles" class="teal item"
-        }}
-        {{link-to
-          (t "application.links.creditInvoices")
-          "credit-invoices"
-          class="teal item"
-        }}
-        {{link-to
-          (t "application.links.creditNotes")
-          "credit-notes"
-          class="teal item"
-        }}
+        <LinkTo @route="vehicles" class="teal item">
+          {{t "application.links.vehicles"}}
+        </LinkTo>
+        <LinkTo @route="credit-invoices" class="teal item">
+          {{t "application.links.creditInvoices"}}
+        </LinkTo>
+        <LinkTo @route="credit-notes" class="teal item">
+          {{t "application.links.creditNotes"}}
+        </LinkTo>
         <div class="ui dropdown item">
           {{t "temp.expenses.main"}}
           <i class="dropdown icon"></i>
@@ -80,22 +79,23 @@
         <div class="item">
           {{t "application.links.utils"}}
         </div>
-        {{link-to
-          (t "application.links.companies")
-          "companies"
-          class="teal item"
-        }}
-        {{#if currentUser.user.admin}}
-          {{link-to (t "application.links.users") "users" class="teal item"}}
+        <LinkTo @route="companies" class="teal item">
+          {{t "application.links.companies"}}
+        </LinkTo>
+        {{#if this.currentUser.user.admin}}
+          <LinkTo @route="users" class="teal item">
+            {{t "application.links.users"}}
+          </LinkTo>
         {{/if}}
-        {{link-to (t "application.links.settings") "settings" class="teal item"
-        }}
+        <LinkTo @route="settings" class="teal item">
+          {{t "application.links.settings"}}
+        </LinkTo>
       </div>
     </div>
   {{/if}}
-  <div class="{{if session.isAuthenticated "fourteen wide "}} column">
+  <div class="{{if this.session.isAuthenticated "fourteen wide "}} column">
     <div>
-      {{#each flashMessages.queue as |flash|}}
+      {{#each this.flashMessages.queue as |flash|}}
         {{flash-alert flash=flash}}
       {{/each}}
     </div>

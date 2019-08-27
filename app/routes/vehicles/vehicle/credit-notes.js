@@ -1,3 +1,3 @@
-import Route from "@ember/routing/route";
+import Route from "./../../protected";
 
 export default class VehicleCreditNotesRoute extends Route {}

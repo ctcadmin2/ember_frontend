@@ -13,7 +13,7 @@
       </div>
       <div class="ui bottom attached active tab segment" data-tab="main">
         <div class="ui selection very relaxed divided list">
-          {{#each-in settings.main as |key value|}}
+          {{#each-in this.main as |key value|}}
             {{#if (is-array value)}}
               {{tab-multiline-item
                 category=key
@@ -22,7 +22,7 @@
               }}
             {{/if}}
           {{/each-in}}
-          {{#each-in settings.main as |key value|}}
+          {{#each-in this.main as |key value|}}
             {{#if (not (is-array value))}}
               {{tab-line-item
                 objType="main"
@@ -37,12 +37,12 @@
       </div>
       <div class="ui bottom attached tab segment" data-tab="company">
         <div class="ui selection very relaxed divided list">
-          {{#each companyOrder as |list|}}
+          {{#each this.companyOrder as |list|}}
             {{tab-line-item
               objType="company"
               prop=(get list 0)
               inputType=(get list 1)
-              value=(get settings.company (get list 0))
+              value=(get this.company (get list 0))
               saveData=(action "saveCompanyData")
             }}
           {{/each}}

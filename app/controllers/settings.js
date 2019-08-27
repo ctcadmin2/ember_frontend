@@ -1,13 +1,19 @@
 import Controller from "@ember/controller";
-import { set, action } from "@ember/object";
+import { set, action, computed } from "@ember/object";
 import { inject as service } from "@ember/service";
-import { tracked } from "@glimmer/tracking";
 
 export default class SettingsController extends Controller {
   @service settings;
 
-  @tracked main = this.settings.main;
-  @tracked company = this.settings.company;
+  @computed("settings.main")
+  get main() {
+    return this.settings.getData("main");
+  }
+
+  @computed("settings.company")
+  get company() {
+    return this.settings.getData("company");
+  }
 
   companyOrder = [
     ["name", "text"],
@@ -39,6 +45,6 @@ export default class SettingsController extends Controller {
   updateCategory(category, item) {
     let data = this.main;
     set(data, category, item);
-    this.settings.update("main", data);
+    this.settings.updateData.perform("main", data);
   }
 }
