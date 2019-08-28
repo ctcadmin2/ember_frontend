@@ -7,6 +7,7 @@
       "trip": "Cursa"
     }
   },
+  "test": "TEST",
   "application": {
     "appName": "CTCAdmin2",
     "links": {

@@ -14,7 +14,7 @@ module('Integration | Component | table-actions', function(hooks) {
     this.set('company', company);
 
     await render(
-      hbs`{{table-actions model=company deleteModel=(action disF)}}`
+      hbs`{{table-actions model=this.company deleteModel=(action this.disF)}}`
     );
     assert.dom(this.element).hasText('Show Edit Destroy');
   });

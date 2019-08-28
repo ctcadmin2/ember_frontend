@@ -40,11 +40,9 @@ export default class CreditNotesController extends Controller {
                 this.flashMessages.error("Credit note could not be deleted!")
             )
             .catch(
-              r => console.log(r)
-
-              // this.flashMessages.error(
-              //   "There was an error while deleting the credit note."
-              // )
+              this.flashMessages.error(
+                "There was an error while deleting the credit note."
+              )
             ),
         () => this.flashMessages.error("Company could not be found!")
       )

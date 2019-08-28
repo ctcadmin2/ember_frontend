@@ -1,7 +1,9 @@
-<div class="ui attached {{flash.type}} icon message">
-  <i class="{{statusClass}} icon"></i>
+<div class="ui attached {{this.type}} icon message">
+  <i class="{{this.statusClass}} icon"></i>
   <i class="close icon" role="button" {{action "closeButton"}}></i>
   <div class="content">
-    <p>{{flash.message}}</p>
+    <p>
+      {{this.flash.message}}
+    </p>
   </div>
 </div>

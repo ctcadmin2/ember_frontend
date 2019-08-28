@@ -1,21 +1,42 @@
-<h1 class="ui centered teal header">{{t "login.title"}}</h1>
+<h1 class="ui centered teal header">
+  {{t "login.title"}}
+</h1>
 <div class="ui grid centered">
-  <div class="ui sixteen wide mobile ten wide tablet eight wide computer column">
+  <div
+    class="ui sixteen wide mobile ten wide tablet eight wide computer column"
+  >
     <div class="ui centered raised segment">
-      <form class="ui large form" id="loginForm" {{action "userAuth" on="submit"}}>
+      <form
+        class="ui large form"
+        id="loginForm"
+        {{action "userAuth" on="submit"}}
+      >
         <div class="field">
           <div class="ui left icon input">
             <i class="ui mail icon"></i>
-            {{input type="email" id="email" placeholder=(t "login.placeholder.email") value=email autofocus=true}}
+            {{input
+              type="email"
+              id="email"
+              placeholder=(t "login.placeholder.email")
+              value=this.email
+              autofocus=true
+            }}
           </div>
         </div>
         <div class="field">
           <div class="ui left icon input">
             <i class="ui lock icon"></i>
-            {{input type="password" id="password" placeholder=(t "login.placeholder.password") value=password}}
+            {{input
+              type="password"
+              id="password"
+              placeholder=(t "login.placeholder.password")
+              value=this.password
+            }}
           </div>
         </div>
-        <button type="submit" class="ui fluid large teal submit button">{{t "login.button.login"}}</button>
+        <button type="submit" class="ui fluid large teal submit button">
+          {{t "login.button.login"}}
+        </button>
       </form>
     </div>
   </div>

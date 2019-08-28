@@ -1,6 +1,6 @@
 {{! TODO fix no-nested-interactive/no-invalid-interactive }}
 <form
-  class="ui fluid {{formClass}} form"
+  class="ui fluid {{this.formClass}} form"
   role="button"
   oninput={{action "changeCif"}}
   {{! TODO check proper role }}
@@ -16,14 +16,14 @@
       {{#if this.countries.dataFetched}}
         {{#ui-dropdown
           class="scrolling selection"
-          selected=country
-          onChange=(action (mut country))
+          selected=this.country
+          onChange=(action (mut this.country))
           showOnFocus=false
         }}
           <i class="dropdown icon"></i>
           <div class="default text"></div>
           <div class="menu">
-            {{#each countries.list as |country|}}
+            {{#each this.countries.list as |country|}}
               <div class="item" data-value={{country.value}}>
                 {{#if (eq country.value "EL")}}
                   <i class="gr flag"></i>
@@ -36,11 +36,11 @@
           </div>
         {{/ui-dropdown}}
       {{/if}}
-      {{input type="text" value=cif placeholder="CIF"}}
+      {{input type="text" value=this.cif placeholder="CIF"}}
       <button
         class="ui primary button"
-        disabled={{searchDisabled}}
-        {{action (perform findTask)}}
+        disabled={{this.searchDisabled}}
+        {{action (perform this.findTask)}}
       >
         {{t "components.findCompany.findButton"}}
       </button>

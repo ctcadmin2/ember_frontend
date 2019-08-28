@@ -6,11 +6,11 @@
 }}
   <div class="header">
     {{t "general.editing"}}
-    {{vehicle.registration}}
+    {{this.vehicle.registration}}
     ...
   </div>
   <div class="scrolling content">
-    {{vehicle-form vehicle=vehicle}}
+    {{vehicle-form vehicle=this.vehicle}}
   </div>
   <div class="actions">
     <button class="ui red deny button" {{action "cancelButton"}}>

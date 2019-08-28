@@ -10,8 +10,8 @@
   <div class="content">
     {{find-company returnData=(action "returnData")}}
     <div class="scrolling">
-      {{#if showForm}}
-        {{company-form data=company}}
+      {{#if this.showForm}}
+        {{company-form data=this.company}}
       {{/if}}
     </div>
   </div>
@@ -19,7 +19,7 @@
     <button class="ui red deny button" {{action "cancelButton"}}>
       {{t "general.cancel"}}
     </button>
-    <div class="ui positive {{if saveDisabled "disabled"}} button">
+    <div class="ui positive {{if this.saveDisabled "disabled"}} button">
       {{t "general.save"}}
     </div>
   </div>

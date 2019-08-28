@@ -1,3 +1,6 @@
-<button class="ui button {{if obj.active "green" "red"}}" {{action "toggleObj" obj "active"}}>
-  {{if obj.active "Active" "Inactive"}}
+<button
+  class="ui button {{if @obj.active "green" "red"}}"
+  {{action "toggleObj" @obj "active"}}
+>
+  {{if @obj.active "Active" "Inactive"}}
 </button>

@@ -27,7 +27,7 @@
                 </div>
                 <div class="right floated">
                   <div class="ui right floated">
-                    {{pagination-list model=vehicles page=page}}
+                    {{pagination-list model=this.vehicles page=this.page}}
                   </div>
                 </div>
               </div>
@@ -37,7 +37,7 @@
       </tr>
     </tfoot>
     <tbody>
-      {{#each vehicles as |vehicle|}}
+      {{#each this.vehicles as |vehicle|}}
         <tr>
           <td>
             {{vehicle.vin}}

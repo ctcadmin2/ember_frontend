@@ -7,18 +7,18 @@
   onclick={{action "toggleEdit"}}
 >
   <div class="ui four wide column">
-    {{t (concat "settings." objType "." (camelize prop))}}
+    {{t (concat "settings." @objType "." (camelize @prop))}}
   </div>
   <div class="ui six wide column">
-    <div class="ui fluid {{if editMode "input"}}">
-      {{#if editMode}}
+    <div class="ui fluid {{if this.editMode "input"}}">
+      {{#if this.editMode}}
         {{#if textarea}}
-          {{textarea rows=2 cols=50 value=value}}
+          {{textarea rows=2 cols=50 value=@value}}
         {{else}}
-          {{input type=inputType value=value}}
+          {{input type=@inputType value=@value}}
         {{/if}}
       {{else}}
-        {{value}}
+        {{@value}}
       {{/if}}
     </div>
   </div>
@@ -30,12 +30,12 @@
     onclick={{action "saveChanges"}}
   >
     <div class="ui right floated">
-      {{#if editMode}}
-        {{#if showIcon}}
+      {{#if this.editMode}}
+        {{#if this.showIcon}}
           <i class="olive save icon"></i>
         {{/if}}
         {{t "general.save"}}
-      {{else if showIcon}}
+      {{else if this.showIcon}}
         <i class="teal pencil alternate icon"></i>{{t "general.edit"}}
       {{/if}}
     </div>

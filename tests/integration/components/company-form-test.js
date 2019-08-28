@@ -29,7 +29,7 @@ module("Integration | Component | company-form", function(hooks) {
   });
 
   test("it renders", async function(assert) {
-    await render(hbs`{{company-form data=company}}`);
+    await render(hbs`{{company-form data=this.company}}`);
 
     assert
       .dom(".inline.field")
@@ -43,7 +43,7 @@ module("Integration | Component | company-form", function(hooks) {
   });
 
   test("show should have disable input", async function(assert) {
-    await render(hbs`{{company-form data=company inputDisabled=true}}`);
+    await render(hbs`{{company-form data=this.company inputDisabled=true}}`);
 
     assert
       .dom(":disabled")

@@ -8,7 +8,8 @@ module('Integration | Component | find-company', function(hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function(assert) {
-    await render(hbs`{{find-company}}`);
+    this.set('testFunction', function() {});
+    await render(hbs`{{find-company returnData=(action this.testFunction)}}`);
     assert.dom('.form').exists('The form is displayed');
   });
 
@@ -17,7 +18,8 @@ module('Integration | Component | find-company', function(hooks) {
       dataFetched: true,
       list: [{ name: 'Romania', value: 'RO' }, { name: 'Denmark', value: 'DK' }]
     });
-    await render(hbs`{{find-company}}`);
+    this.set('testFunction', function() {});
+    await render(hbs`{{find-company returnData=(action this.testFunction)}}`);
 
     assert.dom('.dropdown').exists('The select is created');
     assert.equal(find('.menu').children.length, 2, 'Create 2 elements');
@@ -31,7 +33,7 @@ module('Integration | Component | find-company', function(hooks) {
   test('button disable', async function(assert) {
     this.set('testFunction', function() {});
 
-    await render(hbs`{{find-company returnData=(action testFunction)}}`);
+    await render(hbs`{{find-company returnData=(action this.testFunction)}}`);
 
     assert
       .dom('button')
@@ -82,7 +84,7 @@ module('Integration | Component | find-company', function(hooks) {
 
     this.set('testFunction', function() {});
 
-    await render(hbs`{{find-company returnData=(action testFunction)}}`);
+    await render(hbs`{{find-company returnData=(action this.testFunction)}}`);
 
     await fillIn('input', 1);
     await click('button');
