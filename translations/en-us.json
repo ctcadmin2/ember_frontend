@@ -44,6 +44,20 @@
       "success": "Company found, please review and save.",
       "error": "Company not found, please try again or input data manually.",
       "findButton": "Find company"
+    },
+    "creditInvoiceForm": {
+      "extraLines": {
+        "header": "Aditional lines",
+        "serviceName": "Service",
+        "quantity": "Quantity",
+        "value": "Value"
+      },
+      "contactInfo": {
+        "header": "Contact info",
+        "name": "Name",
+        "id": "ID",
+        "transport": "Transport"
+      }
     }
   },
   "settings": {

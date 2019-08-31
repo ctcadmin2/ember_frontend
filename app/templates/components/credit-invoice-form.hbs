@@ -13,6 +13,7 @@
             class="twelve wide column scrolling selection"
             @selected={{this.client}}
             @onChange={{action (mut @creditInvoice.client)}}
+            autofocus="true"
           >
             <div class="default text">
               {{this.client}}
@@ -39,7 +40,6 @@
           <Input
             @type="text"
             @value={{this.creditInvoice.number}}
-            autofocus="true"
             id={{concat this.elementId "-number"}}
            />
 
@@ -128,11 +128,11 @@
       </div>
     </form>
   </div>
-  {{!-- <div class="eight wide column">
+  <div class="eight wide column">
     <div class="row">
       <div class="column">
         <div class="ui center aligned basic segment">
-          Aditional lines
+          {{t "components.creditInvoiceForm.extraLines.header"}}
         </div>
         <div class="ui basic segment">
           <form class="ui fluid form">
@@ -142,12 +142,10 @@
                   class="ui label four wide column"
                   for={{concat this.elementId "-serviceName"}}
                 >
-                  {{t "components.creditInvoiceForm.serviceName"}}
+                  {{t "components.creditInvoiceForm.extraLines.serviceName"}}
                 </label>
                 <Input
                   @type="text"
-                  @value="creditInvoice.number"
-                  autofocus="true"
                   id={{concat this.elementId "-serviceName"}}
                  />
 
@@ -157,51 +155,22 @@
               <div class="ui fluid labeled input grid">
                 <label
                   class="ui label four wide column"
-                  for={{concat this.elementId "-serviceName"}}
+                  for={{concat this.elementId "-quantity"}}
                 >
-                  {{t "components.creditInvoiceForm.serviceName"}}
+                  {{t "components.creditInvoiceForm.extraLines.quantity"}}
                 </label>
-                <Input
-                  @type="text"
-                  @value="creditInvoice.number"
-                  autofocus="true"
-                  id={{concat this.elementId "-serviceName"}}
-                 />
-
+                <Input @type="text" id={{concat this.elementId "-quantity"}} />
               </div>
             </div>
             <div class="inline field">
               <div class="ui fluid labeled input grid">
                 <label
                   class="ui label four wide column"
-                  for={{concat this.elementId "-serviceName"}}
+                  for={{concat this.elementId "-value"}}
                 >
-                  {{t "components.creditInvoiceForm.serviceName"}}
+                  {{t "components.creditInvoiceForm.extraLines.value"}}
                 </label>
-                <Input
-                  @type="text"
-                  @value="creditInvoice.number"
-                  autofocus="true"
-                  id={{concat this.elementId "-serviceName"}}
-                 />
-
-              </div>
-            </div>
-            <div class="inline field">
-              <div class="ui fluid labeled input grid">
-                <label
-                  class="ui label four wide column"
-                  for={{concat this.elementId "-serviceName"}}
-                >
-                  {{t "components.creditInvoiceForm.serviceName"}}
-                </label>
-                <Input
-                  @type="text"
-                  @value="creditInvoice.number"
-                  autofocus="true"
-                  id={{concat this.elementId "-serviceName"}}
-                 />
-
+                <Input @type="text" id={{concat this.elementId "-value"}} />
               </div>
             </div>
           </form>
@@ -210,7 +179,7 @@
       <div class="ui divider"></div>
       <div class="column">
         <div class="ui center aligned basic segment">
-          contact info
+          {{t "components.creditInvoiceForm.contactInfo.header"}}
         </div>
         <div class="ui basic segment">
           <form class="ui fluid form">
@@ -218,73 +187,38 @@
               <div class="ui fluid labeled input grid">
                 <label
                   class="ui label four wide column"
-                  for={{concat this.elementId "-serviceName"}}
+                  for={{concat this.elementId "-name"}}
                 >
-                  {{t "components.creditInvoiceForm.serviceName"}}
+                  {{t "components.creditInvoiceForm.contactInfo.name"}}
                 </label>
-                <Input
-                  @type="text"
-                  @value="creditInvoice.number"
-                  autofocus="true"
-                  id={{concat this.elementId "-serviceName"}}
-                 />
-
+                <Input @type="text" id={{concat this.elementId "-name"}} />
               </div>
             </div>
             <div class="inline field">
               <div class="ui fluid labeled input grid">
                 <label
                   class="ui label four wide column"
-                  for={{concat this.elementId "-serviceName"}}
+                  for={{concat this.elementId "-id"}}
                 >
-                  {{t "components.creditInvoiceForm.serviceName"}}
+                  {{t "components.creditInvoiceForm.contactInfo.id"}}
                 </label>
-                <Input
-                  @type="text"
-                  @value="creditInvoice.number"
-                  autofocus="true"
-                  id={{concat this.elementId "-serviceName"}}
-                 />
-
+                <Input @type="text" id={{concat this.elementId "-id"}} />
               </div>
             </div>
             <div class="inline field">
               <div class="ui fluid labeled input grid">
                 <label
                   class="ui label four wide column"
-                  for={{concat this.elementId "-serviceName"}}
+                  for={{concat this.elementId "-transport"}}
                 >
-                  {{t "components.creditInvoiceForm.serviceName"}}
+                  {{t "components.creditInvoiceForm.contactInfo.transport"}}
                 </label>
-                <Input
-                  @type="text"
-                  @value="creditInvoice.number"
-                  autofocus="true"
-                  id={{concat this.elementId "-serviceName"}}
-                 />
-
-              </div>
-            </div>
-            <div class="inline field">
-              <div class="ui fluid labeled input grid">
-                <label
-                  class="ui label four wide column"
-                  for={{concat this.elementId "-serviceName"}}
-                >
-                  {{t "components.creditInvoiceForm.serviceName"}}
-                </label>
-                <Input
-                  @type="text"
-                  @value="creditInvoice.number"
-                  autofocus="true"
-                  id={{concat this.elementId "-serviceName"}}
-                 />
-
+                <Input @type="text" id={{concat this.elementId "-transport"}} />
               </div>
             </div>
           </form>
         </div>
       </div>
     </div>
-  </div> --}}
+  </div>
 </div>

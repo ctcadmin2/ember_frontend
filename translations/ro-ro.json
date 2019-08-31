@@ -44,6 +44,20 @@
       "success": "Firma a fost gasita. Verifica datele si salveaza.",
       "error": "Firma nu a putut fi gasita. Incearca din nou sau introdu datele manual.",
       "findButton": "Cauta firma"
+    },
+    "creditInvoiceForm": {
+      "extraLines": {
+        "header": "Servicii extra",
+        "serviceName": "Serviciu",
+        "quantity": "Cantitate",
+        "value": "Valoare"
+      },
+      "contactInfo": {
+        "header": "Contact info",
+        "name": "Nume",
+        "id": "CI",
+        "transport": "Transport"
+      }
     }
   },
   "settings": {
