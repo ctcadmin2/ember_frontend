@@ -1,6 +1,7 @@
 import { helper } from "@ember/component/helper";
 
 export function sortClass([sort, name]) {
+  //TODO rewrite
   let direction = "";
 
   if (sort === name) {

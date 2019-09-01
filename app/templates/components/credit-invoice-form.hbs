@@ -10,7 +10,7 @@
             {{t "creditInvoices.new.client"}}
           </label>
           <UiDropdown
-            class="twelve wide column scrolling selection"
+            class="twelve wide column search selection"
             @selected={{this.client}}
             @onChange={{action (mut @creditInvoice.client)}}
             autofocus="true"
@@ -129,11 +129,16 @@
     </form>
   </div>
   <div class="eight wide column">
-    <div class="row">
-      <div class="column">
-        <div class="ui center aligned basic segment">
-          {{t "components.creditInvoiceForm.extraLines.header"}}
-        </div>
+    <div class="ui fluid secondary vertical menu">
+      <span
+        class="ui link item"
+        {{on "click" (toggle "showExtra" this)}}
+        {{on "click" (fn this.closeOther "showContact")}}
+      >
+        {{t "components.creditInvoiceForm.extraLines.header"}}
+        <i class="angle double {{orientation this.showExtra}} icon"></i>
+      </span>
+      {{#if this.showExtra}}
         <div class="ui basic segment">
           <form class="ui fluid form">
             <div class="inline field">
@@ -175,12 +180,19 @@
             </div>
           </form>
         </div>
-      </div>
-      <div class="ui divider"></div>
-      <div class="column">
-        <div class="ui center aligned basic segment">
-          {{t "components.creditInvoiceForm.contactInfo.header"}}
-        </div>
+      {{/if}}
+    </div>
+    <div class="ui divider"></div>
+    <div class="ui fluid secondary vertical menu">
+      <span
+        class="ui link item"
+        {{on "click" (toggle "showContact" this)}}
+        {{on "click" (fn this.closeOther "showExtra")}}
+      >
+        {{t "components.creditInvoiceForm.contactInfo.header"}}
+        <i class="angle double {{orientation this.showContact}} icon"></i>
+      </span>
+      {{#if this.showContact}}
         <div class="ui basic segment">
           <form class="ui fluid form">
             <div class="inline field">
@@ -218,7 +230,7 @@
             </div>
           </form>
         </div>
-      </div>
+      {{/if}}
     </div>
   </div>
 </div>

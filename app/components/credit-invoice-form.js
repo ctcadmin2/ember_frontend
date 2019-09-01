@@ -1,6 +1,7 @@
 import Component from "@ember/component";
 import { inject as service } from "@ember/service";
-import { computed } from "@ember/object";
+import { computed, action } from "@ember/object";
+import { task } from "ember-concurrency";
 
 export default class CreditInvoiceForm extends Component {
   @service store;
@@ -8,7 +9,14 @@ export default class CreditInvoiceForm extends Component {
   @service settings;
   @service flashMessages;
 
-  lastNumber = null;
+  showExtra = false;
+  showContact = false;
+
+  @computed("creditInvoice.client")
+  get lastNumber() {
+    //TODO
+    return this.creditInvoice.client;
+  }
 
   @computed("settings.main")
   get main() {
@@ -21,5 +29,15 @@ export default class CreditInvoiceForm extends Component {
         company: "name"
       }
     });
+  }
+
+  @task(function*() {})
+  getLastNumber;
+
+  @action
+  closeOther(obj) {
+    if (this.get(obj)) {
+      this.toggleProperty(obj);
+    }
   }
 }
