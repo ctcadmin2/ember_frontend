@@ -12,7 +12,7 @@
           <UiDropdown
             class="twelve wide column search selection"
             @selected={{this.client}}
-            @onChange={{action (mut @creditInvoice.client)}}
+            @onChange={{action this.setClient}}
             autofocus="true"
           >
             <div class="default text">

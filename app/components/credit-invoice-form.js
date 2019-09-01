@@ -12,12 +12,6 @@ export default class CreditInvoiceForm extends Component {
   showExtra = false;
   showContact = false;
 
-  @computed("creditInvoice.client")
-  get lastNumber() {
-    //TODO
-    return this.creditInvoice.client;
-  }
-
   @computed("settings.main")
   get main() {
     return this.settings.getData("main");
@@ -31,7 +25,21 @@ export default class CreditInvoiceForm extends Component {
     });
   }
 
-  @task(function*() {})
+  @task(function*(clientId) {
+    let client = yield this.store.findRecord("company", clientId);
+    let national = client.country === "RO";
+
+    let invoiceList = yield this.store.query("credit-invoice", {
+      filter: {
+        national
+      },
+      fields: {
+        "credit-invoices": "number"
+      }
+    });
+    let lastNumber = invoiceList.mapBy("number").sort().lastObject;
+    this.creditInvoice.set("number", lastNumber + 1);
+  })
   getLastNumber;
 
   @action
@@ -39,5 +47,11 @@ export default class CreditInvoiceForm extends Component {
     if (this.get(obj)) {
       this.toggleProperty(obj);
     }
+  }
+
+  @action
+  setClient(client) {
+    this.set("client", client);
+    this.getLastNumber.perform(client);
   }
 }
