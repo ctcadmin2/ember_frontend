@@ -6,12 +6,19 @@ import hbs from 'htmlbars-inline-precompile';
 module('Integration | Helper | orientation', function(hooks) {
   setupRenderingTest(hooks);
 
-  // Replace this with your real tests.
-  test('it renders', async function(assert) {
-    this.set('inputValue', '1234');
+  test('returns up on truthy input', async function(assert) {
+    this.set('inputValue', true);
 
-    await render(hbs`{{orientation inputValue}}`);
+    await render(hbs`{{orientation this.inputValue}}`);
 
-    assert.equal(this.element.textContent.trim(), '1234');
+    assert.equal(this.element.textContent.trim(), 'up');
+  });
+
+  test('returns down on falsy input', async function(assert) {
+    this.set('inputValue', false);
+
+    await render(hbs`{{orientation this.inputValue}}`);
+
+    assert.equal(this.element.textContent.trim(), 'down');
   });
 });

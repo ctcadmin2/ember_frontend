@@ -29,7 +29,7 @@ module("Integration | Component | sortable-header", function(hooks) {
         @prop={{this.name}}
         @setSort={{action this.setSort}}
       > 
-        {{t 'test'}}
+        {{t "test"}}
       </SortableHeader>
     `);
 
