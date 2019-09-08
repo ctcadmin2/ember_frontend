@@ -33,7 +33,7 @@ export default class FindCompany extends Component {
     set(this, "cifChanged", true);
     let result;
     try {
-      if (this.country == "RO") {
+      if (this.country === "RO") {
         result = yield this.companyInfo.checkOpenApi(this.cif);
       } else {
         result = yield this.companyInfo.checkVies(this.country, this.cif);

@@ -6,12 +6,10 @@ export default class CompanyInfoService extends Service {
 
   checkOpenApi(cif) {
     let url = `/api_helpers/openapi.json?cif=${cif}`;
-    let fetch = fetchData(url, this.session.data.authenticated.jwt);
-    return fetch;
+    return fetchData(url, this.session.data.authenticated.jwt);
   }
   checkVies(country, cif) {
     let url = `/api_helpers/vies.json?country=${country}&cif=${cif}`;
-    let fetch = fetchData(url, this.session.data.authenticated.jwt);
-    return fetch;
+    return fetchData(url, this.session.data.authenticated.jwt);
   }
 }

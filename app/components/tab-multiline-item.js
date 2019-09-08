@@ -24,7 +24,7 @@ export default class TabMultilineItem extends Component {
   }
   @action
   addMode() {
-    if (this.editMode == false) {
+    if (this.editMode === false) {
       set(this, "editMode", true);
     }
   }

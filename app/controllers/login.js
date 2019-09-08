@@ -20,7 +20,7 @@ export default Controller.extend({
     this.flashMessages.success("Welcome!");
   },
   _processError(error) {
-    if (error == 404) {
+    if (error === 404) {
       this.flashMessages.error("User/password was not found!");
     } else {
       this.flashMessages.info(

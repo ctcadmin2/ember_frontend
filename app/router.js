@@ -23,7 +23,8 @@ Router.map(function() {
   });
 
   this.route("vehicles", function() {
-    this.route("new"), this.route("edit", { path: "/:vehicle_id" });
+    this.route("new");
+    this.route("edit", { path: "/:vehicle_id" });
     this.route("vehicle", { path: "/:vehicle_id" }, function() {
       this.route("credit-notes");
       this.route("events");
