@@ -1,8 +1,17 @@
 import Controller from "@ember/controller";
 import { alias, empty } from "@ember/object/computed";
-import { action } from "@ember/object";
+import { action, computed } from "@ember/object";
+import { inject as service } from "@ember/service";
 
 export default class CreditInvoicesController extends Controller {
+  @service currentUser;
+
+  @computed
+  get locale() {
+    let user = this.currentUser.user;
+    return user.lang.split("-")[0];
+  }
+
   queryParams = ["page", "size", "sort", "filter"];
   page = 1;
   size = 5;

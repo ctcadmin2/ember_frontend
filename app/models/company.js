@@ -1,4 +1,4 @@
-import Model, { attr } from "@ember-data/model";
+import Model, { attr, hasMany } from "@ember-data/model";
 
 export default class Company extends Model {
   @attr("string")
@@ -29,4 +29,6 @@ export default class Company extends Model {
   vies;
   @attr("boolean")
   status;
+  @hasMany("credit-invoice")
+  creditInvoices;
 }

@@ -1,4 +1,4 @@
-import Model, { attr } from "@ember-data/model";
+import Model, { attr, belongsTo, hasMany } from "@ember-data/model";
 
 export default class CreditInvoice extends Model {
   @attr("number")
@@ -6,5 +6,17 @@ export default class CreditInvoice extends Model {
   @attr("date")
   date;
   @attr("number")
-  total_value;
+  totalValue;
+  @attr("string")
+  taxRate;
+  @attr("string")
+  currency;
+  @belongsTo("company")
+  company;
+  @hasMany("credit-note")
+  creditNotes;
+  @attr()
+  extra;
+  @attr()
+  contact;
 }

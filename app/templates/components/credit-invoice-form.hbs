@@ -11,17 +11,17 @@
           </label>
           <UiDropdown
             class="twelve wide column search selection"
-            @selected={{this.client}}
-            @onChange={{action this.setClient}}
-            autofocus="true"
+            @selected={{@creditInvoice.company}}
+            @onChange={{action (mut @creditInvoice.company)}}
+            autofocus="true" as |execute mapper|
           >
             <div class="default text">
-              {{this.client}}
+              {{@creditInvoice.company.name}}
             </div>
             <i class="dropdown icon"></i>
             <div class="menu">
               {{#each this.clientList as |client|}}
-                <div class="item" data-value={{client.id}}>
+                <div class="item" data-value={{map-value mapper client}}>
                   {{client.name}}
                 </div>
               {{/each}}
@@ -41,6 +41,7 @@
             @type="text"
             @value={{this.creditInvoice.number}}
             id={{concat this.elementId "-number"}}
+            {{on "focus" this.getLastNumber}}
            />
 
         </div>
@@ -72,7 +73,24 @@
           >
             {{t "creditInvoices.new.cNotes"}}
           </label>
-          {{! credit notes checkbox list }}
+          <UiDropdown
+            class="twelve wide column search multiple selection"
+            @selected={{@creditInvoice.cNotes}}
+            @onChange={{action (mut @creditInvoice.creditNotes)
+            }} as |execute mapper|
+          >
+            <div class="default text">
+              {{@creditInvoice.cNotes}}
+            </div>
+            <i class="dropdown icon"></i>
+            <div class="menu">
+              {{#each this.cNotesList as |cn|}}
+                <div class="item" data-value={{map-value mapper cn}}>
+                  {{cn.number}}
+                </div>
+              {{/each}}
+            </div>
+          </UiDropdown>
         </div>
       </div>
       <div class="inline field">
@@ -109,17 +127,17 @@
           {{#if this.main}}
             {{#ui-dropdown
               class="twelve wide column scrolling selection"
-              selected=@creditInvoice.vat_rate
-              onChange=(action (mut @creditInvoice.vat_rate))
+              selected=@creditInvoice.taxRate
+              onChange=(action (mut @creditInvoice.taxRate))
             }}
               <div class="default text">
-                {{@creditInvoice.vat_rate}}
+                {{@creditInvoice.taxRate}}
               </div>
               <i class="dropdown icon"></i>
               <div class="menu">
-                {{#each this.main.vat_rate as |vat_rate|}}
-                  <div class="item" data-value={{vat_rate}}>
-                    {{vat_rate}}
+                {{#each this.main.tax_rate as |tax_rate|}}
+                  <div class="item" data-value={{tax_rate}}>
+                    {{tax_rate}}
                   </div>
                 {{/each}}
               </div>
@@ -134,7 +152,7 @@
       <span
         class="ui link item"
         {{on "click" (toggle "showExtra" this)}}
-        {{on "click" (fn this.closeOther "showContact")}}
+        {{on "click" (fn this.sectionSwitcher "showContact")}}
       >
         {{t "components.creditInvoiceForm.extraLines.header"}}
         <i class="angle double {{orientation this.showExtra}} icon"></i>
@@ -153,6 +171,8 @@
                 <Input
                   @type="text"
                   id={{concat this.elementId "-serviceName"}}
+                  @value={{this.extra.serviceName}}
+                  {{on "change" (fn this.addExtraData)}}
                  />
 
               </div>
@@ -165,7 +185,13 @@
                 >
                   {{t "components.creditInvoiceForm.extraLines.quantity"}}
                 </label>
-                <Input @type="text" id={{concat this.elementId "-quantity"}} />
+                <Input
+                  @type="text"
+                  id={{concat this.elementId "-quantity"}}
+                  @value={{this.extra.quantity}}
+                  {{on "change" (fn this.addExtraData)}}
+                 />
+
               </div>
             </div>
             <div class="inline field">
@@ -176,7 +202,13 @@
                 >
                   {{t "components.creditInvoiceForm.extraLines.value"}}
                 </label>
-                <Input @type="text" id={{concat this.elementId "-value"}} />
+                <Input
+                  @type="text"
+                  id={{concat this.elementId "-value"}}
+                  @value={{this.extra.value}}
+                  {{on "change" (fn this.addExtraData)}}
+                 />
+
               </div>
             </div>
           </form>
@@ -188,7 +220,7 @@
       <span
         class="ui link item"
         {{on "click" (toggle "showContact" this)}}
-        {{on "click" (fn this.closeOther "showExtra")}}
+        {{on "click" (fn this.sectionSwitcher "showExtra")}}
       >
         {{t "components.creditInvoiceForm.contactInfo.header"}}
         <i class="angle double {{orientation this.showContact}} icon"></i>
@@ -204,7 +236,13 @@
                 >
                   {{t "components.creditInvoiceForm.contactInfo.name"}}
                 </label>
-                <Input @type="text" id={{concat this.elementId "-name"}} />
+                <Input
+                  @type="text"
+                  id={{concat this.elementId "-name"}}
+                  @value={{this.contact.name}}
+                  {{on "change" (fn this.addExtraData)}}
+                 />
+
               </div>
             </div>
             <div class="inline field">
@@ -215,7 +253,13 @@
                 >
                   {{t "components.creditInvoiceForm.contactInfo.id"}}
                 </label>
-                <Input @type="text" id={{concat this.elementId "-id"}} />
+                <Input
+                  @type="text"
+                  id={{concat this.elementId "-id"}}
+                  @value={{this.contact.id}}
+                  {{on "change" (fn this.addExtraData)}}
+                 />
+
               </div>
             </div>
             <div class="inline field">
@@ -226,7 +270,13 @@
                 >
                   {{t "components.creditInvoiceForm.contactInfo.transport"}}
                 </label>
-                <Input @type="text" id={{concat this.elementId "-transport"}} />
+                <Input
+                  @type="text"
+                  id={{concat this.elementId "-transport"}}
+                  @value={{this.contact.transport}}
+                  {{on "change" (fn this.addExtraData)}}
+                 />
+
               </div>
             </div>
           </form>

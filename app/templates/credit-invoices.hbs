@@ -71,7 +71,7 @@
             {{ci.number}}
           </td>
           <td>
-            {{ci.date}}
+            {{moment-format ci.date "DD-MMM-YYYY" locale=this.locale}}
           </td>
           <td>
             {{ci.total_value}}

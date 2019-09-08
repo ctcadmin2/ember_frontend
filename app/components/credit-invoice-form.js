@@ -9,6 +9,9 @@ export default class CreditInvoiceForm extends Component {
   @service settings;
   @service flashMessages;
 
+  extra = {};
+  contact = {};
+
   showExtra = false;
   showContact = false;
 
@@ -20,14 +23,24 @@ export default class CreditInvoiceForm extends Component {
   get clientList() {
     return this.store.query("company", {
       fields: {
-        company: "name"
+        companies: "name,country"
       }
     });
   }
 
-  @task(function*(clientId) {
-    let client = yield this.store.findRecord("company", clientId);
-    let national = client.country === "RO";
+  get cNotesList() {
+    return this.store.query("credit-note", {
+      filter: {
+        paid: false
+      },
+      fields: {
+        "credit-notes": "number"
+      }
+    });
+  }
+
+  @task(function*(client) {
+    let national = client.get("country") === "RO";
 
     let invoiceList = yield this.store.query("credit-invoice", {
       filter: {
@@ -40,18 +53,25 @@ export default class CreditInvoiceForm extends Component {
     let lastNumber = invoiceList.mapBy("number").sort().lastObject;
     this.creditInvoice.set("number", lastNumber + 1);
   })
-  getLastNumber;
+  lastNumberTask;
 
   @action
-  closeOther(obj) {
+  sectionSwitcher(obj) {
     if (this.get(obj)) {
       this.toggleProperty(obj);
     }
   }
 
   @action
-  setClient(client) {
-    this.set("client", client);
-    this.getLastNumber.perform(client);
+  addExtraData() {
+    this.creditInvoice.set("extra", this.extra);
+    this.creditInvoice.set("contact", this.contact);
+  }
+
+  @action
+  getLastNumber() {
+    if (!this.creditInvoice.number) {
+      this.lastNumberTask.perform(this.creditInvoice.company);
+    }
   }
 }

@@ -81,7 +81,7 @@
     "main": {
       "paidBy": "Mod plata",
       "vehCat": "Categoria vehiculului",
-      "vatRate": "Rata TVA",
+      "taxRate": "Rata TVA",
       "activities": "Activitati",
       "currencies": "Valute",
       "diurnaBaza": "Diurna zilnica",

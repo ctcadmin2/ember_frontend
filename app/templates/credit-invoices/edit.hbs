@@ -1,1 +1,23 @@
-{{outlet}}
+<UiModal
+  class="creditInvoiceModal large"
+  @name="creditInvoiceModal"
+  @onApprove={{action this.approveModal}}
+  @closable={{false}}
+>
+  <div class="header">
+    {{t "creditInvoices.new.title"}}
+  </div>
+  <div class="content">
+    <div class="scrolling">
+      <CreditInvoiceForm @creditInvoice={{this.creditInvoice}} />
+    </div>
+  </div>
+  <div class="actions">
+    <button class="ui red deny button" {{action "cancelButton"}}>
+      {{t "general.cancel"}}
+    </button>
+    <div class="ui positive button">
+      {{t "general.save"}}
+    </div>
+  </div>
+</UiModal>

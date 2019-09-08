@@ -15,12 +15,11 @@ export default class NewCreditInvoice extends Controller {
       .save()
       .then(
         () => this._successCallback(),
-        () =>
-          this.flashMessages.error("Modifications were not successfully saved!")
+        () => this.flashMessages.error("Credit invoice could not be created!")
       )
       .catch(() =>
         this.flashMessages.error(
-          "There was an error while trying to save your modifications."
+          "There was an error while trying to save your credit invoice."
         )
       );
   }
@@ -31,7 +30,7 @@ export default class NewCreditInvoice extends Controller {
 
   //private
   _successCallback() {
-    this.flashMessages.success("Successfully updated!");
+    this.flashMessages.success("Credit invoice successfully created!");
     this.transitionToRoute("credit-invoices");
   }
 }
