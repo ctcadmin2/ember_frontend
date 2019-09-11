@@ -5355,10 +5355,10 @@ ember-truth-helpers@^2.1.0:
   dependencies:
     ember-cli-babel "^6.6.0"
 
-ember-unused-components@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/ember-unused-components/-/ember-unused-components-1.0.4.tgz#9009e62adb1d301cf3c60935f367aa50c337ef41"
-  integrity sha512-8gSXWpG8vRQr6qTSYoCAXUAbRe7aSBYJfimqoVi2iEf/2+LWoRBcQf8Mg5m4SgBH+E0yFtjJS8cViLI15c1h5w==
+ember-unused-components@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/ember-unused-components/-/ember-unused-components-1.1.0.tgz#49fd4142be76b7b10a4419f2886ea4606e539932"
+  integrity sha512-ZKdiu5Z12MDdWnBRtsbrfK412CDGEznC8LbpvYaq83g+sMggRjSvds4MD32Dyolnzjjp96DXTUGPJKoey2tF3g==
   dependencies:
     colors "1.3.3"
     fs-extra "8.1.0"
