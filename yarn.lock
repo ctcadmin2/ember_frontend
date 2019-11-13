@@ -10451,10 +10451,10 @@ supports-color@^5.3.0:
   dependencies:
     has-flag "^3.0.0"
 
-sweetalert2@^8.17.1:
-  version "8.17.1"
-  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-8.17.1.tgz#0c691ce4181661182ad4bc5312aa25e44479a650"
-  integrity sha512-aCPXmK1YyVUfsw36iDETzUnYj1fxwXSY/dkt8cnqViv7f5sOS5i37LXIf9LLiDCd99EbY4d4kvZkyWYlJZ79Xw==
+sweetalert2@^9.3.4:
+  version "9.3.4"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-9.3.4.tgz#2fc1fcd8538ea6613cbc80bc49e6d13f1b0150f6"
+  integrity sha512-nyW+SAZUkiKpbKSDE33J9nF5UQnc7IGC1eDHeW80HkhsggvkmQN0Clq7PHXb1roLkBLJryb2evVLDc9jZmptRQ==
 
 symbol-tree@^3.2.2:
   version "3.2.4"
