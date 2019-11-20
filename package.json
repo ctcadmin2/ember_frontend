@@ -58,7 +58,7 @@
     "ember-moment": "^8.0.0",
     "ember-qunit": "^4.6.0",
     "ember-qunit-nice-errors": "^1.2.0",
-    "ember-resolver": "^5.3.0",
+    "ember-resolver": "^6.0.0",
     "ember-semantic-ui-calendar": "^3.0.0",
     "ember-simple-auth": "^2.1.0",
     "ember-source": "~3.14.1",
