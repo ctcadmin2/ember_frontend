@@ -10831,10 +10831,10 @@ testem@^2.17.0:
     tmp "0.0.33"
     xmldom "^0.1.19"
 
-testem@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/testem/-/testem-3.0.0.tgz#1f1ce7003d5fa0d4e7419846c884741eec496404"
-  integrity sha512-zNLBRvGYDiF2NjwrVj3QPRDdl9JbGtjhkCdCqHglffW5kXU720IRp2udELqMo2XrlS/VzcKPbqXAXjT98j1Oow==
+testem@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/testem/-/testem-3.0.2.tgz#9100d09e73c3271e5201a141dbd3f0d31e71add2"
+  integrity sha512-mUcPL7MZtmg3UUkOe6sIFXoY1ysv06qxQ7VEKnAHIAiKbf21DOdAJzVqR9YsOZcvennP9gKAUbL/607z9RQt/g==
   dependencies:
     backbone "^1.1.2"
     bluebird "^3.4.6"
