@@ -1,9 +1,9 @@
 module.exports = {
   root: true,
-  parser: 'babel-eslint',
+  parser: "babel-eslint",
   parserOptions: {
     ecmaVersion: 2018,
-    sourceType: 'module',
+    sourceType: "module",
     ecmaFeatures: {
       legacyDecorators: true
     }
@@ -11,7 +11,7 @@ module.exports = {
   plugins: ["ember", "hbs", "compat", "html", "ember-es6-class"],
   extends: [
     "eslint:recommended",
-    "plugin:ember/recommended",
+    "plugin:ember/octane",
     "plugin:compat/recommended"
   ],
   env: {
