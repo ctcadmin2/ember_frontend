@@ -1,35 +1,35 @@
-import Component from "@ember/component";
+import Component from "@glimmer/component";
 import { action } from "@ember/object";
-import { equal } from "@ember/object/computed";
 
 export default class TabLineItem extends Component {
   classNames = ["ui", "item"];
   showIcon = false;
   editMode = false;
 
-  @equal("inputType", "textarea")
-  textarea;
+  textarea() {
+    return this.inputType === "textarea";
+  }
 
   @action
   toggleEdit() {
     if (!this.editMode) {
-      this.set("editMode", true);
+      this.editMode = true;
     }
   }
   @action
   mouseIn(e) {
     e.stopPropagation();
-    this.set("showIcon", true);
+    this.showIcon = true;
   }
   @action
   mouseOut(e) {
     e.stopPropagation();
-    this.set("showIcon", false);
+    this.showIcon = false;
   }
   @action
   saveChanges(e) {
     e.stopPropagation();
     this.saveData(this.prop, this.value);
-    this.set("editMode", false);
+    this.editMode = false;
   }
 }

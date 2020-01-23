@@ -1,14 +1,11 @@
-import Component from "@ember/component";
+import Component from "@glimmer/component";
 import Swal from "sweetalert2";
-import { computed, action } from "@ember/object";
+import { action } from "@ember/object";
 import { pluralize } from "ember-inflector";
 
 export default class TableActions extends Component {
-  tagName = "";
-
-  @computed("model")
   get route() {
-    let route = this.model.constructor.modelName;
+    let route = this.args.model.constructor.modelName;
     return pluralize(route);
   }
 

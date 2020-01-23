@@ -10,6 +10,7 @@ export default class CreditInvoiceEditRoute extends Route {
   @action
   didTransition() {
     next(function() {
+      // eslint-disable-next-line ember/no-jquery
       $(".creditInvoiceModal").modal("toggle");
     });
   }

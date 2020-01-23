@@ -1,6 +1,7 @@
 <button
   class="ui button {{if @obj.active "green" "red"}}"
-  {{action "toggleObj" @obj "active"}}
+  type="button"
+  {{on "click" (fn this.toggleObj @obj "active")}}
 >
   {{if @obj.active "Active" "Inactive"}}
 </button>

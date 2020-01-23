@@ -1,5 +1,5 @@
 import Controller from "@ember/controller";
-import { alias, empty } from "@ember/object/computed";
+import { isEmpty } from "@ember/utils";
 import { inject as service } from "@ember/service";
 import { set, action } from "@ember/object";
 
@@ -12,10 +12,13 @@ export default class CreditNotesController extends Controller {
   filter = "";
   sort = "number";
 
-  @alias("model")
-  creditNotes;
-  @empty("filter")
-  filterEmpty;
+  get creditNotes() {
+    return this.model;
+  }
+
+  get filterEmpty() {
+    return isEmpty(this.filter);
+  }
 
   @action
   clearFilter() {
@@ -55,7 +58,12 @@ export default class CreditNotesController extends Controller {
 
   @action
   setSort(sortParam) {
-    this.set("sort", sortParam);
+    this.sort = sortParam;
+  }
+
+  @action
+  pageChange(page) {
+    this.transitionToRoute({ queryParams: { page: page } });
   }
 
   //private

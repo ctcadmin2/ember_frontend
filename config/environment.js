@@ -1,4 +1,3 @@
-/* eslint-env node */
 "use strict";
 
 module.exports = function(environment) {
@@ -13,9 +12,6 @@ module.exports = function(environment) {
       // service defaults
       types: ["error", "success", "info"],
       destroyOnClick: false
-    },
-    "ember-cli-string-helpers": {
-      only: ["lowercase", "camelize"]
     },
     intl: [
       {
@@ -35,8 +31,6 @@ module.exports = function(environment) {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
         // e.g. EMBER_NATIVE_DECORATOR_SUPPORT: true
-        EMBER_NATIVE_DECORATOR_SUPPORT: true,
-        EMBER_METAL_TRACKED_PROPERTIES: true
       },
       EXTEND_PROTOTYPES: {
         // Prevent Ember Data from overriding Date.parse.
@@ -51,10 +45,6 @@ module.exports = function(environment) {
   };
 
   if (environment === "development") {
-    ENV["ember-qunit-nice-errors"] = {
-      showFileInfo: true,
-      completeExistingMessages: true
-    };
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
@@ -72,6 +62,11 @@ module.exports = function(environment) {
 
     ENV.APP.rootElement = "#ember-testing";
     ENV.APP.autoboot = false;
+
+    ENV["ember-qunit-nice-errors"] = {
+      showFileInfo: true,
+      completeExistingMessages: true
+    };
   }
 
   if (environment === "production") {

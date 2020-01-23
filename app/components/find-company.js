@@ -1,26 +1,29 @@
 import { inject as service } from "@ember/service";
-import Component from "@ember/component";
-import { computed, set, action } from "@ember/object";
-import { empty, alias, or } from "@ember/object/computed";
+import Component from "@glimmer/component";
+import { tracked } from "@glimmer/tracking";
+import { set, action } from "@ember/object";
 import { task } from "ember-concurrency";
+import { isEmpty } from "@ember/utils";
 
 export default class FindCompany extends Component {
   @service countries;
   @service companyInfo;
 
   country = "RO";
-  responseType = "";
-  cifChanged = false;
 
-  @alias("findTask.isRunning")
-  taskRunning;
-  @alias("findTask.last.hasStarted")
-  hasStarted;
-  @empty("cif")
-  cifEmpty;
-  @or("cifEmpty", "cifChanged")
-  searchDisabled;
-  @computed("taskRunning", "responseType")
+  @tracked cifChanged = false;
+  @tracked cif;
+  @tracked responseType = "";
+  @tracked taskRunning = this.findTask.isRunning;
+
+  get cifEmpty() {
+    return isEmpty(this.cif);
+  }
+
+  get searchDisabled() {
+    return this.cifEmpty || this.cifChanged;
+  }
+
   get formClass() {
     if (this.isRunning) {
       return "loading";
@@ -46,10 +49,6 @@ export default class FindCompany extends Component {
   }).drop())
   findTask;
 
-  executeTheTask() {
-    this.findTask.perform();
-  }
-
   @action
   changeCif() {
     set(this, "cifChanged", false);
@@ -64,6 +63,6 @@ export default class FindCompany extends Component {
       set(this, "responseType", "error");
     }
 
-    this.returnData(data);
+    this.args.returnData(data);
   }
 }

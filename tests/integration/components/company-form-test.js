@@ -29,21 +29,23 @@ module("Integration | Component | company-form", function(hooks) {
   });
 
   test("it renders", async function(assert) {
-    await render(hbs`{{company-form data=this.company}}`);
+    await render(hbs`<CompanyForm @data={{this.company}} />`);
 
     assert
       .dom(".inline.field")
       .exists({ count: 13 }, "All fields are displayed");
     assert
       .dom("[id*=name]")
-      .hasValue(this.get("company").name, "Input field is properly updated");
+      .hasValue(this.company.name, "Input field is properly updated");
     assert
       .dom(".dropdown .menu .item")
       .exists({ count: 2 }, "Select is created from valid array");
   });
 
   test("show should have disable input", async function(assert) {
-    await render(hbs`{{company-form data=this.company inputDisabled=true}}`);
+    await render(
+      hbs`<CompanyForm @data={{this.company}} @inputDisabled={{true}} />`
+    );
 
     assert
       .dom(":disabled")

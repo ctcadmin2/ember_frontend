@@ -8,21 +8,21 @@ export default class CountriesService extends Service {
   dataFetched = false;
   url = "/api_helpers/countries.json";
 
-  init() {
-    super.init(...arguments);
-    this.set("fetch", fetchData(this.url, this.session.data.authenticated.jwt));
+  constructor() {
+    super(...arguments);
+    this.fetch = fetchData(this.url, this.session.data.authenticated.jwt);
     this._setlist();
   }
 
   //private
   _setlist() {
     let f = this.fetch;
-    f.then(list => this._successCallback(list)).catch(() =>
-      this.set("list", { error: "error" })
+    f.then(list => this._successCallback(list)).catch(
+      (this.list = { error: "error" })
     );
   }
   _successCallback(list) {
-    this.set("list", list);
-    this.set("dataFetched", true);
+    this.list = list;
+    this.dataFetched = true;
   }
 }

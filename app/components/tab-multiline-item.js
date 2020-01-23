@@ -1,8 +1,7 @@
-import Component from "@ember/component";
-import { set, action } from "@ember/object";
+import Component from "@glimmer/component";
+import { action } from "@ember/object";
 
 export default class TabMultilineItem extends Component {
-  classNames = ["ui", "item"];
   value = "";
   editMode = false;
   showSaveIcon = false;
@@ -19,25 +18,25 @@ export default class TabMultilineItem extends Component {
     this.list.pushObject(this.value);
     this.updateData(this.category, this.list);
 
-    set(this, "editMode", false);
-    set(this, "value", "");
+    this.editMode = false;
+    this.value = "";
   }
   @action
   addMode() {
     if (this.editMode === false) {
-      set(this, "editMode", true);
+      this.editMode = true;
     }
   }
   @action
   mouseOut() {
     if (this.showSaveIcon) {
-      set(this, "showSaveIcon", false);
+      this.showSaveIcon = false;
     }
   }
   @action
   mouseIn() {
     if (!this.showSaveIcon) {
-      set(this, "showSaveIcon", true);
+      this.showSaveIcon = true;
     }
   }
 }

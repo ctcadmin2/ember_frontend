@@ -1,16 +1,14 @@
 import Controller from "@ember/controller";
-import { set, action, computed } from "@ember/object";
+import { set, action } from "@ember/object";
 import { inject as service } from "@ember/service";
 
 export default class SettingsController extends Controller {
   @service settings;
 
-  @computed("settings.main")
   get main() {
     return this.settings.getData("main");
   }
 
-  @computed("settings.company")
   get company() {
     return this.settings.getData("company");
   }
@@ -34,11 +32,11 @@ export default class SettingsController extends Controller {
     let objProp = prefs.main[prop];
 
     if (objProp) {
-      set(prefs.main, prop, value);
-      prefs.update("main", prefs.main);
+      this.prefs.main[prop] = value;
+      this.prefs.update("main", prefs.main);
     } else {
-      set(prefs.company, prop, value);
-      prefs.update("company", prefs.company);
+      this.prefs.company[prop] = value;
+      this.prefs.update("company", prefs.company);
     }
   }
   @action

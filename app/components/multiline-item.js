@@ -1,4 +1,4 @@
-import Component from "@ember/component";
+import Component from "@glimmer/component";
 import { action } from "@ember/object";
 
 export default class MultilineItem extends Component {
@@ -7,13 +7,13 @@ export default class MultilineItem extends Component {
 
   mouseEnter() {
     if (!this.showEditMode) {
-      this.set("showDeleteIcon", true);
+      this.showDeleteIcon = true;
     }
   }
 
   mouseLeave() {
     if (!this.showEditMode) {
-      this.set("showDeleteIcon", false);
+      this.showDeleteIcon = false;
     }
   }
 

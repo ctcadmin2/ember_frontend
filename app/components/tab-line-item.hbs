@@ -2,9 +2,9 @@
 <div
   class="ui middle aligned item grid"
   role="button"
-  onMouseEnter={{action "mouseIn"}}
-  onMouseLeave={{action "mouseOut"}}
-  onclick={{action "toggleEdit"}}
+  {{on "mouseenter" this.mouseIn}}
+  {{on "mouseleave" this.mouseOut}}
+  {{on "click" this.toggleEdit}}
 >
   <div class="ui four wide column">
     {{t (concat "settings." @objType "." (camelize @prop))}}
@@ -12,10 +12,10 @@
   <div class="ui six wide column">
     <div class="ui fluid {{if this.editMode "input"}}">
       {{#if this.editMode}}
-        {{#if textarea}}
-          {{textarea rows=2 cols=50 value=@value}}
+        {{#if this.textarea}}
+          <Textarea rows="2" cols="50" @value={{@value}} />
         {{else}}
-          {{input type=@inputType value=@value}}
+          <Input type={{@inputType}} @value={{@value}} />
         {{/if}}
       {{else}}
         {{@value}}
@@ -25,9 +25,9 @@
   <div
     class="ui six wide column"
     role="button"
-    onMouseEnter={{action "mouseIn"}}
-    onMouseLeave={{action "mouseOut"}}
-    onclick={{action "saveChanges"}}
+    {{on "mouseenter" this.mouseIn}}
+    {{on "mouseleave" this.mouseOut}}
+    {{on "click" this.saveChanges}}
   >
     <div class="ui right floated">
       {{#if this.editMode}}

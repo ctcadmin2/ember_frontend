@@ -5,7 +5,7 @@
     </div>
   </div>
   <div class="ui four wide column">
-    <div class="ui right floated" role="button" {{action "remove"}}>
+    <div class="ui right floated" role="button" {{on "click" this.remove}}>
       {{#if this.showDeleteIcon}}
         <i class="remove large red icon"></i>
       {{/if}}

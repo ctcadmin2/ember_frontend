@@ -2,21 +2,23 @@ import Route from "@ember/routing/route";
 import ApplicationRouteMixin from "ember-simple-auth/mixins/application-route-mixin";
 import { inject as service } from "@ember/service";
 
-export default Route.extend(ApplicationRouteMixin, {
-  currentUser: service(),
-  intl: service(),
-  routeAfterAuthentication: "/",
+export default class ApplicationRoute extends Route.extend(
+  ApplicationRouteMixin
+) {
+  @service currentUser;
+  @service intl;
+  routeAfterAuthentication = "/";
 
   beforeModel() {
     return this._loadCurrentUser();
-  },
+  }
   sessionAuthenticated() {
     /** transition might be triggered before load of current user is resolved
         https://github.com/simplabs/ember-simple-auth/issues/1838
     */
-    this._super(...arguments);
+    super.sessionAuthenticated(...arguments);
     this._loadCurrentUser();
-  },
+  }
 
   // private
   /**
@@ -26,7 +28,7 @@ export default Route.extend(ApplicationRouteMixin, {
   _loadCurrentUser() {
     return this.currentUser
       .load()
-      .then(resp => this.get("intl").setLocale([resp.lang]))
-      .catch(() => this.get("session").invalidate());
+      .then(resp => this.intl.setLocale([resp.lang]))
+      .catch(() => this.session.invalidate());
   }
-});
+}

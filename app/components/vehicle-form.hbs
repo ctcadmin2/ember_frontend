@@ -2,33 +2,18 @@
 <form class="ui large fluid form">
   <div class="inline field">
     <div class="ui fluid labeled input grid">
-      <label
-        class="ui label four wide column"
-        for={{concat this.elementId "-vin"}}
-      >
+      <label class="ui label four wide column" for={{concat this.elementId "-vin"}}>
         {{t "vehicles.vin"}}
       </label>
-      {{input
-        type="text"
-        value=@vehicle.vin
-        autofocus=true
-        id=(concat this.elementId "-vin")
-      }}
+      <Input type="text" @value={{@vehicle.vin}} autofocus={{true}} id={{concat this.elementId "-vin"}} />
     </div>
   </div>
   <div class="inline field">
     <div class="ui fluid labeled input grid">
-      <label
-        class="ui label four wide column"
-        for={{concat this.elementId "-reg"}}
-      >
+      <label class="ui label four wide column" for={{concat this.elementId "-reg"}}>
         {{t "vehicles.registration"}}
       </label>
-      {{input
-        type="text"
-        value=@vehicle.registration
-        id=(concat this.elementId "-reg")
-      }}
+      <Input type="text" @value={{@vehicle.registration}} id={{concat this.elementId "-reg"}} />
     </div>
   </div>
   <div class="inline field">
@@ -36,12 +21,12 @@
       <label class="ui label four wide column">
         {{t "general.category"}}
       </label>
-      {{#ui-dropdown
+      <UiDropdown
         class="twelve wide column scrolling selection"
-        selected=@vehicle.category
-        onChange=(action (mut @vehicle.category))
-        showOnFocus=false
-      }}
+        @selected={{@vehicle.category}}
+        @onChange={{mut @vehicle.category}}
+        @showOnFocus={{false}}
+      >
         {{@vehicle.category}}
         <i class="dropdown icon"></i>
         <div class="menu">
@@ -51,7 +36,7 @@
             </div>
           {{/each}}
         </div>
-      {{/ui-dropdown}}
+      </UiDropdown>
     </div>
   </div>
   {{#if (not-eq this.router.currentRouteName "vehicles.new")}}
@@ -60,11 +45,7 @@
         <label class="ui label four wide column">
           {{t "vehicles.active"}}
         </label>
-        {{ui-checkbox
-          class="slider"
-          checked=@vehicle.active
-          onChange=(action (mut @vehicle.active))
-        }}
+        <UiCheckbox class="slider" checked={{@vehicle.active}} @onChange={{mut @vehicle.active}} />
       </div>
     </div>
   {{/if}}

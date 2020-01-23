@@ -8,20 +8,11 @@
         {{t "general.loggedIn"}}
         {{this.currentUser.user.fullName}}
       </div>
-      <div
-        class="link item"
-        id="logoutBtn"
-        role="button"
-        {{action this.invalidateSession}}
-      >
+      <div class="link item" id="logoutBtn" role="button" {{on "click" this.invalidateSession}}>
         {{t "application.links.logout"}}
       </div>
     {{else}}
-      <UiDropdown
-        class="pointing item"
-        @selected="en-us"
-        @onChange={{action this.changeLocale}}
-      >
+      {{!-- <UiDropdown class="pointing item" @selected="en-us" @onChange={{fn this.changeLocale}}>
         <div class="default text"></div>
         <i class="dropdown icon"></i>
         <div class="menu">
@@ -32,7 +23,7 @@
             <i class="ro flag"></i>
           </div>
         </div>
-      </UiDropdown>
+      </UiDropdown> --}}
       {{#if (eq this.router.currentRouteName "registration")}}
         <LinkTo @route="login" class="item">
           {{t "login.button.login"}}
@@ -62,15 +53,15 @@
           {{t "temp.expenses.main"}}
           <i class="dropdown icon"></i>
           <div class="menu">
-            <a class="item">
+            <div class="link item">
               {{t "temp.expenses.national"}}
-            </a>
-            <a class="item">
+            </div>
+            <div class="link item">
               {{t "temp.expenses.international"}}
-            </a>
-            <a class="item">
+            </div>
+            <div class="link item">
               {{t "temp.expenses.trip"}}
-            </a>
+            </div>
           </div>
         </div>
         <div class="item">
@@ -96,7 +87,7 @@
   <div class="{{if this.session.isAuthenticated "fourteen wide "}} column">
     <div>
       {{#each this.flashMessages.queue as |flash|}}
-        {{flash-alert flash=flash}}
+        <FlashAlert @flash={{flash}} />
       {{/each}}
     </div>
     <div class="ui container" id="body_container">

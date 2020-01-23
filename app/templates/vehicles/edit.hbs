@@ -1,23 +1,18 @@
-{{#ui-modal
-  name="vehicleModal"
-  class="vehicleModal small"
-  onApprove=(action "approveModal")
-  closable=false
-}}
+<UiModal name="vehicleModal" class="vehicleModal small" @onApprove={{fn this.approveModal}} @closable={{false}}>
   <div class="header">
     {{t "general.editing"}}
     {{this.vehicle.registration}}
     ...
   </div>
   <div class="scrolling content">
-    {{vehicle-form vehicle=this.vehicle}}
+    <VehicleForm @vehicle={{this.vehicle}} />
   </div>
   <div class="actions">
-    <button class="ui red deny button" {{action "cancelButton"}}>
+    <button class="ui red deny button" type="button" {{on "click" this.cancelButton}}>
       {{t "general.cancel"}}
     </button>
     <div class="ui positive button">
       {{t "general.update"}}
     </div>
   </div>
-{{/ui-modal}}
+</UiModal>

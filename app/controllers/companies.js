@@ -1,5 +1,5 @@
 import Controller from "@ember/controller";
-import { alias, empty } from "@ember/object/computed";
+import { isEmpty } from "@ember/utils";
 import { set, action } from "@ember/object";
 import { inject as service } from "@ember/service";
 //TODO check all promises paths
@@ -14,10 +14,13 @@ export default class CompaniesController extends Controller {
   filter = "";
   sort = "name";
 
-  @empty("filter")
-  filterEmpty;
-  @alias("model")
-  companies;
+  get companies() {
+    return this.model;
+  }
+
+  get filterEmpty() {
+    return isEmpty(this.filter);
+  }
 
   @action
   clearFilter() {
@@ -54,7 +57,12 @@ export default class CompaniesController extends Controller {
   }
   @action
   setSort(sortParam) {
-    this.set("sort", sortParam);
+    this.sort = sortParam;
+  }
+
+  @action
+  pageChange(page) {
+    this.transitionToRoute({ queryParams: { page: page } });
   }
 
   successCallback() {

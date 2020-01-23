@@ -1,6 +1,6 @@
-import Component from "@ember/component";
+import Component from "@glimmer/component";
 import { inject as service } from "@ember/service";
-import { computed, action } from "@ember/object";
+import { action } from "@ember/object";
 import { task } from "ember-concurrency";
 
 export default class CreditInvoiceForm extends Component {
@@ -15,7 +15,6 @@ export default class CreditInvoiceForm extends Component {
   showExtra = false;
   showContact = false;
 
-  @computed("settings.main")
   get main() {
     return this.settings.getData("main");
   }
@@ -55,12 +54,13 @@ export default class CreditInvoiceForm extends Component {
   })
   lastNumberTask;
 
-  @action
-  sectionSwitcher(obj) {
-    if (this.get(obj)) {
-      this.toggleProperty(obj);
-    }
-  }
+  // TODO Remove
+  // @action
+  // sectionSwitcher(obj) {
+  //   if (get(this, obj)) {
+  //     this.toggleProperty(obj);
+  //   }
+  // }
 
   @action
   addExtraData() {

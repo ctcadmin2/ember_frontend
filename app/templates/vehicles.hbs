@@ -21,13 +21,13 @@
             <div class="item">
               <div class="middle aligned content">
                 <div class="left floated">
-                  {{#link-to "vehicles.new" class="ui teal button"}}
+                  <LinkTo @route="vehicles.new" class="ui teal button">
                     {{t "vehicles.addNew"}}
-                  {{/link-to}}
+                  </LinkTo>
                 </div>
                 <div class="right floated">
                   <div class="ui right floated">
-                    {{pagination-list model=this.vehicles page=this.page}}
+                    <PaginationList @data={{this.vehicles}} @pageChange={{this.pageChange}} />
                   </div>
                 </div>
               </div>
@@ -49,22 +49,19 @@
             <div class="ui fluid buttons">
               {{! TODO custom actions }}
               {{!table-actions model=vehicle deleteModel=(action "destroyVehicle" vehicle)}}
-              <button class="ui olive button">
+              <button class="ui olive button" type="button">
                 {{t "vehicles.details"}}
               </button>
-              <button class="ui olive button">
+              <button class="ui olive button" type="button">
                 {{t "vehicles.cNotes"}}
               </button>
-              <button class="ui olive button">
+              <button class="ui olive button" type="button">
                 {{t "vehicles.events"}}
               </button>
-              {{#link-to "vehicles.edit" vehicle class="ui teal button"}}
+              <LinkTo @route="vehicles.edit" @model={{vehicle}} class="ui teal button">
                 {{t "general.edit"}}
-              {{/link-to}}
-              <button
-                class="ui red button"
-                {{action "deleteButton" vehicle.id}}
-              >
+              </LinkTo>
+              <button class="ui red button" type="button" {{on "click" (fn this.destroyVehicle vehicle.id)}}>
                 {{t "general.destroy"}}
               </button>
             </div>

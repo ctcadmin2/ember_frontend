@@ -1,10 +1,10 @@
 import Controller from "@ember/controller";
-import { alias } from "@ember/object/computed";
 import { set, action } from "@ember/object";
 
 export default class NewCompany extends Controller {
-  @alias("model")
-  company;
+  get company() {
+    return this.model;
+  }
 
   showForm = false;
 

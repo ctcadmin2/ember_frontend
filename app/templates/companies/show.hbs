@@ -1,15 +1,15 @@
-{{#ui-modal name="companyModal" class="companyModal small" closable=false}}
+<UiModal name="companyModal" class="companyModal small" @closable={{false}}>
   <div class="header">
     {{t "companies.showing"}}
     {{this.company.name}}
     ...
   </div>
   <div class="scrolling content">
-    {{company-form data=this.company inputDisabled=true}}
+    <CompanyForm @data={{this.company}} @inputDisabled={{true}} />
   </div>
   <div class="actions">
-    <button class="ui positive button" {{action "okButton"}}>
+    <button class="ui positive button" type="button" {{on "click" this.okButton}}>
       {{t "general.ok"}}
     </button>
   </div>
-{{/ui-modal}}
+</UiModal>

@@ -11,6 +11,7 @@ export default class UserEditRoute extends Route {
   @action
   didTransition() {
     next(function() {
+      // eslint-disable-next-line ember/no-jquery
       $(".userModal").modal("show");
     });
   }

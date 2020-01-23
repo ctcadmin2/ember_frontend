@@ -1,15 +1,16 @@
 import Controller from "@ember/controller";
 import { action } from "@ember/object";
-import { alias } from "@ember/object/computed";
 import { inject as service } from "@ember/service";
 
 export default class CreditNotesEditController extends Controller {
   @service flashMessages;
 
-  @alias("model.creditNote")
-  creditNote;
-  @alias("model.vehicles")
-  vehicles;
+  get creditNote() {
+    return this.model.creditNote;
+  }
+  get vehicles() {
+    return this.model.vehicles;
+  }
 
   @action
   approveModal() {

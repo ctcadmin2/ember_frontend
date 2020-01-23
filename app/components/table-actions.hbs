@@ -1,0 +1,9 @@
+<LinkTo @route={{route-name-helper this.route "show"}} @model={{@model}} class="ui olive button">
+  {{t "general.show"}}
+</LinkTo>
+<LinkTo @route={{route-name-helper this.route "edit"}} @model={{@model}} class="ui teal button">
+  {{t "general.edit"}}
+</LinkTo>
+<button class="ui red button" type="button" {{on "click" (fn this.deleteButton @model.id)}}>
+  {{t "general.destroy"}}
+</button>

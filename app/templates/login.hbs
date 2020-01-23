@@ -2,36 +2,30 @@
   {{t "login.title"}}
 </h1>
 <div class="ui grid centered">
-  <div
-    class="ui sixteen wide mobile ten wide tablet eight wide computer column"
-  >
+  <div class="ui sixteen wide mobile ten wide tablet eight wide computer column">
     <div class="ui centered raised segment">
-      <form
-        class="ui large form"
-        id="loginForm"
-        {{action "userAuth" on="submit"}}
-      >
+      <form class="ui large form" id="loginForm" {{on "submit" this.userAuth}}>
         <div class="field">
           <div class="ui left icon input">
             <i class="ui mail icon"></i>
-            {{input
+            <Input
               type="email"
               id="email"
-              placeholder=(t "login.placeholder.email")
-              value=this.email
-              autofocus=true
-            }}
+              placeholder={{t "login.placeholder.email"}}
+              autofocus={{true}}
+              @value={{this.email}}
+            />
           </div>
         </div>
         <div class="field">
           <div class="ui left icon input">
             <i class="ui lock icon"></i>
-            {{input
+            <Input
               type="password"
               id="password"
-              placeholder=(t "login.placeholder.password")
-              value=this.password
-            }}
+              placeholder={{t "login.placeholder.password"}}
+              @value={{this.password}}
+            />
           </div>
         </div>
         <button type="submit" class="ui fluid large teal submit button">

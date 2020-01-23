@@ -13,8 +13,8 @@ export default class SettingsService extends Service {
 
   // TODO check possible removal
   getData(obj) {
-    if (this.get(obj)) {
-      return this.get(obj);
+    if (this[obj]) {
+      return this[obj];
     } else {
       this.loadData.perform(obj);
 
@@ -64,7 +64,7 @@ export default class SettingsService extends Service {
 
     if (response.status >= 200 && response.status < 300) {
       let json = yield response.json();
-      this.set(type, json);
+      this.type = json;
     } else {
       this.flashMessages.error("Settings could not be loaded.");
     }

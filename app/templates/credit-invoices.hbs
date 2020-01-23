@@ -5,37 +5,23 @@
     </caption>
     <thead>
       <tr>
-        <SortableHeader
-          @sort={{this.sort}}
-          @prop="number"
-          @setSort={{action "setSort"}}
-        >
+        <SortableHeader @sort={{this.sort}} @prop="number" @setSort={{this.setSort}}>
           {{t "creditInvoices.number"}}
         </SortableHeader>
         <th>
           {{t "creditInvoices.date"}}
         </th>
-        <SortableHeader
-          @sort={{this.sort}}
-          @prop="total_value"
-          @setSort={{action "setSort"}}
-        >
+        <SortableHeader @sort={{this.sort}} @prop="total_value" @setSort={{this.setSort}}>
           {{t "creditInvoices.value"}}
         </SortableHeader>
         <th>
           <div class="ui search">
             <div class="ui fluid icon input">
-              {{input
-                value=this.filter
-                key-up=(action "setPage")
-                class="prompt"
-                type="text"
-                placeholder="Search"
-              }}
+              <Input @value={{this.filter}} @key-up={{this.setPage}} class="prompt" type="text" placeholder="Search" />
               <i
                 class="{{if this.filterEmpty "search" "remove link"}} icon"
                 role="button"
-                {{action "clearFilter"}}
+                {{on "click" this.clearFilter}}
               ></i>
             </div>
           </div>
@@ -49,13 +35,13 @@
             <div class="item">
               <div class="middle aligned content">
                 <div class="left floated">
-                  {{#link-to "credit-invoices.new" class="ui teal button"}}
+                  <LinkTo @route="credit-invoices.new" class="ui teal button">
                     {{t "creditInvoices.newCI"}}
-                  {{/link-to}}
+                  </LinkTo>
                 </div>
                 <div class="right floated">
                   <div class="ui right floated">
-                    {{pagination-list model=this.creditInvoices page=this.page}}
+                    <PaginationList @data={{this.creditInvoices}} @pageChange={{this.pageChange}} />
                   </div>
                 </div>
               </div>
@@ -78,13 +64,13 @@
           </td>
           <td>
             <div class="ui fluid buttons">
-              <button class="ui olive button">
+              <button class="ui olive button" type="button">
                 {{t "general.show"}}
               </button>
-              {{#link-to "credit-invoices.edit" ci class="ui teal button"}}
+              <LinkTo @route="credit-invoices.edit" @model={{ci}} class="ui teal button">
                 {{t "general.edit"}}
-              {{/link-to}}
-              <button class="ui red button" {{action "deleteButton" ci.id}}>
+              </LinkTo>
+              <button class="ui red button" type="button" {{on "click" (fn this.destroyCreditInvoice ci.id)}}>
                 {{t "general.destroy"}}
               </button>
             </div>

@@ -1,4 +1,4 @@
-{{#ui-modal class="userModal small" closable=false}}
+<UiModal class="userModal small" @closable={{false}}>
   <div class="header">
     {{t "general.editing"}}
     {{this.user.fullName}}
@@ -8,63 +8,34 @@
     <form class="ui large fluid form">
       <div class="inline field">
         <div class="ui fluid labeled input grid">
-          <label
-            class="ui label four wide column"
-            for={{concat this.elementId "-first"}}
-          >
+          <label class="ui label four wide column" for={{concat this.elementId "-first"}}>
             {{t "users.edit.firstName"}}
           </label>
-          {{input
-            type="text"
-            value=this.user.firstName
-            autofocus=true
-            id=(concat this.elementId "-first")
-          }}
+          <Input type="text" @value={{this.user.firstName}} autofocus={{true}} id={{concat this.elementId "-first"}} />
         </div>
       </div>
       <div class="inline field">
         <div class="ui fluid labeled input grid">
-          <label
-            class="ui label four wide column"
-            for={{concat this.elementId "-last"}}
-          >
+          <label class="ui label four wide column" for={{concat this.elementId "-last"}}>
             {{t "users.edit.lastName"}}
           </label>
-          {{input
-            type="text"
-            value=this.user.lastName
-            id=(concat this.elementId "-last")
-          }}
+          <Input type="text" @value={{this.user.lastName}} id={{concat this.elementId "-last"}} />
         </div>
       </div>
       <div class="inline field">
         <div class="ui fluid labeled input grid">
-          <label
-            class="ui label four wide column"
-            for={{concat this.elementId "-email"}}
-          >
+          <label class="ui label four wide column" for={{concat this.elementId "-email"}}>
             {{t "users.edit.email"}}
           </label>
-          {{input
-            type="email"
-            value=this.user.email
-            id=(concat this.elementId "-email")
-          }}
+          <Input type="email" @value={{this.user.email}} id={{concat this.elementId "-email"}} />
         </div>
       </div>
       <div class="inline field">
         <div class="ui fluid labeled input grid">
-          <label
-            class="ui label four wide column"
-            for={{concat this.elementId "-ssn"}}
-          >
+          <label class="ui label four wide column" for={{concat this.elementId "-ssn"}}>
             {{t "users.edit.ssn"}}
           </label>
-          {{input
-            type="text"
-            value=this.user.ssn
-            id=(concat this.elementId "-ssn")
-          }}
+          <Input type="text" @value={{this.user.ssn}} id={{concat this.elementId "-ssn"}} />
         </div>
       </div>
       <div class="inline field">
@@ -72,12 +43,12 @@
           <label class="ui label four wide column">
             {{t "users.edit.lang.title"}}
           </label>
-          {{#ui-dropdown
+          <UiDropdown
             class="ui twelve wide column scrolling selection"
-            selected=this.user.lang
-            onChange=(action (mut this.user.lang))
-            showOnFocus=false
-          }}
+            @selected={{this.user.lang}}
+            @onChange={{fn (mut this.user.lang)}}
+            @showOnFocus={{false}}
+          >
             <i class="dropdown icon"></i>
             <div class="default text"></div>
             <div class="menu">
@@ -90,17 +61,17 @@
                 {{t "users.edit.lang.ro"}}
               </div>
             </div>
-          {{/ui-dropdown}}
+          </UiDropdown>
         </div>
       </div>
     </form>
   </div>
   <div class="actions">
-    <button class="ui red button" {{action "cancelButton"}}>
+    <button class="ui red button" type="button" {{on "click" this.cancelButton}}>
       {{t "general.cancel"}}
     </button>
-    <button class="ui positive button" {{action "okButton"}}>
+    <button class="ui positive button" type="button" {{on "click" this.okButton}}>
       {{t "general.update"}}
     </button>
   </div>
-{{/ui-modal}}
+</UiModal>

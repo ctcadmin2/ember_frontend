@@ -12,6 +12,7 @@ export default class CompanyShowRoute extends Route {
   @action
   didTransition() {
     next(function() {
+      // eslint-disable-next-line ember/no-jquery
       $(".companyModal").modal("show");
     });
   }

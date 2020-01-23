@@ -30,9 +30,9 @@ export default class JwtAuthenticator extends BaseAuthenticator {
        *  if expired clear token
        *  else restore
        */
-      let decoded_token = jwtDecode(data.jwt);
+      let decodedToken = jwtDecode(data.jwt);
       let now = this._getCurrentTime();
-      let expiresAt = decoded_token.exp;
+      let expiresAt = decodedToken.exp;
 
       // if token is expired invalidate session
       if (expiresAt < now) {

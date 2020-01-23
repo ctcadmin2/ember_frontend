@@ -1,13 +1,13 @@
 import Controller from "@ember/controller";
 import { inject as service } from "@ember/service";
-import { alias } from "@ember/object/computed";
 import { action } from "@ember/object";
 
 export default class EditCreditInvoice extends Controller {
   @service flashMessages;
 
-  @alias("model")
-  creditInvoice;
+  get creditInvoice() {
+    return this.model;
+  }
 
   @action
   approveModal() {

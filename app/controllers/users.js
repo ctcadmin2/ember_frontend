@@ -1,10 +1,10 @@
 import Controller from "@ember/controller";
-import { alias } from "@ember/object/computed";
 import { action } from "@ember/object";
 
 export default class UsersController extends Controller {
-  @alias("model")
-  users;
+  get users() {
+    return this.model;
+  }
 
   @action
   destroyUser(id) {

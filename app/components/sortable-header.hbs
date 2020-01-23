@@ -1,4 +1,4 @@
-<th role="button" {{action "sortTable" @prop}}>
+<th role="button" {{on "click" (fn this.sortTable @prop)}}>
   {{yield}}
   <i class={{sort-class @sort @prop}}></i>
 </th>

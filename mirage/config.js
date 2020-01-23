@@ -6,7 +6,7 @@ export default function() {
   this.passthrough("/write-coverage");
 
   // console logging
-  this.logging = false;
+  // this.logging = true;
 
   // These comments are here to help you get started. Feel free to delete them.
 
@@ -31,10 +31,12 @@ export default function() {
 
     http://www.ember-cli-mirage.com/docs/v0.3.x/shorthands/
   */
+
   //authentication
-  this.post("/user_token/", (schema, request) => {
+  this.post("/user_token", (schema, request) => {
     const req = JSON.parse(request.requestBody);
     const pw = get(req, "auth.password");
+
     if (pw === "test1234") {
       return new Response(
         201,
@@ -50,17 +52,7 @@ export default function() {
       return new Response(404, {}, {});
     }
   });
-  this.get("/companies", (schema, request) => {
-    const token = get(request, "requestHeaders.Authorization");
-    if (
-      token ===
-      "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImFkbWluIjp0cnVlfQ.hgNSDI7STvbPMw4dJky55hUpUy5jriNIrLwp5dW3awg"
-    ) {
-      return schema.companies.all();
-    } else {
-      return new Response(401, {}, {});
-    }
-  });
+  //Users
   this.get("/users", (schema, request) => {
     const token = get(request, "requestHeaders.Authorization");
     if (
@@ -72,7 +64,6 @@ export default function() {
       return new Response(401, {}, {});
     }
   });
-
   this.get("/users/:id", (schema, request) => {
     const id = request.params.id;
     const token = get(request, "requestHeaders.Authorization");
@@ -85,7 +76,6 @@ export default function() {
       return new Response(401, {}, {});
     }
   });
-
   this.del("/users/:id");
   this.patch("/users/:id", (schema, request) => {
     const token = get(request, "requestHeaders.Authorization");
@@ -99,11 +89,13 @@ export default function() {
       return new Response(401, {}, {});
     }
   });
-
+  // API helpers
   this.get("/api_helpers/countries.json", () => {
-    return [{ name: "Romania", value: "RO" }, { name: "Denmark", value: "DK" }];
+    return [
+      { name: "Romania", value: "RO" },
+      { name: "Denmark", value: "DK" }
+    ];
   });
-
   this.get("/api_helpers/openapi.json", (schema, request) => {
     let data = {
       data: {
@@ -126,7 +118,6 @@ export default function() {
       return new Response(404, {}, {});
     }
   });
-
   this.get("/api_helpers/vies.json", (schema, request) => {
     let data = {
       data: {
@@ -148,7 +139,18 @@ export default function() {
       return new Response(404, {}, {});
     }
   });
-
+  //companies
+  this.get("/companies", (schema, request) => {
+    const token = get(request, "requestHeaders.Authorization");
+    if (
+      token ===
+      "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImFkbWluIjp0cnVlfQ.hgNSDI7STvbPMw4dJky55hUpUy5jriNIrLwp5dW3awg"
+    ) {
+      return schema.companies.all();
+    } else {
+      return new Response(401, {}, {});
+    }
+  });
   //vehicles
   this.get("/vehicles", (schema, request) => {
     const token = get(request, "requestHeaders.Authorization");

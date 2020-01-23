@@ -2,20 +2,19 @@
   <div class="ui pagination menu">
     {{#unless this.prevButton}}
       {{#unless this.firstButton}}
-        {{#link-to this.route (query-params page=1) class="item"}}
+        <div class="ui link item" {{on "click" (fn @pageChange 1)}}>
           <i class="fast backward icon"></i>
-        {{/link-to}}
+        </div>
       {{/unless}}
-      {{#link-to this.route (query-params page=this.decrementPage) class="item"
-      }}
+      <div class="ui link item" {{on "click" (fn @pageChange (dec this.currentPage))}}>
         <i class="left arrow icon"></i>
-      {{/link-to}}
+      </div>
     {{/unless}}
-    {{#ui-dropdown
+    <UiDropdown
       class="fluid scrolling selection"
-      selected=this.query.page.number
-      onChange=(action (mut this.page)) as |execute mapper|
-    }}
+      @selected={{this.currentPage}}
+      @onChange={{@page}} as |execute mapper|
+    >
       <div class="default text">
         {{t "components.paginationList.pageNr"}}
       </div>
@@ -27,20 +26,15 @@
           </div>
         {{/each}}
       </div>
-    {{/ui-dropdown}}
+    </UiDropdown>
     {{#unless this.nextButton}}
-      {{#link-to this.route (query-params page=this.incrementPage) class="item"
-      }}
+      <div class="ui link item" {{on "click" (fn @pageChange (inc this.currentPage))}}>
         <i class="right arrow icon"></i>
-      {{/link-to}}
+      </div>
       {{#unless this.lastButton}}
-        {{#link-to
-          this.route
-          (query-params page=this.meta.page-count)
-          class="item"
-        }}
+        <div class="ui link item" {{on "click" (fn @pageChange this.pageCount)}}>
           <i class="fast forward icon"></i>
-        {{/link-to}}
+        </div>
       {{/unless}}
     {{/unless}}
   </div>

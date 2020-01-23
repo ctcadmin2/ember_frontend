@@ -19,8 +19,11 @@ module.exports = function(defaults) {
     "ember-fetch": {
       preferNative: true
     },
-    'ember-composable-helpers': {
-      only: ['toggle']
+    "ember-cli-string-helpers": {
+      only: ["lowercase", "camelize"]
+    },
+    "ember-composable-helpers": {
+      only: ["toggle", "inc", "dec"]
     },
     //prevents hinting and tests in development
     hinting: !envIsDevelopment,

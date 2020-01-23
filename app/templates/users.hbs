@@ -31,15 +31,11 @@
           </td>
           <td>
             <div class="ui fluid buttons">
-              {{toggle-button
-                obj=user
-                prop="active"
-                updateObj=(action "toggleUpdate")
-              }}
-              {{#link-to "users.edit" user class="ui button teal"}}
+              <ToggleButton @obj={{user}} @prop="active" @updateObj={{fn this.toggleUpdate}} />
+              <LinkTo @route="users.edit" @model={{user}} class="ui button teal">
                 {{t "general.edit"}}
-              {{/link-to}}
-              <button class="ui button red" {{action "destroyUser" user.id}}>
+              </LinkTo>
+              <button class="ui button red" type="button" {{on "click" (fn this.destroyUser user.id)}}>
                 {{t "general.destroy"}}
               </button>
             </div>

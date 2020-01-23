@@ -1,5 +1,4 @@
 import Model, { attr } from "@ember-data/model";
-import { computed } from "@ember/object";
 
 export default class User extends Model {
   @attr("string")
@@ -20,7 +19,7 @@ export default class User extends Model {
   admin;
   @attr("boolean")
   active;
-  @computed("firstName", "lastName")
+
   get fullName() {
     return `${this.firstName} ${this.lastName}`;
   }

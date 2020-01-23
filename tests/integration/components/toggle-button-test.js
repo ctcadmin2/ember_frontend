@@ -20,7 +20,7 @@ module("Integration | Component | toggle-button", function(hooks) {
     this.set("updateFunction", function() {});
 
     await render(
-      hbs`<ToggleButton @obj={{this.user}} @prop="active" @updateObj={{action this.updateFunction}}/>`
+      hbs`<ToggleButton @obj={{this.user}} @prop="active" @updateObj={{this.updateFunction}}/>`
     );
     assert.dom("button").hasText("Inactive");
     assert.dom("button").hasClass("red");

@@ -1,23 +1,21 @@
 import Controller from "@ember/controller";
-import { alias } from "@ember/object/computed";
 import { inject as service } from "@ember/service";
 import { action } from "@ember/object";
 
 export default class EditUser extends Controller {
   @service flashMessages;
 
-  @alias("model")
-  user;
+  get user() {
+    return this.model;
+  }
 
   @action
   okButton() {
     const user = this.user;
-    user
-      .save()
-      .then(
-        () => this._successCallback(),
-        () => this.flashMessages.error("User could not be updated!")
-      );
+    user.save().then(
+      () => this._successCallback(),
+      () => this.flashMessages.error("User could not be updated!")
+    );
     this.transitionToRoute("users");
   }
   @action

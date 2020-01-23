@@ -7,6 +7,7 @@ export default class SettingsRoute extends Route {
   @action
   didTransition() {
     next(function() {
+      // eslint-disable-next-line ember/no-jquery
       $(".tabular .item").tab();
     });
   }

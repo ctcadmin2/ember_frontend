@@ -2,19 +2,10 @@
 <form class="ui large fluid form">
   <div class="inline field">
     <div class="ui fluid labeled input grid">
-      <label
-        class="ui label four wide column"
-        for={{concat this.elementId "-number"}}
-      >
+      <label class="ui label four wide column" for={{concat this.elementId "-number"}}>
         {{t "creditNotes.number"}}
       </label>
-      <Input
-        @type="text"
-        @value={{@creditNote.number}}
-        autofocus="true"
-        id={{concat this.elementId "-number"}}
-       />
-
+      <Input @type="text" @value={{@creditNote.number}} autofocus="true" id={{concat this.elementId "-number"}} />
     </div>
   </div>
   <div class="inline field">
@@ -25,7 +16,7 @@
       <UiDropdown
         class="twelve wide column scrolling selection"
         @selected={{this.selectedVehicle}}
-        @onChange={{action this.setVehicle}}
+        @onChange={{this.setVehicle}}
       >
         <div class="default text">
           {{this.selectedVehicle.registration}}
@@ -43,70 +34,34 @@
   </div>
   <div class="inline field">
     <div class="ui fluid labeled input grid">
-      <label
-        class="ui label four wide column"
-        for={{concat this.elementId "-value"}}
-      >
+      <label class="ui label four wide column" for={{concat this.elementId "-value"}}>
         {{t "creditNotes.value"}}
       </label>
-      <Input
-        @type="text"
-        @value={{@creditNote.value}}
-        autofocus="true"
-        id={{concat this.elementId "-value"}}
-       />
-
+      <Input @type="text" @value={{@creditNote.value}} autofocus="true" id={{concat this.elementId "-value"}} />
     </div>
   </div>
   <div class="inline field">
     <div class="ui fluid labeled input grid">
-      <label
-        class="ui label four wide column"
-        for={{concat this.elementId "-start"}}
-      >
+      <label class="ui label four wide column" for={{concat this.elementId "-start"}}>
         {{t "creditNotes.start"}}
       </label>
-      <Input
-        @type="text"
-        @value={{@creditNote.start}}
-        autofocus="true"
-        id={{concat this.elementId "-start"}}
-       />
-
+      <Input @type="text" @value={{@creditNote.start}} autofocus="true" id={{concat this.elementId "-start"}} />
     </div>
   </div>
   <div class="inline field">
     <div class="ui fluid labeled input grid">
-      <label
-        class="ui label four wide column"
-        for={{concat this.elementId "-stop"}}
-      >
+      <label class="ui label four wide column" for={{concat this.elementId "-stop"}}>
         {{t "creditNotes.stop"}}
       </label>
-      <Input
-        @type="text"
-        @value={{@creditNote.end}}
-        autofocus="true"
-        id={{concat this.elementId "-stop"}}
-       />
-
+      <Input @type="text" @value={{@creditNote.end}} autofocus="true" id={{concat this.elementId "-stop"}} />
     </div>
   </div>
   <div class="inline field">
     <div class="ui fluid labeled input grid">
-      <label
-        class="ui label four wide column"
-        for={{concat this.elementId "-notes"}}
-      >
+      <label class="ui label four wide column" for={{concat this.elementId "-notes"}}>
         {{t "creditNotes.notes"}}
       </label>
-      <Input
-        @type="text"
-        @value={{@creditNote.notes}}
-        autofocus="true"
-        id={{concat this.elementId "-notes"}}
-       />
-
+      <Input @type="text" @value={{@creditNote.notes}} autofocus="true" id={{concat this.elementId "-notes"}} />
     </div>
   </div>
   <div class="inline field">
@@ -117,7 +72,7 @@
       <UiDropdown
         class="twelve wide column scrolling selection"
         @selected={{@creditNote.currency}}
-        @onChange={{action (mut @creditNote.currency)}}
+        @onChange={{mut @creditNote.currency}}
       >
         <div class="default text">
           {{@creditNote.currency}}
@@ -138,12 +93,7 @@
       <label class="ui label four wide column">
         {{t "creditNotes.paid"}}
       </label>
-      <UiCheckbox
-        class="slider"
-        @checked={{@creditNote.paid}}
-        @onChange={{action (mut @creditNote.paid)}}
-       />
-
+      <UiCheckbox class="slider" @checked={{@creditNote.paid}} @onChange={{mut @creditNote.paid}} />
     </div>
   </div>
 </form>

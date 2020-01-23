@@ -11,6 +11,7 @@ export default class VehicleNewRoute extends Route {
   @action
   didTransition() {
     next(function() {
+      // eslint-disable-next-line ember/no-jquery
       $(".vehicleModal").modal("toggle");
     });
   }

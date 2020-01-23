@@ -3,16 +3,13 @@
     <form class="ui large fluid form">
       <div class="inline field">
         <div class="ui fluid labeled input grid">
-          <label
-            class="ui label four wide column"
-            for={{concat this.elementId "-client"}}
-          >
+          <label class="ui label four wide column" for={{concat this.elementId "-client"}}>
             {{t "creditInvoices.new.client"}}
           </label>
           <UiDropdown
             class="twelve wide column search selection"
             @selected={{@creditInvoice.company}}
-            @onChange={{action (mut @creditInvoice.company)}}
+            @onChange={{mut @creditInvoice.company}}
             autofocus="true" as |execute mapper|
           >
             <div class="default text">
@@ -31,10 +28,7 @@
       </div>
       <div class="inline field">
         <div class="ui fluid labeled input grid">
-          <label
-            class="ui label four wide column"
-            for={{concat this.elementId "-number"}}
-          >
+          <label class="ui label four wide column" for={{concat this.elementId "-number"}}>
             {{t "creditInvoices.number"}}
           </label>
           <Input
@@ -42,42 +36,33 @@
             @value={{this.creditInvoice.number}}
             id={{concat this.elementId "-number"}}
             {{on "focus" this.getLastNumber}}
-           />
-
+          />
         </div>
       </div>
       <div class="inline field">
         <div class="ui fluid labeled input grid">
-          <label
-            class="ui label four wide column"
-            for={{concat this.elementId "-date"}}
-          >
+          <label class="ui label four wide column" for={{concat this.elementId "-date"}}>
             {{t "creditInvoices.date"}}
           </label>
-          <UiCalendar
+          {{!-- <UiCalendar
             @type="date"
             @date={{@creditInvoice.date}}
-            @onChange={{action (mut @creditInvoice.date)}}
+            @onChange={{mut @creditInvoice.date}}
             @placeholder="Select date"
             @allowClear={{true}}
             id={{concat this.elementId "-date"}}
-           />
-
+          /> --}}
         </div>
       </div>
       <div class="inline field">
         <div class="ui fluid labeled input grid">
-          <label
-            class="ui label four wide column"
-            for={{concat this.elementId "-cNnotes"}}
-          >
+          <label class="ui label four wide column" for={{concat this.elementId "-cNnotes"}}>
             {{t "creditInvoices.new.cNotes"}}
           </label>
           <UiDropdown
             class="twelve wide column search multiple selection"
             @selected={{@creditInvoice.cNotes}}
-            @onChange={{action (mut @creditInvoice.creditNotes)
-            }} as |execute mapper|
+            @onChange={{mut @creditInvoice.creditNotes}} as |execute mapper|
           >
             <div class="default text">
               {{@creditInvoice.cNotes}}
@@ -99,11 +84,11 @@
             {{t "creditInvoices.new.currency"}}
           </label>
           {{#if this.main}}
-            {{#ui-dropdown
+            <UiDropdown
               class="twelve wide column scrolling selection"
-              selected=@creditInvoice.currency
-              onChange=(action (mut @creditInvoice.currency))
-            }}
+              @selected={{@creditInvoice.currency}}
+              @onChange={{mut @creditInvoice.currency}}
+            >
               <div class="default text">
                 {{@creditInvoice.currency}}
               </div>
@@ -115,7 +100,7 @@
                   </div>
                 {{/each}}
               </div>
-            {{/ui-dropdown}}
+            </UiDropdown>
           {{/if}}
         </div>
       </div>
@@ -125,11 +110,11 @@
             {{t "creditInvoices.new.taxRate"}}
           </label>
           {{#if this.main}}
-            {{#ui-dropdown
+            <UiDropdown
               class="twelve wide column scrolling selection"
-              selected=@creditInvoice.taxRate
-              onChange=(action (mut @creditInvoice.taxRate))
-            }}
+              @selected={{@creditInvoice.taxRate}}
+              @onChange={{mut @creditInvoice.taxRate}}
+            >
               <div class="default text">
                 {{@creditInvoice.taxRate}}
               </div>
@@ -141,7 +126,7 @@
                   </div>
                 {{/each}}
               </div>
-            {{/ui-dropdown}}
+            </UiDropdown>
           {{/if}}
         </div>
       </div>
@@ -149,11 +134,7 @@
   </div>
   <div class="eight wide column">
     <div class="ui fluid secondary vertical menu">
-      <span
-        class="ui link item"
-        {{on "click" (toggle "showExtra" this)}}
-        {{on "click" (fn this.sectionSwitcher "showContact")}}
-      >
+      <span class="ui link item" {{on "click" (toggle "showExtra" this)}} {{on "click" (toggle "showContact" this)}}>
         {{t "components.creditInvoiceForm.extraLines.header"}}
         <i class="angle double {{orientation this.showExtra}} icon"></i>
       </span>
@@ -162,10 +143,7 @@
           <form class="ui fluid form">
             <div class="inline field">
               <div class="ui fluid labeled input grid">
-                <label
-                  class="ui label four wide column"
-                  for={{concat this.elementId "-serviceName"}}
-                >
+                <label class="ui label four wide column" for={{concat this.elementId "-serviceName"}}>
                   {{t "components.creditInvoiceForm.extraLines.serviceName"}}
                 </label>
                 <Input
@@ -173,16 +151,12 @@
                   id={{concat this.elementId "-serviceName"}}
                   @value={{this.extra.serviceName}}
                   {{on "change" (fn this.addExtraData)}}
-                 />
-
+                />
               </div>
             </div>
             <div class="inline field">
               <div class="ui fluid labeled input grid">
-                <label
-                  class="ui label four wide column"
-                  for={{concat this.elementId "-quantity"}}
-                >
+                <label class="ui label four wide column" for={{concat this.elementId "-quantity"}}>
                   {{t "components.creditInvoiceForm.extraLines.quantity"}}
                 </label>
                 <Input
@@ -190,16 +164,12 @@
                   id={{concat this.elementId "-quantity"}}
                   @value={{this.extra.quantity}}
                   {{on "change" (fn this.addExtraData)}}
-                 />
-
+                />
               </div>
             </div>
             <div class="inline field">
               <div class="ui fluid labeled input grid">
-                <label
-                  class="ui label four wide column"
-                  for={{concat this.elementId "-value"}}
-                >
+                <label class="ui label four wide column" for={{concat this.elementId "-value"}}>
                   {{t "components.creditInvoiceForm.extraLines.value"}}
                 </label>
                 <Input
@@ -207,8 +177,7 @@
                   id={{concat this.elementId "-value"}}
                   @value={{this.extra.value}}
                   {{on "change" (fn this.addExtraData)}}
-                 />
-
+                />
               </div>
             </div>
           </form>
@@ -217,11 +186,7 @@
     </div>
     <div class="ui divider"></div>
     <div class="ui fluid secondary vertical menu">
-      <span
-        class="ui link item"
-        {{on "click" (toggle "showContact" this)}}
-        {{on "click" (fn this.sectionSwitcher "showExtra")}}
-      >
+      <span class="ui link item" {{on "click" (toggle "showContact" this)}} {{on "click" (toggle "showExtra" this)}}>
         {{t "components.creditInvoiceForm.contactInfo.header"}}
         <i class="angle double {{orientation this.showContact}} icon"></i>
       </span>
@@ -230,10 +195,7 @@
           <form class="ui fluid form">
             <div class="inline field">
               <div class="ui fluid labeled input grid">
-                <label
-                  class="ui label four wide column"
-                  for={{concat this.elementId "-name"}}
-                >
+                <label class="ui label four wide column" for={{concat this.elementId "-name"}}>
                   {{t "components.creditInvoiceForm.contactInfo.name"}}
                 </label>
                 <Input
@@ -241,16 +203,12 @@
                   id={{concat this.elementId "-name"}}
                   @value={{this.contact.name}}
                   {{on "change" (fn this.addExtraData)}}
-                 />
-
+                />
               </div>
             </div>
             <div class="inline field">
               <div class="ui fluid labeled input grid">
-                <label
-                  class="ui label four wide column"
-                  for={{concat this.elementId "-id"}}
-                >
+                <label class="ui label four wide column" for={{concat this.elementId "-id"}}>
                   {{t "components.creditInvoiceForm.contactInfo.id"}}
                 </label>
                 <Input
@@ -258,16 +216,12 @@
                   id={{concat this.elementId "-id"}}
                   @value={{this.contact.id}}
                   {{on "change" (fn this.addExtraData)}}
-                 />
-
+                />
               </div>
             </div>
             <div class="inline field">
               <div class="ui fluid labeled input grid">
-                <label
-                  class="ui label four wide column"
-                  for={{concat this.elementId "-transport"}}
-                >
+                <label class="ui label four wide column" for={{concat this.elementId "-transport"}}>
                   {{t "components.creditInvoiceForm.contactInfo.transport"}}
                 </label>
                 <Input
@@ -275,8 +229,7 @@
                   id={{concat this.elementId "-transport"}}
                   @value={{this.contact.transport}}
                   {{on "change" (fn this.addExtraData)}}
-                 />
-
+                />
               </div>
             </div>
           </form>

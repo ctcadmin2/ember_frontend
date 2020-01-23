@@ -1,5 +1,5 @@
 import Controller from "@ember/controller";
-import { alias, empty } from "@ember/object/computed";
+import { isEmpty } from "@ember/utils";
 import { inject as service } from "@ember/service";
 import { action } from "@ember/object";
 
@@ -11,10 +11,18 @@ export default class VehiclesController extends Controller {
   size = 5;
   sort = "registration";
 
-  @alias("model")
-  vehicles;
-  @empty("filter")
-  filterEmpty;
+  get vehicles() {
+    return this.model;
+  }
+
+  get filterEmpty() {
+    return isEmpty(this.filter);
+  }
+
+  @action
+  pageChange(page) {
+    this.transitionToRoute({ queryParams: { page: page } });
+  }
 
   @action
   destroyVehicle() {

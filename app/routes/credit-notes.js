@@ -35,6 +35,7 @@ export default class CreditNotesRoute extends Route {
   @action
   didTransition() {
     next(function() {
+      // eslint-disable-next-line ember/no-jquery
       $("body .modals").dimmer("hide"); //dimmer doesn't close on back button TODO find nicer fix
     });
   }

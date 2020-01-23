@@ -2,18 +2,16 @@
   {{t "registration.title"}}
 </h1>
 <div class="ui grid centered">
-  <div
-    class="ui sixteen wide mobile ten wide tablet eight wide computer
-    column"
-  >
+  <div class="ui sixteen wide mobile ten wide tablet eight wide computer
+    column">
     <div class="ui centered raised segment">
-      <form class="ui fluid large form" {{action "createUser" on="submit"}}>
+      <form class="ui fluid large form" {{on "submit" this.createUser}}>
         <div class="inline field">
           <div class="ui fluid labeled input grid">
             <label for="firstName" class="ui horizontal label five wide column">
               {{t "registration.firstName"}}
             </label>
-            {{input id="firstName" value=this.user.firstName autofocus=true}}
+            <Input id="firstName" @value={{this.user.firstName}} autofocus={{true}} />
           </div>
         </div>
         <div class="inline field">
@@ -21,7 +19,7 @@
             <label for="lastName" class="ui horizontal label five wide column">
               {{t "registration.lastName"}}
             </label>
-            {{input id="lastName" value=this.user.lastName}}
+            <Input id="lastName" @value={{this.user.lastName}} />
           </div>
         </div>
         <div class="inline field">
@@ -29,7 +27,7 @@
             <label for="ssn" class="ui horizontal label five wide column">
               {{t "registration.ssn"}}
             </label>
-            {{input id="ssn" value=this.user.ssn}}
+            <Input id="ssn" @value={{this.user.ssn}} />
           </div>
         </div>
         <div class="inline field">
@@ -37,11 +35,7 @@
             <label for="lang" class="ui horizontal label five wide column">
               {{t "registration.lang.title"}}
             </label>
-            {{#ui-dropdown
-              class="selection eleven wide column"
-              selected="en"
-              onChange=(action (mut this.user.lang))
-            }}
+            <UiDropdown class="selection eleven wide column" @selected="en" @onChange={{fn (mut this.user.lang)}}>
               <i class="dropdown icon"></i>
               <div class="default text"></div>
               <div class="menu">
@@ -52,7 +46,7 @@
                   {{t "registration.lang.ro"}}
                 </div>
               </div>
-            {{/ui-dropdown}}
+            </UiDropdown>
           </div>
         </div>
         <div class="inline field">
@@ -60,7 +54,7 @@
             <label for="email" class="ui horizontal label five wide column">
               {{t "registration.email"}}
             </label>
-            {{input type="email" id="email" value=this.user.email}}
+            <Input type="email" id="email" @value={{this.user.email}} />
           </div>
         </div>
         <div class="inline field">
@@ -68,22 +62,15 @@
             <label for="password" class="ui horizontal label five wide column">
               {{t "registration.pass"}}
             </label>
-            {{input type="password" id="password" value=this.user.password}}
+            <Input type="password" id="password" @value={{this.user.password}} />
           </div>
         </div>
         <div class="inline field">
           <div class="ui fluid labeled input grid">
-            <label
-              for="passwordConfirmation"
-              class="ui horizontal label five wide column"
-            >
+            <label for="passwordConfirmation" class="ui horizontal label five wide column">
               {{t "registration.passConf"}}
             </label>
-            {{input
-              type="password"
-              id="passwordConfirmation"
-              value=this.user.passwordConfirmation
-            }}
+            <Input type="password" id="passwordConfirmation" @value={{this.user.passwordConfirmation}} />
           </div>
         </div>
         <button type="submit" class="ui fluid large teal submit button">

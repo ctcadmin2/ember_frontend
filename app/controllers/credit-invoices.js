@@ -1,12 +1,11 @@
 import Controller from "@ember/controller";
-import { alias, empty } from "@ember/object/computed";
-import { action, computed } from "@ember/object";
+import { isEmpty } from "@ember/utils";
+import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
 
 export default class CreditInvoicesController extends Controller {
   @service currentUser;
 
-  @computed
   get locale() {
     let user = this.currentUser.user;
     return user.lang.split("-")[0];
@@ -18,21 +17,31 @@ export default class CreditInvoicesController extends Controller {
   filter = "";
   sort = "number";
 
-  @empty("filter")
-  filterEmpty;
-  @alias("model")
-  creditInvoices;
+  get creditInvoices() {
+    return this.model;
+  }
+  get filterEmpty() {
+    return isEmpty(this.filter);
+  }
 
   @action
   clearFilter() {
-    this.set("filter", "");
+    this.filter = "";
   }
   @action
   setPage() {
-    this.set("page", 1);
+    this.page = 1;
   }
   @action
   setSort(sortParam) {
-    this.set("sort", sortParam);
+    this.sort = sortParam;
+  }
+  @action
+  pageChange(page) {
+    this.transitionToRoute({ queryParams: { page: page } });
+  }
+  @action
+  destroyCreditInvoice() {
+    alert("TODO");
   }
 }

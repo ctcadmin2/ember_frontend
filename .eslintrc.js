@@ -8,7 +8,7 @@ module.exports = {
       legacyDecorators: true
     }
   },
-  plugins: ["ember", "hbs", "compat", "html", "ember-es6-class"],
+  plugins: ["ember", "compat"],
   extends: [
     "eslint:recommended",
     "plugin:ember/octane",
@@ -24,8 +24,7 @@ module.exports = {
         allowSimpleArrowFunction: true
       }
     ],
-    "ember/no-ember-super-in-es-classes": 2,
-    "hbs/check-hbs-template-literals": 2
+    "ember/no-ember-super-in-es-classes": 2
     // 'ember/no-jquery': 2 TODO can't remove yet
   },
   overrides: [
@@ -36,7 +35,7 @@ module.exports = {
         ".template-lintrc.js",
         "ember-cli-build.js",
         "testem.js",
-        "ember-cli-build.js",
+        "blueprints/*/index.js",
         "config/**/*.js",
         "lib/*/index.js",
         "server/**/*.js"
