@@ -8,7 +8,7 @@ module.exports = {
       legacyDecorators: true
     }
   },
-  plugins: ["ember", "compat"],
+  plugins: ["compat", "ember", "hbs"],
   extends: [
     "eslint:recommended",
     "plugin:ember/octane",

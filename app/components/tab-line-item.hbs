@@ -1,15 +1,14 @@
-{{! TODO fix no-nested-interactive/no-invalid-interactive }}
-<div
-  class="ui middle aligned item grid"
-  role="button"
-  {{on "mouseenter" this.mouseIn}}
-  {{on "mouseleave" this.mouseOut}}
-  {{on "click" this.toggleEdit}}
->
+<div class="ui middle aligned item grid">
   <div class="ui four wide column">
     {{t (concat "settings." @objType "." (camelize @prop))}}
   </div>
-  <div class="ui six wide column">
+  <div
+    class="ui six wide column"
+    role="button"
+    {{on "mouseenter" this.mouseIn}}
+    {{on "mouseleave" this.mouseOut}}
+    {{on "click" this.toggleEdit}}
+  >
     <div class="ui fluid {{if this.editMode "input"}}">
       {{#if this.editMode}}
         {{#if this.textarea}}

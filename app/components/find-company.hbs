@@ -1,10 +1,4 @@
-{{! TODO fix no-nested-interactive/no-invalid-interactive }}
-<form
-  class="ui fluid {{this.formClass}} form"
-  role="button"
-  {{on "input" this.changeCif}}
-  {{! TODO check proper role }}
->
+<form class="ui fluid {{this.formClass}} form">
   <div class="ui success message">
     {{t "components.findCompany.success"}}
   </div>
@@ -36,7 +30,7 @@
           </div>
         </UiDropdown>
       {{/if}}
-      <Input type="text" placeholder="CIF" @value={{this.cif}} />
+      <Input type="text" placeholder="CIF" @value={{this.cif}} {{on "input" this.changeCif}} />
       <button
         class="ui primary button"
         type="button"

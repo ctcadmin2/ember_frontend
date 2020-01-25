@@ -2,11 +2,11 @@
   <div class="ui pagination menu">
     {{#unless this.prevButton}}
       {{#unless this.firstButton}}
-        <div class="ui link item" {{on "click" (fn @pageChange 1)}}>
+        <div class="ui link item" role="button" {{on "click" (fn @pageChange 1)}}>
           <i class="fast backward icon"></i>
         </div>
       {{/unless}}
-      <div class="ui link item" {{on "click" (fn @pageChange (dec this.currentPage))}}>
+      <div class="ui link item" role="button" {{on "click" (fn @pageChange (dec this.currentPage))}}>
         <i class="left arrow icon"></i>
       </div>
     {{/unless}}
@@ -28,11 +28,11 @@
       </div>
     </UiDropdown>
     {{#unless this.nextButton}}
-      <div class="ui link item" {{on "click" (fn @pageChange (inc this.currentPage))}}>
+      <div class="ui link item" role="button" {{on "click" (fn @pageChange (inc this.currentPage))}}>
         <i class="right arrow icon"></i>
       </div>
       {{#unless this.lastButton}}
-        <div class="ui link item" {{on "click" (fn @pageChange this.pageCount)}}>
+        <div class="ui link item" role="button" {{on "click" (fn @pageChange this.pageCount)}}>
           <i class="fast forward icon"></i>
         </div>
       {{/unless}}

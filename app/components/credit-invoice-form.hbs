@@ -44,14 +44,14 @@
           <label class="ui label four wide column" for={{concat this.elementId "-date"}}>
             {{t "creditInvoices.date"}}
           </label>
-          {{!-- <UiCalendar
+          <UiCalendar
             @type="date"
             @date={{@creditInvoice.date}}
             @onChange={{mut @creditInvoice.date}}
             @placeholder="Select date"
             @allowClear={{true}}
             id={{concat this.elementId "-date"}}
-          /> --}}
+          />
         </div>
       </div>
       <div class="inline field">
@@ -134,10 +134,15 @@
   </div>
   <div class="eight wide column">
     <div class="ui fluid secondary vertical menu">
-      <span class="ui link item" {{on "click" (toggle "showExtra" this)}} {{on "click" (toggle "showContact" this)}}>
+      <div
+        class="ui link item"
+        role="button"
+        {{on "click" (toggle "showExtra" this)}}
+        {{on "click" (toggle "showContact" this)}}
+      >
         {{t "components.creditInvoiceForm.extraLines.header"}}
         <i class="angle double {{orientation this.showExtra}} icon"></i>
-      </span>
+      </div>
       {{#if this.showExtra}}
         <div class="ui basic segment">
           <form class="ui fluid form">
@@ -186,10 +191,15 @@
     </div>
     <div class="ui divider"></div>
     <div class="ui fluid secondary vertical menu">
-      <span class="ui link item" {{on "click" (toggle "showContact" this)}} {{on "click" (toggle "showExtra" this)}}>
+      <div
+        role="button"
+        class="ui link item"
+        {{on "click" (toggle "showContact" this)}}
+        {{on "click" (toggle "showExtra" this)}}
+      >
         {{t "components.creditInvoiceForm.contactInfo.header"}}
         <i class="angle double {{orientation this.showContact}} icon"></i>
-      </span>
+      </div>
       {{#if this.showContact}}
         <div class="ui basic segment">
           <form class="ui fluid form">

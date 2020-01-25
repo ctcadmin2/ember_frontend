@@ -1,4 +1,3 @@
-{{! TODO fix no-nested-interactive/no-invalid-interactive }}
 <div class="ui item">
   <div class="ui middle aligned grid">
     <div class="ui four wide column">
@@ -9,17 +8,17 @@
         {{#each @list as |item|}}
           <MultilineItem @item={{item}} @deleteItem={{this.removeItem}} />
         {{/each}}
-        <div class="ui item" role="button" {{on "click" this.addMode}}>
-          {{#if this.editMode}}
+        <div class="ui item">
+          {{#if this.addMode}}
             <div class="ui middle aligned grid">
               <div class="ui eight wide column">
                 <div class="ui fluid input">
-                  <Input type={{@type}} @value={{this.value}} />
+                  <Input type={{@type}} @value={{this.value}} {{on "keyup" this.addItem}} />
                 </div>
               </div>
               <div
-                class="ui eight wide column"
                 role="button"
+                class="ui eight wide column"
                 {{on "mouseenter" this.mouseIn}}
                 {{on "mouseleave" this.mouseOut}}
                 {{on "click" this.addItem}}
@@ -33,7 +32,10 @@
               </div>
             </div>
           {{else}}
-            <i class="left floated plus teal icon"></i>{{t "general.addNew"}}
+            <div role="button" {{on "click" this.addModeToggle}}>
+              <i class="left floated plus teal icon"></i>
+              {{t "general.addNew"}}
+            </div>
           {{/if}}
         </div>
       </div>

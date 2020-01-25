@@ -18,7 +18,7 @@ export default class SettingsService extends Service {
     } else {
       this.loadData.perform(obj);
 
-      return this.main;
+      return this[obj];
     }
   }
 
@@ -64,7 +64,7 @@ export default class SettingsService extends Service {
 
     if (response.status >= 200 && response.status < 300) {
       let json = yield response.json();
-      this.type = json;
+      this[type] = json;
     } else {
       this.flashMessages.error("Settings could not be loaded.");
     }

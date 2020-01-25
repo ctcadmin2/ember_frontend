@@ -1,13 +1,13 @@
 import Component from "@glimmer/component";
 import { action } from "@ember/object";
+import { tracked } from "@glimmer/tracking";
 
 export default class TabLineItem extends Component {
-  classNames = ["ui", "item"];
-  showIcon = false;
-  editMode = false;
+  @tracked showIcon = false;
+  @tracked editMode = false;
 
   textarea() {
-    return this.inputType === "textarea";
+    return this.args.inputType === "textarea";
   }
 
   @action
@@ -29,7 +29,7 @@ export default class TabLineItem extends Component {
   @action
   saveChanges(e) {
     e.stopPropagation();
-    this.saveData(this.prop, this.value);
+    this.args.saveData(this.args.prop, this.args.value);
     this.editMode = false;
   }
 }
