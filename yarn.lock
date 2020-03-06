@@ -3661,10 +3661,10 @@ callsites@^3.0.0:
   resolved "https://registry.yarnpkg.com/callsites/-/callsites-3.1.0.tgz#b3630abd8943432f54b3f0519238e33cd7df2f73"
   integrity sha512-P8BjAsXvZS+VIDUI11hHCQEv74YT67YUi5JJFNWIqL235sBmjX4+qx9Muvls5ivyNENctx46xQLQ3aTuE7ssaQ==
 
-camelcase-keys@^6.1.1:
-  version "6.1.1"
-  resolved "https://registry.yarnpkg.com/camelcase-keys/-/camelcase-keys-6.1.1.tgz#0d24dde78cea4c7d2da7f4ea40b7995083328c8d"
-  integrity sha512-kEPCddRFChEzO0d6w61yh0WbBiSv9gBnfZWGfXRYPlGqIdIGef6HMR6pgqVSEWCYkrp8B0AtEpEXNY+Jx0xk1A==
+camelcase-keys@^6.2.0:
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/camelcase-keys/-/camelcase-keys-6.2.0.tgz#07302c9a9b78ffda16169e4cee18ed104aa4e8ea"
+  integrity sha512-bwHzjmUuw92j16zHWIV1YjpDk9S4sq/gB0x4upHcNrdV/U5RU0NCg3bxo6Ymu0+kjhT5L0KTfqCMaMkP2RrXnQ==
   dependencies:
     camelcase "^5.3.1"
     map-obj "^4.0.0"
