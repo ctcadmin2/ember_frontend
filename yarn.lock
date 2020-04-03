@@ -10541,10 +10541,10 @@ supports-color@^7.1.0:
   dependencies:
     has-flag "^4.0.0"
 
-sweetalert2@^9.7.0:
-  version "9.7.0"
-  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-9.7.0.tgz#4a3c4c9e360169ebcb70c2d648cc47b8f3d6e314"
-  integrity sha512-oGGj9hzl/HFx5I33VQyuYCIr3O1HBpQWB10MGYgzbc/3YWKaViH26U1eqq1N+5wtNlviscRBu+4vhSC/237THw==
+sweetalert2@^9.10.9:
+  version "9.10.9"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-9.10.9.tgz#a727178ea89a0976d3d1bf6ee9ea94d25cef59d1"
+  integrity sha512-EvCwcS9omZHhxp8XXiWwPMGq2ywGcU0VXeBr3DCibUMmfRkh8f8SxBWFSKMtw57HnK0tKYDhyhQV/vFERtRciQ==
 
 symbol-tree@^3.2.2:
   version "3.2.4"
