@@ -63,7 +63,7 @@
     "ember-qunit-nice-errors": "^1.2.0",
     "ember-resolver": "^7.0.0",
     "ember-simple-auth": "^2.1.1",
-    "ember-source": "~3.15.0",
+    "ember-source": "~3.19.0",
     "ember-truth-helpers": "^2.1.0",
     "eslint-plugin-compat": "^3.5.1",
     "eslint-plugin-ember": "^7.7.2",
