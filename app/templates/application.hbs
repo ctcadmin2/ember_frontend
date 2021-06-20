@@ -81,7 +81,7 @@
         <LinkTo @route="settings" class="teal item">
           {{t "application.links.settings"}}
         </LinkTo>
-      </div>
+      </div>let envIsDevelopment = process.env.EMBER_ENV === "development";
     </div>
   {{/if}}
   <div class="{{if this.session.isAuthenticated "fourteen wide "}} column">
