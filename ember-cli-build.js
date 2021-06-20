@@ -4,11 +4,12 @@
 const EmberApp = require("ember-cli/lib/broccoli/ember-app");
 
 module.exports = function (defaults) {
-  // let envIsDevelopment = process.env.EMBER_ENV === "development";
+  let envIsDevelopment = process.env.EMBER_ENV === "development";
   let app = new EmberApp(defaults, {
     // Add options here
     babel: {
-      sourceMaps: "inline"
+      sourceMaps: "inline",
+      plugins: [require.resolve('ember-auto-import/babel-plugin')],
     },
     eslint: {
       testGenerator: "qunit",
