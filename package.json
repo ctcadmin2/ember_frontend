@@ -28,7 +28,7 @@
     "last 1 Firefox versions"
   ],
   "devDependencies": {
-    "@babel/eslint-parser": "^7.14.5",
+    "@babel/eslint-parser": "^7.14.7",
     "@ember/jquery": "^2.0.0",
     "@ember/optional-features": "^2.0.0",
     "@ember/test-helpers": "^2.2.8",
